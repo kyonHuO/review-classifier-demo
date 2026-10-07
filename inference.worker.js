@@ -36,6 +36,13 @@ async function prepare(choice){
   if(choice!=='wasm'&&self.navigator.gpu){
     try {const adapter=await self.navigator.gpu.requestAdapter();if(adapter)backend='webgpu';} catch {/* Feature detection only; no remote inference. */}
   }
+  // The asyncify build's reduced-type CPU registry lacks GatherBlockQuantized.
+  // Use the same pinned release's standard WASM pair for CPU inference only.
+  // WebGPU retains Transformers.js's default asyncify runtime.
+  if(backend==='wasm'){
+    const base='https://cdn.jsdelivr.net/npm/onnxruntime-web@1.31.0-dev.20260914-8d85527a0/dist/';
+    env.backends.onnx.wasm.wasmPaths={mjs:base+'ort-wasm-simd-threaded.mjs',wasm:base+'ort-wasm-simd-threaded.wasm'};
+  }
   send('backend',{backend});
   const options={revision:MODEL_REVISION,progress_callback:progress};
   stage='model';send('status',{stage,text:'EmbeddingGemma 2を取得しています'});

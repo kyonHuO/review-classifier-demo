@@ -48,7 +48,7 @@ function appendResult(result){
 }
 function fail(data){
   const base=data.code==='memory'?'端末の空きメモリが足りず、モデルを実行できませんでした。ほかのタブを閉じるか、PCでお試しください。':data.code==='download'?'モデルまたは実行用ファイルを取得できませんでした。通信・ブラウザの制限をご確認のうえ、再実行してください。':data.code==='gpu'?'この端末のWebGPUで実行できませんでした。「モデル・分類方法について」でCPUを選ぶと再試行できます。':'モデルの実行に失敗しました。最新のChrome・Edgeを使うか、「モデル・分類方法について」でCPUを選んで再試行してください。';
-  stopWorker();setBusy(false);$('#run-status').hidden=true;runError(base+' 自動の代替判定は行っていません。');
+  stopWorker();setBusy(false);$('#download-notice').textContent='再実行時はモデルを準備し直します。取得済みファイルはキャッシュを利用する場合があります。';$('#run-status').hidden=true;runError(base+' 自動の代替判定は行っていません。');
   if(data.diagnostic){$('#error-diagnostic').textContent=`${data.stage} / ${data.backend}: ${data.diagnostic}`;$('#error-debug').hidden=false;}
   if(results.length)$('#result-summary').append(document.createTextNode('（途中で停止した結果です）'));
 }
@@ -105,5 +105,5 @@ $('#export-csv').addEventListener('click',()=>{
   const blob=new Blob([resultsCsv(results,MODEL_ID,MODEL_REVISION)],{type:'text/csv;charset=utf-8;'}),url=URL.createObjectURL(blob),link=el('a','');link.href=url;link.download='review-classification-results.csv';document.body.append(link);link.click();link.remove();setTimeout(()=>URL.revokeObjectURL(url),1500);
 });
 window.addEventListener('pagehide',()=>{fileVersion++;runVersion++;stopWorker();clearInterval(slowTimer);});
-window.addEventListener('pageshow',event=>{if(event.persisted&&busy){setBusy(false);progressState('処理を中止しました','画面を移動したため、モデルを解放しました。再実行できます。');}});
+window.addEventListener('pageshow',event=>{if(event.persisted){$('#download-notice').textContent='画面を移動したため、次回はモデルを準備し直します。取得済みファイルはキャッシュを利用する場合があります。';if(busy){setBusy(false);progressState('処理を中止しました','画面を移動したため、モデルを解放しました。再実行できます。');}}});
 updateCounter();

@@ -22,7 +22,7 @@ The requested model is **EmbeddingGemma 2**, released by Google on 2026-10-06. I
 
 `AutoConfig`, with vision/audio configs set to null, preserves external-data-format configuration; `AutoTokenizer` and `AutoModel` load text-only q4. The graph supplies a mean-pooled, normalized 768-dimensional `sentence_embedding`; the app defensively re-normalizes it. The classification prefix is `task: classification | query: ` for both reviews and prototype examples. No custom remote model code is executed.
 
-GPU is chosen only if WebGPU is available. Otherwise WASM/CPU is used. The user can explicitly choose CPU after a GPU error. WASM numThreads=1, compatible with GitHub Pages lacking COOP/COEP. All work runs in a worker; cancellation terminates it and stops outstanding work, retaining completed rows. No rules-based fallback is substituted if actual inference fails.
+GPU is chosen only if WebGPU is available. Otherwise WASM/CPU is used. The user can explicitly choose CPU after a GPU error. WASM numThreads=1, compatible with GitHub Pages lacking COOP/COEP. For CPU only, the app selects the exact matched standard ort-wasm-simd-threaded.mjs/.wasm files from the same pinned runtime; the default asyncify reduced-type build failed to register GatherBlockQuantized during browser QA. WebGPU keeps the default asyncify runtime. All work runs in a worker; cancellation terminates it and stops outstanding work, retaining completed rows. No rules-based fallback is substituted if actual inference fails.
 
 ## Classification method and limits
 
@@ -43,7 +43,7 @@ Provenance and licenses: `model-manifest.json`, `THIRD_PARTY_NOTICES.md`, `licen
 - JavaScript syntax checked with Node 24
 - Pure parser/math/export checks: `node --test tests/core.test.mjs`
 - Runtime version/model API verified from pinned upstream sources
-- Browser rendering and actual inference: pending public staging QA at this source revision. A passed unit test is not a passed model execution test
+- Desktop landing/try rendering and route navigation verified in the cloud browser, plus two-row input counting and 101-row rejection. Actual initial inference on WASM failed in the default asyncify build with missing GatherBlockQuantized. A standard-WASM runtime-path fix is prepared; actual inference remains pending retest after publication. A passed unit test is not a passed model execution test
 - Local browser preview blocked by the execution environment; no attempt to bypass it
 
 Application files: index.html, try.html, styles.css, app.js, core.js, inference.worker.js, model-config.js, model-manifest.json, assets/, licenses/.
