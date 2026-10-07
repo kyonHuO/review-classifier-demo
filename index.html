@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="ja" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="口コミを4つのラベルで見渡す、レビュー分類サービスの画面プロトタイプ。架空サンプルで操作を確認できます。実際のAI分類は未接続です。">
+  <meta name="theme-color" content="#111116">
+  <title>口コミの仕分けを、CSVから。｜画面プロトタイプ</title>
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="stylesheet" href="styles.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#demo">画面デモへ移動</a>
+  <header class="site-header">
+    <a href="#home" class="identity" aria-label="ホームへ"><span class="identity-mark" aria-hidden="true">▤</span><span>REVIEW<br>CLASSIFIER<span class="identity-version"> / PROTOTYPE</span></span></a>
+    <button type="button" class="mobile-menu" aria-expanded="false" aria-controls="site-nav">MENU <span>＋</span></button>
+    <nav id="site-nav" class="site-nav" aria-label="メインナビゲーション">
+      <a class="active" href="#home" aria-current="location">HOME</a>
+      <a href="#demo">TRY DEMO</a>
+      <a href="#guide">HOW IT WORKS</a>
+      <a href="#contact">CONTACT</a>
+    </nav>
+    <button type="button" id="theme-toggle" class="theme-toggle" aria-label="ライトテーマに切り替える" aria-pressed="false"><span aria-hidden="true">◐</span><span class="theme-word">DARK</span></button>
+  </header>
+
+  <main>
+    <section id="home" class="hero page-section" aria-labelledby="hero-title">
+      <div class="corner-label mono"><span class="status-dot"></span> REVIEW CLASSIFICATION / JP + EN<br><span class="muted">A SMALL EXPERIMENT WITH CUSTOMER VOICES.</span></div>
+      <div class="hero-grid" aria-hidden="true"></div>
+      <div class="hero-copy">
+        <p class="eyebrow">たくさんの声を、次の一手へ。</p>
+        <h1 id="hero-title">口コミの<br>仕分けを、<br><span>CSV<span class="slim">から。</span></span></h1>
+        <p class="hero-description">読む。分ける。見直す。<br>ひとつずつの声を、見渡せるかたちに。</p>
+        <a class="button primary" href="#demo">画面デモで試してみる <span aria-hidden="true">↗</span></a>
+        <p class="hero-disclaimer">画面プロトタイプ / 実際のAI分類は準備中</p>
+      </div>
+      <div class="hero-art" aria-label="レビューが4分類に整理される様子を表したオリジナルグラフィック">
+        <div class="window art-window draggable" id="art-window">
+          <div class="window-bar drag-handle" tabindex="0" role="button" aria-label="グラフィックウィンドウを移動。矢印キーでも移動できます"><span>voice_mapper.obj</span><span aria-hidden="true">↗ &nbsp; ▫</span></div>
+          <div class="art-stage"><span class="art-cross cross-one" aria-hidden="true">＋</span><span class="art-cross cross-two" aria-hidden="true">＋</span><img src="assets/voice-knot.svg" alt="ピンク、ラベンダー、シアンの線が交差する立体的な結び目" width="700" height="670"><div class="art-coordinate mono">X: VOICES<br>Y: CONTEXT<br>Z: NEXT ACTION</div><span class="art-index mono">FIG. 001</span></div>
+        </div>
+        <div class="window review-float float-one draggable">
+          <div class="window-bar drag-handle" tabindex="0" role="button" aria-label="日本語サンプルウィンドウを移動。矢印キーでも移動できます"><span>review_001.txt</span><span aria-hidden="true">⋮⋮</span></div>
+          <div class="review-float-body"><p>使いやすいけれど、<br>電池がすぐ切れる。</p><span class="label mixed">± 賛否混在</span><span class="sample-small">架空サンプル</span></div>
+        </div>
+        <div class="window review-float float-two draggable">
+          <div class="window-bar drag-handle" tabindex="0" role="button" aria-label="英語サンプルウィンドウを移動。矢印キーでも移動できます"><span>review_002.txt</span><span aria-hidden="true">⋮⋮</span></div>
+          <div class="review-float-body"><p>Simple, quiet,<br>and easy to use.</p><span class="label positive">＋ 好意的</span><span class="sample-small">架空サンプル</span></div>
+        </div>
+        <div class="tiny-sticker mono" aria-hidden="true">EVERY VOICE<br>HAS A PLACE.<span>↘</span></div>
+      </div>
+      <div class="hero-bottom mono"><span>01 — OVERVIEW</span><button type="button" id="reset-windows">RESET WINDOWS ↺</button><a href="#demo">SCROLL TO EXPLORE ↓</a></div>
+    </section>
+
+    <div class="ticker" aria-hidden="true"><div>READ THE VOICES. &nbsp; SORT THE SIGNALS. &nbsp; KEEP THE NUANCE. &nbsp; <span>声を、見渡す。</span> &nbsp; READ THE VOICES. &nbsp; SORT THE SIGNALS. &nbsp; KEEP THE NUANCE. &nbsp; <span>声を、見渡す。</span> &nbsp;</div></div>
+
+    <section id="demo" class="demo page-section" aria-labelledby="demo-title">
+      <div class="section-top mono"><span>02 — INTERACTIVE DESK</span><span class="desktop-only">NO SIGN-UP / SAMPLE VIEW</span><span class="demo-badge">画面デモ・サンプル結果</span></div>
+      <div class="section-heading"><h2 id="demo-title">仕分ける感覚を、<br><span>まずは、ここで。</span></h2><div class="section-intro"><p>日本語と英語の架空レビューで、<br>分類結果の見方を体験できます。</p><p class="fine-print">表示される分類はあらかじめ用意した例です。<br>このページはAIによる判定を行いません。</p></div></div>
+      <div class="demo-workspace">
+        <div class="window input-window">
+          <div class="window-bar"><span>01 / input.txt</span><span class="mono">LOCAL PREVIEW</span></div>
+          <div class="window-content">
+            <div class="mode-tabs" role="tablist" aria-label="入力の表示モード">
+              <button type="button" id="sample-tab" class="selected" role="tab" aria-selected="true" aria-controls="sample-input" tabindex="0">サンプル</button>
+              <button type="button" id="own-tab" role="tab" aria-selected="false" aria-controls="own-input" tabindex="-1">自分の文章を確認</button>
+            </div>
+            <div id="sample-input" role="tabpanel" aria-labelledby="sample-tab">
+              <div class="sample-input-list" id="sample-source-list"></div>
+              <div class="input-foot mono"><span>8 REVIEWS / JP + EN</span><span>作成した架空データ</span></div>
+              <button type="button" class="button dark-button" id="load-samples">サンプル結果を表示 <span aria-hidden="true">↗</span></button>
+              <p class="fine-print">実際の分類処理やAPI通信は行いません</p>
+            </div>
+            <div id="own-input" role="tabpanel" aria-labelledby="own-tab" hidden>
+              <label for="review-input" class="input-label">1行につき1件のレビューを入力</label>
+              <textarea id="review-input" rows="7" maxlength="100000" placeholder="ここでは件数と本文だけを確認できます。&#10;個人情報・機密情報は入力しないでください。" aria-describedby="input-privacy input-counter"></textarea>
+              <div class="input-foot"><span id="input-counter" class="mono">0 / 100 件</span><button type="button" class="text-button" id="clear-input">クリア</button></div>
+              <div class="input-tools"><label for="csv-file" class="file-button">CSVから確認 ↗</label><input id="csv-file" type="file" accept=".csv,text/csv"><button type="button" class="text-button" id="preview-input">本文をプレビュー</button></div>
+              <p id="input-privacy" class="fine-print">入力文・CSVはこのブラウザー内でのみ処理します。外部送信・保存はしません。先頭100件までプレビューできます。CSVは本文1列、見出しは任意です。</p>
+              <p id="input-feedback" class="inline-feedback" role="status"></p>
+              <div id="input-preview" class="input-preview" hidden></div>
+              <button type="button" class="button pending-button" id="classify-input">実際の分類は準備中 <span aria-hidden="true">↗</span></button>
+            </div>
+          </div>
+        </div>
+        <div class="desk-arrow" aria-hidden="true">→</div>
+        <div class="window result-window">
+          <div class="window-bar"><span>02 / sample_results.csv</span><span class="mono" id="result-count">WAITING</span></div>
+          <div class="window-content">
+            <div class="result-header"><span class="demo-badge">固定サンプルの表示</span><span class="mono" id="result-loaded">00 / 08</span></div>
+            <div class="sample-progress" role="progressbar" aria-label="サンプル行の表示進捗" aria-valuemin="0" aria-valuemax="8" aria-valuenow="0"><div id="progress-fill"></div></div>
+            <div class="filter-tabs" role="group" aria-label="サンプル結果を絞り込み">
+              <button type="button" data-filter="all" class="selected" aria-pressed="true">すべて <span>0</span></button>
+              <button type="button" data-filter="positive" aria-pressed="false">好意的 <span>0</span></button>
+              <button type="button" data-filter="negative" aria-pressed="false">否定的 <span>0</span></button>
+              <button type="button" data-filter="mixed" aria-pressed="false">混在 <span>0</span></button>
+              <button type="button" data-filter="hold" aria-pressed="false">保留 <span>0</span></button>
+            </div>
+            <div class="results-scroll" id="results-list"><div class="empty-state"><div class="file-icon" aria-hidden="true">≡</div><p>まずは、サンプルを開こう。</p><span>左の「サンプル結果を表示」から<br>8件の架空レビューを確認できます。</span></div></div>
+            <div class="results-footer"><span class="fine-print" id="results-caption">実測データ・精度の検証結果ではありません</span><button type="button" class="text-button" id="export-csv" disabled>サンプルCSV ↓</button></div>
+          </div>
+        </div>
+      </div>
+      <div class="demo-bottom"><p><span class="tiny-plus">＋</span> 分けて終わりではなく、人が見直せることを大切に。</p><span class="mono">HUMAN REVIEW MATTERS.</span></div>
+    </section>
+
+    <section id="guide" class="guide page-section" aria-labelledby="guide-title">
+      <div class="section-top mono"><span>03 — FOUR PERSPECTIVES</span><span>KEEP THE NUANCE.</span></div>
+      <h2 id="guide-title">ひとつの声に、<br>ひとつの手がかり。</h2>
+      <div class="category-menu" role="tablist" aria-label="分類の説明">
+        <button type="button" class="selected" id="category-positive" role="tab" aria-controls="category-panel" aria-selected="true" data-category="positive"><span class="mono">01</span> 好意的 <span>↗</span></button>
+        <button type="button" id="category-negative" role="tab" aria-controls="category-panel" aria-selected="false" tabindex="-1" data-category="negative"><span class="mono">02</span> 否定的 <span>↗</span></button>
+        <button type="button" id="category-mixed" role="tab" aria-controls="category-panel" aria-selected="false" tabindex="-1" data-category="mixed"><span class="mono">03</span> 賛否混在 <span>↗</span></button>
+        <button type="button" id="category-hold" role="tab" aria-controls="category-panel" aria-selected="false" tabindex="-1" data-category="hold"><span class="mono">04</span> 判定保留 <span>↗</span></button>
+      </div>
+      <div class="category-visual" aria-hidden="true"><div class="orbit orbit-a"></div><div class="orbit orbit-b"></div><div class="orbit orbit-c"></div><div class="category-glyph">＋</div><div class="category-word mono">POSITIVE</div></div>
+      <div class="window category-description draggable" id="category-panel" role="tabpanel" aria-labelledby="category-positive">
+        <div class="window-bar drag-handle" tabindex="0" role="button" aria-label="分類説明ウィンドウを移動。矢印キーでも移動できます"><span id="category-filename">category_01.txt</span><span aria-hidden="true">⋮⋮</span></div>
+        <div class="window-content"><span class="mono category-number">01 / POSITIVE</span><h3 id="category-title">うれしい声を、<br>見つける。</h3><p id="category-description">使い心地や対応への満足など、肯定的な評価を含む声。伝わっている価値を見つける手がかりに。</p><p id="category-example" class="category-example">例「音が静かで、毎日使いやすいです。」</p><div class="barcode" aria-hidden="true"></div><p class="fine-print">分類基準の説明です。自動判定の保証ではありません。</p></div>
+      </div>
+      <div class="guide-bottom mono">READ BETWEEN THE LINES. <span>JUDGMENT NEEDS CONTEXT.</span></div>
+    </section>
+
+    <section id="contact" class="contact page-section" aria-labelledby="contact-title">
+      <div class="section-top mono"><span>04 — WHAT'S NEXT</span><span>IN DEVELOPMENT</span></div>
+      <div class="contact-main"><div><p class="eyebrow">口コミに向き合う人と、一歩ずつ。</p><h2 id="contact-title">小さく試して、<br>役立つかたちへ。</h2><p class="contact-copy">店舗やEC、宿などの口コミを整理する方へ。<br>日々の「読む・分ける・見直す」を支える<br>ツールを試作しています。</p></div><div class="window contact-window"><div class="window-bar"><span>contact — coming soon</span><span aria-hidden="true">▫</span></div><div class="window-content"><span class="status-label"><span class="status-dot"></span> 受付の準備中</span><h3>商用利用・モニターの<br>ご相談について</h3><p>お問い合わせ窓口と試用条件を整えています。料金・提供時期はまだ決まっていません。</p><button type="button" id="contact-details" class="button dark-button" aria-expanded="false" aria-controls="contact-note">今の開発状況を見る <span aria-hidden="true">＋</span></button><div id="contact-note" class="contact-note" hidden><p>現在は固定サンプルの画面デモです。実際の分類モデル、データの送信先・扱い、利用条件を確定してから試用をご案内します。</p><p>このページには送信フォームやメール送信機能はありません。</p></div><span class="contact-stamp mono">WORK IN<br>PROGRESS ↗</span></div></div></div>
+      <div class="footer-wordmark" aria-hidden="true">VOICE TO VIEW.</div>
+      <footer class="site-footer mono"><span>REVIEW CLASSIFIER / UI PROTOTYPE</span><span>ORIGINAL EXPERIMENT · 2026</span><a href="#home">BACK TO TOP ↑</a></footer>
+    </section>
+  </main>
+  <dialog id="pending-dialog" aria-labelledby="pending-title"><div class="window-bar"><span>connection_status.txt</span><button type="button" id="close-dialog" aria-label="閉じる">×</button></div><div class="dialog-body"><span class="status-label">MODEL NOT CONNECTED</span><h2 id="pending-title">実際の分類は準備中です</h2><p>入力した文章を分類するAIには、まだ接続していません。入力内容から結果を生成することはありません。</p><p>今は文章の件数と内容をプレビューできます。分類の見え方は「サンプル結果を表示」で確認してください。</p><button type="button" class="button dark-button" id="dismiss-dialog">わかりました</button></div></dialog>
+  <div class="sr-only" role="status" aria-live="polite" id="global-status"></div>
+</body>
+</html>
