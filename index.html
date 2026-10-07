@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="口コミを4つのラベルで見渡す、レビュー分類サービスの画面プロトタイプ。架空サンプルで操作を確認できます。実際のAI分類は未接続です。">
+  <meta name="description" content="口コミ分類UIのデザイン・操作確認用の非商用プロトタイプ。架空サンプルのみを使用し、実際のサービス提供・申込み受付は行っていません。">
   <meta name="theme-color" content="#111116">
-  <title>口コミの仕分けを、CSVから。｜画面プロトタイプ</title>
+  <title>口コミ分類UI｜非商用・技術デモ</title>
   <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
   <link rel="stylesheet" href="styles.css">
   <script src="app.js" defer></script>
@@ -19,7 +19,7 @@
       <a class="active" href="#home" aria-current="location">HOME</a>
       <a href="#demo">TRY DEMO</a>
       <a href="#guide">HOW IT WORKS</a>
-      <a href="#contact">CONTACT</a>
+      <a href="#about">ABOUT</a>
     </nav>
     <button type="button" id="theme-toggle" class="theme-toggle" aria-label="ライトテーマに切り替える" aria-pressed="false"><span aria-hidden="true">◐</span><span class="theme-word">DARK</span></button>
   </header>
@@ -33,7 +33,7 @@
         <h1 id="hero-title">口コミの<br>仕分けを、<br><span>CSV<span class="slim">から。</span></span></h1>
         <p class="hero-description">読む。分ける。見直す。<br>ひとつずつの声を、見渡せるかたちに。</p>
         <a class="button primary" href="#demo">画面デモで試してみる <span aria-hidden="true">↗</span></a>
-        <p class="hero-disclaimer">画面プロトタイプ / 実際のAI分類は準備中</p>
+        <p class="hero-disclaimer prototype-notice">デザイン・操作確認用の非商用プロトタイプ。<br>参考サイト109ichiki.comとは関係ありません。<br>実際のサービス提供・申込み受付は行っていません。</p>
       </div>
       <div class="hero-art" aria-label="レビューが4分類に整理される様子を表したオリジナルグラフィック">
         <div class="window art-window draggable" id="art-window">
@@ -122,11 +122,11 @@
       <div class="guide-bottom mono">READ BETWEEN THE LINES. <span>JUDGMENT NEEDS CONTEXT.</span></div>
     </section>
 
-    <section id="contact" class="contact page-section" aria-labelledby="contact-title">
-      <div class="section-top mono"><span>04 — WHAT'S NEXT</span><span>IN DEVELOPMENT</span></div>
-      <div class="contact-main"><div><p class="eyebrow">口コミに向き合う人と、一歩ずつ。</p><h2 id="contact-title">小さく試して、<br>役立つかたちへ。</h2><p class="contact-copy">店舗やEC、宿などの口コミを整理する方へ。<br>日々の「読む・分ける・見直す」を支える<br>ツールを試作しています。</p></div><div class="window contact-window"><div class="window-bar"><span>contact — coming soon</span><span aria-hidden="true">▫</span></div><div class="window-content"><span class="status-label"><span class="status-dot"></span> 受付の準備中</span><h3>商用利用・モニターの<br>ご相談について</h3><p>お問い合わせ窓口と試用条件を整えています。料金・提供時期はまだ決まっていません。</p><button type="button" id="contact-details" class="button dark-button" aria-expanded="false" aria-controls="contact-note">今の開発状況を見る <span aria-hidden="true">＋</span></button><div id="contact-note" class="contact-note" hidden><p>現在は固定サンプルの画面デモです。実際の分類モデル、データの送信先・扱い、利用条件を確定してから試用をご案内します。</p><p>このページには送信フォームやメール送信機能はありません。</p></div><span class="contact-stamp mono">WORK IN<br>PROGRESS ↗</span></div></div></div>
+    <section id="about" class="contact page-section" aria-labelledby="about-title">
+      <div class="section-top mono"><span>04 — MAKING NOTES</span><span>NON-COMMERCIAL UI STUDY</span></div>
+      <div class="contact-main"><div><p class="eyebrow">読む・分ける・見直す、その画面を考える。</p><h2 id="about-title">つくって、触れて、<br>見え方を確かめる。</h2><p class="contact-copy">レトロなデスクトップの表現と、<br>口コミを見渡すUIを組み合わせた制作実験です。<br>すべて独自のコードと図形で構成しています。</p></div><div class="window contact-window"><div class="window-bar"><span>about — prototype notes</span><span aria-hidden="true">▫</span></div><div class="window-content"><span class="status-label"><span class="status-dot"></span> デザイン・操作確認用</span><h3>この試作で<br>確かめたいこと</h3><p>サンプルの見やすさ、分類ラベルの伝わり方、画面操作を確認する非商用の技術デモです。</p><button type="button" id="contact-details" class="button dark-button" aria-expanded="false" aria-controls="contact-note">制作ノートを読む <span aria-hidden="true">＋</span></button><div id="contact-note" class="contact-note" hidden><p>分類は固定の架空サンプルです。AIには接続していません。自分の文章はブラウザー内で件数と本文を確認するだけで、送信・保存・分類は行いません。</p><p>参考サイト109ichiki.comとは関係ありません。人物・イラスト・ロゴは使用していません。</p><p>実際のサービス提供・申込み受付・決済・連絡先の収集は行っていません。</p></div><span class="contact-stamp mono">WORK IN<br>PROGRESS ↗</span></div></div></div>
       <div class="footer-wordmark" aria-hidden="true">VOICE TO VIEW.</div>
-      <footer class="site-footer mono"><span>REVIEW CLASSIFIER / UI PROTOTYPE</span><span>ORIGINAL EXPERIMENT · 2026</span><a href="#home">BACK TO TOP ↑</a></footer>
+      <footer class="site-footer mono"><span>REVIEW CLASSIFIER / NON-COMMERCIAL UI DEMO</span><span>ORIGINAL EXPERIMENT · 2026</span><a href="#home">BACK TO TOP ↑</a></footer>
     </section>
   </main>
   <dialog id="pending-dialog" aria-labelledby="pending-title"><div class="window-bar"><span>connection_status.txt</span><button type="button" id="close-dialog" aria-label="閉じる">×</button></div><div class="dialog-body"><span class="status-label">MODEL NOT CONNECTED</span><h2 id="pending-title">実際の分類は準備中です</h2><p>入力した文章を分類するAIには、まだ接続していません。入力内容から結果を生成することはありません。</p><p>今は文章の件数と内容をプレビューできます。分類の見え方は「サンプル結果を表示」で確認してください。</p><button type="button" class="button dark-button" id="dismiss-dialog">わかりました</button></div></dialog>
