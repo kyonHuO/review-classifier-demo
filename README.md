@@ -4,10 +4,16 @@ Non-commercial technical demo, independent of Google and reference site 109ichik
 
 ## Routes and operation
 
-- `index.html`: quiet desktop-inspired landing, one dominant “モデルを試す” link
+- `index.html`: full-bleed dark landing without an outer white frame, one dominant “文章を分類する” link
 - `try.html`: separate light trial page; visitor text or UTF-8 CSV, ≤100 reviews; actual local neural embeddings; result list and CSV
 - No build step. Serve this folder through HTTPS (or localhost for development). ES-module workers do not run reliably from file://.
 - The model is downloaded only after the visitor clicks “この内容を分類する”. Cold load is approximately 234 MB including tokenizer/runtime, disclosed as 220–260 MB. No model assets are committed here.
+
+## Interface naming and cache behavior
+
+The home page fills the viewport edge to edge with no outer white margin/border; its primary action remains singular. The separate light trial workspace is unchanged. The visible application uses generic classification wording. Model/vendor names and model-ID columns are omitted from the ordinary UI and results CSV. Exact provenance remains in this technical README, `model-manifest.json`, notices/licenses and implementation source; the underlying model is unchanged.
+
+The app does not download model assets on the landing page or request persistent-storage permission. Initial classification remains explicit. Transformers.js may reuse assets from browser cache if they were saved and remain present; this is not permanent storage and is not shared across all browsers/devices. The UI only says the engine is ready after actual successful model/prototype initialization in that page. It does not claim a verified cache hit or promise that a future launch never downloads again. No backend, paid service or new authentication was added.
 
 ## Exact model and runtime
 
@@ -40,10 +46,21 @@ Provenance and licenses: `model-manifest.json`, `THIRD_PARTY_NOTICES.md`, `licen
 
 ## Verification
 
-- JavaScript syntax checked with Node 24
-- Pure parser/math/export checks: `node --test tests/core.test.mjs`
-- Runtime version/model API verified from pinned upstream sources
-- Desktop landing/try rendering and route navigation verified in the cloud browser, plus two-row input counting and 101-row rejection. Actual initial inference on WASM failed in the default asyncify build with missing GatherBlockQuantized. A standard-WASM runtime-path fix is prepared; actual inference remains pending retest after publication. A passed unit test is not a passed model execution test
-- Local browser preview blocked by the execution environment; no attempt to bypass it
+Actual browser verification on 2026-10-07 used deployed commit `9016e6cdea7959e7f2440a09ecc0cf38f2b7bc29` at https://kyonhuo.github.io/review-classifier-demo/try.html .
+
+- Desktop landing and separate trial page rendered in the cloud Chrome browser; the single landing CTA navigated correctly
+- Two new synthetic Japanese/English reviews were processed by actual EmbeddingGemma 2 on single-threaded standard WASM/CPU in 11 seconds including preparation. Their cosine scores were 0.821490 and 0.796723, with margins 0.010923 and 0.002646; both were held by the unchanged heuristic
+- A warm rerun with three additional synthetic positive/negative/mixed reviews finished in 2 seconds and returned three corresponding categories with displayed similarity values 0.930, 0.904 and 0.892
+- Real CSV export completed; the 948-byte file was read back and contained both original inputs, computed scores/margins, labels, model ID and pinned revision at that tested commit. The subsequent requested naming-only change removes model ID/revision from ordinary CSV exports and keeps provenance in technical files
+- Real cancellation stopped a three-row rerun after one completed result, preserved input and partial results, and restored controls. An already-started restart then completed all three rows in 11 seconds
+- 101-row rejection was verified in the browser before inference; 100-row boundaries, quoted/multicolumn CSV, formula neutralization and other limits were checked in local tests
+- Final source checks: 31 repository parser/math/export tests, 25 independent parser/mocked-DOM tests, 2 mocked-worker tests, and JavaScript syntax checks passed using Node 24.19.0
+- The earlier `c3a73edad9509e286d3aeae263818885f67b8d93` deployment failed under the default asyncify runtime because its reduced-type CPU registry omitted GatherBlockQuantized. The standard-WASM fix resolved that observed error without changing the model, prototypes, thresholds or precision
+
+These are smoke/behavior checks, not an accuracy benchmark. No earlier benchmark or accuracy rate applies. WebGPU inference, mobile rendering/devices, all browsers, cold-download timing and peak memory remain unverified. The browser identified itself as cloud Chrome; an exact browser version was not available through the allowed inspection route. Screenshots were inspected through the browser tool; no screenshot files are claimed in this source package. CSV import was tested through pure parsing/mocked UI, not an actual file chooser in this browser session.
+
+The input-privacy statement is grounded in inspection of the application code: user text is not interpolated into network requests, logs or persistent storage. The smoke test did not perform an exhaustive network-egress audit of the third-party runtime. Only synthetic text was used in QA. Model/runtime provenance is in `model-manifest.json`; expected hashes are documented rather than independently enforced by the browser loader.
+
+Local preview browser execution was restricted, so rendered/runtime verification used the authorized public GitHub Pages deployment. No local-browser restriction was bypassed.
 
 Application files: index.html, try.html, styles.css, app.js, core.js, inference.worker.js, model-config.js, model-manifest.json, assets/, licenses/.

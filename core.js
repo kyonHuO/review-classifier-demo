@@ -62,8 +62,8 @@ export function classifyEmbedding(vector,centroids,prototypeVectors){
 }
 // Escape formula-like strings, including leading whitespace, for spreadsheet exports.
 export function csvCell(value){let text=String(value??'');if(/^[\s\uFEFF]*[=+@\-]/.test(text)||/^[\t\r]/.test(text))text="'"+text;return '"'+text.replaceAll('"','""')+'"';}
-export function resultsCsv(results,model,revision){
- const header=['row','review','label','top_candidate','cosine_similarity','margin','reason','nearest_example','model','model_revision','method'];
- const rows=results.map(r=>[r.id,r.text,LABELS[r.category],LABELS[r.candidate]??'',r.score?.toFixed(6)??'',r.margin?.toFixed(6)??'',r.reason??'',r.nearest??'',model,revision,'EmbeddingGemma 2 q4 + bilingual prototype centroids; uncalibrated similarity, not probability']);
+export function resultsCsv(results){
+ const header=['row','review','label','top_candidate','cosine_similarity','margin','reason','nearest_example','method'];
+ const rows=results.map(r=>[r.id,r.text,LABELS[r.category],LABELS[r.candidate]??'',r.score?.toFixed(6)??'',r.margin?.toFixed(6)??'',r.reason??'',r.nearest??'','Bilingual prototype centroids; uncalibrated similarity, not probability']);
  return '\ufeff'+[header,...rows].map(row=>row.map(csvCell).join(',')).join('\r\n')+'\r\n';
 }

@@ -45,11 +45,11 @@ async function prepare(choice){
   }
   send('backend',{backend});
   const options={revision:MODEL_REVISION,progress_callback:progress};
-  stage='model';send('status',{stage,text:'EmbeddingGemma 2を取得しています'});
+  stage='model';send('status',{stage,text:'分類エンジンを準備しています'});
   const config=await AutoConfig.from_pretrained(MODEL_ID,options);
   config.vision_config=null;config.audio_config=null;
   tokenizer=await AutoTokenizer.from_pretrained(MODEL_ID,options);
-  send('status',{stage,text:'モデルを読み込み・準備しています'});
+  send('status',{stage,text:'分類エンジンを読み込み・準備しています'});
   model=await AutoModel.from_pretrained(MODEL_ID,{...options,config,device:backend,dtype:'q4'});
   stage='prototypes';prototypeVectors=[];
   for(let i=0;i<PROTOTYPES.length;i+=4){
