@@ -4,12 +4,13 @@ Non-commercial technical demo, independent of Google and reference site 109ichik
 
 ## Routes and operation
 
-- `index.html`: full-bleed dark landing with the approved silent demonstration video as its main visual and one dominant “文章を分類する” link
+- `index.html`: restored full-bleed dark wireframe home, matching the pre-video 7ae73a design, with one dominant “デモを見る” link to `demo.html`
+- `demo.html`: separate black video screen with the approved silent clip, native controls, back-to-home link and visible demo caveats
 - `try.html`: separate light trial page; visitor text or UTF-8 CSV, ≤100 reviews; actual local neural embeddings; result list and CSV
 - No build step. Serve this folder through HTTPS (or localhost for development). ES-module workers do not run reliably from file://.
 - The model is downloaded only after the visitor clicks “この内容を分類する”. Cold load is approximately 234 MB including tokenizer/runtime, disclosed as 220–260 MB. No model assets are committed here.
 
-## Home video
+## Separate dark video page
 
 `assets/review-classifier-demo.mp4` is the exact approved 12-second silent H.264/yuv420p clip, 1600×900 at 30fps, 604,396 bytes, SHA256 `f1bda946e86f00962d47ad96dd06391696f72e4b638f31899257486cfdf351bb`. It is copied unchanged. The lightweight JPEG poster is extracted from that same clip.
 
@@ -17,11 +18,11 @@ The first four synthetic examples illustrate previously verified results. The su
 
 The native video controls support playback/pause/seeking/fullscreen. Playback is muted and inline; the clip contains no audio stream. `preload="metadata"` and a poster provide an initial static view. The small video may start automatically only when on screen and reduced-motion/data-saver preferences do not request otherwise. Explicit pause is respected; leaving the viewport or hiding the tab pauses playback. Model/runtime assets are still never loaded by the home page.
 
-The video integration changes only the home page, home-specific styles/script, the video/poster assets and this README. The classifier/trial/runtime remain unchanged. Integration checks are local/static until the parent publishes this revision for actual public-browser playback QA.
+The approved video already passed actual public-browser playback, pause/resume and looping checks on commit 989caf3ea5269a926287757a2951fa0cf717a828. The latest requested navigation revision restores the previous abstract home and moves the same video markup to a separate black `demo.html` page. The home loads neither video nor model/runtime files. Existing `try.html` and classifier/runtime files remain accessible by direct URL and unchanged; they are not the main public CTA. The video and poster bytes and playback script are reused unchanged. This new two-page route awaits publication-time navigation/visual checks; no media re-upload is needed.
 
 ## Interface naming and cache behavior
 
-The home page fills the viewport edge to edge with no outer white margin/border; its primary action remains singular. The separate light trial workspace is unchanged. The visible application uses generic classification wording. Model/vendor names and model-ID columns are omitted from the ordinary UI and results CSV. Exact provenance remains in this technical README, `model-manifest.json`, notices/licenses and implementation source; the underlying model is unchanged.
+The home page fills the viewport edge to edge with no outer white margin/border; its singular primary action is “デモを見る”. It opens the dedicated dark video page rather than model initialization. The existing separate light trial workspace is preserved but is no longer linked from the main flow. The visible application uses generic classification wording. Model/vendor names and model-ID columns are omitted from the ordinary UI and results CSV. Exact provenance remains in this technical README, `model-manifest.json`, notices/licenses and implementation source; the underlying model is unchanged.
 
 The app does not download model assets on the landing page or request persistent-storage permission. Initial classification remains explicit. Transformers.js may reuse assets from browser cache if they were saved and remain present; this is not permanent storage and is not shared across all browsers/devices. The UI only says the engine is ready after actual successful model/prototype initialization in that page. It does not claim a verified cache hit or promise that a future launch never downloads again. No backend, paid service or new authentication was added.
 
@@ -73,4 +74,4 @@ The input-privacy statement is grounded in inspection of the application code: u
 
 Local preview browser execution was restricted, so rendered/runtime verification used the authorized public GitHub Pages deployment. No local-browser restriction was bypassed.
 
-Application files: index.html, home-video.js, try.html, styles.css, app.js, core.js, inference.worker.js, model-config.js, model-manifest.json, assets/, licenses/.
+Application files: index.html, demo.html, home-video.js, try.html, styles.css, app.js, core.js, inference.worker.js, model-config.js, model-manifest.json, assets/, licenses/.

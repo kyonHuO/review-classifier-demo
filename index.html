@@ -3,37 +3,29 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="自分の口コミをブラウザ内で分類する、非商用のAI技術デモ。文章とCSVに対応。">
+  <meta name="description" content="口コミの仕分けを映像で紹介する、非商用の技術デモ。デモ映像は処理速度や分類精度を示すものではありません。">
   <meta name="theme-color" content="#121217">
   <meta name="referrer" content="no-referrer">
   <title>口コミを、見渡せるかたちに。｜REVIEW CLASSIFIER</title>
   <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
   <link rel="stylesheet" href="styles.css">
-  <script src="home-video.js" defer></script>
 </head>
 <body class="landing">
   <a class="skip-link" href="#main">本文へ移動</a>
   <header class="landing-header"><a class="identity" href="./" aria-label="REVIEW CLASSIFIER ホーム"><span class="identity-mark" aria-hidden="true">▤</span><span>REVIEW<br>CLASSIFIER</span></a><span class="micro">NON-COMMERCIAL / TECH DEMO</span></header>
-  <main id="main" class="landing-main video-home">
+  <main id="main" class="landing-main">
     <div class="hero-copy">
-      <div class="hero-intro">
-        <p class="eyebrow"><span class="status-dot"></span> LOCAL REVIEW CLASSIFICATION</p>
-        <h1>口コミを、<span>見渡せるかたちに。</span></h1>
-        <p class="hero-description">あなたの文章やCSVを、4つの視点で整理。</p>
-      </div>
-      <div class="hero-actions">
-        <a class="primary landing-cta" href="try.html">文章を分類する <span aria-hidden="true">↗</span></a>
-        <p class="cta-note">登録不要 · ブラウザ内で処理 · 初回にファイルを取得</p>
-      </div>
+      <p class="eyebrow"><span class="status-dot"></span> LOCAL REVIEW CLASSIFICATION</p>
+      <h1>口コミを、<br>見渡せる<br><span>かたちに。</span></h1>
+      <p class="hero-description">たくさんの声が、整理されていく。<br>その流れを、短いデモ映像で。</p>
+      <a class="primary landing-cta" href="demo.html">デモを見る <span aria-hidden="true">↗</span></a>
+      <p class="cta-note">12秒のデモ映像 · 音声なし</p>
     </div>
-    <figure class="hero-video">
-      <video id="review-demo-video" controls muted playsinline loop preload="metadata" poster="assets/review-classifier-demo-poster.jpg" width="1600" height="900" aria-label="口コミの分類の流れを紹介する12秒の音声なしデモ映像" aria-describedby="video-disclosure video-description">
-        <source src="assets/review-classifier-demo.mp4" type="video/mp4">
-        お使いのブラウザでは動画を再生できません。<a href="assets/review-classifier-demo.mp4">デモ映像を開く</a>
-      </video>
-      <figcaption class="video-caption"><p id="video-disclosure">デモ映像 · 大量処理は演出です。処理速度・分類精度を示すものではありません。</p><span>12秒 / 音声なし</span></figcaption>
-    </figure>
-    <details class="video-transcript"><summary>動画の説明を読む</summary><div id="video-description"><p>4つの架空の口コミが、それぞれの分類へ移動します。次にカードが小さくなり、多数の声を一覧にするイメージへ切り替わります。</p><ul><li>好意的：「すごく満足しています。素晴らしい商品なので、友人にもおすすめしたいです。」</li><li>否定的：「Terrible quality. It broke immediately and I want a refund.」</li><li>賛否混在：「組み立ては簡単で見た目も好きですが、運転音が気になります。」</li><li>判定保留：「ボタンが大きく、説明書を読まずに使えました。また選びたいです。」</li></ul><p>冒頭の4例は確認済みの結果をもとにしています。後半は同じ4例を繰り返した96枚のカードによる演出で、96件の実行記録ではありません。</p><p>動画の操作バーから再生・一時停止・全画面表示ができます。動きを減らす設定やデータ節約設定が有効な場合は、自動再生しません。</p></div></details>
+    <div class="hero-art" aria-hidden="true">
+      <div class="art-grid"></div>
+      <div class="art-window"><div class="window-bar"><span>voice_mapper.obj</span><span>＋</span></div><img src="assets/voice-knot.svg" alt="" width="700" height="670"><span class="art-caption">MANY VOICES.<br>A CLEARER VIEW.</span><span class="art-index">FIG. 001</span></div>
+      <div class="art-label"><span class="status-dot"></span> TEXT → EMBEDDING → LABEL</div>
+    </div>
   </main>
   <footer class="landing-footer"><p>非商用の技術デモです。分類の正確さを保証するものではありません。<br>参考サイト109ichiki.comや利用技術の開発元とは提携・関係がありません。サービスの申込み受付は行っていません。</p><span class="micro">JP + EN / 2026</span></footer>
 </body>
