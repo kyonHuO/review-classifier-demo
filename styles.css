@@ -23,3 +23,28 @@ html.landing-document{background:#121217;color-scheme:dark}
 @media(min-width:1600px){.landing-main{min-height:calc(100svh - 155px);padding-left:7%;padding-right:5%}.hero-art{max-height:760px}.hero-copy h1{font-size:clamp(103px,6.8vw,132px)}}
 @media(max-width:900px){.landing-main{padding:32px 5.5% 45px;min-height:calc(100svh - 155px)}.landing-header{padding-left:5.5%;padding-right:5.5%}.hero-art{aspect-ratio:1/1.3}.landing-footer{margin:0;padding:18px 5.5%}}
 @media(max-width:640px){.landing{margin:0;min-height:100svh}.landing-header{padding:20px 6%;min-height:69px}.landing-main{display:block;min-height:0;padding:34px 7% 25px}.hero-art{width:100%;margin:25px 0 5px;aspect-ratio:1.35;min-height:200px;max-height:300px}.art-window{inset:0 -5% 0 -5%}.art-window>img{width:108%;height:125%;left:-4%;top:-13%}.art-caption{left:8%;bottom:3%;font-size:6px}.art-index{right:8%;bottom:3%}.art-label{bottom:-4%;left:8%;font-size:6px}.landing-footer{margin:0;padding:18px 7%;min-height:0}.landing-cta{max-width:320px}}
+
+/* Approved silent motion demo becomes the primary home visual. Trial styles stay unchanged. */
+.landing-main.video-home{display:block;min-height:calc(100svh - 155px);padding:20px 6% 36px}
+.video-home .hero-copy{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:end;gap:32px;margin-bottom:27px}
+.video-home .hero-intro>.eyebrow{display:flex;gap:9px;align-items:center;margin:0 0 14px;color:#a29bab;font-size:8px}
+.video-home .hero-copy h1{font-size:clamp(29px,3.3vw,49px);line-height:1.35;letter-spacing:-.065em;margin:0 0 11px;font-weight:650}
+.video-home .hero-copy h1>span{color:#b59add}
+.video-home .hero-description{font-size:11px;line-height:1.9;margin:0;color:#ada4ba}
+.video-home .hero-actions{padding-bottom:2px}
+.video-home .landing-cta{min-height:51px;font-size:12px;width:242px;max-width:none}
+.video-home .cta-note{font-size:8px;margin-top:11px;white-space:nowrap}
+.hero-video{margin:0;width:100%;min-width:0}
+.hero-video video{display:block;width:100%;height:auto;aspect-ratio:16/9;object-fit:contain;background:#111216;border:1px solid #2d2936;border-radius:9px;overflow:hidden;color-scheme:dark}
+.hero-video video:focus-visible{outline:3px solid #b59add;outline-offset:4px}
+.video-caption{display:flex;justify-content:space-between;gap:20px;align-items:start;margin-top:12px;color:#9e93aa;font-size:10px;line-height:1.8}
+.video-caption p{margin:0}
+.video-caption>span{font-family:var(--mono);font-size:9px;white-space:nowrap;color:#82768f}
+.video-transcript{font-size:10px;color:#9b8fa8;line-height:1.9;margin-top:11px}
+.video-transcript>summary{cursor:pointer;width:fit-content;padding:5px 0;text-underline-offset:3px}
+.video-transcript p{margin:12px 0 0;max-width:940px}
+.video-transcript ul{margin:12px 0;padding-left:20px;max-width:940px}
+.video-transcript li{margin:4px 0}
+@media(min-width:1600px){.landing-main.video-home{padding:24px 7% 40px}.video-home .hero-copy h1{font-size:clamp(49px,3.1vw,64px)}.video-home .landing-cta{width:270px}.video-home .hero-copy{margin-bottom:30px}}
+@media(max-width:900px){.landing-main.video-home{padding:20px 5.5% 30px}.video-home .hero-copy{gap:22px}.video-home .hero-copy h1{font-size:30px}.video-home .landing-cta{width:212px;padding:14px 18px;font-size:11px}.video-home .cta-note{font-size:7px}}
+@media(max-width:640px){.landing-main.video-home{padding:22px 6% 24px}.video-home .hero-copy{display:block;margin-bottom:25px}.video-home .hero-intro>.eyebrow{font-size:7px;margin-bottom:14px}.video-home .hero-copy h1{font-size:clamp(28px,7.7vw,40px);line-height:1.4;margin-bottom:13px}.video-home .hero-copy h1>span{display:block}.video-home .hero-description{font-size:11px}.video-home .hero-actions{margin-top:20px}.video-home .landing-cta{width:100%;max-width:330px;min-height:49px;font-size:12px}.video-home .cta-note{font-size:8px;white-space:normal;margin-top:10px}.hero-video video{border-radius:6px}.video-caption{display:block;font-size:10px;line-height:1.9;margin-top:11px}.video-caption>span{display:block;font-size:8px;margin-top:5px}.video-transcript{font-size:10px;margin-top:9px}}

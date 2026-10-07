@@ -4,10 +4,20 @@ Non-commercial technical demo, independent of Google and reference site 109ichik
 
 ## Routes and operation
 
-- `index.html`: full-bleed dark landing without an outer white frame, one dominant “文章を分類する” link
+- `index.html`: full-bleed dark landing with the approved silent demonstration video as its main visual and one dominant “文章を分類する” link
 - `try.html`: separate light trial page; visitor text or UTF-8 CSV, ≤100 reviews; actual local neural embeddings; result list and CSV
 - No build step. Serve this folder through HTTPS (or localhost for development). ES-module workers do not run reliably from file://.
 - The model is downloaded only after the visitor clicks “この内容を分類する”. Cold load is approximately 234 MB including tokenizer/runtime, disclosed as 220–260 MB. No model assets are committed here.
+
+## Home video
+
+`assets/review-classifier-demo.mp4` is the exact approved 12-second silent H.264/yuv420p clip, 1600×900 at 30fps, 604,396 bytes, SHA256 `f1bda946e86f00962d47ad96dd06391696f72e4b638f31899257486cfdf351bb`. It is copied unchanged. The lightweight JPEG poster is extracted from that same clip.
+
+The first four synthetic examples illustrate previously verified results. The subsequent 96-card visual repeats those four examples to suggest volume; it is not a recording of 96 distinct inputs or measured processing speed/accuracy. This is disclosed in the video, in visible adjacent copy and in its text description.
+
+The native video controls support playback/pause/seeking/fullscreen. Playback is muted and inline; the clip contains no audio stream. `preload="metadata"` and a poster provide an initial static view. The small video may start automatically only when on screen and reduced-motion/data-saver preferences do not request otherwise. Explicit pause is respected; leaving the viewport or hiding the tab pauses playback. Model/runtime assets are still never loaded by the home page.
+
+The video integration changes only the home page, home-specific styles/script, the video/poster assets and this README. The classifier/trial/runtime remain unchanged. Integration checks are local/static until the parent publishes this revision for actual public-browser playback QA.
 
 ## Interface naming and cache behavior
 
@@ -63,4 +73,4 @@ The input-privacy statement is grounded in inspection of the application code: u
 
 Local preview browser execution was restricted, so rendered/runtime verification used the authorized public GitHub Pages deployment. No local-browser restriction was bypassed.
 
-Application files: index.html, try.html, styles.css, app.js, core.js, inference.worker.js, model-config.js, model-manifest.json, assets/, licenses/.
+Application files: index.html, home-video.js, try.html, styles.css, app.js, core.js, inference.worker.js, model-config.js, model-manifest.json, assets/, licenses/.
