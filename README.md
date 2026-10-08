@@ -5,7 +5,7 @@ Non-commercial technical demo, independent of Google and reference site 109ichik
 ## Routes and operation
 
 - `index.html`: restored full-bleed dark wireframe home, matching the pre-video 7ae73a design, with one dominant “デモを見る” link to `demo.html`
-- `demo.html`: separate black video screen with the approved silent clip, native controls, back-to-home link and visible demo caveats
+- `demo.html`: separate black video screen with the review clip, imagined use cases, a fictional mail-classification clip, native controls and a back-to-home link
 - `try.html`: separate light trial page; visitor text or UTF-8 CSV, ≤100 reviews; actual local neural embeddings; result list and CSV
 - No build step. Serve this folder through HTTPS (or localhost for development). ES-module workers do not run reliably from file://.
 - The model is downloaded only after the visitor clicks “この内容を分類する”. Cold load is approximately 234 MB including tokenizer/runtime, disclosed as 220–260 MB. No model assets are committed here.
@@ -18,7 +18,15 @@ The first four synthetic examples illustrate previously verified results. The su
 
 The native video controls support playback/pause/seeking/fullscreen. Playback is muted and inline; the clip contains no audio stream. `preload="metadata"` and a poster provide an initial static view. The small video may start automatically only when on screen and reduced-motion/data-saver preferences do not request otherwise. Explicit pause is respected; leaving the viewport or hiding the tab pauses playback. Model/runtime assets are still never loaded by the home page.
 
-The approved video already passed actual public-browser playback, pause/resume and looping checks on commit 989caf3ea5269a926287757a2951fa0cf717a828. The latest requested navigation revision restores the previous abstract home and moves the same video markup to a separate black `demo.html` page. The home loads neither video nor model/runtime files. Existing `try.html` and classifier/runtime files remain accessible by direct URL and unchanged; they are not the main public CTA. The video and poster bytes and playback script are reused unchanged. This new two-page route awaits publication-time navigation/visual checks; no media re-upload is needed.
+The approved video already passed actual public-browser playback, pause/resume and looping checks on commit 989caf3ea5269a926287757a2951fa0cf717a828. The latest requested navigation revision restores the previous abstract home and moves the same video markup to a separate black `demo.html` page. The home loads neither video nor model/runtime files. Existing `try.html` and classifier/runtime files remain accessible by direct URL and unchanged; they are not the main public CTA. The review video and poster bytes are reused unchanged. The two-page route passed public-browser navigation checks on commit 5f17782419ff2189c6f5689c07e08f9f40b90934. The playback controller is now extended to manage the additional mail video independently; the mail video requires explicit initial play.
+
+## Imagined use cases and mail illustration
+
+Below the existing review video, the page presents two examples under `利用シーン（想定例）`: organizing product/store reviews by sentiment, and organizing incoming messages by purpose. They describe possible workflows, not customer testimonials or deployed customer results.
+
+The mail illustration uses original fictional sentences and four example categories: 問い合わせ, 注文・配送, 請求・支払い, 確認待ち. It is a scripted visual sample, not a model inference recording, accuracy benchmark, or speed measurement. `サンプル演出` remains visible beside and within the clip. No real email data, Gmail access, upload form, contact intake or server inference was added.
+
+The second video uses `preload="none"` and starts only from the visitor's native playback controls. Both videos are muted/inline and pause when outside the viewport or the page is hidden. The first video retains its existing preference-aware automatic behavior; reduced-motion/data-saver preferences prevent initial automatic playback. Manual pause is respected. The source includes focused mocked-DOM playback tests in `tests/video.test.mjs`; public-browser checks are performed after deployment.
 
 ## Interface naming and cache behavior
 

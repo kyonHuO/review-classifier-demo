@@ -1,10 +1,9 @@
 'use strict';
 (() => {
-  const video=document.getElementById('review-demo-video');
-  if(!video)return;
   const reduceMotion=window.matchMedia('(prefers-reduced-motion: reduce)');
   const connection=navigator.connection;
-  let wantedPlaying=!reduceMotion.matches&&!connection?.saveData;
+  document.querySelectorAll('video[data-demo-video]').forEach(video=>{
+  let wantedPlaying=video.hasAttribute('data-auto-play')&&!reduceMotion.matches&&!connection?.saveData;
   let inView=false;
   let autoPausing=false;
   video.muted=true;
@@ -28,4 +27,5 @@
   }else{inView=true;update();}
   window.addEventListener('pagehide',pauseAutomatically);
   window.addEventListener('pageshow',update);
+  });
 })();

@@ -78,6 +78,28 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
 .video-caption,.demo-screen-heading{flex-wrap:wrap;min-width:0}
 .hero-video video{max-width:100%;min-width:0}
 .legal-link{font-size:10px;line-height:1.8;color:inherit;text-underline-offset:3px;overflow-wrap:anywhere}
+/* Imagined use cases and the mail illustration stay within the dark demo page. */
+.use-cases,.mail-demo-section{min-width:0;max-width:100%;margin-top:76px;padding-top:38px;border-top:1px solid #302b38}
+.section-heading{min-width:0;max-width:100%;margin-bottom:26px}
+.section-heading>.eyebrow{color:#a997bf;font-size:9px;margin:0 0 13px}
+.section-heading h2{font-size:clamp(23px,2.8vw,34px);line-height:1.55;letter-spacing:-.035em;font-weight:500;margin:0;color:#f0edf4;overflow-wrap:anywhere}
+.section-heading h2>span{display:inline-block;font-size:.56em;font-weight:400;color:#aaa0b6;letter-spacing:0;margin-left:8px}
+.section-heading>p:last-child{font-size:12px;line-height:1.9;color:#a89bb5;margin:11px 0 0;overflow-wrap:anywhere}
+.use-case-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px;min-width:0}
+.use-case-card{min-width:0;max-width:100%;background:#19171f;border:1px solid #302b38;border-radius:9px;padding:27px 28px}
+.case-number{font:10px var(--mono);color:#ab8bc7;letter-spacing:.1em}
+.use-case-card h3{font-size:17px;line-height:1.7;font-weight:500;margin:14px 0 12px;overflow-wrap:anywhere}
+.use-case-card>p{font-size:12px;line-height:2;color:#aca0b7;margin:0;overflow-wrap:anywhere}
+.case-example{margin-top:23px;padding-top:18px;border-top:1px solid #332d3b;min-width:0}
+.case-example>span{font-size:9px;color:#8f809e}
+.case-example p{font-size:12px;line-height:2;margin:8px 0 0;color:#c3b6cd;overflow-wrap:anywhere}
+.case-example strong{font-size:11px;font-weight:400;color:#b89ad0}
+.mail-demo-section{margin-bottom:32px}
+.mail-explanation{max-width:880px;min-width:0;margin-top:22px}
+.mail-explanation>p{font-size:12px;line-height:2;color:#aca0b7;margin:0;overflow-wrap:anywhere}
+.mail-label-list{display:flex;flex-wrap:wrap;gap:9px;margin:18px 0 0;padding:0;list-style:none;min-width:0}
+.mail-label-list li{min-width:0;max-width:100%;font-size:11px;line-height:1.7;padding:6px 12px;border:1px solid #403348;background:#201b27;border-radius:5px;color:#c2a9d4;overflow-wrap:anywhere}
+@media(max-width:640px){.use-cases,.mail-demo-section{margin-top:46px;padding-top:28px}.section-heading{margin-bottom:21px}.section-heading>.eyebrow{font-size:8px}.section-heading h2{font-size:25px}.section-heading h2>span{font-size:13px;margin-left:5px}.section-heading>p:last-child{font-size:11px}.use-case-grid{grid-template-columns:minmax(0,1fr);gap:15px}.use-case-card{padding:22px 19px}.use-case-card h3{font-size:16px}.use-case-card>p,.case-example p,.mail-explanation>p{font-size:11px}.case-example{margin-top:18px;padding-top:15px}.mail-label-list{gap:7px}.mail-label-list li{font-size:10px;padding:5px 10px}.mail-demo-section{margin-bottom:20px}}
 @media(max-width:760px){
  .landing-header,.demo-screen-header{gap:12px;flex-wrap:wrap}
  .landing-main{display:block;width:100%;min-width:0;padding-inline:clamp(18px,6vw,28px)}

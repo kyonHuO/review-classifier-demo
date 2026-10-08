@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="口コミの仕分けを紹介するサンプル演出です。">
+  <meta name="description" content="口コミやメールを整理する流れと、想定される利用シーンをご紹介します。">
   <meta name="theme-color" content="#121217">
   <meta name="referrer" content="no-referrer">
   <title>デモを見る｜REVIEW CLASSIFIER</title>
@@ -17,13 +17,32 @@
   <main id="main" class="demo-screen-main">
     <div class="demo-screen-heading"><h1>口コミの分類デモ</h1><p>声が、整理されていく。</p></div>
     <figure class="hero-video">
-      <video id="review-demo-video" controls muted playsinline loop preload="metadata" poster="assets/review-classifier-demo-poster.jpg" width="1600" height="900" aria-label="口コミ分類のサンプル映像" aria-describedby="video-disclosure video-description">
+      <video id="review-demo-video" data-demo-video data-auto-play controls muted playsinline loop preload="metadata" poster="assets/review-classifier-demo-poster.jpg" width="1600" height="900" aria-label="口コミ分類のサンプル映像" aria-describedby="video-disclosure video-description">
         <source src="assets/review-classifier-demo.mp4" type="video/mp4">
         お使いのブラウザでは動画を再生できません。<a href="assets/review-classifier-demo.mp4">デモ映像を開く</a>
       </video>
       <figcaption class="video-caption"><p id="video-disclosure">サンプル演出</p></figcaption>
     </figure>
     <details class="video-transcript"><summary>動画の説明を読む</summary><div id="video-description"><p>4つの架空の口コミが、それぞれの分類へ移動します。次にカードが小さくなり、多数の声を一覧にするイメージへ切り替わります。</p><ul><li>好意的：「すごく満足しています。素晴らしい商品なので、友人にもおすすめしたいです。」</li><li>否定的：「Terrible quality. It broke immediately and I want a refund.」</li><li>賛否混在：「組み立ては簡単で見た目も好きですが、運転音が気になります。」</li><li>判定保留：「ボタンが大きく、説明書を読まずに使えました。また選びたいです。」</li></ul><p>後半は同じ4例を繰り返した演出です。</p></div></details>
+    <section class="use-cases" aria-labelledby="use-cases-title">
+      <div class="section-heading"><p class="eyebrow">USE CASES</p><h2 id="use-cases-title">利用シーン<span>（想定例）</span></h2><p>日々届く文章を、確認しやすいまとまりへ。</p></div>
+      <div class="use-case-grid">
+        <article class="use-case-card"><span class="case-number" aria-hidden="true">01</span><h3>口コミから、評価の傾向をつかむ</h3><p>商品や店舗に寄せられた感想を、好意的・否定的・賛否混在などに整理。良かった点や改善を求める声を、まとめて見渡す想定です。</p><div class="case-example"><span>たとえば</span><p>「使いやすいけれど、電池がすぐ切れる」<br><strong>→ 賛否混在の声として確認</strong></p></div></article>
+        <article class="use-case-card"><span class="case-number" aria-hidden="true">02</span><h3>メールを、用件ごとにまとめる</h3><p>問い合わせ、配送の確認、請求に関する連絡を仕分け。担当者が内容を確認し、返信の段取りをつけやすくする想定です。</p><div class="case-example"><span>たとえば</span><p>「請求書の宛名を変更したい」<br><strong>→ 請求・支払いの連絡として確認</strong></p></div></article>
+      </div>
+    </section>
+    <section class="mail-demo-section" aria-labelledby="mail-demo-title">
+      <div class="section-heading"><p class="eyebrow">MAIL CLASSIFICATION</p><h2 id="mail-demo-title">メールの用件分類</h2><p>受信箱の文章が、用件別に整理されていく。</p></div>
+      <figure class="hero-video mail-demo-video">
+        <video id="mail-demo-video" data-demo-video controls muted playsinline loop preload="none" poster="assets/mail-classifier-demo-poster.jpg" width="1600" height="900" aria-label="メール用件分類のサンプル映像" aria-describedby="mail-video-disclosure mail-video-description">
+          <source src="assets/mail-classifier-demo.mp4" type="video/mp4">
+          お使いのブラウザでは動画を再生できません。<a href="assets/mail-classifier-demo.mp4">メールのデモ映像を開く</a>
+        </video>
+        <figcaption class="video-caption"><p id="mail-video-disclosure">サンプル演出</p></figcaption>
+      </figure>
+      <div class="mail-explanation" id="mail-video-description"><p>架空のメールを、4つの用件へ仕分けるイメージです。内容が足りないものは「確認待ち」に残し、人が見直す流れを想定しています。</p><ul class="mail-label-list" aria-label="メールの分類例"><li>問い合わせ</li><li>注文・配送</li><li>請求・支払い</li><li>確認待ち</li></ul></div>
+      <details class="video-transcript"><summary>動画の説明を読む</summary><div><p>「商品のサイズを教えてください」「配送状況を確認したい」「請求書の宛名を変更したい」「お世話になっております」という架空のメールが、用件ごとの分類へ移動します。後半は小さなカードで、受信した文章をまとめて見渡すイメージを表しています。</p></div></details>
+    </section>
   </main>
   <footer class="landing-footer"><span class="micro">REVIEW CLASSIFIER</span></footer>
 </body>
