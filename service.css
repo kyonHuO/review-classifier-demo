@@ -23,3 +23,5 @@
 .service-cta{display:inline-flex;max-width:100%;box-sizing:border-box;gap:24px}
 .service-nav{padding:0 6% 24px}.home-service-links{margin-top:20px;display:flex;flex-wrap:wrap;gap:12px 22px;font-size:12px}.home-service-links a{color:#c6afdf;text-underline-offset:4px}.home-service-note{color:#a69bad;font-size:11px;line-height:1.9;max-width:390px}
 @media(max-width:640px){.price-grid,.estimate-grid{grid-template-columns:minmax(0,1fr)}.service-main{padding:24px 6% 40px}.service-main section{margin-top:42px}.service-panel,.price-grid article{padding:20px}.service nav{gap:10px 16px}.service .demo-screen-header{align-items:flex-start}.service .demo-screen-header .micro{width:100%}}
+
+.simulation-main{max-width:1000px}.simulation-main h1{font-size:clamp(28px,4.5vw,46px)}.simulation-panel{max-width:560px}.simulation-main section{margin-top:36px}.simulation-panel .price-result{margin-bottom:14px}
