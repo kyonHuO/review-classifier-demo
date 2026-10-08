@@ -1,0 +1,25 @@
+.service{color:#f0edf4;background:#121217;font-size:14px;line-height:1.9}
+.service-main{width:min(1120px,100%);margin:auto;padding:38px 5.5% 64px;box-sizing:border-box}
+.service a,.service-nav a{color:#c6afdf;text-underline-offset:4px}
+.service nav,.service-nav{display:flex;flex-wrap:wrap;gap:14px 24px;font-size:12px}
+.service-main h1{font-size:clamp(30px,5vw,56px);line-height:1.45;font-weight:500;letter-spacing:-.035em}
+.service-main section{margin-top:64px;padding-top:32px;border-top:1px solid #302b38;scroll-margin-top:20px}
+.service-main p{color:#b8adbf;overflow-wrap:anywhere}
+.service-main h3{font-size:16px;font-weight:500;margin:0 0 12px}
+.price-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.price-grid article,.service-panel{background:#19171f;border:1px solid #403348;border-radius:9px;padding:24px;min-width:0}
+.price-grid strong{font-size:32px;color:#e0c5f3;font-weight:500}
+.estimate-grid{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:22px}
+.service-panel label{display:block;font-size:13px;margin:14px 0 6px}
+.service-panel input:not([type=checkbox]),.service-panel select{box-sizing:border-box;width:100%;max-width:100%;background:#121217;color:#f0edf4;border:1px solid #6b577c;border-radius:5px;padding:12px;font:inherit}
+.service-panel input[type=file]{font-size:12px}
+.service-panel button{margin-top:16px;background:#302638;color:#eadcf4;border:1px solid #725782;padding:9px 16px;border-radius:5px;cursor:pointer}
+.service-panel :focus-visible,.service a:focus-visible{outline:3px solid #c6afdf;outline-offset:4px}
+.price-result span{display:block;font-size:12px}.price-result output{display:block;font-size:clamp(30px,4vw,46px);color:#e0c5f3;overflow-wrap:anywhere}
+.service-main .service-note{font-size:12px;color:#a69bad}
+#price-error{color:#ffb8b8}#csv-status{color:#dac3eb}
+#csv-preview{white-space:pre-wrap;overflow-wrap:anywhere;font:12px/1.9 monospace;color:#bcb1c6}
+.service-steps{padding-left:25px}.service-steps li{padding-left:12px;margin-bottom:24px}
+.service-cta{display:inline-flex;max-width:100%;box-sizing:border-box;gap:24px}
+.service-nav{padding:0 6% 24px}.home-service-links{margin-top:20px;display:flex;flex-wrap:wrap;gap:12px 22px;font-size:12px}.home-service-links a{color:#c6afdf;text-underline-offset:4px}.home-service-note{color:#a69bad;font-size:11px;line-height:1.9;max-width:390px}
+@media(max-width:640px){.price-grid,.estimate-grid{grid-template-columns:minmax(0,1fr)}.service-main{padding:24px 6% 40px}.service-main section{margin-top:42px}.service-panel,.price-grid article{padding:20px}.service nav{gap:10px 16px}.service .demo-screen-header{align-items:flex-start}.service .demo-screen-header .micro{width:100%}}

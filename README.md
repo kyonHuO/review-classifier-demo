@@ -1,6 +1,14 @@
 # Review Classifier — EmbeddingGemma 2 browser trial
 
-Non-commercial technical demo, independent of Google and reference site 109ichiki.com. No sales, paid API, login, contact collection or backend.
+Service-preparation information and technical demo, independent of Google and reference site 109ichiki.com. No order acceptance, payment, paid API, login, contact collection or backend. Email links open the visitor's mail app for a pre-service consultation.
+
+## Service preparation candidate (not published)
+
+`estimate.html` adds progressive tax-inclusive pricing, a local CSV count estimator, steps and consultation links. Home and video pages link to it; the dark artwork, videos and use cases remain. `estimate.js` reuses only the existing CSV parser, with no model download or inference. File contents are not sent, stored in browser storage or embedded in consultation emails. Empty body rows are omitted; duplicates are counted individually. The visible preview uses textContent.
+
+Prices: first 1,000 rows at 2 yen, next 9,000 at 1 yen, subsequent rows at 0.5 yen, minimum 500 yen. Fractional 0.5 yen amounts stay unrounded in the reference estimate. Invoice rounding is undecided. The service has no row intake cap. This browser file reader has a disclosed 20 MiB / 100-column technical limit; manual counts remain available for larger files. Browser number safety limits are validation constraints, not intake limits.
+
+No launch discount is advertised. Subscription/non-CSV usage is consultation only. Model integration, payment, production result CSV delivery and commercial data handling terms remain unconnected. Do not launch paid intake on GitHub Pages from this candidate.
 
 ## Routes and operation
 

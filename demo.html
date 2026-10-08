@@ -9,12 +9,14 @@
   <title>デモを見る｜REVIEW CLASSIFIER</title>
   <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
   <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="service.css">
   <script src="home-video.js" defer></script>
 </head>
 <body class="landing demo-screen">
   <a class="skip-link" href="#review-demo-video">動画へ移動</a>
   <header class="demo-screen-header"><a class="demo-back" href="./">← ホームへ戻る</a><span class="micro">REVIEW CLASSIFIER</span></header>
   <main id="main" class="demo-screen-main">
+    <nav class="home-service-links" aria-label="サービス案内"><a href="estimate.html#pricing">料金・CSV見積り</a><a href="estimate.html#steps">CSVの使い方</a><a href="estimate.html#contact">事前相談（準備中）</a></nav>
     <div class="demo-screen-heading"><h1>口コミの分類デモ</h1><p>声が、整理されていく。</p></div>
     <figure class="hero-video">
       <video id="review-demo-video" data-demo-video data-auto-play controls muted playsinline loop preload="metadata" poster="assets/review-classifier-demo-poster.jpg" width="1600" height="900" aria-label="口コミ分類のサンプル映像" aria-describedby="video-disclosure video-description">
@@ -38,7 +40,7 @@
           <source src="assets/mail-classifier-demo.mp4" type="video/mp4">
           お使いのブラウザでは動画を再生できません。<a href="assets/mail-classifier-demo.mp4">メールのデモ映像を開く</a>
         </video>
-        <figcaption class="video-caption"><p id="mail-video-disclosure">サンプル演出</p></figcaption>
+        <figcaption class="video-caption"><p id="mail-video-disclosure">サンプル演出。メール分類サービスの提供・直接連携は未対応です。</p></figcaption>
       </figure>
       <div class="mail-explanation" id="mail-video-description"><p>架空のメールを、4つの用件へ仕分けるイメージです。内容が足りないものは「確認待ち」に残し、人が見直す流れを想定しています。</p><ul class="mail-label-list" aria-label="メールの分類例"><li>問い合わせ</li><li>注文・配送</li><li>請求・支払い</li><li>確認待ち</li></ul></div>
       <details class="video-transcript"><summary>動画の説明を読む</summary><div><p>「商品のサイズを教えてください」「配送状況を確認したい」「請求書の宛名を変更したい」「お世話になっております」という架空のメールが、用件ごとの分類へ移動します。後半は小さなカードで、受信した文章をまとめて見渡すイメージを表しています。</p></div></details>
