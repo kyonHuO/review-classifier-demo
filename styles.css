@@ -63,3 +63,31 @@ html.landing-document{background:#121217;color-scheme:dark}
 .demo-screen .hero-video video{max-height:calc(100svh - 220px);object-fit:contain}
 .demo-screen .landing-footer{min-height:0;padding-top:8px;padding-bottom:20px}
 @media(max-width:640px){.demo-screen-header{padding:21px 6%;min-height:64px;gap:15px}.demo-back{font-size:11px}.demo-screen-header .micro{font-size:7px}.demo-duration{display:none}.demo-screen-main{padding:14px 6% 24px}.demo-screen-heading{display:block;margin-bottom:16px}.demo-screen-heading h1{font-size:20px}.demo-screen-heading p{font-size:10px;margin-top:7px}.demo-screen .hero-video video{max-height:none}.demo-screen .landing-footer{padding-left:6%;padding-right:6%;padding-bottom:20px}}
+
+/* Constrain real content boxes on narrow screens, including iOS text sizing. */
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+.landing{width:100%;max-width:100%;min-width:0}
+.landing-header,.landing-main,.landing-footer,.demo-screen-header,.demo-screen-main{min-width:0;max-width:100%;box-sizing:border-box}
+.landing-main{grid-template-columns:minmax(0,1fr) minmax(0,1.12fr)}
+.hero-copy,.hero-intro,.hero-actions,.hero-art,.hero-video,.video-caption,.video-transcript{min-width:0;max-width:100%}
+.landing-header>*,.demo-screen-header>*,.landing-footer>*{min-width:0;max-width:100%}
+.landing-cta{max-width:100%;min-width:0;box-sizing:border-box;white-space:normal}
+.landing-cta>span{flex:0 0 auto}
+.landing-footer{flex-wrap:wrap;align-items:flex-start;gap:10px 20px}
+.landing-footer p,.landing-footer .micro,.video-caption p,.video-caption>span{max-width:100%;min-width:0;white-space:normal;overflow-wrap:anywhere}
+.video-caption,.demo-screen-heading{flex-wrap:wrap;min-width:0}
+.hero-video video{max-width:100%;min-width:0}
+.legal-link{font-size:10px;line-height:1.8;color:inherit;text-underline-offset:3px;overflow-wrap:anywhere}
+@media(max-width:760px){
+ .landing-header,.demo-screen-header{gap:12px;flex-wrap:wrap}
+ .landing-main{display:block;width:100%;min-width:0;padding-inline:clamp(18px,6vw,28px)}
+ .hero-copy{width:100%;min-width:0}
+ .hero-copy h1{max-width:100%;overflow-wrap:anywhere}
+ .landing-cta{display:flex;width:100%;max-width:320px;min-width:0;gap:20px}
+ .hero-art{width:100%;max-width:100%;min-width:0;margin-inline:0;overflow:hidden}
+ .landing-footer{width:100%;max-width:100%;padding-inline:clamp(18px,6vw,28px);gap:8px 16px}
+ .landing-footer p{flex:1 1 100%;width:100%}
+ .demo-screen-main{width:100%;min-width:0;padding-inline:clamp(18px,6vw,28px)}
+ .video-caption{display:block}
+ .run-button{min-width:0}
+}
