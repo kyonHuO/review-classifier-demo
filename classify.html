@@ -17,7 +17,7 @@
       <a href="history.html">履歴</a>
       <a href="dashboard.html">アカウント</a>
     </nav>
-    <div class="section-heading"><p class="eyebrow">CLASSIFY</p><h1>口コミを分類する</h1><p>CSVを選ぶか文章を貼り付けて、ブラウザ内で分類します。入力は外部へ送信しません。</p></div>
+    <div class="section-heading"><p class="eyebrow">CLASSIFY</p><h1>口コミを分類する</h1><p>CSVを選ぶか文章を貼り付けて、ブラウザ内で分類します。分類は端末内で行い、外部へ送信しません。</p></div>
 
     <section class="input-card" aria-labelledby="input-title">
       <div class="card-heading"><h2 id="input-title">レビューを入力</h2><span id="input-counter" class="counter">0 / 100 件</span></div>
@@ -39,7 +39,7 @@
       </div>
       <div id="run-status" class="run-status" hidden aria-live="polite" aria-atomic="true"><div class="status-line"><strong id="status-title">分類エンジンを準備しています</strong><button type="button" id="cancel-run" class="text-button">中止</button></div><p id="status-detail"></p><progress id="run-progress" max="100" aria-label="準備・分類の進み具合"></progress></div>
       <p id="run-error" class="error-text" role="alert" hidden></p><details id="error-debug" class="technical-details" hidden><summary>エラーの技術情報</summary><p id="error-diagnostic" class="fine-print"></p></details>
-      <p class="privacy-note">入力はこのページのコードから外部へ送信しません。分類エンジンと実行用ファイルの取得には通信します。個人情報・機密情報は入力しないでください。</p>
+      <p class="privacy-note">分類は端末内で行い、入力は外部へ送信しません。ただし「結果を保存」を押したときは、結果（本文テキスト・分類・保留理由・スコア）をアカウントに送信して保存します（元のCSVファイルは送信しません）。保存対象の取り扱いが確定するまで、実顧客データでは使わないでください。</p>
     </section>
 
     <section id="results" class="results-card" aria-labelledby="result-title" hidden tabindex="-1"><div class="card-heading"><div><p class="eyebrow">RESULTS</p><h2 id="result-title">分類結果 <span id="result-count"></span></h2></div><button id="export-csv" type="button" class="secondary">全件のCSVを保存 ↓</button></div><p id="result-summary" class="result-summary"></p><div id="result-filter" class="result-filter" role="group" aria-label="分類で絞り込み"></div><p class="fine-print result-caution">例文との意味の近さによる参考分類です。「近さ」は確信度・正解率ではありません。結果は人が見直してください。</p><div id="result-list" class="result-list"></div><div id="save-result" class="confirm-panel" hidden><p class="fine-print">保存されるのは分類結果（本文テキスト・分類・保留理由）です。元のCSVファイル自体は保存しません。再ログイン後も履歴から確認・再ダウンロードできます。</p><div class="input-tools confirm-actions"><button id="save-run" type="button" class="secondary">結果を保存</button></div><p id="save-status" class="form-status" role="status" aria-live="polite"></p></div></section>
@@ -48,5 +48,6 @@
   </main>
   <footer class="landing-footer"><span class="micro">NAGIPORT</span><a class="legal-link" href="./">ホーム</a><a class="legal-link" href="services.html">サービス</a></footer>
   <script type="module" src="app.js"></script>
+  <script src="account.js"></script>
 </body>
 </html>

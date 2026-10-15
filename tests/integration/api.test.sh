@@ -14,9 +14,16 @@
 # cookie, so it must be tested over https (pages dev --local-protocol https).
 set -u
 BASE="${BASE:-https://127.0.0.1:8790}"
-CURL="curl -sk"
 J="$(mktemp -d)"
 trap 'rm -rf "$J"' EXIT
+# Unique source IP per run so rate-limit buckets do not leak between runs.
+printf 'header = "x-forwarded-for: test-%s"\n' "$RANDOM$RANDOM" > "$J/curlrc"
+CURL="curl -sk -K $J/curlrc"
+# Local runs share the same source IP, so rate-limit buckets pile up between
+# runs. Set RESET_D1=1 to clear them first (requires wrangler + local D1).
+if [ "${RESET_D1:-0}" = "1" ]; then
+  npx wrangler d1 execute nagiport-accounts --local --command "DELETE FROM auth_attempts" >/dev/null 2>&1 || true
+fi
 pass=0; fail=0
 check() { if [ "$2" = "$3" ]; then echo "PASS  $1"; pass=$((pass+1)); else echo "FAIL  $1  expected=$2 actual=$3"; fail=$((fail+1)); fi; }
 code() { $CURL -o /dev/null -w "%{http_code}" "$@"; }
