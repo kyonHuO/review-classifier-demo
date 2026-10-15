@@ -48,7 +48,8 @@ Owner asked for a real login UI and the account-holder customer page, publish-re
 - Schema: `migrations/0001_auth.sql` (tables `users`, `sessions`).
 - Preview: `?preview=1` on `customer.html` / `dashboard.html` walks the UI without a backend (banner shown, no real data). Static GitHub Pages has no Functions, so real calls need Cloudflare.
 - Tests: `node --test tests/auth.test.mjs` (7) plus existing suites pass locally (50 total).
-- Not done: email verification, password reset, CSRF beyond SameSite + Origin check, privacy/terms text, payment and file delivery. Per-customer results are now stored in D1 (`jobs` / `job_results`, migration `0002_jobs.sql`) with server-side ownership checks on list, detail and CSV download; the raw uploaded file itself is not uploaded or stored (classification stays in the browser). These remain before handling real customer data.
+- Saved target (explicit): only the classification results for rows the user chose to save (row text + label + hold reason + scores). The original CSV file is never uploaded or stored; classification runs in the browser. Saves are idempotent via a client token (`migrations/0004_jobs_token.sql`), and list/detail/CSV/delete all enforce server-side ownership.
+- Not done: email verification, password reset, CSRF beyond SameSite + Origin check, privacy/terms text, payment and file delivery. These remain before handling real customer data.
 
 ### Account screens (spec)
 
@@ -64,6 +65,7 @@ npx wrangler d1 create nagiport-accounts
 npx wrangler d1 execute nagiport-accounts --file=migrations/0001_auth.sql
 npx wrangler d1 execute nagiport-accounts --file=migrations/0002_jobs.sql
 npx wrangler d1 execute nagiport-accounts --file=migrations/0003_ratelimit.sql
+npx wrangler d1 execute nagiport-accounts --file=migrations/0004_jobs_token.sql
 # confirm the target and tables before deploying
 npx wrangler d1 execute nagiport-accounts --command "SELECT name FROM sqlite_master WHERE type='table' ORDER BY name"
 npx wrangler pages deploy .
@@ -75,7 +77,7 @@ The site keeps working on GitHub Pages (.io) without Functions; only the real lo
 ### Verification
 
 - Unit: `node --test tests/core.test.mjs tests/estimate.test.mjs tests/video.test.mjs tests/auth.test.mjs` → 50 passed (7 of these are auth helpers).
-- Integration (real workerd + local D1): `tests/integration/api.test.sh` → 20 checks. Covers register/login/me, duplicate/wrong-password/malformed-JSON/cross-origin/malformed-cookie handling, job create/list/detail/CSV, two-account isolation, no-cookie 401, logout, post-logout 401 and repeated-failed-login rate limiting (429). Setup commands are in the script header. Requires `wrangler pages dev --local-protocol https` because the session cookie is Secure.
+- Integration (real workerd + local D1): `tests/integration/api.test.sh` → 26 checks. Covers register/login/me, duplicate/wrong-password/malformed-JSON/cross-origin/malformed-cookie handling, job create/list/detail/CSV, idempotent double-save (same `client_token` returns the same job), delete with ownership (another user gets 404), two-account isolation, no-cookie 401, logout, post-logout 401 and repeated-failed-login rate limiting (429). Setup commands are in the script header. Requires `wrangler pages dev --local-protocol https` because the session cookie is Secure.
 - Runtime constraint: workerd caps PBKDF2 at 100,000 iterations (`DEFAULT_MAX_PBKDF2_ITERATIONS`); a higher value throws. The code uses 100,000 and stores the count per user so it can be raised once the cap does (Cloudflare/workerd#7550 is still open).
 
 ### Before connecting for real (decisions)

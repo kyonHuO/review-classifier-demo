@@ -29,3 +29,21 @@ export async function onRequestGet({ request, env, params }) {
     results: results || [],
   });
 }
+
+export async function onRequestDelete({ request, env, params }) {
+  const dbError = ensureDb(env);
+  if (dbError) return dbError;
+  const user = await currentUser(request, env);
+  if (!user) return fail(401, "ログインしていません。");
+
+  const job = await env.DB.prepare("SELECT id FROM jobs WHERE id = ? AND user_id = ?")
+    .bind(params.id, user.id)
+    .first();
+  if (!job) return fail(404, "対象の履歴が見つかりません。");
+
+  await env.DB.batch([
+    env.DB.prepare("DELETE FROM job_results WHERE job_id = ?").bind(job.id),
+    env.DB.prepare("DELETE FROM jobs WHERE id = ?").bind(job.id),
+  ]);
+  return json({ ok: true });
+}

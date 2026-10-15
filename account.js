@@ -350,14 +350,24 @@
         .catch(function () {});
     }
     var payload = null;
+    var saveToken = null;
+    var saving = false;
+    function newToken() {
+      try {
+        if (window.crypto && crypto.randomUUID) return crypto.randomUUID();
+      } catch (e) {}
+      return String(Date.now()) + "-" + Math.random().toString(36).slice(2);
+    }
     window.addEventListener("nagiport:complete", function (event) {
       payload = event.detail && event.detail.results ? event.detail.results : null;
+      saveToken = payload && payload.length ? newToken() : null;
       if (payload && payload.length) {
         box.hidden = false;
         setStatus(status, "", "");
       }
     });
     button.addEventListener("click", function () {
+      if (saving) return;
       if (!payload || !payload.length) {
         setStatus(status, "保存する結果がありません。", "error");
         return;
@@ -366,8 +376,14 @@
         setStatus(status, "プレビューでは保存できません。", "info");
         return;
       }
+      saving = true;
+      button.disabled = true;
       setStatus(status, "保存しています…", "info");
-      request("/jobs", { method: "POST", body: { results: payload } }, API_ROOT)
+      request(
+        "/jobs",
+        { method: "POST", body: { results: payload, client_token: saveToken } },
+        API_ROOT,
+      )
         .then(function (res) {
           if (res.status === 401) {
             location.href = "customer.html";
@@ -377,7 +393,8 @@
             setStatus(status, errorText(res), "error");
             return;
           }
-          setStatus(status, "保存しました。", "ok");
+          saveToken = null;
+          setStatus(status, res.data && res.data.duplicate ? "保存済みです。" : "保存しました。", "ok");
           var link = document.createElement("a");
           link.href = "history.html";
           link.textContent = "履歴を見る ↗";
@@ -386,6 +403,10 @@
         })
         .catch(function () {
           setStatus(status, "サーバーに接続できませんでした。", "error");
+        })
+        .then(function () {
+          saving = false;
+          button.disabled = false;
         });
     });
   }

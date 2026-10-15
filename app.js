@@ -2,7 +2,7 @@ import {LIMITS,LABELS,textRows,validateRows,parseCsv,inferCsvLayout,csvRows,resu
 const $=selector=>document.querySelector(selector);
 const el=(tag,text,className)=>{const node=document.createElement(tag);node.textContent=text;if(className)node.className=className;return node;};
 const EXAMPLES=['音が静かで、毎日使いやすいです。','使いやすいけれど、電池がすぐ切れます。','The item arrived broken.','It arrived on Tuesday.'];
-let csvTable=null,rows=[],worker=null,busy=false,results=[],fileVersion=0,runVersion=0,ready=false,backend='',startedAt=0,slowTimer=null;
+let csvTable=null,rows=[],worker=null,busy=false,results=[],fileVersion=0,runVersion=0,ready=false,backend='',startedAt=0,slowTimer=null,loading=false;
 function inputError(text=''){$('#input-error').textContent=text;$('#input-error').hidden=!text;}
 function runError(text=''){$('#run-error').textContent=text;$('#run-error').hidden=!text;if(!text)$('#error-debug').hidden=true;}
 function currentRows(){return csvTable?csvRows(csvTable,Number($('#csv-column').value),$('#csv-header').checked):textRows($('#review-input').value);}
@@ -31,8 +31,16 @@ function applyFilter(){
 function renderFilter(){
   const host=$('#result-filter');if(!host)return;
   const keys=Object.keys(LABELS).filter(key=>results.some(r=>r.category===key));
-  const make=(key,text)=>{const btn=el('button',text,'filter-chip');btn.type='button';btn.dataset.filter=key;btn.addEventListener('click',()=>{activeFilter=key;applyFilter();});return btn;};
-  host.replaceChildren(make('all','すべて'),...keys.map(key=>make(key,LABELS[key])));
+  const want=['all',...keys];
+  // Keep existing chips (and keyboard focus): remove only what is gone, add only what is new.
+  Array.prototype.forEach.call([...host.children],btn=>{if(!want.includes(btn.dataset.filter))btn.remove();});
+  want.forEach((key,index)=>{
+    let btn=host.querySelector(`[data-filter="${key}"]`);
+    if(!btn){btn=el('button',key==='all'?'すべて':LABELS[key],'filter-chip');btn.type='button';btn.dataset.filter=key;btn.addEventListener('click',()=>{activeFilter=key;applyFilter();});}
+    btn.textContent=key==='all'?'すべて':LABELS[key];
+    const current=host.children[index];
+    if(current!==btn)host.insertBefore(btn,current||null);
+  });
   applyFilter();
 }
 function showResults(){
@@ -85,7 +93,7 @@ $('#remove-file').addEventListener('click',removeFile);
 $('#csv-column').addEventListener('change',()=>{updateFilePreview();inputError();hideConfirm();});
 $('#csv-header').addEventListener('change',()=>{updateFilePreview();inputError();hideConfirm();});
 $('#csv-file').addEventListener('change',async(event)=>{
-  const file=event.target.files[0];if(!file)return;const version=++fileVersion;inputError();
+  const file=event.target.files[0];if(!file)return;const version=++fileVersion;inputError();hideConfirm();loading=true;
   try{
     if(!/\.csv$/i.test(file.name))throw Error('拡張子.csvのファイルを選んでください。');
     if(file.size>LIMITS.fileBytes)throw Error('1MB以下のCSVを選んでください。');
@@ -94,11 +102,11 @@ $('#csv-file').addEventListener('change',async(event)=>{
     csvTable=table;$('#csv-header').checked=layout.header;$('#csv-column').replaceChildren(...table[0].map((_,i)=>{const option=el('option',`列${i+1}`);option.value=i;return option;}));$('#csv-column').value=String(layout.column);
     $('#file-name').textContent=file.name;$('#file-panel').hidden=false;$('#review-input').hidden=true;updateFilePreview();hideConfirm();
     try{validateRows(rows);}catch(error){inputError(error.message);}
-  }catch(error){if(version!==fileVersion)return;event.target.value='';inputError(error instanceof TypeError?'UTF-8形式のCSVを選んでください。':error.message);}
+  }catch(error){if(version!==fileVersion)return;event.target.value='';inputError(error instanceof TypeError?'UTF-8形式のCSVを選んでください。':error.message);}finally{loading=false;}
 });
 $('#device-choice').addEventListener('change',()=>{stopWorker();$('#download-notice').textContent='実行方法を変更しました。次回、分類エンジンを準備し直します。';});
 function startRun(){
-  if(busy)return;fileVersion++;updateCounter();inputError();runError();
+  if(busy||loading)return;fileVersion++;updateCounter();inputError();runError();
   try{validateRows(rows);}catch(error){inputError(error.message);return;}
   if(!window.isSecureContext||!window.Worker||!window.WebAssembly){runError('この環境では実行できません。HTTPS接続の最新ブラウザでお試しください。');return;}
   results=[];activeFilter='all';$('#result-list').replaceChildren();showResults();setBusy(true);startedAt=performance.now();
@@ -111,7 +119,7 @@ function startRun(){
 const confirmPanel=$('#classify-confirm');
 function hideConfirm(){if(confirmPanel)confirmPanel.hidden=true;}
 function prepareConfirm(){
-  if(busy)return;fileVersion++;updateCounter();inputError();runError();
+  if(busy||loading)return;fileVersion++;updateCounter();inputError();runError();
   try{validateRows(rows);}catch(error){inputError(error.message);return;}
   $('#confirm-count').textContent=`有効な行数：${rows.length}件（先頭${Math.min(5,rows.length)}件を表示）`;
   $('#confirm-preview').replaceChildren(...rows.slice(0,5).map(text=>el('li',text)));
