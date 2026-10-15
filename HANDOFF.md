@@ -90,3 +90,18 @@ The site keeps working on GitHub Pages (.io) without Functions; only the real lo
 4. Cost: D1/Pages usage beyond the free tier.
 
 The browser-only demo (`try.html`) stays public and needs no login; the account feature (`classify.html` + `history.html`) requires a session and stores results in D1.
+
+### GitHub-based deploy (Cloudflare Pages)
+
+Two workflows under `.github/workflows/`:
+
+- `d1-migrate.yml` (manual `workflow_dispatch`): applies migrations 0001–0004 to the production D1 database, then prints the table list.
+- `deploy-pages.yml` (on push to `main`, or manual): injects the D1 id into `wrangler.toml` and runs `wrangler pages deploy . --project-name=nagiport`.
+
+Repository secrets required:
+
+1. `CLOUDFLARE_API_TOKEN` — Pages:Edit and D1:Edit.
+2. `CLOUDFLARE_ACCOUNT_ID`.
+3. `CLOUDFLARE_D1_DATABASE_ID` — the id from `wrangler d1 create nagiport-accounts`.
+
+Order: create D1 → add secrets → run `D1 migrate` once → merge to `main` (or run `Deploy` manually) → register `nagiport.com` as a custom domain on the Pages project and let DNS/SSL issue.
