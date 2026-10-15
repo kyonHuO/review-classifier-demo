@@ -48,6 +48,13 @@ check "no-cookie list jobs (401)" 401 "$(code "$BASE/api/jobs" -H "origin: $BASE
 check "logout A (200)" 200 "$(code -X POST "$BASE/api/auth/logout" -H "origin: $BASE" -b "$J/a" -c "$J/a")"
 check "me after logout (401)" 401 "$(code "$BASE/api/auth/me" -H "origin: $BASE" -b "$J/a")"
 
+RL=""
+for _ in $(seq 1 25); do
+  c="$(code -X POST "$BASE/api/auth/login" -H 'content-type: application/json' -H "origin: $BASE" -d "{\"email\":\"$EMAIL_A\",\"password\":\"wrongpass1\"}")"
+  if [ "$c" = "429" ]; then RL=yes; break; fi
+done
+check "repeated failed logins rate limited (429)" yes "$RL"
+
 echo "-----"
 echo "TOTAL pass=$pass fail=$fail"
 [ "$fail" = 0 ]

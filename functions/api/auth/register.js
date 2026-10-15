@@ -12,11 +12,15 @@ import {
   publicUser,
   newId,
 } from "../../lib/auth.js";
+import { clientKey, rateLimit, tooMany } from "../../lib/ratelimit.js";
 
 export async function onRequestPost({ request, env }) {
   if (!sameOrigin(request)) return fail(403, "不正なリクエストです。");
   const dbError = ensureDb(env);
   if (dbError) return dbError;
+
+  const ipLimit = await rateLimit(env, `register-ip:${clientKey(request)}`, 10, 60 * 60 * 1000);
+  if (!ipLimit.allowed) return tooMany(ipLimit.retryAfterMs);
 
   let body = {};
   try {
