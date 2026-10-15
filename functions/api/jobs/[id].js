@@ -1,4 +1,4 @@
-import { json, fail, ensureDb, currentUser } from "../../../lib/auth.js";
+import { json, fail, ensureDb, currentUser } from "../../lib/auth.js";
 
 export async function onRequestGet({ request, env, params }) {
   const dbError = ensureDb(env);

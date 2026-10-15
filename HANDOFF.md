@@ -68,3 +68,9 @@ npx wrangler pages deploy .
 ```
 
 The site keeps working on GitHub Pages (.io) without Functions; only the real login/DB calls need Cloudflare.
+
+### Verification
+
+- Unit: `node --test tests/core.test.mjs tests/estimate.test.mjs tests/video.test.mjs tests/auth.test.mjs` → 50 passed (7 of these are auth helpers).
+- Integration (real workerd + local D1): `tests/integration/api.test.sh` → 19 checks. Covers register/login/me, duplicate/wrong-password/malformed-JSON/cross-origin/malformed-cookie handling, job create/list/detail/CSV, two-account isolation, no-cookie 401, logout and post-logout 401. Setup commands are in the script header. Requires `wrangler pages dev --local-protocol https` because the session cookie is Secure.
+- Runtime constraint: workerd caps PBKDF2 at 100,000 iterations (`DEFAULT_MAX_PBKDF2_ITERATIONS`); a higher value throws. The code uses 100,000 and stores the count per user so it can be raised once the cap does (Cloudflare/workerd#7550 is still open).

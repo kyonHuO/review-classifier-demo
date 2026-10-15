@@ -2,7 +2,11 @@
 // No third-party dependencies; uses Web Crypto and the `DB` D1 binding.
 
 const encoder = new TextEncoder();
-const PBKDF2_ITERATIONS = 120000;
+// workerd caps PBKDF2 at DEFAULT_MAX_PBKDF2_ITERATIONS = 100,000; a higher count
+// throws at runtime (Cloudflare/workerd#7550 is still open to raise it to 1M).
+// 100,000 is therefore the safe maximum on Workers/Pages today. The count is
+// stored per user, so it can be raised once the runtime cap allows it.
+const PBKDF2_ITERATIONS = 100000;
 const SESSION_COOKIE = "np_session";
 export const SESSION_MAX_AGE = 60 * 60 * 24 * 30; // 30 days, in seconds
 
@@ -91,7 +95,13 @@ export function parseCookies(request) {
     if (eq === -1) return;
     const key = part.slice(0, eq).trim();
     if (!key) return;
-    out[key] = decodeURIComponent(part.slice(eq + 1).trim());
+    const rawValue = part.slice(eq + 1).trim();
+    try {
+      out[key] = decodeURIComponent(rawValue);
+    } catch {
+      // Malformed percent-encoding: keep the raw value so callers never throw.
+      out[key] = rawValue;
+    }
   });
   return out;
 }

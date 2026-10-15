@@ -1,4 +1,4 @@
-import { fail, ensureDb, currentUser } from "../../../../lib/auth.js";
+import { fail, ensureDb, currentUser } from "../../../lib/auth.js";
 import { resultsCsv } from "../../../../core.js";
 
 export async function onRequestGet({ request, env, params }) {
