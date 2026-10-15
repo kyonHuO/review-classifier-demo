@@ -1,5 +1,7 @@
 import { json, fail, sameOrigin, ensureDb, currentUser } from "../../lib/auth.js";
-import { normalizeResults, buildCounts, newJobId, newResultId } from "../../lib/jobs.js";
+import { normalizeResults, buildCounts, contentHash, newJobId, newResultId } from "../../lib/jobs.js";
+
+const MAX_BODY_BYTES = 512000;
 
 function serialize(job) {
   let counts = {};
@@ -31,35 +33,46 @@ export async function onRequestGet({ request, env }) {
 
 export async function onRequestPost({ request, env }) {
   if (!sameOrigin(request)) return fail(403, "不正なリクエストです。");
+  const contentType = request.headers.get("content-type") || "";
+  if (!contentType.includes("application/json")) return fail(415, "JSON形式で送信してください。");
   const dbError = ensureDb(env);
   if (dbError) return dbError;
   const user = await currentUser(request, env);
   if (!user) return fail(401, "ログインしていません。");
 
+  const rawBody = await request.text();
+  if (rawBody.length > MAX_BODY_BYTES) return fail(413, "送信サイズが大きすぎます。");
   let body = {};
   try {
-    body = await request.json();
+    body = JSON.parse(rawBody);
   } catch {
     return fail(400, "入力内容を確認してください。");
   }
 
   const results = normalizeResults(body.results);
-  if (!results) return fail(400, "保存できるのは1〜100件の分類結果です。");
+  if (!results) return fail(400, "保存できるのは1〜100件（1件2,000文字以内）の分類結果です。");
 
   const title = String(body.title || "").trim().slice(0, 120) || null;
   const clientToken =
     typeof body.client_token === "string" && body.client_token
       ? body.client_token.slice(0, 64)
       : null;
+  const hash = await contentHash(results);
 
-  // Idempotency: the same client token returns the already-saved job.
+  // Idempotency: the same client token returns the saved job, unless the
+  // content differs (then the token is being reused for a different result).
   if (clientToken) {
     const existing = await env.DB.prepare(
-      "SELECT id, title, total, counts_json, created_at FROM jobs WHERE user_id = ? AND client_token = ?",
+      "SELECT id, title, total, counts_json, created_at, content_hash FROM jobs WHERE user_id = ? AND client_token = ?",
     )
       .bind(user.id, clientToken)
       .first();
-    if (existing) return json({ job: serialize(existing), duplicate: true });
+    if (existing) {
+      if (existing.content_hash && existing.content_hash !== hash) {
+        return fail(409, "同じ保存トークンで異なる内容は保存できません。");
+      }
+      return json({ job: serialize(existing), duplicate: true });
+    }
   }
 
   const now = Date.now();
@@ -68,8 +81,8 @@ export async function onRequestPost({ request, env }) {
 
   const statements = [
     env.DB.prepare(
-      "INSERT INTO jobs (id, user_id, title, total, counts_json, created_at, client_token) VALUES (?, ?, ?, ?, ?, ?, ?)",
-    ).bind(jobId, user.id, title, results.length, JSON.stringify(counts), now, clientToken),
+      "INSERT INTO jobs (id, user_id, title, total, counts_json, created_at, client_token, content_hash) VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
+    ).bind(jobId, user.id, title, results.length, JSON.stringify(counts), now, clientToken, hash),
   ];
   for (const r of results) {
     statements.push(

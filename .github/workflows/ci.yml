@@ -21,7 +21,7 @@ jobs:
 
       - name: Apply local D1 migrations
         run: |
-          for f in 0001_auth 0002_jobs 0003_ratelimit 0004_jobs_token; do
+          for f in 0001_auth 0002_jobs 0003_ratelimit 0004_jobs_token 0006_jobs_hash; do
             npx --yes wrangler@latest d1 execute nagiport-accounts --local --file="migrations/$f.sql"
           done
 

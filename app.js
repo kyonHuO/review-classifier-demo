@@ -69,6 +69,7 @@ function appendResult(result){
 function fail(data){
   const base=data.code==='memory'?'端末の空きメモリが足りず、分類エンジンを実行できませんでした。ほかのタブを閉じるか、PCでお試しください。':data.code==='download'?'分類エンジンまたは実行用ファイルを取得できませんでした。通信・ブラウザの制限をご確認のうえ、再実行してください。':data.code==='gpu'?'この端末のWebGPUで実行できませんでした。「分類方法・保存について」でCPUを選ぶと再試行できます。':'分類エンジンの実行に失敗しました。最新のChrome・Edgeを使うか、「分類方法・保存について」でCPUを選んで再試行してください。';
   stopWorker();setBusy(false);$('#download-notice').textContent='再実行時は分類エンジンを準備し直します。取得済みファイルはキャッシュを利用する場合があります。';$('#run-status').hidden=true;runError(base+' 自動の代替判定は行っていません。');
+  window.dispatchEvent(new Event('nagiport:fail'));
   if(data.diagnostic){$('#error-diagnostic').textContent=`${data.stage} / ${data.backend}: ${data.diagnostic}`;$('#error-debug').hidden=false;}
   if(results.length)$('#result-summary').append(document.createTextNode('（途中で停止した結果です）'));
 }
@@ -107,6 +108,7 @@ $('#csv-file').addEventListener('change',async(event)=>{
 $('#device-choice').addEventListener('change',()=>{stopWorker();$('#download-notice').textContent='実行方法を変更しました。次回、分類エンジンを準備し直します。';});
 function startRun(){
   if(busy||loading)return;fileVersion++;updateCounter();inputError();runError();
+  window.dispatchEvent(new Event('nagiport:start'));
   try{validateRows(rows);}catch(error){inputError(error.message);return;}
   if(!window.isSecureContext||!window.Worker||!window.WebAssembly){runError('この環境では実行できません。HTTPS接続の最新ブラウザでお試しください。');return;}
   results=[];activeFilter='all';$('#result-list').replaceChildren();showResults();setBusy(true);startedAt=performance.now();
@@ -131,7 +133,7 @@ if(confirmPanel){
   $('#classify-confirm-cancel').addEventListener('click',hideConfirm);
 }
 $('#cancel-run').addEventListener('click',()=>{
-  if(!busy)return;runVersion++;stopWorker();setBusy(false);progressState('処理を中止しました',results.length?`${results.length}件の結果を残しました。残りは分類していません。`:'入力は残っています。分類結果はまだありません。',null);$('#run-progress').hidden=true;$('#download-notice').textContent='再実行時は分類エンジンを準備し直します。取得済みファイルはキャッシュを利用する場合があります。';
+  if(!busy)return;runVersion++;stopWorker();setBusy(false);progressState('処理を中止しました',results.length?`${results.length}件の結果を残しました。残りは分類していません。`:'入力は残っています。分類結果はまだありません。',null);$('#run-progress').hidden=true;$('#download-notice').textContent='再実行時は分類エンジンを準備し直します。取得済みファイルはキャッシュを利用する場合があります。';window.dispatchEvent(new Event('nagiport:cancel'));
 });
 $('#classify-input').addEventListener('click',()=>{$('#run-progress').hidden=false;});
 $('#export-csv').addEventListener('click',()=>{

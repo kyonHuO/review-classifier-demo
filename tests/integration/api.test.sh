@@ -50,12 +50,16 @@ DUP_ID=$($CURL -X POST "$BASE/api/jobs" -H 'content-type: application/json' -H "
 check "double save with same token returns same id" "$JOB_ID" "$DUP_ID"
 check "double save did not create a second job (list=1)" 1 "$($CURL "$BASE/api/jobs" -H "origin: $BASE" -b "$J/a" | jsoncount)"
 check "job detail A (200)" 200 "$(code "$BASE/api/jobs/$JOB_ID" -H "origin: $BASE" -b "$J/a")"
+check "non-JSON body rejected (415)" 415 "$(code -X POST "$BASE/api/jobs" -H 'content-type: text/plain' -H "origin: $BASE" -b "$J/a" -d 'not json')"
+RESULTS_DIFF='{"client_token":"'"$TOKEN"'","results":[{"id":9,"text":"different content","category":"hold"}]}'
+check "same token with different content (409)" 409 "$(code -X POST "$BASE/api/jobs" -H 'content-type: application/json' -H "origin: $BASE" -b "$J/a" -d "$RESULTS_DIFF")"
 check "job csv A (200)" 200 "$(code "$BASE/api/jobs/$JOB_ID/csv" -H "origin: $BASE" -b "$J/a")"
 check "job csv A content-type" "text/csv; charset=utf-8" "$($CURL -o /dev/null -D - "$BASE/api/jobs/$JOB_ID/csv" -H "origin: $BASE" -b "$J/a" | tr -d '\r' | awk -F': ' 'tolower($1)=="content-type"{print $2}')"
 
 check "list jobs B (0, isolated)" 0 "$($CURL "$BASE/api/jobs" -H "origin: $BASE" -b "$J/b" | jsoncount)"
 check "B access A job (404)" 404 "$(code "$BASE/api/jobs/$JOB_ID" -H "origin: $BASE" -b "$J/b")"
 check "B access A csv (404)" 404 "$(code "$BASE/api/jobs/$JOB_ID/csv" -H "origin: $BASE" -b "$J/b")"
+check "delete cross-origin (403)" 403 "$(code -X DELETE "$BASE/api/jobs/$JOB_ID" -H "origin: https://evil.example" -b "$J/a")"
 check "B delete A job (404, ownership)" 404 "$(code -X DELETE "$BASE/api/jobs/$JOB_ID" -H "origin: $BASE" -b "$J/b")"
 check "A job still exists after B delete (200)" 200 "$(code "$BASE/api/jobs/$JOB_ID" -H "origin: $BASE" -b "$J/a")"
 check "no-cookie list jobs (401)" 401 "$(code "$BASE/api/jobs" -H "origin: $BASE")"
@@ -76,6 +80,19 @@ if [ "${RESET_D1:-0}" = "1" ]; then
 else
   echo "SKIP  expired session test (set RESET_D1=1 with a local D1)"
 fi
+
+# Concurrent burst: the atomic update must not let everyone through.
+BURST="burst-$RANDOM$RANDOM"
+TMPD="$(mktemp -d)"
+for i in $(seq 1 40); do
+  ( curl -sk -o /dev/null -w "%{http_code}\n" -X POST "$BASE/api/auth/login" -H 'content-type: application/json' -H "origin: $BASE" -H "x-forwarded-for: $BURST" -d "{\"email\":\"cx+$i-$RANDOM@example.com\",\"password\":\"wrongpass1\"}" >> "$TMPD/codes" ) &
+done
+wait
+C401=$(grep -c '^401$' "$TMPD/codes" || true)
+C429=$(grep -c '^429$' "$TMPD/codes" || true)
+rm -rf "$TMPD"
+check "concurrent limit: at most 20 allowed" "yes" "$([ "$C401" -le 20 ] && echo yes || echo no)"
+check "concurrent limit: at least 20 blocked" "yes" "$([ "$C429" -ge 20 ] && echo yes || echo no)"
 
 RL=""
 for _ in $(seq 1 25); do

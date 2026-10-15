@@ -7,29 +7,22 @@ export function clientKey(request) {
 
 export async function rateLimit(env, key, limit, windowMs) {
   const now = Date.now();
+  // Single atomic statement so concurrent requests cannot slip past the limit.
   const row = await env.DB.prepare(
-    "SELECT count, window_start FROM auth_attempts WHERE key = ?",
+    `INSERT INTO auth_attempts (key, count, window_start) VALUES (?, 1, ?)
+     ON CONFLICT(key) DO UPDATE SET
+       count = CASE WHEN ? - auth_attempts.window_start > ? THEN 1 ELSE auth_attempts.count + 1 END,
+       window_start = CASE WHEN ? - auth_attempts.window_start > ? THEN ? ELSE auth_attempts.window_start END
+     RETURNING count, window_start`,
   )
-    .bind(key)
+    .bind(key, now, now, windowMs, now, windowMs, now)
     .first();
 
-  if (!row || now - row.window_start > windowMs) {
-    await env.DB.prepare(
-      "INSERT INTO auth_attempts (key, count, window_start) VALUES (?, 1, ?) ON CONFLICT(key) DO UPDATE SET count = 1, window_start = ?",
-    )
-      .bind(key, now, now)
-      .run();
-    return { allowed: true, retryAfterMs: 0 };
-  }
-
-  if (row.count >= limit) {
-    return { allowed: false, retryAfterMs: row.window_start + windowMs - now };
-  }
-
-  await env.DB.prepare("UPDATE auth_attempts SET count = count + 1 WHERE key = ?")
-    .bind(key)
-    .run();
-  return { allowed: true, retryAfterMs: 0 };
+  const allowed = row.count <= limit;
+  return {
+    allowed,
+    retryAfterMs: allowed ? 0 : Math.max(0, row.window_start + windowMs - now),
+  };
 }
 
 export function tooMany(retryAfterMs) {

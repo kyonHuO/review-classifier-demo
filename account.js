@@ -366,6 +366,16 @@
         setStatus(status, "", "");
       }
     });
+    // Clear any previous save state when a new run starts, fails or is cancelled.
+    function resetSave() {
+      payload = null;
+      saveToken = null;
+      box.hidden = true;
+      setStatus(status, "", "");
+    }
+    ["nagiport:start", "nagiport:cancel", "nagiport:fail"].forEach(function (name) {
+      window.addEventListener(name, resetSave);
+    });
     button.addEventListener("click", function () {
       if (saving) return;
       if (!payload || !payload.length) {
@@ -393,7 +403,7 @@
             setStatus(status, errorText(res), "error");
             return;
           }
-          saveToken = null;
+          // Keep saveToken so pressing again for the same result is idempotent.
           setStatus(status, res.data && res.data.duplicate ? "保存済みです。" : "保存しました。", "ok");
           var link = document.createElement("a");
           link.href = "history.html";

@@ -77,11 +77,17 @@ function check(name, ok) {
     const saved = await page.$eval("#save-status", (n) => n.textContent);
     check("save reports success", /保存しました|保存済み/.test(saved));
 
+    // Pressing save again for the same result must not create a duplicate.
+    await page.click("#save-run");
+    await page.waitForFunction(() => /保存済み/.test(document.getElementById("save-status").textContent), { timeout: 10000 }).catch(() => {});
+    const again = await page.$eval("#save-status", (n) => n.textContent);
+    check("re-saving the same result is idempotent", /保存済み/.test(again));
+
     // 5. History lists the saved job with a CSV download link.
     await page.goto(BASE + "/history.html", { waitUntil: "load" });
     await page.waitForSelector("#history-list .dash-card", { timeout: 10000 }).catch(() => {});
     const cards = await page.$$eval("#history-list .dash-card", (nodes) => nodes.length);
-    check("history shows the saved job", cards >= 1);
+    check("history shows exactly one job", cards === 1);
     const csv = await page.$$eval("#history-list a", (as) => as.map((a) => a.getAttribute("href")).join(" "));
     check("history has a CSV download link", /\/api\/jobs\/.+\/csv/.test(csv));
   } finally {

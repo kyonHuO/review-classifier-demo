@@ -39,6 +39,12 @@ jobs:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           command: d1 execute nagiport-accounts --remote --yes --file=migrations/0004_jobs_token.sql
+      - name: Apply 0006
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: d1 execute nagiport-accounts --remote --yes --file=migrations/0006_jobs_hash.sql
       - name: Show tables
         uses: cloudflare/wrangler-action@v3
         with:

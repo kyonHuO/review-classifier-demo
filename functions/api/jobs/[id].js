@@ -1,4 +1,4 @@
-import { json, fail, ensureDb, currentUser } from "../../lib/auth.js";
+import { json, fail, sameOrigin, ensureDb, currentUser } from "../../lib/auth.js";
 
 export async function onRequestGet({ request, env, params }) {
   const dbError = ensureDb(env);
@@ -31,6 +31,7 @@ export async function onRequestGet({ request, env, params }) {
 }
 
 export async function onRequestDelete({ request, env, params }) {
+  if (!sameOrigin(request)) return fail(403, "不正なリクエストです。");
   const dbError = ensureDb(env);
   if (dbError) return dbError;
   const user = await currentUser(request, env);
