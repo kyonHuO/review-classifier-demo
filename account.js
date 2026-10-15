@@ -241,23 +241,57 @@
 
     request("/me")
       .then(function (result) {
-        if (!result.ok || !result.data.user) {
+        if (result.status === 401) {
           location.href = "customer.html";
+          return;
+        }
+        if (!result.ok || !result.data.user) {
+          setStatus(el("dash-error"), "サーバーに接続できませんでした。通信状況を確認して再読み込みしてください。", "error");
           return;
         }
         renderDashboard(result.data.user);
       })
       .catch(function () {
-        location.href = "customer.html";
+        setStatus(el("dash-error"), "サーバーに接続できませんでした。通信状況を確認して再読み込みしてください。", "error");
       });
+  }
+
+  function initHistory() {
+    if (preview) {
+      if (el("preview-banner")) el("preview-banner").hidden = false;
+      return;
+    }
+    function offline() {
+      var box = el("history-empty");
+      if (box) {
+        box.textContent =
+          "サーバーに接続できませんでした。通信状況を確認して再読み込みしてください。";
+      }
+    }
+    request("/me")
+      .then(function (result) {
+        if (result.status === 401) {
+          location.href = "customer.html";
+          return;
+        }
+        if (!result.ok) {
+          offline();
+          return;
+        }
+        // Logged in. No stored history yet: server-side storage is not connected.
+      })
+      .catch(offline);
   }
 
   /* ---- boot ---- */
 
   if (preview && el("preview-banner")) el("preview-banner").hidden = false;
 
-  if (document.body.getAttribute("data-page") === "dashboard") {
+  var page = document.body.getAttribute("data-page");
+  if (page === "dashboard") {
     initDashboard();
+  } else if (page === "history") {
+    initHistory();
   } else {
     initTabs();
     initPasswordToggles();
