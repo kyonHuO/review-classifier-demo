@@ -49,3 +49,17 @@ Owner asked for a real login UI and the account-holder customer page, publish-re
 - Preview: `?preview=1` on `customer.html` / `dashboard.html` walks the UI without a backend (banner shown, no real data). Static GitHub Pages has no Functions, so real calls need Cloudflare.
 - Tests: `node --test tests/auth.test.mjs` (7) plus existing suites pass locally (50 total).
 - Not done: D1 provisioning, rate limiting, email verification, password reset, CSRF beyond SameSite + Origin check, privacy/terms text, payment and file delivery. These remain before handling real customer data.
+
+### Deploy (Cloudflare Pages)
+
+`wrangler.toml` targets a Pages project `nagiport` served from the repo root, with a D1 binding named `DB` and `functions/_middleware.js` adding baseline security headers. Once the domain is bought, publishing is:
+
+```
+npx wrangler d1 create nagiport-accounts
+# paste the returned database_id into wrangler.toml
+npx wrangler d1 execute nagiport-accounts --file=migrations/0001_auth.sql
+npx wrangler pages deploy .
+# then add the custom domain in the Pages project settings
+```
+
+The site keeps working on GitHub Pages (.io) without Functions; only the real login/DB calls need Cloudflare.
