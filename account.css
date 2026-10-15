@@ -367,3 +367,12 @@
     grid-template-columns: minmax(0, 1fr);
   }
 }
+
+#history-list {
+  display: grid;
+  gap: 18px;
+}
+
+#history-list .dash-card {
+  margin-bottom: 0;
+}

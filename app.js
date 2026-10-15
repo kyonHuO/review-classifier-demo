@@ -73,7 +73,7 @@ function attachWorker(version){
     else if(data.type==='status'){const detail=data.stage==='inference'?`${backend==='webgpu'?'WebGPU':'CPU'}でブラウザ内処理中。中止するとそこまでの結果を残します。`:data.stage==='prototypes'?'最初の実行だけ、分類用の例文をモデルで計算します。':'初回は数分かかる場合があります。入力はサーバーに送信しません。';progressState(data.text,detail,data.stage==='inference'?data.current/data.total*100:null);}
     else if(data.type==='ready'){ready=true;$('#download-notice').textContent='分類エンジンの準備ができています。このページではそのまま分類できます。';}
     else if(data.type==='result')appendResult(data.result);
-    else if(data.type==='complete'){setBusy(false);const sec=Math.round((performance.now()-startedAt)/1000);progressState(`${results.length}件の処理が終わりました`,`${backend==='webgpu'?'WebGPU':'CPU'} · ${sec}秒（初回は準備時間を含みます）`,100);$('#results').focus({preventScroll:true});$('#results').scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'start'});}
+    else if(data.type==='complete'){setBusy(false);const sec=Math.round((performance.now()-startedAt)/1000);progressState(`${results.length}件の処理が終わりました`,`${backend==='webgpu'?'WebGPU':'CPU'} · ${sec}秒（初回は準備時間を含みます）`,100);$('#results').focus({preventScroll:true});$('#results').scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'start'});window.dispatchEvent(new CustomEvent('nagiport:complete',{detail:{results:results.map(r=>Object.assign({},r))}}));}
     else if(data.type==='error')fail(data);
   };
   worker.onerror=()=>{if(version===runVersion&&busy)fail({code:'runtime'});};

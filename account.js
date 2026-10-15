@@ -2,6 +2,7 @@
   "use strict";
 
   var API = "/api/auth";
+  var API_ROOT = "/api";
   var PREVIEW_KEY = "np_preview_user";
   var params = new URLSearchParams(location.search);
   var preview = params.get("preview") === "1";
@@ -17,9 +18,9 @@
     else node.removeAttribute("data-state");
   }
 
-  function request(path, options) {
+  function request(path, options, base) {
     var opts = options || {};
-    return fetch(API + path, {
+    return fetch((base || API) + path, {
       method: opts.method || "GET",
       headers: { "content-type": "application/json" },
       credentials: "same-origin",
@@ -256,6 +257,45 @@
       });
   }
 
+  function formatCounts(counts) {
+    var labels = { positive: "好意的", negative: "否定的", mixed: "賛否混在", hold: "判定保留", skipped: "未分類" };
+    return Object.keys(labels)
+      .filter(function (key) {
+        return counts && counts[key];
+      })
+      .map(function (key) {
+        return labels[key] + " " + counts[key] + "件";
+      })
+      .join("　");
+  }
+
+  function renderJobs(jobs) {
+    var list = el("history-list");
+    if (!list) return;
+    list.replaceChildren();
+    jobs.forEach(function (job) {
+      var card = document.createElement("article");
+      card.className = "dash-card";
+      var title = document.createElement("h2");
+      title.textContent = job.title || "分類結果";
+      var meta = document.createElement("p");
+      meta.className = "service-note";
+      meta.textContent =
+        formatDate(job.created_at) + " · " + job.total + "件" + (formatCounts(job.counts) ? " · " + formatCounts(job.counts) : "");
+      var actions = document.createElement("div");
+      actions.className = "dash-actions";
+      var download = document.createElement("a");
+      download.href = API_ROOT + "/jobs/" + encodeURIComponent(job.id) + "/csv";
+      download.textContent = "CSVを保存 ↓";
+      actions.append(download);
+      card.append(title, meta, actions);
+      list.append(card);
+    });
+    list.hidden = false;
+    var empty = el("history-empty");
+    if (empty) empty.hidden = true;
+  }
+
   function initHistory() {
     if (preview) {
       if (el("preview-banner")) el("preview-banner").hidden = false;
@@ -278,9 +318,68 @@
           offline();
           return;
         }
-        // Logged in. No stored history yet: server-side storage is not connected.
+        request("/jobs", {}, API_ROOT)
+          .then(function (res) {
+            if (res.status === 401) {
+              location.href = "customer.html";
+              return;
+            }
+            if (!res.ok) {
+              offline();
+              return;
+            }
+            var jobs = (res.data && res.data.jobs) || [];
+            if (jobs.length) renderJobs(jobs);
+          })
+          .catch(offline);
       })
       .catch(offline);
+  }
+
+  function initClassify() {
+    var box = el("save-result");
+    var button = el("save-run");
+    var status = el("save-status");
+    if (!box || !button) return;
+    var payload = null;
+    window.addEventListener("nagiport:complete", function (event) {
+      payload = event.detail && event.detail.results ? event.detail.results : null;
+      if (payload && payload.length) {
+        box.hidden = false;
+        setStatus(status, "", "");
+      }
+    });
+    button.addEventListener("click", function () {
+      if (!payload || !payload.length) {
+        setStatus(status, "保存する結果がありません。", "error");
+        return;
+      }
+      if (preview) {
+        setStatus(status, "プレビューでは保存できません。", "info");
+        return;
+      }
+      setStatus(status, "保存しています…", "info");
+      request("/jobs", { method: "POST", body: { results: payload } }, API_ROOT)
+        .then(function (res) {
+          if (res.status === 401) {
+            location.href = "customer.html";
+            return;
+          }
+          if (!res.ok) {
+            setStatus(status, errorText(res), "error");
+            return;
+          }
+          setStatus(status, "保存しました。", "ok");
+          var link = document.createElement("a");
+          link.href = "history.html";
+          link.textContent = "履歴を見る ↗";
+          status.append(" ");
+          status.append(link);
+        })
+        .catch(function () {
+          setStatus(status, "サーバーに接続できませんでした。", "error");
+        });
+    });
   }
 
   /* ---- boot ---- */
@@ -292,6 +391,8 @@
     initDashboard();
   } else if (page === "history") {
     initHistory();
+  } else if (page === "classify") {
+    initClassify();
   } else {
     initTabs();
     initPasswordToggles();

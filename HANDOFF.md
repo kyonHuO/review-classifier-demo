@@ -48,7 +48,11 @@ Owner asked for a real login UI and the account-holder customer page, publish-re
 - Schema: `migrations/0001_auth.sql` (tables `users`, `sessions`).
 - Preview: `?preview=1` on `customer.html` / `dashboard.html` walks the UI without a backend (banner shown, no real data). Static GitHub Pages has no Functions, so real calls need Cloudflare.
 - Tests: `node --test tests/auth.test.mjs` (7) plus existing suites pass locally (50 total).
-- Not done: D1 provisioning, rate limiting, email verification, password reset, CSRF beyond SameSite + Origin check, privacy/terms text, payment and file delivery. These remain before handling real customer data.
+- Not done: rate limiting, email verification, password reset, CSRF beyond SameSite + Origin check, privacy/terms text, payment and file delivery. Per-customer results are now stored in D1 (`jobs` / `job_results`, migration `0002_jobs.sql`) with server-side ownership checks on list, detail and CSV download; the raw uploaded file itself is not uploaded or stored (classification stays in the browser). These remain before handling real customer data.
+
+### Account screens (spec)
+
+`customer.html` (login / signup), `dashboard.html` (account overview), `classify.html` (dark in-browser classification with a pre-send confirmation step and result filter), `history.html` (stored jobs with server-side CSV download). Shared controller `account.js`; styles `account.css` + `classify-dark.css`. The public demo `try.html` is untouched; the confirmation step and filter activate only when their elements exist.
 
 ### Deploy (Cloudflare Pages)
 
@@ -58,6 +62,7 @@ Owner asked for a real login UI and the account-holder customer page, publish-re
 npx wrangler d1 create nagiport-accounts
 # paste the returned database_id into wrangler.toml
 npx wrangler d1 execute nagiport-accounts --file=migrations/0001_auth.sql
+npx wrangler d1 execute nagiport-accounts --file=migrations/0002_jobs.sql
 npx wrangler pages deploy .
 # then add the custom domain in the Pages project settings
 ```
