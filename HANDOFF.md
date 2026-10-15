@@ -60,9 +60,11 @@ Owner asked for a real login UI and the account-holder customer page, publish-re
 
 ```
 npx wrangler d1 create nagiport-accounts
-# paste the returned database_id into wrangler.toml
+# paste the returned database_id into wrangler.toml (the committed value is a placeholder)
 npx wrangler d1 execute nagiport-accounts --file=migrations/0001_auth.sql
 npx wrangler d1 execute nagiport-accounts --file=migrations/0002_jobs.sql
+# confirm the target and tables before deploying
+npx wrangler d1 execute nagiport-accounts --command "SELECT name FROM sqlite_master WHERE type='table' ORDER BY name"
 npx wrangler pages deploy .
 # then add the custom domain in the Pages project settings
 ```
@@ -74,3 +76,14 @@ The site keeps working on GitHub Pages (.io) without Functions; only the real lo
 - Unit: `node --test tests/core.test.mjs tests/estimate.test.mjs tests/video.test.mjs tests/auth.test.mjs` → 50 passed (7 of these are auth helpers).
 - Integration (real workerd + local D1): `tests/integration/api.test.sh` → 19 checks. Covers register/login/me, duplicate/wrong-password/malformed-JSON/cross-origin/malformed-cookie handling, job create/list/detail/CSV, two-account isolation, no-cookie 401, logout and post-logout 401. Setup commands are in the script header. Requires `wrangler pages dev --local-protocol https` because the session cookie is Secure.
 - Runtime constraint: workerd caps PBKDF2 at 100,000 iterations (`DEFAULT_MAX_PBKDF2_ITERATIONS`); a higher value throws. The code uses 100,000 and stores the count per user so it can be raised once the cap does (Cloudflare/workerd#7550 is still open).
+
+### Before connecting for real (decisions)
+
+`wrangler.toml` is a template: the `database_id` is a placeholder and no live resource has been touched. Before any real D1/Pages operation, confirm:
+
+1. Owner and Cloudflare account/project that will host the Pages project.
+2. The real D1 database name/id to bind as `DB`, and that migrations were applied to that exact database (verify the table list above).
+3. Data handling: customer review text is stored in D1 (`jobs` / `job_results`); privacy/terms text, retention and deletion policy are not written yet.
+4. Cost: D1/Pages usage beyond the free tier.
+
+The browser-only demo (`try.html`) stays public and needs no login; the account feature (`classify.html` + `history.html`) requires a session and stores results in D1.

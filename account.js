@@ -341,6 +341,14 @@
     var button = el("save-run");
     var status = el("save-status");
     if (!box || !button) return;
+    // This is the account feature: require a real session. The public demo is try.html.
+    if (!preview) {
+      request("/me")
+        .then(function (res) {
+          if (res.status === 401) location.href = "customer.html";
+        })
+        .catch(function () {});
+    }
     var payload = null;
     window.addEventListener("nagiport:complete", function (event) {
       payload = event.detail && event.detail.results ? event.detail.results : null;
