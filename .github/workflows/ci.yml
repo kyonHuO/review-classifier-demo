@@ -37,5 +37,8 @@ jobs:
       - name: Install puppeteer-core
         run: npm install --no-save --no-audit --no-fund puppeteer-core@23
 
-      - name: Screen test (browser)
+      - name: Screen test (save flow)
         run: BASE=https://127.0.0.1:8790 node tests/e2e/classify.screen.cjs
+
+      - name: Screen test (UI details)
+        run: BASE=https://127.0.0.1:8790 node tests/e2e/account.ui.cjs

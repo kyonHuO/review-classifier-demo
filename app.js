@@ -141,3 +141,6 @@ $('#export-csv').addEventListener('click',()=>{
 window.addEventListener('pagehide',()=>{fileVersion++;runVersion++;stopWorker();clearInterval(slowTimer);});
 window.addEventListener('pageshow',event=>{if(event.persisted){$('#download-notice').textContent='画面を移動したため、次回は分類エンジンを準備し直します。取得済みファイルはキャッシュを利用する場合があります。';if(busy){setBusy(false);progressState('処理を中止しました','画面を移動したため、分類エンジンを解放しました。再実行できます。');}}});
 updateCounter();
+// Test seam: only when ?debug=1, so the classifier UI can be exercised without
+// downloading the model. Not exposed in normal use.
+if(typeof location!=='undefined'&&new URLSearchParams(location.search).has('debug'))window.__nagiport={appendResult,applyFilter,getResults:()=>results};
