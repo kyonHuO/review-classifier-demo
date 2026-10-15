@@ -19,7 +19,7 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
-          node-version: "20"
+          node-version: "22"
       - name: Inject the D1 database id
         run: |
           sed -i "s/REPLACE_WITH_D1_DATABASE_ID/${CLOUDFLARE_D1_DATABASE_ID}/" wrangler.toml
