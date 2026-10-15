@@ -67,6 +67,16 @@ check "list jobs A after delete (0)" 0 "$($CURL "$BASE/api/jobs" -H "origin: $BA
 check "logout A (200)" 200 "$(code -X POST "$BASE/api/auth/logout" -H "origin: $BASE" -b "$J/a" -c "$J/a")"
 check "me after logout (401)" 401 "$(code "$BASE/api/auth/me" -H "origin: $BASE" -b "$J/a")"
 
+# Session expiry. Needs a local D1 to force-expire rows, so it runs only with RESET_D1=1.
+if [ "${RESET_D1:-0}" = "1" ]; then
+  code -X POST "$BASE/api/auth/login" -H 'content-type: application/json' -H "origin: $BASE" -c "$J/x" -d "{\"email\":\"$EMAIL_A\",\"password\":\"pass1234\"}" >/dev/null
+  check "fresh session (200)" 200 "$(code "$BASE/api/auth/me" -H "origin: $BASE" -b "$J/x")"
+  npx wrangler d1 execute nagiport-accounts --local --command "UPDATE sessions SET expires_at = 0" >/dev/null 2>&1 || true
+  check "expired session (401)" 401 "$(code "$BASE/api/auth/me" -H "origin: $BASE" -b "$J/x")"
+else
+  echo "SKIP  expired session test (set RESET_D1=1 with a local D1)"
+fi
+
 RL=""
 for _ in $(seq 1 25); do
   c="$(code -X POST "$BASE/api/auth/login" -H 'content-type: application/json' -H "origin: $BASE" -d "{\"email\":\"$EMAIL_A\",\"password\":\"wrongpass1\"}")"
