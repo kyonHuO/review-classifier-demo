@@ -38,3 +38,14 @@ Library known-reference prepare_materialize returned version 0 and initially a s
 ## Before launch
 
 Parent performs final review and publication. Complete blocked CSV file-selection UI QA, deployed-page verification and prototype comparison when materialization is available. Confirm a suitable commercial intake host and its current terms before paid transactions, plus formal service/data handling terms, delivery workflow and invoice rounding. Model, payment and production result CSV connection are not implemented. No storage-period or deletion guarantee is promised. No new account, billing agreement, OAuth, key, permissions or customer-data transfer was initiated.
+
+## Account / customer dashboard (branch `customer-account-v1`)
+
+Owner asked for a real login UI and the account-holder customer page, publish-ready for a Cloudflare custom domain (`.io` GitHub Pages is the interim host). Scope: real auth (email + password), no payment or file-transfer connection yet.
+
+- Pages: `customer.html` (login / signup), `dashboard.html` (logged-in my page: usage, orders, files, profile). Shared: `account.js`, `account.css`.
+- API: Cloudflare Pages Functions under `functions/api/auth/` (`register`, `login`, `logout`, `me`) with shared `functions/lib/auth.js`. Passwords use PBKDF2-SHA256 (120k iterations, per-user salt). Sessions are random tokens stored as SHA-256 hashes in D1; cookie is HttpOnly/Secure/SameSite=Lax, 30 days.
+- Schema: `migrations/0001_auth.sql` (tables `users`, `sessions`).
+- Preview: `?preview=1` on `customer.html` / `dashboard.html` walks the UI without a backend (banner shown, no real data). Static GitHub Pages has no Functions, so real calls need Cloudflare.
+- Tests: `node --test tests/auth.test.mjs` (7) plus existing suites pass locally (50 total).
+- Not done: D1 provisioning, rate limiting, email verification, password reset, CSRF beyond SameSite + Origin check, privacy/terms text, payment and file delivery. These remain before handling real customer data.
