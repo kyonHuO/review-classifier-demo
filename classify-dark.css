@@ -229,3 +229,67 @@
     padding: 22px 18px;
   }
 }
+
+/* Confirmation step and result filter (customer classify page) */
+
+.account-classify .confirm-panel {
+  margin-top: 20px;
+  padding: 18px;
+  background: #121217;
+  border: 1px solid #4a3956;
+  border-radius: 8px;
+}
+
+.account-classify .confirm-panel h3 {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 500;
+  color: #f0edf4;
+}
+
+.account-classify .confirm-preview {
+  margin: 12px 0 0;
+  padding-left: 22px;
+  color: #cfc6d8;
+  font-size: 12px;
+  line-height: 1.9;
+}
+
+.account-classify .confirm-preview li {
+  overflow-wrap: anywhere;
+  white-space: pre-wrap;
+}
+
+.account-classify .confirm-actions {
+  gap: 12px;
+  margin-top: 18px;
+}
+
+.account-classify .confirm-actions .run-button {
+  margin-top: 0;
+  width: auto;
+  min-width: 234px;
+}
+
+.account-classify .result-filter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0 0 12px;
+}
+
+.account-classify .filter-chip {
+  border: 1px solid #4a3956;
+  background: #241d2c;
+  color: #cfc6d8;
+  border-radius: 20px;
+  font-size: 11px;
+  padding: 8px 14px;
+  min-height: 44px;
+}
+
+.account-classify .filter-chip[aria-pressed="true"] {
+  background: #b59add;
+  color: #201629;
+  border-color: #b59add;
+}

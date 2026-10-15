@@ -14,7 +14,7 @@ function updateFilePreview(){
   $('#file-preview').replaceChildren(...rows.slice(0,3).map((text,i)=>el('p',`${i+1}. ${text}`)));
   if(rows.length>3)$('#file-preview').append(el('p',`ほか${rows.length-3}件`));
 }
-function removeFile(){fileVersion++;csvTable=null;$('#csv-file').value='';$('#file-panel').hidden=true;$('#review-input').hidden=false;updateCounter();inputError();}
+function removeFile(){fileVersion++;csvTable=null;$('#csv-file').value='';$('#file-panel').hidden=true;$('#review-input').hidden=false;updateCounter();inputError();hideConfirm();}
 function stopWorker(){worker?.terminate();worker=null;ready=false;backend='';}
 function setBusy(value){
   busy=value;$('#classify-input').disabled=value;
@@ -23,10 +23,23 @@ function setBusy(value){
   if(!value){clearInterval(slowTimer);slowTimer=null;$('#classify-input').replaceChildren(document.createTextNode(ready?'もう一度分類する ':'この内容を分類する '),el('span','→'));}
 }
 function progressState(title,detail='',value=null){$('#run-status').hidden=false;$('#status-title').textContent=title;$('#status-detail').textContent=detail;if(value===null)$('#run-progress').removeAttribute('value');else $('#run-progress').value=value;}
+let activeFilter='all';
+function applyFilter(){
+  Array.prototype.forEach.call(document.querySelectorAll('#result-list .result-row'),row=>{row.hidden=activeFilter!=='all'&&row.dataset.category!==activeFilter;});
+  const host=$('#result-filter');if(host)Array.prototype.forEach.call(host.children,btn=>btn.setAttribute('aria-pressed',String(btn.dataset.filter===activeFilter)));
+}
+function renderFilter(){
+  const host=$('#result-filter');if(!host)return;
+  const keys=Object.keys(LABELS).filter(key=>results.some(r=>r.category===key));
+  const make=(key,text)=>{const btn=el('button',text,'filter-chip');btn.type='button';btn.dataset.filter=key;btn.addEventListener('click',()=>{activeFilter=key;applyFilter();});return btn;};
+  host.replaceChildren(make('all','すべて'),...keys.map(key=>make(key,LABELS[key])));
+  applyFilter();
+}
 function showResults(){
   $('#results').hidden=!results.length;$('#result-count').textContent=`${results.length}件`;
   const counts=Object.fromEntries(Object.keys(LABELS).map(key=>[key,results.filter(r=>r.category===key).length]));
   $('#result-summary').textContent=Object.keys(LABELS).filter(key=>counts[key]).map(key=>`${LABELS[key]} ${counts[key]}件`).join('　');
+  renderFilter();
 }
 function reasonText(result){
   if(result.reason==='reserved_media_token')return '画像・音声・動画用の予約記号が含まれるため未分類にしました。予約記号を取り除いて再実行してください。';
@@ -37,7 +50,7 @@ function reasonText(result){
   return '';
 }
 function appendResult(result){
-  results.push(result);const row=el('article','','result-row');row.append(el('span',String(result.id).padStart(2,'0'),'row-id'));
+  results.push(result);const row=el('article','','result-row');row.dataset.category=result.category;row.append(el('span',String(result.id).padStart(2,'0'),'row-id'));
   const body=el('div','');body.append(el('p',result.text,'review-text'));
   const meta=el('div','','row-meta');meta.append(el('span',LABELS[result.category],`label ${result.category}`));
   if(Number.isFinite(result.score))meta.append(el('span',`最も近い分類との近さ ${result.score.toFixed(3)}`,'score-note'));
@@ -65,12 +78,12 @@ function attachWorker(version){
   };
   worker.onerror=()=>{if(version===runVersion&&busy)fail({code:'runtime'});};
 }
-$('#review-input').addEventListener('input',()=>{fileVersion++;updateCounter();inputError();});
+$('#review-input').addEventListener('input',()=>{fileVersion++;updateCounter();inputError();hideConfirm();});
 $('#use-example').addEventListener('click',()=>{removeFile();$('#review-input').value=EXAMPLES.join('\n');updateCounter();$('#review-input').focus();});
 $('#clear-input').addEventListener('click',()=>{removeFile();$('#review-input').value='';updateCounter();inputError();$('#review-input').focus();});
 $('#remove-file').addEventListener('click',removeFile);
-$('#csv-column').addEventListener('change',()=>{updateFilePreview();inputError();});
-$('#csv-header').addEventListener('change',()=>{updateFilePreview();inputError();});
+$('#csv-column').addEventListener('change',()=>{updateFilePreview();inputError();hideConfirm();});
+$('#csv-header').addEventListener('change',()=>{updateFilePreview();inputError();hideConfirm();});
 $('#csv-file').addEventListener('change',async(event)=>{
   const file=event.target.files[0];if(!file)return;const version=++fileVersion;inputError();
   try{
@@ -79,22 +92,36 @@ $('#csv-file').addEventListener('change',async(event)=>{
     const raw=await file.arrayBuffer();if(version!==fileVersion||busy)return;
     const text=new TextDecoder('utf-8',{fatal:true}).decode(raw),table=parseCsv(text),layout=inferCsvLayout(table);
     csvTable=table;$('#csv-header').checked=layout.header;$('#csv-column').replaceChildren(...table[0].map((_,i)=>{const option=el('option',`列${i+1}`);option.value=i;return option;}));$('#csv-column').value=String(layout.column);
-    $('#file-name').textContent=file.name;$('#file-panel').hidden=false;$('#review-input').hidden=true;updateFilePreview();
+    $('#file-name').textContent=file.name;$('#file-panel').hidden=false;$('#review-input').hidden=true;updateFilePreview();hideConfirm();
     try{validateRows(rows);}catch(error){inputError(error.message);}
   }catch(error){if(version!==fileVersion)return;event.target.value='';inputError(error instanceof TypeError?'UTF-8形式のCSVを選んでください。':error.message);}
 });
 $('#device-choice').addEventListener('change',()=>{stopWorker();$('#download-notice').textContent='実行方法を変更しました。次回、分類エンジンを準備し直します。';});
-$('#classify-input').addEventListener('click',()=>{
+function startRun(){
   if(busy)return;fileVersion++;updateCounter();inputError();runError();
   try{validateRows(rows);}catch(error){inputError(error.message);return;}
   if(!window.isSecureContext||!window.Worker||!window.WebAssembly){runError('この環境では実行できません。HTTPS接続の最新ブラウザでお試しください。');return;}
-  results=[];$('#result-list').replaceChildren();showResults();setBusy(true);startedAt=performance.now();
+  results=[];activeFilter='all';$('#result-list').replaceChildren();showResults();setBusy(true);startedAt=performance.now();
   // Keep an already prepared worker and its listener's version for reruns.
   if(!worker){runVersion++;try{attachWorker(runVersion);}catch{fail({code:'runtime'});return;}}
   progressState(ready?'分類を開始しています':'分類エンジンを準備しています',ready?'このページで準備済みの分類エンジンを使います。':'保存済みファイルがあれば再利用し、このブラウザ内で分類します。');
   slowTimer=setInterval(()=>{if(busy&&performance.now()-startedAt>120000&&!results.length)$('#status-detail').textContent='端末・通信によって準備に数分かかります。処理は続いています。中止して、CPUへの切り替えやPCでの再実行もできます。';},30000);
   worker.postMessage({type:'classify',rows:[...rows],device:$('#device-choice').value});
-});
+}
+const confirmPanel=$('#classify-confirm');
+function hideConfirm(){if(confirmPanel)confirmPanel.hidden=true;}
+function prepareConfirm(){
+  if(busy)return;fileVersion++;updateCounter();inputError();runError();
+  try{validateRows(rows);}catch(error){inputError(error.message);return;}
+  $('#confirm-count').textContent=`有効な行数：${rows.length}件（先頭${Math.min(5,rows.length)}件を表示）`;
+  $('#confirm-preview').replaceChildren(...rows.slice(0,5).map(text=>el('li',text)));
+  confirmPanel.hidden=false;
+}
+$('#classify-input').addEventListener('click',()=>{confirmPanel?prepareConfirm():startRun();});
+if(confirmPanel){
+  $('#classify-confirm-run').addEventListener('click',()=>{hideConfirm();startRun();});
+  $('#classify-confirm-cancel').addEventListener('click',hideConfirm);
+}
 $('#cancel-run').addEventListener('click',()=>{
   if(!busy)return;runVersion++;stopWorker();setBusy(false);progressState('処理を中止しました',results.length?`${results.length}件の結果を残しました。残りは分類していません。`:'入力は残っています。分類結果はまだありません。',null);$('#run-progress').hidden=true;$('#download-notice').textContent='再実行時は分類エンジンを準備し直します。取得済みファイルはキャッシュを利用する場合があります。';
 });
