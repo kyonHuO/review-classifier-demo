@@ -20,16 +20,23 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: "22"
-      - name: Check for Cloudflare credentials
+      - name: Check Cloudflare credentials
         id: check
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          CLOUDFLARE_D1_DATABASE_ID: ${{ secrets.CLOUDFLARE_D1_DATABASE_ID }}
         run: |
-          if [ -n "$CLOUDFLARE_API_TOKEN" ]; then
+          missing=""
+          [ -z "$CLOUDFLARE_API_TOKEN" ] && missing="$missing CLOUDFLARE_API_TOKEN"
+          [ -z "$CLOUDFLARE_ACCOUNT_ID" ] && missing="$missing CLOUDFLARE_ACCOUNT_ID"
+          [ -z "$CLOUDFLARE_D1_DATABASE_ID" ] && missing="$missing CLOUDFLARE_D1_DATABASE_ID"
+          missing="$(echo $missing | xargs)"
+          if [ -z "$missing" ]; then
             echo "ready=yes" >> "$GITHUB_OUTPUT"
           else
             echo "ready=no" >> "$GITHUB_OUTPUT"
-            echo "::notice::Cloudflare secrets are not set; skipping deploy."
+            echo "missing=$missing" >> "$GITHUB_OUTPUT"
           fi
       - name: Inject the D1 database id
         if: steps.check.outputs.ready == 'yes'
@@ -37,10 +44,34 @@ jobs:
           sed -i "s/REPLACE_WITH_D1_DATABASE_ID/${CLOUDFLARE_D1_DATABASE_ID}/" wrangler.toml
         env:
           CLOUDFLARE_D1_DATABASE_ID: ${{ secrets.CLOUDFLARE_D1_DATABASE_ID }}
-      - name: Deploy
+      - name: Deploy (Cloudflare Pages)
+        id: deploy
         if: steps.check.outputs.ready == 'yes'
         uses: cloudflare/wrangler-action@v3
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           command: pages deploy . --project-name=nagiport --branch=main
+      - name: Deploy summary
+        if: always()
+        run: |
+          if [ "${{ steps.check.outcome }}" != "success" ]; then
+            status="NOT RUN / 未実行"
+            reason="credential check did not complete (check outcome: ${{ steps.check.outcome }})"
+          elif [ "${{ steps.check.outputs.ready }}" != "yes" ]; then
+            status="NOT DEPLOYED / 未デプロイ"
+            reason="missing secrets: ${{ steps.check.outputs.missing }}"
+          else
+            case "${{ steps.deploy.outcome }}" in
+              success)   status="PUBLISHED / 公開成功"; reason="deploy command completed successfully" ;;
+              cancelled) status="CANCELLED / 中断"; reason="deploy was cancelled" ;;
+              skipped)   status="NOT RUN / 未実行"; reason="deploy step was skipped" ;;
+              *)         status="DEPLOY FAILED / 公開失敗"; reason="deploy command failed; see the Deploy step logs" ;;
+            esac
+          fi
+          echo "::notice title=Cloudflare Pages:: $status"
+          {
+            echo "## Cloudflare Pages: $status"
+            echo ""
+            echo "$reason"
+          } >> "$GITHUB_STEP_SUMMARY"
