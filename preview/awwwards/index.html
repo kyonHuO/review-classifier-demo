@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>NAGIPORT — 口コミを、見える形に。</title>
+<style>
+  :root{
+    --bg:#f4f4f2; --ink:#111110; --muted:#6c6c68; --line:#dcdcd6;
+    --accent:#fa5d29; --accent2:#111110;
+    --pad:clamp(20px,4vw,64px);
+    --max:1440px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{-webkit-text-size-adjust:100%}
+  body{background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,"Helvetica Neue",Arial,"Hiragino Kaku Gothic ProN","Noto Sans JP",sans-serif;line-height:1.5;overflow-x:hidden}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:var(--max);margin:0 auto;padding:0 var(--pad)}
+  .upper{text-transform:uppercase;letter-spacing:-.02em}
+  .mono{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:11px;letter-spacing:.14em}
+
+  /* top bar */
+  header{position:sticky;top:0;z-index:50;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+  .bar{display:flex;align-items:center;justify-content:space-between;gap:20px;height:66px}
+  .brand{font-weight:800;letter-spacing:-.03em;font-size:20px}
+  .brand small{display:block;font-weight:500;font-size:10px;color:var(--muted);letter-spacing:.08em}
+  nav.bar-nav{display:flex;gap:22px;font-size:12px;font-weight:600}
+  nav.bar-nav a{position:relative}
+  nav.bar-nav a:hover{color:var(--accent)}
+  nav.bar-nav a.cta{background:var(--accent);color:#fff;padding:9px 14px;border-radius:100px}
+
+  /* hero */
+  .hero{padding:calc(var(--pad)*1.2) 0 calc(var(--pad)*.6)}
+  .eyebrow{display:flex;gap:12px;align-items:center;color:var(--muted);margin-bottom:24px}
+  .dot{width:8px;height:8px;border-radius:50%;background:var(--accent)}
+  h1.display{font-size:clamp(46px,12.5vw,168px);line-height:.92;font-weight:800;letter-spacing:-.04em}
+  h1.display .thin{font-weight:300;color:var(--muted)}
+  h1.display .accent{color:var(--accent)}
+  .hero-sub{margin-top:26px;max-width:560px;font-size:clamp(13px,1.4vw,16px);color:#3a3a37}
+  .hero-cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:30px}
+  .btn{display:inline-flex;align-items:center;gap:10px;font-weight:700;font-size:13px;padding:15px 22px;border-radius:100px;border:1.5px solid var(--ink);transition:transform .25s ease,background .25s,color .25s}
+  .btn:hover{transform:translateY(-2px)}
+  .btn.solid{background:var(--ink);color:var(--bg)}
+  .btn.solid:hover{background:var(--accent);border-color:var(--accent)}
+  .btn.ghost:hover{background:var(--ink);color:var(--bg)}
+
+  /* marquee */
+  .marquee{border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin-top:clamp(28px,5vw,60px);padding:18px 0;overflow:hidden;white-space:nowrap}
+  .marquee .track{display:inline-block;font-size:clamp(20px,4vw,44px);font-weight:800;letter-spacing:-.02em}
+  .marquee .track span{display:inline-block;padding:0 .3em}
+  .marquee .track .o{color:var(--accent)}
+  @keyframes slide{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+  .marquee .track{animation:slide 22s linear infinite}
+
+  /* intro */
+  .intro{display:grid;grid-template-columns:1fr 1fr;gap:clamp(20px,5vw,80px);padding:calc(var(--pad)*.9) 0}
+  .intro h2{font-size:clamp(24px,3.4vw,44px);line-height:1.12;font-weight:700;letter-spacing:-.03em}
+  .intro p{color:#3a3a37;font-size:14px;max-width:460px}
+  .intro .meta{display:flex;flex-direction:column;gap:10px;margin-top:22px}
+  .kv{display:flex;justify-content:space-between;border-top:1px solid var(--line);padding-top:10px;font-size:12px;color:var(--muted)}
+  .kv b{color:var(--ink);font-weight:700}
+
+  /* work list */
+  .work{padding-bottom:var(--pad)}
+  .work-head{display:flex;justify-content:space-between;align-items:baseline;border-bottom:1px solid var(--ink);padding-bottom:14px}
+  .row{display:grid;grid-template-columns:clamp(48px,8vw,120px) 1fr auto;gap:20px;align-items:center;border-bottom:1px solid var(--line);padding:clamp(20px,3vw,38px) 0;transition:padding-left .3s ease,color .3s}
+  .row:hover{padding-left:18px;color:var(--accent)}
+  .row .num{font-size:clamp(20px,3vw,40px);font-weight:300;color:var(--muted)}
+  .row h3{font-size:clamp(22px,4.6vw,56px);font-weight:800;letter-spacing:-.03em;line-height:1}
+  .row p{color:var(--muted);font-size:12px;margin-top:8px;max-width:640px}
+  .row .arrow{font-size:clamp(20px,3vw,36px);transition:transform .3s}
+  .row:hover .arrow{transform:translateX(10px)}
+
+  /* footer */
+  footer{border-top:1px solid var(--line);padding:var(--pad) 0}
+  .foot{display:flex;flex-wrap:wrap;gap:22px;justify-content:space-between;align-items:flex-end}
+  .foot .big{font-size:clamp(34px,8vw,110px);font-weight:800;letter-spacing:-.04em;line-height:.95}
+  .foot nav{display:flex;gap:18px;flex-wrap:wrap;font-size:12px;font-weight:600}
+
+  @media(max-width:760px){
+    .intro{grid-template-columns:1fr}
+    nav.bar-nav a:not(.cta){display:none}
+    .row{grid-template-columns:40px 1fr auto;gap:12px}
+  }
+  @media(prefers-reduced-motion:reduce){
+    .marquee .track{animation:none}
+    .btn,.row,.row .arrow{transition:none}
+  }
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap bar">
+    <a class="brand" href="#">NAGIPORT<small>VOICE TO VIEW</small></a>
+    <nav class="bar-nav" aria-label="メイン">
+      <a href="#work">できること</a>
+      <a href="#about">方針</a>
+      <a class="cta" href="#">相談する</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="hero wrap">
+    <p class="eyebrow mono"><span class="dot"></span> NAGIPORT / VOICE TO VIEW — 口コミCSV分類</p>
+    <h1 class="display upper">Make every <span class="accent">voice</span><br><span class="thin">visible.</span></h1>
+    <p class="hero-sub">CSVで取り込んだ口コミや投稿を、好意的・否定的・賛否混在・判定保留に分類。ブラウザ内で処理し、結果はCSVで端末に保存できます。アカウントへの保存は準備中です。</p>
+    <div class="hero-cta">
+      <a class="btn solid" href="#">分類を試す →</a>
+      <a class="btn ghost" href="#">相談する →</a>
+    </div>
+  </section>
+
+  <div class="marquee" aria-hidden="true">
+    <div class="track upper">CSVを取り込む <span class="o">●</span> 内容ごとに分類する <span class="o">●</span> 一覧で確認する <span class="o">●</span> CSVで保存する <span class="o">●</span> CSVを取り込む <span class="o">●</span> 内容ごとに分類する <span class="o">●</span> 一覧で確認する <span class="o">●</span> CSVで保存する <span class="o">●</span> </div>
+  </div>
+
+  <section class="intro wrap" id="about">
+    <h2 class="upper">Read less.<br>See more.</h2>
+    <div>
+      <p>全部を読む時間がない。改善につながる声が見えない。生成AIは件数分のコストがかさむ。——そんな悩みに、手元で回せる分類を。</p>
+      <div class="meta">
+        <div class="kv"><span>処理場所</span><b>ブラウザ内（入力は外部送信しません）</b></div>
+        <div class="kv"><span>結果の保存</span><b>CSVで端末に保存</b></div>
+        <div class="kv"><span>アカウント保存</span><b>準備中</b></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="work wrap" id="work">
+    <div class="work-head"><span class="mono">WHAT WE DO</span><span class="mono">01 — 03</span></div>
+    <a class="row" href="#">
+      <span class="num">01</span>
+      <span><h3 class="upper">CSVを取り込んで分類する</h3><p>本文列を指定すると、好意的・否定的・賛否混在・判定保留に分類します。</p></span>
+      <span class="arrow" aria-hidden="true">→</span>
+    </a>
+    <a class="row" href="#">
+      <span class="num">02</span>
+      <span><h3 class="upper">結果を一覧で確認する</h3><p>元の文章と分類、保留の理由を一覧で確認。結果は人が見直す前提です。</p></span>
+      <span class="arrow" aria-hidden="true">→</span>
+    </a>
+    <a class="row" href="#">
+      <span class="num">03</span>
+      <span><h3 class="upper">CSVで保存する</h3><p>分類結果はCSVでダウンロードできます。アカウントへの保存は準備中です。</p></span>
+      <span class="arrow" aria-hidden="true">→</span>
+    </a>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <div class="foot-left">
+      <p class="mono">NAGIPORT</p>
+      <p class="big upper">Voice<br>to view.</p>
+    </div>
+    <nav aria-label="フッター">
+      <a href="#">サービス</a><a href="#">SNS分析</a><a href="#">参考料金</a><a href="#">よくある質問</a><a href="#">データの取り扱い</a><a href="#">お問い合わせ</a>
+    </nav>
+  </div>
+</footer>
+</body>
+</html>
