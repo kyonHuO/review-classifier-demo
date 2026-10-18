@@ -1,0 +1,26 @@
+.nagi-reel { min-width: 0; width: 100%; color: #070711; }
+.nagi-reel .nagi-reel-heading { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-bottom: 14px; }
+.nagi-reel .nagi-reel-heading h2 { margin: 0; font: 800 16px Arial, sans-serif; letter-spacing: -.03em; }
+.nagi-reel .nagi-reel-heading span { font: 10px monospace; color: #505164; }
+.nagi-reel .nagi-reel-stage { position: relative; overflow: hidden; aspect-ratio: 16 / 9; background: #070711; border: 1px solid #2b3dff; border-radius: 6px; }
+.nagi-reel .nagi-reel-poster { position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: center; align-items: center; color: #eff1fe; font: 900 clamp(24px, 4vw, 60px) Arial, sans-serif; }
+.nagi-reel .nagi-reel-poster small { margin-top: 14px; font-size: 12px; }
+.nagi-reel[data-ready] .nagi-reel-poster { display: none; }
+.nagi-reel canvas { display: block; width: 100%; height: 100%; }
+.nagi-reel .nagi-reel-controls { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; padding: 12px 0; }
+.nagi-reel .nagi-reel-controls[hidden] { display: none; }
+.nagi-reel button { min-height: 44px; padding: 9px 12px; border: 1px solid #2b3dff; border-radius: 4px; background: #fff; color: #1824aa; font: 700 12px sans-serif; cursor: pointer; }
+.nagi-reel button[data-reel-toggle] { background: #2b3dff; color: #fff; min-width: 80px; }
+.nagi-reel .nagi-reel-seek { flex: 1; min-width: 110px; font: 11px sans-serif; }
+.nagi-reel input { display: block; width: 100%; min-height: 28px; accent-color: #2b3dff; cursor: pointer; }
+.nagi-reel output { font: 10px monospace; white-space: nowrap; }
+.nagi-reel .nagi-reel-caption { margin: 8px 0; font-size: 12px; line-height: 1.8; color: #454556; }
+.nagi-reel .nagi-reel-help { margin: 6px 0 0; font-size: 10px; line-height: 1.7; color: #555567; }
+.nagi-reel :is(button, input, .nagi-reel-stage):focus-visible { outline: 3px solid #2b3dff; outline-offset: 4px; }
+@media (max-width: 760px) {
+  .nagi-reel { margin-top: 24px; }
+}
+@media (max-width: 420px) {
+  .nagi-reel .nagi-reel-seek { flex-basis: 100%; order: 2; }
+  .nagi-reel output { margin-left: auto; }
+}
