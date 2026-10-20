@@ -544,3 +544,6 @@ body.light .use-case-card h3 { color: #f0edf4; }
 body.light .use-case-card > p { color: #aca0b7; }
 body.light .use-case-card .case-example p { color: #c3b6cd; }
 body.light .mail-label-list li { color: #c2a9d4; }
+
+/* Preserve a readable foreground on the dark consultation hover surface. */
+body.light .home-actions .home-contact:hover { color: #e6d7ef; }
