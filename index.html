@@ -6,7 +6,7 @@
   <meta name="description" content="CSVの口コミを内容ごとに分類するNagiport。分類結果のデモ、SNS分析の構想、参考料金と導入相談をご案内します。">
   <meta name="theme-color" content="#121217">
   <meta name="referrer" content="no-referrer">
-  <title>口コミ・SNS分類｜Nagiport</title>
+  <title>Nagiport｜口コミ分類</title>
   <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="service.css"><link rel="stylesheet" href="motion.css"><link rel="stylesheet" href="light.css">
@@ -14,6 +14,20 @@
 </head>
 <body class="landing home-refined light">
   <a class="skip-link" href="#main">本文へ移動</a>
+  <section class="nagi-intro" hidden role="dialog" aria-modal="true" aria-labelledby="nagi-intro-label" aria-describedby="nagi-intro-help">
+    <div class="nagi-intro-top">
+      <p id="nagi-intro-label">NAGIPORT <span>/ 口コミ分類</span></p>
+      <div class="nagi-intro-actions"><button type="button" data-intro-pause>一時停止</button><button type="button" data-intro-skip>本文へ <span aria-hidden="true">↗</span></button></div>
+    </div>
+    <div class="nagi-intro-art" aria-hidden="true">
+      <div class="nagi-intro-scene" data-intro-scene="0"><p class="nagi-intro-word">NAGIPORT<span>.</span></p><div class="nagi-intro-rule"></div><p class="nagi-intro-micro">VOICE TO VIEW</p></div>
+      <div class="nagi-intro-scene" data-intro-scene="1"><div class="nagi-intro-shape"></div><p class="nagi-intro-outline">VOICE <span>→</span> VIEW</p><p class="nagi-intro-micro">ひとつひとつの声を、見える形に。</p></div>
+      <div class="nagi-intro-scene" data-intro-scene="2"><div class="nagi-intro-steps"><p><small>01</small>INPUT</p><p><small>02</small>CLASSIFY</p><p><small>03</small>REVIEW</p></div><p class="nagi-intro-micro">取り込む。分類する。見直す。</p></div>
+      <div class="nagi-intro-scene" data-intro-scene="3"><p class="nagi-intro-jp">口コミを分類し<br><span>確認を減らす。</span></p><p class="nagi-intro-micro">NAGIPORT / VOICE TO VIEW</p></div>
+    </div>
+    <div class="nagi-intro-bottom"><p id="nagi-intro-help">まもなく本文へ <span aria-hidden="true">↓</span><small>スクロール・スワイプでも進めます</small></p><span aria-hidden="true">01 — 04</span></div>
+    <div class="nagi-intro-progress" aria-hidden="true"><i></i></div>
+  </section>
   <header class="landing-header"><a class="identity nagiport-identity" href="./" aria-label="Nagiport ホーム"><span class="identity-mark" aria-hidden="true">▤</span><span>Nagiport<small>口コミ・SNSの投稿を分類</small></span></a><nav class="site-nav" aria-label="メインナビゲーション"><a href="services.html">サービス</a><a href="sns.html">SNS分析</a><a href="estimate.html">参考料金</a></nav></header>
   <main id="main" class="landing-main">
     <div class="hero-copy">
