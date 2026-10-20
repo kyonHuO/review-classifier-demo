@@ -6,29 +6,42 @@
   const motion = window.matchMedia('(prefers-reduced-motion: reduce)');
   const navigation = performance.getEntriesByType('navigation')[0];
   if (motion.matches || location.hash || window.scrollY > 8 || navigation?.type === 'back_forward' || !('inert' in HTMLElement.prototype)) return;
-  const pause = intro.querySelector('[data-intro-pause]');
   const skip = intro.querySelector('[data-intro-skip]');
-  if (!pause || !skip) return;
+  if (!skip) return;
   const controller = new AbortController();
   const { signal } = controller;
-  const duration = 7400;
+  const duration = 7400, holdDelay = 250, moveTolerance = 12, swipeDistance = 32;
   const background = Array.from(document.body.children)
     .filter(el => el !== intro && !['SCRIPT', 'STYLE'].includes(el.tagName))
     .map(el => ({ el, inert: el.inert }));
   const overflow = document.body.style.getPropertyValue('overflow');
   const overflowPriority = document.body.style.getPropertyPriority('overflow');
+  const pointers = new Map();
   let elapsed = 0, previous = null, frame = null, ending = false, finished = false;
-  let manuallyPaused = false, cleanupTimer = null, touchY = null;
+  let pointerPaused = false, spacePaused = false, cleanupTimer = null, holdTimer = null;
+  let gesture = null, multiPointer = false, suppressPointerClick = false;
 
   function cancelFrame() {
     if (frame !== null) cancelAnimationFrame(frame);
     frame = null; previous = null;
   }
+  function cancelHold() {
+    clearTimeout(holdTimer); holdTimer = null;
+    pointerPaused = false;
+  }
+  function releaseCapture(owner, id) {
+    try { if (owner.hasPointerCapture?.(id)) owner.releasePointerCapture(id); } catch { /* Already released by the browser. */ }
+  }
+  function clearInputs() {
+    cancelHold(); spacePaused = false; gesture = null; multiPointer = false;
+    const captures = [...pointers]; pointers.clear();
+    captures.forEach(([id, owner]) => releaseCapture(owner, id));
+  }
   function restore() {
     if (finished) return;
     finished = true;
     cancelFrame(); clearTimeout(cleanupTimer);
-    controller.abort();
+    controller.abort(); clearInputs();
     background.forEach(({ el, inert }) => { el.inert = inert; });
     if (overflow) document.body.style.setProperty('overflow', overflow, overflowPriority);
     else document.body.style.removeProperty('overflow');
@@ -54,8 +67,9 @@
     if (finished) return;
     if (immediate) { ending = true; restore(); return; }
     if (ending) return;
-    ending = true; cancelFrame();
+    ending = true; cancelFrame(); clearInputs();
     intro.getAnimations({ subtree: true }).forEach(animation => animation.play());
+    intro.toggleAttribute('data-paused', false);
     intro.dataset.state = 'leaving';
     intro.dataset.leaving = '';
     // Keep background inert and scroll locked until the exit has actually ended.
@@ -66,56 +80,108 @@
   }
   function tick(now) {
     frame = null;
-    if (ending || finished || manuallyPaused || document.hidden) { previous = null; return; }
+    if (ending || finished || pointerPaused || spacePaused || document.hidden) { previous = null; return; }
     if (previous !== null) elapsed += Math.max(0, now - previous);
     previous = now;
     const scene = elapsed < 1600 ? 0 : elapsed < 3400 ? 1 : elapsed < 5400 ? 2 : 3;
     intro.dataset.scene = String(scene);
-    intro.style.setProperty('--intro-progress', String(Math.min(1, elapsed / duration)));
     if (elapsed >= duration) finish();
     else frame = requestAnimationFrame(tick);
   }
   function sync() {
     cancelFrame();
     if (ending || finished) return;
-    const paused = manuallyPaused || document.hidden;
+    const paused = pointerPaused || spacePaused || document.hidden;
     intro.toggleAttribute('data-paused', paused);
     intro.dataset.state = paused ? 'paused' : 'playing';
-    pause.textContent = manuallyPaused ? '再生' : '一時停止';
-    pause.setAttribute('aria-label', manuallyPaused ? 'オープニングを再生' : 'オープニングを一時停止');
     intro.getAnimations({ subtree: true }).forEach(animation => paused ? animation.pause() : animation.play());
     if (!paused) frame = requestAnimationFrame(tick);
   }
+  function pointerDown(event) {
+    if (ending || finished || document.hidden || (event.pointerType === 'mouse' && event.button !== 0)) return;
+    if (pointers.has(event.pointerId)) return;
+    if (pointers.size === 0) suppressPointerClick = false;
+    // Capturing on the arrow itself preserves its ordinary short-click behavior.
+    const owner = skip.contains(event.target) ? skip : intro;
+    pointers.set(event.pointerId, owner);
+    try { owner.setPointerCapture?.(event.pointerId); } catch { /* Document listeners still observe release. */ }
+    if (pointers.size > 1 || event.isPrimary === false) {
+      multiPointer = true; suppressPointerClick = true; gesture = null;
+      cancelHold(); sync(); return;
+    }
+    gesture = { id: event.pointerId, x: event.clientX, y: event.clientY, moved: false };
+    holdTimer = setTimeout(() => {
+      holdTimer = null;
+      if (!gesture || gesture.moved || multiPointer || ending || finished || document.hidden) return;
+      pointerPaused = true; suppressPointerClick = true; sync();
+    }, holdDelay);
+  }
+  function pointerMove(event) {
+    if (!gesture || event.pointerId !== gesture.id || multiPointer || ending || finished) return;
+    const dx = event.clientX - gesture.x, up = gesture.y - event.clientY;
+    if (up >= swipeDistance && up > Math.abs(dx)) {
+      suppressPointerClick = true; finish(); return;
+    }
+    if (!gesture.moved && Math.hypot(dx, up) > moveTolerance) {
+      gesture.moved = true; suppressPointerClick = true;
+      const wasPaused = pointerPaused; cancelHold();
+      if (wasPaused) sync();
+    }
+  }
+  function pointerEnd(event) {
+    if (!pointers.has(event.pointerId)) return;
+    const owner = pointers.get(event.pointerId);
+    pointers.delete(event.pointerId);
+    if (gesture?.id === event.pointerId) {
+      gesture = null;
+      const wasPaused = pointerPaused; cancelHold();
+      if (event.type !== 'pointerup') suppressPointerClick = true;
+      if (wasPaused) sync();
+    }
+    if (pointers.size === 0) multiPointer = false;
+    releaseCapture(owner, event.pointerId);
+  }
   try {
-    skip.addEventListener('click', () => finish(), { signal });
-    pause.addEventListener('click', () => { manuallyPaused = !manuallyPaused; sync(); }, { signal });
+    skip.addEventListener('click', event => {
+      if (event.detail > 0 && suppressPointerClick) { event.preventDefault(); return; }
+      finish();
+    }, { signal });
+    intro.addEventListener('pointerdown', pointerDown, { signal });
+    document.addEventListener('pointermove', pointerMove, { passive: true, signal });
+    document.addEventListener('pointerup', pointerEnd, { signal });
+    document.addEventListener('pointercancel', pointerEnd, { signal });
+    intro.addEventListener('lostpointercapture', pointerEnd, { signal });
+    intro.addEventListener('contextmenu', event => event.preventDefault(), { signal });
+    intro.addEventListener('dragstart', event => event.preventDefault(), { signal });
     intro.addEventListener('wheel', event => {
       if (event.deltaY > 0 && !event.ctrlKey) finish();
     }, { passive: true, signal });
-    intro.addEventListener('touchstart', event => {
-      touchY = event.touches.length === 1 ? event.touches[0].clientY : null;
-    }, { passive: true, signal });
-    intro.addEventListener('touchmove', event => {
-      if (touchY !== null && event.touches.length === 1 && touchY - event.touches[0].clientY > 24) finish();
-    }, { passive: true, signal });
-    intro.addEventListener('touchend', () => { touchY = null; }, { passive: true, signal });
     document.addEventListener('keydown', event => {
       if (ending || finished || event.altKey || event.ctrlKey || event.metaKey) return;
       if (event.key === 'Tab') {
-        const active = document.activeElement;
-        if (event.shiftKey && (active === pause || !intro.contains(active))) { event.preventDefault(); skip.focus(); }
-        else if (!event.shiftKey && (active === skip || !intro.contains(active))) { event.preventDefault(); pause.focus(); }
+        event.preventDefault(); skip.focus({ preventScroll: true }); return;
+      }
+      if (event.key === ' ') {
+        event.preventDefault();
+        if (!spacePaused) { spacePaused = true; sync(); }
         return;
       }
-      if (['Escape', 'ArrowDown', 'PageDown'].includes(event.key) ||
-          ((event.key === ' ' || event.key === 'Enter') && event.target !== pause && event.target !== skip)) {
+      if (['Enter', 'Escape', 'ArrowDown', 'PageDown'].includes(event.key)) {
         event.preventDefault(); finish();
       }
+    }, { signal });
+    document.addEventListener('keyup', event => {
+      if (event.key !== ' ' || !spacePaused) return;
+      event.preventDefault(); spacePaused = false; sync();
     }, { signal });
     document.addEventListener('focusin', event => {
       if (!ending && !finished && !intro.contains(event.target)) skip.focus({ preventScroll: true });
     }, { signal });
-    document.addEventListener('visibilitychange', sync, { signal });
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden) clearInputs();
+      sync();
+    }, { signal });
+    window.addEventListener('blur', () => { clearInputs(); sync(); }, { signal });
     motion.addEventListener('change', () => { if (motion.matches) finish(true); }, { signal });
     window.addEventListener('hashchange', () => finish(true), { signal });
     window.addEventListener('pagehide', () => finish(true), { signal });

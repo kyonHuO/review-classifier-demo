@@ -6,25 +6,26 @@
 /* One full-screen opening, followed by a single-column content hero. */
 .nagi-intro[hidden] { display: none; }
 .nagi-intro {
-  --intro-blue: #5366ff; --intro-progress: 0;
+  --intro-blue: #5366ff;
   position: fixed; inset: 0; z-index: 1000; isolation: isolate; overflow: hidden;
   background: #070711; color: #eff1fe; font-family: Arial, "Hiragino Kaku Gothic ProN", "Yu Gothic", Meiryo, sans-serif;
   transition: transform .88s cubic-bezier(.72, 0, .18, 1);
-  overscroll-behavior: contain; touch-action: pan-y;
+  overscroll-behavior: contain; touch-action: none;
+  -webkit-user-select: none; user-select: none; -webkit-touch-callout: none;
 }
 /* Beat the existing body.light p theme only inside the dark opening. */
 body .nagi-intro p { color: inherit; }
 .nagi-intro::before { content: ""; position: absolute; inset: 0; z-index: -1; opacity: .4; background: radial-gradient(ellipse at 15% 0%, #2538a8 0, transparent 52%); pointer-events: none; }
 .nagi-intro[data-leaving] { transform: translateY(-101%); pointer-events: none; }
-.nagi-intro-top, .nagi-intro-bottom { position: absolute; left: max(28px, env(safe-area-inset-left)); right: max(28px, env(safe-area-inset-right)); display: flex; justify-content: space-between; align-items: center; gap: 20px; z-index: 2; }
-.nagi-intro-top { top: max(24px, env(safe-area-inset-top)); }
-.nagi-intro-top p { margin: 0; font: 700 12px/1.5 Arial, sans-serif; letter-spacing: .15em; }
-.nagi-intro-top p span { color: #a2a8c2; font-size: 11px; letter-spacing: .06em; }
-.nagi-intro-actions { display: flex; gap: 8px; flex-shrink: 0; }
-.nagi-intro button { appearance: none; display: inline-flex; align-items: center; justify-content: center; gap: 12px; min-height: 44px; padding: 10px 16px; margin: 0; border: 1px solid #737992; border-radius: 999px; background: transparent; color: #eff1fe; font: 600 12px/1.2 Arial, sans-serif; cursor: pointer; }
-.nagi-intro button[data-intro-skip] { border-color: #eff1fe; background: #eff1fe; color: #070711; }
-.nagi-intro button:hover { border-color: #aab2ff; }
-.nagi-intro button:focus-visible { outline: 3px solid #aab2ff; outline-offset: 4px; }
+/* The only visible control: an arrow with a generous touch target. */
+.nagi-intro [data-intro-skip] {
+  appearance: none; position: absolute; z-index: 2; left: 50%; bottom: max(24px, env(safe-area-inset-bottom));
+  display: inline-flex; align-items: center; justify-content: center; transform: translateX(-50%);
+  min-width: 52px; min-height: 52px; padding: 8px; margin: 0; border: 0; border-radius: 50%;
+  background: transparent; color: #eff1fe; font: 400 32px/1 Arial, sans-serif; cursor: pointer;
+}
+.nagi-intro [data-intro-skip]:hover { color: #aab2ff; }
+.nagi-intro [data-intro-skip]:focus-visible { outline: 3px solid #aab2ff; outline-offset: 4px; }
 .nagi-intro-art { position: absolute; inset: 110px 28px 115px; }
 .nagi-intro-scene { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; opacity: 0; transform: translateY(34px); transition: opacity .4s ease, transform .65s cubic-bezier(.2,.7,.2,1); pointer-events: none; }
 .nagi-intro[data-scene="0"] [data-intro-scene="0"],
@@ -45,20 +46,7 @@ body .nagi-intro p { color: inherit; }
 .nagi-intro-steps small { display: block; margin-bottom: 20px; color: #7c8aff; font: 16px/1.2 monospace; letter-spacing: .1em; }
 .nagi-intro-jp { margin: 0; font-size: clamp(34px, 7.5vw, 112px); font-weight: 800; letter-spacing: -.045em; line-height: 1.45; }
 .nagi-intro-jp span { color: #9ea8ff; }
-.nagi-intro-bottom { bottom: max(30px, env(safe-area-inset-bottom)); color: #a6acc5; font: 11px/1.7 monospace; letter-spacing: .08em; }
-.nagi-intro-bottom p { margin: 0; }
-.nagi-intro-bottom p > span { padding-left: 12px; color: #eff1fe; }
-.nagi-intro-bottom small { display: block; margin-top: 5px; font-size: 10px; letter-spacing: .02em; }
-.nagi-intro-progress { position: absolute; bottom: 0; left: 0; right: 0; height: 3px; background: #23273f; }
-.nagi-intro-progress i { display: block; height: 100%; background: #8794ff; transform: scaleX(var(--intro-progress)); transform-origin: left; }
-.nagi-intro[data-paused] .nagi-intro-bottom small { opacity: .7; }
 @media (max-width: 560px) {
-  .nagi-intro-top, .nagi-intro-bottom { left: max(18px, env(safe-area-inset-left)); right: max(18px, env(safe-area-inset-right)); }
-  .nagi-intro-top { align-items: flex-start; gap: 10px; }
-  .nagi-intro-top p { padding-top: 8px; font-size: 10px; letter-spacing: .08em; }
-  .nagi-intro-top p span { display: block; margin-top: 4px; font-size: 10px; }
-  .nagi-intro-actions { gap: 6px; }
-  .nagi-intro button { padding: 10px 12px; font-size: 11px; }
   .nagi-intro-art { left: 18px; right: 18px; }
   .nagi-intro-steps { flex-direction: column; gap: 18px; }
   .nagi-intro-steps p { display: flex; align-items: baseline; gap: 20px; font-size: 33px; }
@@ -73,7 +61,7 @@ body .nagi-intro p { color: inherit; }
   .nagi-intro-outline { margin-top: 16px; font-size: 38px; }
   .nagi-intro-jp { font-size: 42px; line-height: 1.25; }
   .nagi-intro .nagi-intro-micro { margin-top: 16px; }
-  .nagi-intro-bottom { bottom: 18px; }
+  .nagi-intro [data-intro-skip] { bottom: max(12px, env(safe-area-inset-bottom)); }
   .nagi-intro-rule { margin-top: 20px; }
 }
 @media (prefers-reduced-motion: reduce) {

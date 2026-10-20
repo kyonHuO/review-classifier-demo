@@ -8,7 +8,7 @@
     <div class="section-heading"><p class="eyebrow">SOCIAL LISTENING / 開発中</p><h1>相談から、<br>関連する投稿の確認まで。</h1><p>自分のお店についての声を、関連性から整理する機能を開発しています。</p></div>
 
     <section class="sns-flow-demo" aria-labelledby="sns-flow-title">
-      <div class="section-heading"><h2 id="sns-flow-title">相談から報告まで、5つの段階で進みます。</h2><p>時間で進みます。タップすると、その段に戻ります。</p></div>
+      <div class="section-heading"><h2 id="sns-flow-title">相談から報告まで、5つの段階で進みます。</h2><p>段階を選ぶと、進め方を確認できます。</p></div>
       <div class="sns-flow" id="sns-flow" role="tablist" aria-label="相談から報告までの流れ"></div>
       <div class="sns-detail" id="sns-detail" role="status" aria-live="polite"></div>
     </section>
@@ -32,48 +32,20 @@
       </div>
     </section>
 
-    <section aria-labelledby="sns-sources-title">
-      <div class="section-heading"><h2 id="sns-sources-title">対象になり得るサービス（検討中）</h2><p>取得方法と規約を確認してから決めます。取得できる項目だけでなく、商用の分析・保存・再表示が認められるかも公式資料で確認します。以下は候補です。</p></div>
-      <div class="service-panel"><ul>
-        <li>Bluesky — 第一候補。公開投稿を対象語・期間・件数で取得。原投稿URLと、削除・訂正への対応を持たせる</li>
-        <li>YouTube（指定動画のコメント）— 第二候補。本文は30日以内の更新または削除が必要。感情分析などは派生指標ポリシーの確認・受諾が前提</li>
-        <li>Googleビジネスプロフィール — 管理権限を認可された店舗向け。任意の競合店の口コミ全件は対象外で、保存・加工の制限が強い</li>
-        <li>自前データ（持ち込みCSV、問い合わせ、アンケート）— 取得元の権利と、外部AIへ送れる範囲の確認が残る</li>
-        <li>Instagram / Facebook — 公式APIあり（ビジネスアカウント前提、検索に制限）</li>
-        <li>Threads — 公開APIあり</li>
-        <li>X（旧Twitter）— 公式APIは有料で高額。規約で保存・再配布に制限（要検討）</li>
-        <li>ホットペッパー — 店舗検索APIは公式にあるが、口コミ本文を取得できる仕様は確認できていない</li>
-        <li>食べログ等 — 公式APIなし。スクレイピングは規約違反のおそれがあるため原則対象外</li>
-      </ul><p class="service-note">共通して、取得元・投稿ID・取得日時・更新期限・削除状態を管理する設計が必要です（10月16日 確認）。</p></div>
-    </section>
+    <section aria-labelledby="sns-sources-title"><div class="section-heading"><h2 id="sns-sources-title">SNSごとの声を、目的に合わせて。</h2><p>知りたいことや、利用できるデータに合わせて、対象と進め方を一緒に考えます。</p></div><div class="service-grid"><article class="service-panel"><h3>X（旧Twitter）</h3><p>日々の話題や出来事への反応を、短い投稿で知る手がかりになります。</p><p>お店への感想や要望など、文章で表れた声を整理する使い方を想定しています。</p></article><article class="service-panel"><h3>Instagram</h3><p>写真や動画から、お店や商品を探す人の関心を知る手がかりになります。</p><p>投稿に添えた文章やコメントから、気になった点や訪問後の感想を整理する使い方を想定しています。</p></article><article class="service-panel"><h3>TikTok</h3><p>短い動画をきっかけに、食やお出かけなどの情報を知る人の声に注目します。</p><p>説明文やコメントから、関心を持たれた点や疑問を整理する使い方を想定しています。</p></article><article class="service-panel"><h3>YouTube</h3><p>レビューや解説を見て、体験や商品を詳しく知りたい人の反応を確かめます。</p><p>動画に寄せられたコメントから、感想・質問・要望を整理する使い方を想定しています。</p></article></div><p class="service-note">いずれも活用を検討しているサービスです。分析・自動取得は未提供で、実データの受付はまだ行っていません。対象や方法は、利用条件を確認してご案内します。</p></section>
 
-    <section aria-labelledby="sns-prep-title">
-      <div class="section-heading"><h2 id="sns-prep-title">準備していただくもの</h2></div>
-      <div class="service-grid">
-        <article class="service-panel"><h3>対象のお店の情報</h3><p>対象名・別名・地域・事業説明。</p></article>
-        <article class="service-panel"><h3>調べたい目的と期間</h3><p>何を知りたいか、対象とする期間。</p></article>
-        <article class="service-panel"><h3>扱えるデータの範囲</h3><p>利用する権限のあるデータに限ります。</p></article>
-      </div>
-    </section>
+    <section aria-labelledby="sns-prep-title"><div class="section-heading"><h2 id="sns-prep-title">準備していただくものは、2つです。</h2></div><div class="service-grid"><article class="service-panel"><h3>01 / お店の情報</h3><p>店名・所在地・お店や商品の特徴を教えてください。</p></article><article class="service-panel"><h3>02 / 調査条件</h3><p>調べたい期間と、利用したいSNS・口コミサイトを教えてください。</p></article></div></section>
 
     <section aria-labelledby="sns-fit-title">
       <div class="section-heading"><h2 id="sns-fit-title">こんな方に向いています</h2></div>
       <div class="service-panel"><ul>
         <li>SNSの投稿を、自分のお店についての声として整理したい</li>
-        <li>同名の別店舗とまちがえずに見分けたい</li>
-        <li>自動収集と、持ち込みのCSVの両方を扱いたい</li>
+        <li>同名の別店舗についての投稿を、区別して確認したい</li>
+        <li>SNSの反応と、お手元の口コミをあわせて見直したい</li>
       </ul></div>
     </section>
 
-    <section aria-labelledby="sns-cant-title">
-      <div class="section-heading"><h2 id="sns-cant-title">できないこと（先にお伝えします）</h2></div>
-      <div class="service-panel"><ul>
-        <li>画像・音声の解析、外部リンクの取得は対象外です</li>
-        <li>SNSへの自動返信は行いません</li>
-        <li>関連の判定は候補です。確定せず、人が見直す前提です</li>
-        <li>規約で認められない取得は行いません</li>
-      </ul></div>
-    </section>
+    <section aria-labelledby="sns-cant-title"><div class="section-heading"><h2 id="sns-cant-title">できないこと</h2></div><div class="service-panel"><ul><li>すべての投稿を集めたり、利用者全体の意見を表したりするものではありません</li><li>投稿した人の特定や、年齢・性別の断定は行いません</li><li>文章だけでは判断できない声もあります。分類は人が見直す前提です</li><li>画像・音声の解析や、SNSへの自動返信は対象外です</li><li>利用が認められない投稿・口コミの収集や利用は行いません</li></ul></div></section>
 
     <section aria-labelledby="sns-data-title">
       <div class="section-heading"><h2 id="sns-data-title">データの取り扱い</h2></div>
@@ -84,10 +56,10 @@
       <div class="section-heading"><h2 id="sns-faq-title">よくある質問</h2></div>
       <div class="service-faq">
         <details><summary>投稿は自動で集められますか？</summary><p>方針として、自動収集への対応を進めています。対象サービスと提供時期は検討中で、実装はまだ提供していません。</p></details>
-        <details><summary>どのサービスに対応しますか？</summary><p>公式APIの有無と規約を確認して決めます。候補は上の「対象になり得るサービス」にまとめています。</p></details>
+        <details><summary>どのサービスに対応しますか？</summary><p>対象のサービスと、利用できるデータの範囲を確認してご案内します。候補は上の活用例をご覧ください。</p></details>
         <details><summary>どこまで進んでいますか？</summary><p>開発中です。モデル選定と品質確認の前段階で、料金も未決定です。</p></details>
         <details><summary>判定は確定ですか？</summary><p>いいえ。関連する候補として提示し、人が確認する前提です。文脈が足りない投稿は判断保留として残します。</p></details>
-        <details><summary>持ち込みCSVでも使えますか？</summary><p>はい。自動収集とあわせて、投稿本文付きのCSVにも対応する方針です。</p></details>
+        <details><summary>持ち込みCSVでも使えますか？</summary><p>利用条件を確認できたデータのお持ち込みも検討しています。現時点では実データの受付は行っていません。</p></details>
       </div>
     </section>
 
@@ -99,20 +71,19 @@
       var STAGES = [
         ["相談", "対象とゴールを確認"],
         ["条件設定", "対象名・地域・期間を決める"],
-        ["収集", "公開情報を規約に沿って"],
+        ["資料の確認", "利用できる投稿を確認"],
         ["確認", "自分の店の声かを見分ける"],
         ["報告", "関連・別店舗・保留に整理"]
       ];
       var DETAILS = [
-        { h:"相談の内容", you:"対象の店名や別名、地域、期間、調べたい目的", we:"条件と進め方を決めます。", out:"進め方と、確認する条件が決まります。", note:"実データや個人情報はこの段では受け取りません。" },
-        { h:"条件のすり合わせ", you:"対象名・別名・地域・期間・除外する店舗", we:"検索と確認の条件を一緒に決めます。", out:"検索の条件が確定します。", note:"あとから変更できます。" },
-        { h:"規約に沿った収集", you:"扱えるデータの範囲の確認", we:"公開情報だけを、各サービスの規約に従って取得します。", out:"確認する候補の投稿が集まります。", note:"対象サービスは検討中です。持ち込みCSVにも対応します。", posts:["駅から港へ向かう途中の青い扉のお店。プリンがおいしかった。","港町の喫茶 凪、夜も営業してほしいな。","青い扉のお店、混んでたけど雰囲気がよかった。","港町の喫茶店、固めのプリンが忘れられない。","山あい市の喫茶 凪のランチ、よかった。","青い扉、どこの店だっけ。メモしておく。","港の近くの喫茶店、店員さんが親切だった。","プリンが有名な青い扉のお店、また行きたい。"] },
+        { h:"相談の内容", you:"お店の情報と調査条件（期間・利用したいSNSや口コミサイト）", we:"条件と進め方を決めます。", out:"進め方と、確認する条件が決まります。", note:"実データや個人情報はこの段では受け取りません。" },
+        { h:"条件のすり合わせ", you:"お店の情報と調査条件の確認", we:"検索と確認の条件を一緒に決めます。", out:"検索の条件が確定します。", note:"あとから変更できます。" },
+        { h:"利用できる資料の確認", you:"必要に応じた確認への回答", we:"利用が認められた投稿や、お客様から提供いただく資料を対象にする想定です。", out:"確認する候補の投稿が集まります。", note:"提供に向けた想定です。実データの受付はまだ行っていません。", posts:["駅から港へ向かう途中の青い扉のお店。プリンがおいしかった。","港町の喫茶 凪、夜も営業してほしいな。","青い扉のお店、混んでたけど雰囲気がよかった。","港町の喫茶店、固めのプリンが忘れられない。","山あい市の喫茶 凪のランチ、よかった。","青い扉、どこの店だっけ。メモしておく。","港の近くの喫茶店、店員さんが親切だった。","プリンが有名な青い扉のお店、また行きたい。"] },
         { h:"関連投稿の確認", you:"候補の見直し（必要に応じて）", we:"投稿が自分のお店についてのものかを確認します。", out:"自店の可能性・要確認／別の店舗の可能性／判断保留に分けます。", note:"確定せず、候補として残します。" },
         { h:"報告", you:"結果の受け取りと見直し", we:"関連・別店舗・保留に整理します。", out:"一覧と、確認できた範囲・限界を添えます。", note:"人が見直せる形にします。" }
       ];
       var host = document.getElementById("sns-flow");
       var detail = document.getElementById("sns-detail");
-      var reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
       var buttons = [];
       STAGES.forEach(function (st, i) {
         if (i > 0) { var c = document.createElement("div"); c.className = "conn"; host.appendChild(c); }
@@ -126,7 +97,7 @@
         buttons.push(b);
       });
       var conns = host.querySelectorAll(".conn");
-      var i = 0, timer = null;
+      var i = 0;
       function paint() {
         buttons.forEach(function (b, k) {
           b.classList.toggle("active", k === i);
@@ -143,14 +114,8 @@
       function select(n, user) {
         i = (n + STAGES.length) % STAGES.length;
         paint();
-        if (user && !reduced) restart();
-      }
-      function restart() {
-        if (timer) clearInterval(timer);
-        timer = setInterval(function () { i = (i + 1) % STAGES.length; paint(); }, 7000);
       }
       paint();
-      if (!reduced) restart();
     })();
   </script>
   <script src="motion.js"></script>

@@ -3,38 +3,33 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="CSVの口コミを内容ごとに分類するNagiport。分類結果のデモ、SNS分析の構想、参考料金と導入相談をご案内します。">
+  <meta name="description" content="口コミやSNSの声を整理するNagiport。サービスの構想、SNSごとの活用例、参考料金と導入相談をご案内します。">
   <meta name="theme-color" content="#121217">
   <meta name="referrer" content="no-referrer">
   <title>Nagiport｜口コミ分類</title>
   <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="service.css"><link rel="stylesheet" href="motion.css"><link rel="stylesheet" href="light.css">
-  <link rel="stylesheet" href="nagi-reel.css">
+  <link rel="stylesheet" href="nagi-reel.css?v=20261020b">
 </head>
 <body class="landing home-refined light">
   <a class="skip-link" href="#main">本文へ移動</a>
-  <section class="nagi-intro" hidden role="dialog" aria-modal="true" aria-labelledby="nagi-intro-label" aria-describedby="nagi-intro-help">
-    <div class="nagi-intro-top">
-      <p id="nagi-intro-label">NAGIPORT <span>/ 口コミ分類</span></p>
-      <div class="nagi-intro-actions"><button type="button" data-intro-pause>一時停止</button><button type="button" data-intro-skip>本文へ <span aria-hidden="true">↗</span></button></div>
-    </div>
+  <section class="nagi-intro" hidden role="dialog" aria-modal="true" aria-label="Nagiport オープニング" aria-description="画面を長押ししている間は一時停止します。上にスワイプ、または矢印で本文へ進みます。キーボードではSpaceを押している間は一時停止し、EnterまたはEscapeで本文へ進めます。">
     <div class="nagi-intro-art" aria-hidden="true">
       <div class="nagi-intro-scene" data-intro-scene="0"><p class="nagi-intro-word">NAGIPORT<span>.</span></p><div class="nagi-intro-rule"></div><p class="nagi-intro-micro">VOICE TO VIEW</p></div>
       <div class="nagi-intro-scene" data-intro-scene="1"><div class="nagi-intro-shape"></div><p class="nagi-intro-outline">VOICE <span>→</span> VIEW</p><p class="nagi-intro-micro">ひとつひとつの声を、見える形に。</p></div>
       <div class="nagi-intro-scene" data-intro-scene="2"><div class="nagi-intro-steps"><p><small>01</small>INPUT</p><p><small>02</small>CLASSIFY</p><p><small>03</small>REVIEW</p></div><p class="nagi-intro-micro">取り込む。分類する。見直す。</p></div>
       <div class="nagi-intro-scene" data-intro-scene="3"><p class="nagi-intro-jp">口コミを分類し<br><span>確認を減らす。</span></p><p class="nagi-intro-micro">NAGIPORT / VOICE TO VIEW</p></div>
     </div>
-    <div class="nagi-intro-bottom"><p id="nagi-intro-help">まもなく本文へ <span aria-hidden="true">↓</span><small>スクロール・スワイプでも進めます</small></p><span aria-hidden="true">01 — 04</span></div>
-    <div class="nagi-intro-progress" aria-hidden="true"><i></i></div>
+    <button type="button" data-intro-skip aria-label="本文へ進む"><span aria-hidden="true">↓</span></button>
   </section>
   <header class="landing-header"><a class="identity nagiport-identity" href="./" aria-label="Nagiport ホーム"><span class="identity-mark" aria-hidden="true">▤</span><span>Nagiport<small>口コミ・SNSの投稿を分類</small></span></a><nav class="site-nav" aria-label="メインナビゲーション"><a href="services.html">サービス</a><a href="sns.html">SNS分析</a><a href="estimate.html">参考料金</a></nav></header>
   <main id="main" class="landing-main home-single-hero">
     <div class="hero-copy">
       <p class="eyebrow"><span class="status-dot"></span> NAGIPORT / VOICE TO VIEW</p>
       <h1>口コミを分類し<br><span>確認を減らす。</span></h1>
-      <p class="hero-description">CSVで取り込んだ口コミを、好意的・否定的・賛否混在・判定保留に分類します。<br>結果は一覧で確認でき、CSVで保存できます。</p>
-      <div class="home-actions"><a class="primary" href="try.html">分類を試す <span aria-hidden="true">↗</span></a><a class="home-contact" href="contact.html">相談する <span aria-hidden="true">↗</span></a></div>
+      <p class="hero-description">口コミやSNSの声を、内容ごとに整理するサービスを準備しています。<br>お店の情報と調べたい条件から、確認したい声を見つける方法を一緒に考えます。</p>
+      <div class="home-actions"><a class="primary" href="services.html">サービスを見る <span aria-hidden="true">↗</span></a><a class="home-contact" href="contact.html">相談する <span aria-hidden="true">↗</span></a></div>
       <nav class="home-service-links" aria-label="サービスを詳しく知る"><a href="services.html">口コミCSV分類</a><a href="sns.html">SNS分析の構想</a><a href="estimate.html">参考料金</a></nav>
 
     </div>
@@ -45,14 +40,14 @@
         <li><span class="flow-number">02 / ORGANIZE</span><h3>内容ごとに分類する</h3><p><span class="sample-label">好意的</span> などに分ける</p></li>
         <li><span class="flow-number">03 / REVIEW</span><h3>結果を確認する</h3><p>元の文章とあわせて一覧を見直し、次の対応を決める。</p></li>
       </ol>
-      <div class="pipe-grid" role="img" aria-label="CSVを取り込み、ブラウザ内で分類し、一覧とCSVで確認する流れ">
+      <div class="pipe-grid" role="img" aria-label="口コミを整理し、一覧で内容を確認するサービスの想定">
         <div class="pipe-node"><p class="pipe-name">CSV</p><p class="pipe-sub">本文の列を指定</p></div>
         <div class="pipe-arrow" aria-hidden="true"></div>
-        <div class="pipe-node accent"><p class="pipe-name">分類</p><p class="pipe-sub">ブラウザ内で実行</p></div>
+        <div class="pipe-node accent"><p class="pipe-name">分類</p><p class="pipe-sub">内容ごとに整理</p></div>
         <div class="pipe-arrow" aria-hidden="true"></div>
         <div class="pipe-node"><p class="pipe-name">一覧・CSV</p><p class="pipe-sub">CSVで保存</p></div>
       </div>
-      <p class="service-note">アカウントへの結果保存は準備中です。お試し（ブラウザ内の分類）とCSVの端末保存は登録不要です。</p>
+      <p class="service-note">現在はサービス提供に向けた準備段階です。注文・決済・データの受付は開始していません。</p>
       <a class="home-flow-link" href="demo.html">動画でイメージを見る <span aria-hidden="true">↗</span></a>
     </section>
     <section class="home-flow" aria-labelledby="home-issues">
@@ -60,7 +55,7 @@
       <div class="service-grid">
         <article class="service-panel"><h3>口コミを全部読む時間がない</h3><p>件数が多く、1件ずつ目を通すのが負担になっている。</p></article>
         <article class="service-panel"><h3>見るべき声が分からない</h3><p>改善につながる要望と、一回きりの感想が混ざっていて、優先度を決められない。</p></article>
-        <article class="service-panel"><h3>生成AIでの分類はコストが高い</h3><p>件数が多いと、APIの利用料がかさむ。</p></article>
+        <article class="service-panel"><h3>整理に費用と手間がかかる</h3><p>件数が多いと、整理にかかる費用や作業時間が増える。</p></article>
       </div>
     </section>
     <section class="home-flow" aria-labelledby="home-features">
@@ -68,14 +63,14 @@
       <div class="service-grid">
         <article class="service-panel"><p class="eyebrow">POINT 01</p><h3>CSVを取り込んで分類する</h3><p>本文列を指定すると、好意的・否定的・賛否混在・判定保留に分類します。</p></article>
         <article class="service-panel"><p class="eyebrow">POINT 02</p><h3>結果を一覧で確認する</h3><p>元の文章と分類、保留の理由を一覧で確認できます。結果は人が見直す前提です。</p></article>
-        <article class="service-panel"><p class="eyebrow">POINT 03</p><h3>結果をCSVで保存する</h3><p>分類結果はCSVでダウンロードできます（今すぐ利用できます）。アカウントへの保存と、履歴からの再取得は準備中です。</p></article>
+        <article class="service-panel"><p class="eyebrow">POINT 03</p><h3>結果をCSVで保存する</h3><p>元の文章と分類を一覧・CSVで確認できる形を準備しています。提供内容と受け渡し方法は事前にご案内します。</p></article>
       </div>
     </section>
     <section class="home-flow" aria-labelledby="home-usecases">
       <div class="section-heading"><h2 id="home-usecases">活用シーン</h2><p>想定例です。実際の導入事例ではありません。</p></div>
       <div class="service-grid">
         <article class="service-panel"><h3>口コミを内容別に整理</h3><p>好意的・否定的・賛否混在・判定保留に分けて、改善につながる声を見つけます。</p></article>
-        <article class="service-panel"><h3>SNSの反応を分類</h3><p>投稿本文のCSVを内容ごとに分けます。SNSの自動収集は対象外です。</p></article>
+        <article class="service-panel"><h3>SNSの反応を分類</h3><p>お店や商品に触れた投稿から、反応・不満・要望を整理する想定です。詳しくはSNS分析のページでご案内します。</p></article>
       </div>
       <div class="cat-grid" role="img" aria-label="好意的・否定的・賛否混在・判定保留の4つに分類する例">
         <div class="cat-card"><p class="cat-name">好意的</p><p class="cat-sample">「音が静かで使いやすい」</p></div>
@@ -83,34 +78,18 @@
         <div class="cat-card"><p class="cat-name">賛否混在</p><p class="cat-sample">「使いやすいが電池が短い」</p></div>
         <div class="cat-card"><p class="cat-name">判定保留</p><p class="cat-sample">評価のない文章・文脈が足りない</p></div>
       </div>
-      <p><a class="primary" href="try.html">分類を試す <span aria-hidden="true">↗</span></a> <a class="legal-link" href="usecases.html">活用シーンの詳細 ↗</a></p>
+      <p><a class="primary" href="services.html">サービスを見る <span aria-hidden="true">↗</span></a> <a class="legal-link" href="usecases.html">活用シーンの詳細 ↗</a></p>
     </section>
     <section class="home-flow" aria-labelledby="home-fit">
       <div class="section-heading"><h2 id="home-fit">こんな方に向いています</h2></div>
       <div class="service-grid">
         <article class="service-panel"><h3>口コミの件数が多い</h3><p>全部に目を通す時間が取れない。</p></article>
         <article class="service-panel"><h3>改善につながる声を分けたい</h3><p>一回きりの感想と分けて見たい。</p></article>
-        <article class="service-panel"><h3>生成AIの費用を抑えたい</h3><p>手元（ブラウザ内）で分類したい。</p></article>
+        <article class="service-panel"><h3>日々の整理の負担を抑えたい</h3><p>確認すべき声を絞り込みたい。</p></article>
       </div>
     </section>
-    <section class="home-flow" aria-labelledby="home-cant">
-      <div class="section-heading"><h2 id="home-cant">できないこと（先にお伝えします）</h2></div>
-      <div class="service-panel"><ul>
-        <li>口コミを自動で集めることはできません。CSVをご用意いただきます</li>
-        <li>画像・音声の解析、SNSの自動収集、自動返信は対象外です</li>
-        <li>分類結果は確率ではありません。結果は人が見直す前提です</li>
-        <li>元のCSVファイルは保存しません。現在のお試しはブラウザ内で行い、入力や分類結果をサーバーに保存しません。結果はCSVで端末に保存できます。アカウントへの結果保存は準備中です</li>
-      </ul></div>
-    </section>
-        <section class="home-flow" aria-labelledby="home-faq">
-      <div class="section-heading"><h2 id="home-faq">よくある質問</h2></div>
-      <div class="service-faq">
-        <details><summary>料金はいくらですか？</summary><p>口コミ分類には<a href="estimate.html">公開済みの参考料金</a>があります。正式な金額は用途と件数を確認して決定します。</p></details>
-        <details><summary>1回に分類できる量は？</summary><p>1回あたり100行まで。1行2,000文字、CSVは1MB以下です。</p></details>
-        <details><summary>分類はどこで行われますか？</summary><p>ブラウザ内で行います。現在のお試しは入力や分類結果をサーバーに保存しません。アカウントへの結果保存は準備中です。結果はCSVで端末に保存できます。</p></details>
-        <details><summary>登録は必要ですか？</summary><p>お試し（<a href="try.html">ブラウザで試す</a>）とCSVの端末保存は登録不要です。アカウントへの結果保存は準備中です。</p></details>
-      </div>
-    </section>
+    <section class="home-flow" aria-labelledby="home-cant"><div class="section-heading"><h2 id="home-cant">できないこと</h2></div><div class="service-panel"><ul><li>すべての投稿・口コミの網羅や、非公開の情報の確認はできません</li><li>投稿だけで、書いた人の年齢・属性や来店の事実を断定することはできません</li><li>文脈によって誤分類や判断保留が生じます。最終的な確認には人の見直しが必要です</li><li>SNSへの自動返信・投稿や、画像・音声の自動解析は行いません</li></ul></div></section>
+        <section class="home-flow" aria-labelledby="home-faq"><div class="section-heading"><h2 id="home-faq">よくある質問</h2></div><div class="service-faq"><details><summary>料金はいくらですか？</summary><p>口コミ分類の<a href="estimate.html">参考料金</a>をご案内しています。正式な金額は用途と件数を確認して決定します。SNS分析の料金は未決定です。</p></details><details><summary>何を準備すればよいですか？</summary><p>ご準備いただくのは、お店の情報と調査条件（期間・利用したいSNSや口コミサイト）の2つです。</p></details><details><summary>どのSNSや口コミサイトを相談できますか？</summary><p>調べたい内容に合わせて候補を選びます。<a href="sns.html">サービスごとの活用例</a>をご覧ください。利用できる情報の範囲は事前に確認します。</p></details><details><summary>今すぐデータを送れますか？</summary><p>現在はサービス提供に向けた準備段階です。注文・決済・データの受付は開始していません。 お問い合わせには用途の概要だけを記載し、実データ・個人情報は添付しないでください。</p></details></div></section>
 <section class="home-flow" aria-labelledby="home-price">
       <div class="section-heading"><h2 id="home-price">料金の目安</h2><p>参考料金（税込）。正式な請求額は条件を確認して決定します。準備中です。</p></div>
       <div class="service-grid">
@@ -121,7 +100,7 @@
         <article class="service-panel"><h3>20,000件</h3><p>16,000円</p></article>
         <article class="service-panel"><h3>最低金額</h3><p>500円（1件以上）</p></article>
       </div>
-      <p class="service-note">段階料金です。もっと詳しくは<a href="estimate.html">料金シミュレーション</a>へ。ブラウザでの分類は無料・登録不要でお試しいただけます。</p>
+      <p class="service-note">段階料金です。もっと詳しくは<a href="estimate.html">料金シミュレーション</a>へ。サービス提供は準備中です。</p>
       <div class="section-heading"><h3>月額プラン（参考）</h3></div>
       <div class="service-grid">
         <article class="service-panel"><h3>ライト</h3><p>月3,000円（月5,000行まで）</p></article>
@@ -136,7 +115,7 @@
   </main>
   <footer class="landing-footer"><span class="micro">NAGIPORT</span><nav class="footer-nav" aria-label="サイト"><a class="legal-link" href="./">ホーム</a><a class="legal-link" href="services.html">サービス</a><a class="legal-link" href="usecases.html">活用シーン</a><a class="legal-link" href="flow.html">ご利用の流れ</a><a class="legal-link" href="faq.html">よくある質問</a><a class="legal-link" href="data-policy.html">データの取り扱い</a><a class="legal-link" href="about.html">運営者情報</a><a class="legal-link" href="contact.html">お問い合わせ</a></nav></footer>
   <script src="motion.js"></script>
-  <script src="nagi-reel.js"></script>
+  <script src="nagi-reel.js?v=20261020b"></script>
 </body>
 </html>
 
