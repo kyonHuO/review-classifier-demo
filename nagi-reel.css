@@ -1,5 +1,7 @@
 /* Keep the existing Nagiport copy and links in one column after the opening. */
-.home-single-hero { grid-template-columns: minmax(0, 1fr); }
+/* Avoid cyclic percentage row gaps overflowing the legacy clipped grid.
+   Each .home-flow already provides its own fixed section margin. */
+.home-single-hero { grid-template-columns: minmax(0, 1fr); row-gap: 0; }
 .home-single-hero > .hero-copy { width: 100%; max-width: 1000px; padding-top: clamp(24px, 5vw, 72px); padding-bottom: clamp(32px, 6vw, 88px); }
 .home-single-hero .hero-description { max-width: 760px; }
 
