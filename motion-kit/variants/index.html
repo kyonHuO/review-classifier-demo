@@ -1,0 +1,273 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<meta name="theme-color" content="#101014">
+<title>Nagiport 販売サイト案｜デザイン15種</title>
+<meta name="description" content="Nagiport Motion Kit の販売ページ案。デジタル庁デザインシステム、Apple HIG、Material Design 3 を参考にした15種類（すべて検討中のデモ）。">
+<style>
+  :root{
+    --bg:#101014;
+    --panel:#17171d;
+    --line:#2a2a33;
+    --fg:#f2f2f5;
+    --muted:#9a9aa8;
+    --accent:#7c9cff;
+    --font:"Noto Sans JP","Hiragino Kaku Gothic ProN","Yu Gothic",system-ui,sans-serif;
+    --mono:"SFMono-Regular",Consolas,"Liberation Mono",monospace;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--font);font-size:16px;line-height:1.8;-webkit-font-smoothing:antialiased}
+  a{color:inherit;text-decoration:none}
+  :focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+  .wrap{width:min(1080px,calc(100% - 48px));margin-inline:auto}
+  @media (max-width:560px){ .wrap{width:calc(100% - 32px)} }
+  header{padding:56px 0 8px}
+  .eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.22em;color:var(--accent);margin:0 0 16px}
+  h1{margin:0;font-size:clamp(30px,5vw,50px);line-height:1.15;letter-spacing:-.03em}
+  .lead{margin:18px 0 0;max-width:720px;color:var(--muted);font-size:15px}
+  .note{margin:24px 0 0;border:1px solid #3a3a4a;background:#151622;border-radius:10px;padding:14px 16px;font-size:12.5px;line-height:1.9;color:#c3c8d8;max-width:820px}
+  .note b{font-family:var(--mono);font-size:10px;letter-spacing:.16em;color:#b9c9ff;border:1px solid #2c3f78;border-radius:999px;padding:2px 8px;margin-right:8px}
+  .grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;padding:40px 0 64px}
+  @media (max-width:900px){ .grid{grid-template-columns:1fr} }
+  .card{border:1px solid var(--line);border-radius:16px;overflow:hidden;background:var(--panel);display:flex;flex-direction:column;transition:transform .2s ease,border-color .2s ease}
+  .card:hover{transform:translateY(-3px);border-color:#3d3d4d}
+  .thumb{aspect-ratio:16/10;position:relative;overflow:hidden;border-bottom:1px solid var(--line)}
+  .thumb .mock{position:absolute;inset:14% 10% auto 10%;display:flex;flex-direction:column;gap:6px}
+  .thumb i{display:block;border-radius:3px}
+  .body{padding:18px 20px 22px;display:flex;flex-direction:column;gap:6px;flex:1 1 auto}
+  .body .k{font-family:var(--mono);font-size:10.5px;letter-spacing:.16em;color:var(--muted)}
+  .body h2{margin:2px 0 0;font-size:20px;line-height:1.3;letter-spacing:-.01em}
+  .body p{margin:4px 0 0;font-size:13px;line-height:1.8;color:var(--muted)}
+  .body .go{margin-top:auto;padding-top:14px;font-size:12.5px;font-family:var(--mono);letter-spacing:.1em;color:var(--accent)}
+
+  /* dads thumb */
+  .t-dads{background:#fff}
+  .t-dads .bar{height:16px;background:#0017c1;border-radius:3px;width:34%}
+  .t-dads i{height:8px;background:#e3e3e3}
+  .t-dads i:nth-child(3){width:78%;height:14px;background:#c9c9c9}
+  .t-dads i:nth-child(4){width:52%;background:#0017c1}
+
+  /* apple thumb */
+  .t-apple{background:#fff;display:grid;place-items:center}
+  .t-apple .mock{position:static;width:70%;align-items:center;inset:auto}
+  .t-apple i{height:7px;background:#e8e8ed;width:100%}
+  .t-apple i:nth-child(1){height:18px;background:#1d1d1f;width:80%}
+  .t-apple i:nth-child(2){height:12px;background:#0071e3;width:46%}
+  .t-apple i:nth-child(3){width:64%}
+
+  /* material thumb */
+  .t-material{background:#FEF7FF}
+  .t-material .bar{height:14px;background:#6750A4;border-radius:7px;width:26%}
+  .t-material i{height:22px;background:#F3EDF7;border-radius:8px}
+  .t-material i:nth-child(3){width:74%}
+  .t-material i:nth-child(4){width:88%;background:#EADDFF}
+
+  footer{border-top:1px solid var(--line);padding:28px 0 48px;color:#7d7d8c;font-size:12px;line-height:1.9}
+  footer a{border-bottom:1px solid #3a3a4a}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <p class="eyebrow">NAGIPORT / SALES PAGES</p>
+    <h1>販売ページ案、15のデザイン。</h1>
+    <p class="lead">同じ内容（Nagiport Motion Kit の販売）を、3つのデザインシステム × 5つの構成で組み直したものです。文言と事実関係は共通で、見た目と情報の並べ方だけを変えています。</p>
+    <p class="note"><b>DEMO</b>すべて検討中のデモです。料金・提供内容・販売条件は未確定です。各デザインシステムは「考え方の参考」にとどめ、素材・コード・フォントは使用していません（各ページ末尾に明記）。</p>
+  </div>
+</header>
+
+<main class="wrap">
+  <div class="grid">
+    <a class="card" href="./dads.html">
+      <div class="thumb t-dads" aria-hidden="true">
+        <div class="mock"><span class="bar"></span><i></i><i></i><i></i></div>
+      </div>
+      <div class="body">
+        <span class="k">01 / DIGITAL AGENCY</span>
+        <h2>デジタル庁デザインシステム風</h2>
+        <p>白地・青・罫線。情報の正確さと読みやすさを優先した、公的資料に近い見た目。</p>
+        <span class="go">見る →</span>
+      </div>
+    </a>
+
+    <a class="card" href="./apple.html">
+      <div class="thumb t-apple" aria-hidden="true">
+        <div class="mock"><i></i><i></i><i></i></div>
+      </div>
+      <div class="body">
+        <span class="k">02 / APPLE HIG</span>
+        <h2>Apple HIG 風</h2>
+        <p>大きな文字と余白、控えめな色。製品紹介ページのような静かな見た目。</p>
+        <span class="go">見る →</span>
+      </div>
+    </a>
+
+    <a class="card" href="./material.html">
+      <div class="thumb t-material" aria-hidden="true">
+        <div class="mock"><span class="bar"></span><i></i><i></i></div>
+      </div>
+      <div class="body">
+        <span class="k">03 / MATERIAL 3</span>
+        <h2>Material Design 3 風</h2>
+        <p>色の役割と角丸、面の重なりで作る、モダンで軽い見た目。</p>
+        <span class="go">見る →</span>
+      </div>
+    </a>
+
+    <a class="card" href="./dads-b.html">
+      <div class="thumb t-dads" aria-hidden="true">
+        <div class="mock"><span class="bar"></span><i></i><i></i><i></i></div>
+      </div>
+      <div class="body">
+        <span class="k">04 / DIGITAL AGENCY — SERVICE</span>
+        <h2>デジタル庁風・サービス案内</h2>
+        <p>左に目次、右に本文。番号付きの節と定義リストで、手続きの説明のように読ませる構成。</p>
+        <span class="go">見る →</span>
+      </div>
+    </a>
+
+    <a class="card" href="./dads-c.html">
+      <div class="thumb t-dads" aria-hidden="true">
+        <div class="mock"><span class="bar"></span><i></i><i></i><i></i></div>
+      </div>
+      <div class="body">
+        <span class="k">05 / DIGITAL AGENCY — OVERVIEW</span>
+        <h2>デジタル庁風・概要ダッシュボード</h2>
+        <p>数値の要約、表、状態ラベル。情報を一覧で確認する画面に寄せた、密度の高い構成。</p>
+        <span class="go">見る →</span>
+      </div>
+    </a>
+
+    <a class="card" href="./apple-b.html">
+      <div class="thumb t-apple" aria-hidden="true">
+        <div class="mock"><i></i><i></i><i></i></div>
+      </div>
+      <div class="body">
+        <span class="k">06 / APPLE HIG — PRODUCT</span>
+        <h2>Apple HIG 風・製品ページ</h2>
+        <p>黒のヒーローに大きな文字。明るい面との切り替えと、横スクロールのカードで見せる構成。</p>
+        <span class="go">見る →</span>
+      </div>
+    </a>
+
+    <a class="card" href="./apple-c.html">
+      <div class="thumb t-apple" aria-hidden="true">
+        <div class="mock"><i></i><i></i><i></i></div>
+      </div>
+      <div class="body">
+        <span class="k">07 / APPLE HIG — SPECS</span>
+        <h2>Apple HIG 風・仕様と料金</h2>
+        <p>静かなグレー背景に、仕様表と料金。確認済み・未検証・未定を分けて示す構成。</p>
+        <span class="go">見る →</span>
+      </div>
+    </a>
+
+    <a class="card" href="./material-b.html">
+      <div class="thumb t-material" aria-hidden="true">
+        <div class="mock"><span class="bar"></span><i></i><i></i></div>
+      </div>
+      <div class="body">
+        <span class="k">08 / MATERIAL 3 — DASHBOARD</span>
+        <h2>Material 3 風・ダッシュボード</h2>
+        <p>左のナビゲーション、上部アプリバー、トーナル面のカード。業務画面のような構成。</p>
+        <span class="go">見る →</span>
+      </div>
+    </a>
+
+    <a class="card" href="./material-c.html">
+      <div class="thumb t-material" aria-hidden="true">
+        <div class="mock"><span class="bar"></span><i></i><i></i></div>
+      </div>
+      <div class="body">
+        <span class="k">09 / MATERIAL 3 — EDITORIAL</span>
+        <h2>Material 3 風・エディトリアル</h2>
+        <p>大きな見出しと非対称なグリッド。余白と色面でリズムを作る、読み物寄りの構成。</p>
+        <span class="go">見る →</span>
+      </div>
+    </a>
+
+    <a class="card" href="./dads-d.html">
+      <div class="thumb t-dads" aria-hidden="true">
+        <div class="mock"><span class="bar"></span><i></i><i></i><i></i></div>
+      </div>
+      <div class="body">
+        <span class="k">10 / DIGITAL AGENCY — FLOW</span>
+        <h2>デジタル庁風・手続きの流れ</h2>
+        <p>4ステップの帯と番号付きの節。右側に要点を固定表示する、案内文書のような構成。</p>
+        <span class="go">見る →</span>
+      </div>
+    </a>
+
+    <a class="card" href="./dads-e.html">
+      <div class="thumb t-dads" aria-hidden="true">
+        <div class="mock"><span class="bar"></span><i></i><i></i><i></i></div>
+      </div>
+      <div class="body">
+        <span class="k">11 / DIGITAL AGENCY — HELP</span>
+        <h2>デジタル庁風・案内とFAQ</h2>
+        <p>分類タイルから質問へ入る、ヘルプセンター型。青の面で見出しを切り替える構成。</p>
+        <span class="go">見る →</span>
+      </div>
+    </a>
+
+    <a class="card" href="./apple-d.html">
+      <div class="thumb t-apple" aria-hidden="true">
+        <div class="mock"><i></i><i></i><i></i></div>
+      </div>
+      <div class="body">
+        <span class="k">12 / APPLE HIG — GALLERY</span>
+        <h2>Apple HIG 風・ギャラリー</h2>
+        <p>大きさの違うタイルを組むベントーグリッド。色面と余白で構成を見せる。</p>
+        <span class="go">見る →</span>
+      </div>
+    </a>
+
+    <a class="card" href="./apple-e.html">
+      <div class="thumb t-apple" aria-hidden="true">
+        <div class="mock"><i></i><i></i><i></i></div>
+      </div>
+      <div class="body">
+        <span class="k">13 / APPLE HIG — COMPARE</span>
+        <h2>Apple HIG 風・比較と選び方</h2>
+        <p>左右交互のショーケースと比較表。2つのプランを並べて選ばせる構成。</p>
+        <span class="go">見る →</span>
+      </div>
+    </a>
+
+    <a class="card" href="./material-d.html">
+      <div class="thumb t-material" aria-hidden="true">
+        <div class="mock"><span class="bar"></span><i></i><i></i></div>
+      </div>
+      <div class="body">
+        <span class="k">14 / MATERIAL 3 — MASTER/DETAIL</span>
+        <h2>Material 3 風・一覧と詳細</h2>
+        <p>左に一覧、右に詳細。選択中の項目をトーナル面で示す、アプリ画面型の構成。</p>
+        <span class="go">見る →</span>
+      </div>
+    </a>
+
+    <a class="card" href="./material-e.html">
+      <div class="thumb t-material" aria-hidden="true">
+        <div class="mock"><span class="bar"></span><i></i><i></i></div>
+      </div>
+      <div class="body">
+        <span class="k">15 / MATERIAL 3 — ONBOARDING</span>
+        <h2>Material 3 風・はじめかた</h2>
+        <p>進捗バーと大きな番号で4ステップを示す、導入フロー型の構成。</p>
+        <span class="go">見る →</span>
+      </div>
+    </a>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>参考: <a href="https://www.digital.go.jp/policies/servicedesign/designsystem" rel="noopener">デジタル庁デザインシステム</a> / <a href="https://developer.apple.com/design/human-interface-guidelines" rel="noopener">Apple Human Interface Guidelines</a> / <a href="https://m3.material.io/" rel="noopener">Material Design 3</a></p>
+    <p>© 2026 NAGIPORT ／ このページは社内検討用のデモです。</p>
+  </div>
+</footer>
+</body>
+</html>

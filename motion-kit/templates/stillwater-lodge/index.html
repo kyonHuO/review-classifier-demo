@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="theme-color" content="#102f35" />
+    <meta
+      name="description"
+      content="湖のほとり、予定のない一日。架空ブランドの操作可能なデモサイトです。"
+    />
+    <title>STILLWATER — 湖のほとり、予定のない一日</title>
+    <link rel="icon" href="assets/illustration.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="script.js" defer></script>
+  </head>
+  <body class="stillwater-lodge">
+    <a class="skip" href="#main">本文へ移動</a>
+    <header class="site-header">
+      <a class="brand" href="#main">STILLWATER</a>
+      <nav class="site-nav" id="navigation" aria-label="メインナビゲーション">
+        <a href="#stay">ロッジを選ぶ</a><a href="#days">ここで過ごす</a>
+      </nav>
+      <button
+        class="menu"
+        aria-controls="navigation"
+        aria-expanded="false"
+        type="button"
+      >
+        メニュー
+      </button>
+    </header>
+    <main id="main">
+      <section class="still-hero art">
+        <canvas id="landscape" aria-hidden="true"></canvas>
+        <div class="still-title">
+          <p>湖のほとり。予定のない一日。</p>
+          <h1 class="display">STILL<br />WATER</h1>
+        </div>
+        <div class="still-detail">
+          <p class="serif">Leave the noise.<br />Keep the moment.</p>
+          <div class="choices" aria-label="風景の時間帯">
+            <button type="button" data-light="morning" aria-pressed="true">
+              朝の湖</button
+            ><button type="button" data-light="evening" aria-pressed="false">
+              夕の湖
+            </button>
+          </div>
+          <span class="micro">描かれた風景 / 架空のロッジ</span>
+        </div>
+        <div class="landmark">
+          <span>北緯 36° / 静かな岸辺</span>
+          <div></div>
+          <b>湖畔の小さなロッジ</b>
+        </div>
+        <div class="still-strip">
+          <span class="serif">Stay a little longer.</span
+          ><a href="#stay">あなたの滞在を見つける ↓</a
+          ><span class="micro" id="light-status" role="status"
+            >朝の光 / 06:30</span
+          >
+        </div>
+      </section>
+      <section class="section stay-section" id="stay">
+        <div class="section-head">
+          <h2>窓の向こうに、<br />今日だけの湖。</h2>
+          <p>テレビも、急ぐ理由もない。<br />木の香りのする、小さな居場所。</p>
+        </div>
+        <div class="stay-grid">
+          <div
+            class="cabin-art art"
+            role="img"
+            aria-label="湖に向いた木造キャビンの建築模型"
+          >
+            <div class="cabin">
+              <div class="cabin-roof"></div>
+              <div class="cabin-face"><i></i><i></i><i></i></div>
+              <div class="cabin-deck"></div>
+            </div>
+            <span class="art-label">湖を向く、大きな窓。</span>
+          </div>
+          <div class="stay-info">
+            <div class="choices" aria-label="ロッジを選択">
+              <button type="button" data-lodge="lake" aria-pressed="true">
+                Lake cabin</button
+              ><button type="button" data-lodge="forest" aria-pressed="false">
+                Forest cabin
+              </button>
+            </div>
+            <h3 class="serif" id="lodge-name">Lake cabin</h3>
+            <p id="lodge-description">
+              朝の光が水面から届く、湖畔の一棟。大きな窓とデッキが、外の時間を部屋の中へ。
+            </p>
+            <div class="row">
+              <span id="lodge-size">42㎡ / 1〜2名</span
+              ><strong id="lodge-price">¥32,000</strong>
+            </div>
+            <p class="control-note">1棟1泊・税込サンプル / 食事別</p>
+            <button class="btn" type="button" data-demo="滞在日程を選ぶデモ">
+              日程を選ぶデモを見る
+            </button>
+            <p class="status" id="lodge-status" role="status">
+              Lake cabinを表示しています。
+            </p>
+          </div>
+        </div>
+      </section>
+      <section class="section still-days" id="days">
+        <div class="section-head">
+          <h2 class="serif">Nothing on the list.</h2>
+          <p>何もしない日も、ちゃんと一日。</p>
+        </div>
+        <div class="day-row">
+          <span>06:30</span>
+          <h3>湖と、目を覚ます。</h3>
+          <p>湯を沸かして、デッキへ。水面の色が少しずつ変わっていく。</p>
+        </div>
+        <div class="day-row">
+          <span>14:00</span>
+          <h3>森へ、寄り道。</h3>
+          <p>地図を閉じて、木陰を歩く。気に入った場所で、本をひらく。</p>
+        </div>
+        <div class="day-row">
+          <span>20:00</span>
+          <h3>夜を、聴く。</h3>
+          <p>灯りを落として、窓を少しだけ。遠くの水音を、今日の終わりに。</p>
+        </div>
+      </section>
+    </main>
+    <footer class="site-footer">
+      <div>
+        <strong>STILLWATER</strong>
+        <p>
+          架空のブランドのデモです。施設・商品・人物・価格はサンプルです。送信・予約・注文・決済は行われません。
+        </p>
+      </div>
+      <a href="../index.html">テンプレート一覧へ</a>
+    </footer>
+    <dialog aria-labelledby="demo-title">
+      <button class="close" type="button" aria-label="デモ画面を閉じる">
+        ×
+      </button>
+      <h2 id="demo-title">デモ</h2>
+      <p>
+        操作体験用の画面です。実際のサービス・商品は提供していません。入力や個人情報の収集は行いません。
+      </p>
+      <button class="btn" type="button" data-confirm>デモ操作を確認する</button>
+      <p class="status" role="status"></p>
+    </dialog>
+  </body>
+</html>

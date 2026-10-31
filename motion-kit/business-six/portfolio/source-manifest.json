@@ -1,0 +1,35 @@
+{
+  "site": "portfolio",
+  "implementation": "Original HTML/CSS/JS and fictional Japanese copy, MIT",
+  "fonts": "OS system fonts, no redistributed font files",
+  "reference": "https://startbootstrap.github.io/startbootstrap-freelancer/",
+  "referenceUse": "Information hierarchy observation only. No source code, photos, logos or font files copied. WebClone acquisition evidence is held in central task evidence.",
+  "motionSitesExamples": [
+    "Bold Studio",
+    "Stillmind",
+    "Modern Agency"
+  ],
+  "assets": [
+    {
+      "file": "assets/work-1.webp",
+      "origin": "Original procedural artwork authored for this collection",
+      "license": "MIT",
+      "sha256": "fa8e339d74fd8c40d72cefe3ec93d78b117a04ee57ebdb98b16ed87d4b59af36",
+      "evidence_record": "Task evidence: b/spec.md and generation output record"
+    },
+    {
+      "file": "assets/work-2.webp",
+      "origin": "Original procedural artwork authored for this collection",
+      "license": "MIT",
+      "sha256": "a1c44fd1c94f9db1a535bc10b56902848ab5b5a2642392c54c6ae6d95da172e7",
+      "evidence_record": "Task evidence: b/spec.md and generation output record"
+    },
+    {
+      "file": "assets/work-3.webp",
+      "origin": "Original procedural artwork authored for this collection",
+      "license": "MIT",
+      "sha256": "b7617ae58d6161c10fd0575a4492a7176bbd05ccc1855898bdd47a08e5be694f",
+      "evidence_record": "Task evidence: b/spec.md and generation output record"
+    }
+  ]
+}

@@ -1,0 +1,613 @@
+html,
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+}
+* {
+  box-sizing: border-box;
+}
+body {
+  font-family: "Yu Gothic", Meiryo, Arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.65;
+}
+a {
+  color: inherit;
+  text-decoration: none;
+}
+button,
+input,
+select,
+textarea {
+  font: inherit;
+  color: inherit;
+}
+button {
+  cursor: pointer;
+  min-height: 44px;
+}
+button,
+a,
+input,
+select,
+textarea {
+  -webkit-tap-highlight-color: transparent;
+}
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 3px solid var(--focus, #ef573b);
+  outline-offset: 4px;
+}
+button:hover {
+  filter: brightness(1.08);
+}
+img {
+  max-width: 100%;
+  display: block;
+}
+h1,
+h2,
+h3,
+p {
+  margin-top: 0;
+}
+button {
+  border: 1px solid currentColor;
+  background: transparent;
+  padding: 9px 18px;
+}
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 20px 4vw;
+  border-bottom: 1px solid currentColor;
+}
+header .brand {
+  font:
+    900 25px Arial,
+    sans-serif;
+  letter-spacing: -1px;
+}
+header nav {
+  display: flex;
+  gap: 28px;
+  font-size: 12px;
+}
+.skip {
+  position: fixed;
+  left: 10px;
+  top: -100px;
+  background: white;
+  color: #111;
+  padding: 12px;
+  z-index: 99;
+}
+.skip:focus {
+  top: 10px;
+}
+.micro {
+  font-size: 11px;
+  letter-spacing: 1px;
+}
+.button-fill {
+  background: var(--ink);
+  color: var(--bg);
+}
+.status {
+  font-size: 12px;
+  line-height: 1.75;
+}
+footer {
+  padding: 30px 4vw;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 25px;
+  border-top: 1px solid currentColor;
+}
+footer p {
+  font-size: 12px;
+  max-width: 650px;
+  margin: 0;
+}
+footer strong {
+  font:
+    900 20px Arial,
+    sans-serif;
+}
+dialog {
+  width: min(620px, calc(100vw - 32px));
+  max-height: 85dvh;
+  overflow: auto;
+  background: var(--bg);
+  color: var(--ink);
+  border: 1px solid currentColor;
+  padding: 25px;
+}
+dialog::backdrop {
+  background: #141821c9;
+}
+.dialog-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+.dialog-head button {
+  font-size: 28px;
+  border: 0;
+  width: 44px;
+  padding: 0;
+}
+dialog h2 {
+  font:
+    32px Georgia,
+    "Yu Mincho",
+    serif;
+}
+dialog p {
+  font-size: 14px;
+}
+.controls {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+input[type="range"] {
+  accent-color: var(--ink);
+  min-height: 44px;
+  max-width: 100%;
+  cursor: pointer;
+}
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+}
+@media (max-width: 700px) {
+  header {
+    padding: 17px 20px;
+    gap: 10px;
+  }
+  header .brand {
+    font-size: 20px;
+  }
+  header nav {
+    gap: 14px;
+    font-size: 11px;
+  }
+  footer {
+    padding: 25px 20px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 13px;
+  }
+  footer p {
+    font-size: 12px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+:root {
+  --bg: #f35b2d;
+  --ink: #21242b;
+  --focus: #ededdd;
+}
+.type-stage {
+  height: 710px;
+  position: relative;
+  overflow: hidden;
+  padding: 22px 4vw;
+  background: repeating-linear-gradient(
+    90deg,
+    transparent 0 calc(10% - 1px),
+    #21242b22 10%
+  );
+}
+.type-meta {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  font-size: 11px;
+  z-index: 3;
+}
+.ghost-letter {
+  font:
+    italic 900px/0.8 Georgia,
+    serif;
+  letter-spacing: -80px;
+  position: absolute;
+  left: 2%;
+  top: 35px;
+  color: #ededdd;
+  opacity: 0.72;
+  z-index: 0;
+}
+.letter-display {
+  position: absolute;
+  inset: 40px 10% 70px;
+  display: grid;
+  place-items: center;
+  z-index: 2;
+}
+.letter-display h1 {
+  font-family: "Yu Gothic", "Arial Black", sans-serif;
+  font-size: 500px;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  overflow-wrap: anywhere;
+  text-align: center;
+  max-width: 100%;
+  margin: 0;
+}
+.type-grid {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 22%;
+  height: 52%;
+  border-top: 1px solid #21242b88;
+  border-bottom: 1px solid #21242b88;
+  z-index: 1;
+  pointer-events: none;
+}
+.type-grid:after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  border-top: 1px dashed #21242b55;
+}
+.type-grid span {
+  position: absolute;
+  right: 25px;
+  font: 11px Arial;
+  background: #f35b2d;
+  padding: 0 8px;
+}
+.type-grid span:first-child {
+  top: -9px;
+}
+.type-grid span:nth-child(2) {
+  top: calc(50% - 8px);
+}
+.type-grid span:last-child {
+  bottom: -10px;
+}
+.specimen-label {
+  position: absolute;
+  bottom: 27px;
+  left: 4vw;
+  font:
+    28px "Yu Mincho",
+    serif;
+  z-index: 3;
+}
+.weight-scale {
+  position: absolute;
+  right: 4vw;
+  bottom: 24px;
+  display: flex;
+  align-items: flex-end;
+  gap: 20px;
+  z-index: 3;
+}
+.weight-scale > span {
+  font: 11px Arial;
+  margin-bottom: 12px;
+}
+.weight-scale b {
+  font:
+    75px/1 Impact,
+    sans-serif;
+  letter-spacing: -2px;
+}
+.spacing-scale {
+  position: absolute;
+  left: 4vw;
+  top: 160px;
+  writing-mode: vertical-rl;
+  display: flex;
+  gap: 20px;
+  font: 11px Arial;
+  z-index: 3;
+}
+.spacing-scale b {
+  font-weight: 400;
+}
+.type-controls {
+  padding: 35px 5vw;
+  background: #ededdd;
+  display: grid;
+  grid-template-columns: 1.3fr 1.8fr 1fr 200px;
+  gap: 30px;
+  align-items: center;
+}
+.text-field label {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  margin-bottom: 10px;
+}
+.text-field label span {
+  font-size: 11px;
+}
+.text-field input {
+  background: transparent;
+  border: 0;
+  border-bottom: 2px solid #21242b;
+  width: 100%;
+  font-size: 26px;
+  padding: 8px 0;
+  border-radius: 0;
+}
+.type-ranges {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 25px;
+}
+.type-ranges label {
+  font-size: 12px;
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+.type-ranges input {
+  width: 100%;
+}
+.type-presets {
+  gap: 5px;
+}
+.type-presets button {
+  font-size: 12px;
+  padding: 9px 11px;
+}
+.type-presets button[aria-pressed="true"] {
+  background: #21242b;
+  color: #ededdd;
+}
+.type-controls > .status {
+  grid-column: 1/-1;
+  margin: 0;
+}
+.specimens {
+  padding: 70px 6vw;
+  display: grid;
+  grid-template-columns: 1fr 2.2fr;
+  gap: 70px;
+}
+.specimen-heading h2 {
+  font:
+    35px/1.5 "Yu Mincho",
+    serif;
+  margin: 15px 0 25px;
+}
+.specimen-heading p {
+  font-size: 14px;
+  line-height: 2;
+  max-width: 300px;
+}
+.sample-lines button {
+  display: grid;
+  grid-template-columns: 1fr 70px;
+  align-items: center;
+  width: 100%;
+  text-align: left;
+  border: 0;
+  border-top: 1px solid #21242b;
+  padding: 22px 0;
+}
+.sample-lines button > span {
+  font-size: 11px;
+  grid-column: 1/-1;
+}
+.sample-lines strong {
+  font:
+    900 clamp(30px, 4.5vw, 65px)/1.5 "Yu Gothic",
+    Arial,
+    sans-serif;
+  letter-spacing: -2px;
+  margin: 14px 0;
+}
+.sample-lines b {
+  font-size: 12px;
+  font-weight: 400;
+}
+.sample-lines button:nth-child(2) strong {
+  font-family: Georgia, serif;
+  font-style: italic;
+}
+.sample-lines button:nth-child(3) strong {
+  font-family: Arial, sans-serif;
+  letter-spacing: -4px;
+}
+.type-note {
+  border-top: 1px solid #21242b;
+  padding: 50px 6vw;
+  display: grid;
+  grid-template-columns: 1fr 1.5fr 1fr;
+  gap: 50px;
+  align-items: start;
+}
+.type-note > span {
+  font-size: 11px;
+}
+.type-note p {
+  font-size: 17px;
+  line-height: 1.9;
+}
+.type-note strong {
+  font:
+    100px/0.9 Georgia,
+    "Yu Mincho",
+    serif;
+  margin-top: 5px;
+}
+.css-output {
+  display: block;
+  width: 100%;
+  min-height: 125px;
+  background: transparent;
+  color: inherit;
+  border: 1px solid currentColor;
+  padding: 15px;
+  font: 13px/1.7 monospace;
+}
+.copy-button {
+  margin-top: 15px;
+  width: 100%;
+}
+#copy-status {
+  font-size: 12px;
+}
+@media (max-width: 1050px) {
+  .type-controls {
+    grid-template-columns: 1fr 1.5fr;
+    gap: 25px;
+  }
+  .type-stage {
+    height: 650px;
+  }
+  .letter-display h1 {
+    font-size: 430px;
+  }
+  .ghost-letter {
+    font-size: 800px;
+  }
+  .specimens {
+    gap: 35px;
+  }
+  .type-note {
+    gap: 30px;
+  }
+}
+@media (max-width: 600px) {
+  header .brand {
+    font-size: 20px;
+  }
+  .type-stage {
+    height: 590px;
+    padding: 20px;
+  }
+  .type-meta {
+    gap: 30px;
+    font-size: 11px;
+  }
+  .type-meta > span:last-child {
+    text-align: right;
+    max-width: 110px;
+  }
+  .letter-display {
+    inset: 90px 25px 110px;
+  }
+  .letter-display h1 {
+    font-size: 280px;
+  }
+  .ghost-letter {
+    font-size: 610px;
+    top: 90px;
+    left: -65px;
+    letter-spacing: -60px;
+  }
+  .spacing-scale {
+    left: 15px;
+    top: 190px;
+  }
+  .type-grid {
+    top: 28%;
+    height: 45%;
+  }
+  .type-grid span {
+    right: 10px;
+    font-size: 11px;
+  }
+  .specimen-label {
+    font-size: 23px;
+    left: 22px;
+    bottom: 30px;
+  }
+  .weight-scale {
+    right: 22px;
+    bottom: 26px;
+    gap: 10px;
+  }
+  .weight-scale b {
+    font-size: 55px;
+  }
+  .weight-scale > span {
+    font-size: 11px;
+    margin-bottom: 8px;
+  }
+  .type-controls {
+    grid-template-columns: 1fr;
+    padding: 30px 25px;
+    gap: 25px;
+  }
+  .type-controls > .status {
+    grid-column: 1;
+  }
+  .type-ranges {
+    gap: 25px;
+  }
+  .type-presets {
+    justify-content: space-between;
+  }
+  .type-presets button {
+    flex: 1;
+  }
+  .specimens {
+    grid-template-columns: 1fr;
+    padding: 45px 25px;
+    gap: 20px;
+  }
+  .specimen-heading h2 {
+    font-size: 31px;
+  }
+  .specimen-heading h2 br {
+    display: none;
+  }
+  .sample-lines strong {
+    font-size: 33px;
+    letter-spacing: -1px;
+  }
+  .sample-lines button:nth-child(3) strong {
+    letter-spacing: -1px;
+  }
+  .type-note {
+    grid-template-columns: 1fr;
+    padding: 40px 25px;
+    gap: 15px;
+  }
+  .type-note strong {
+    font-size: 85px;
+  }
+  .type-note strong br {
+    display: none;
+  }
+  .type-note p {
+    font-size: 16px;
+  }
+}
+.letter-display h1 {
+  white-space: nowrap;
+  overflow-wrap: normal;
+  width: max-content;
+  max-width: none;
+}

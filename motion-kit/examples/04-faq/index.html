@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<meta name="theme-color" content="#0e0e10">
+<title>HOSHIZORA｜聞かれ続ける、同じことを。（作例）</title>
+<meta name="description" content="Nagiport Motion Kit 作例04。FAQテンプレート（よくある質問）の公開デモ。架空のブランド・文言です。">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%230e0e10'/%3E%3Cpath d='M16 5l2.6 7.6L26 15l-7.4 2.4L16 25l-2.6-7.6L6 15l7.4-2.4z' fill='%23ff5a1f'/%3E%3C/svg%3E">
+<style>
+  :root{
+    --bg:#0e0e10;
+    --ink:#f2f0ea;
+    --ink-2:#b6b3ab;
+    --ink-3:#7c7a73;
+    --line:#26262a;
+    --line-soft:#1c1c1f;
+    --accent:#ff5a1f;
+    --r:4px;
+    --sans:"Inter","Noto Sans JP","Hiragino Kaku Gothic ProN","Yu Gothic",system-ui,sans-serif;
+    --serif:"Iowan Old Style","Times New Roman","Yu Mincho","Hiragino Mincho ProN",serif;
+    --max:1120px;
+    --ease:cubic-bezier(.4,0,.1,1);
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  a{color:inherit;text-decoration:none}
+  ::selection{background:var(--accent);color:#0e0e10}
+  .skip{position:fixed;top:10px;left:10px;z-index:100;background:var(--accent);color:#0e0e10;padding:10px 14px;border-radius:4px;transform:translateY(-200%);font-weight:600}
+  .skip:focus{transform:none}
+  .wrap{width:min(var(--max),calc(100% - 40px));margin-inline:auto}
+  @media (max-width:640px){ .wrap{width:calc(100% - 28px)} }
+
+  .head{position:sticky;top:0;z-index:50;background:rgba(14,14,16,.82);backdrop-filter:blur(12px);border-bottom:1px solid var(--line-soft)}
+  .head .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;height:58px}
+  .brand{display:flex;align-items:center;gap:10px;font-weight:600;font-size:14px;letter-spacing:.02em}
+  .brand svg{width:18px;height:18px}
+  .nav{display:flex;gap:24px;font-size:13px;color:var(--ink-2)}
+  .nav a:hover{color:var(--ink)}
+  .cta{display:inline-flex;align-items:center;justify-content:center;min-height:34px;padding:0 14px;border-radius:var(--r);background:var(--accent);color:#0e0e10;font-size:13px;font-weight:600;transition:filter .15s}
+  .cta:hover{filter:brightness(1.08)}
+  @media (max-width:760px){ .nav{display:none} }
+
+  .layout{display:grid;grid-template-columns:minmax(300px,380px) 1fr;gap:clamp(32px,5vw,72px);padding:clamp(56px,8vw,104px) 0;border-bottom:1px solid var(--line-soft)}
+  @media (max-width:880px){ .layout{grid-template-columns:1fr;gap:36px} }
+  .aside{align-self:start}
+  @media (min-width:881px){ .aside{position:sticky;top:120px} }
+  .kicker{font-family:var(--serif);font-size:12px;letter-spacing:.24em;color:var(--accent);text-transform:uppercase;margin:0 0 22px}
+  h1{margin:0;font-family:var(--serif);font-size:clamp(34px,5vw,52px);line-height:1.06;letter-spacing:-.02em;font-weight:600;text-wrap:balance}
+  .aside p{margin:22px 0 0;color:var(--ink-2);font-size:14px;line-height:1.9;max-width:340px}
+  .cats{list-style:none;margin:32px 0 0;padding:0;display:flex;flex-direction:column;gap:2px}
+  .cats li{display:flex;align-items:center;gap:12px;padding:10px 0;border-top:1px solid var(--line-soft);font-size:13px;color:var(--ink-2)}
+  .cats li .n{font-family:var(--serif);font-size:12px;color:var(--accent);width:26px}
+
+  .qa{display:flex;flex-direction:column}
+  .q{border-top:1px solid var(--line-soft)}
+  .q:last-child{border-bottom:1px solid var(--line-soft)}
+  .q summary{list-style:none;cursor:pointer;display:flex;align-items:flex-start;gap:20px;padding:26px 4px;transition:color .2s}
+  .q summary::-webkit-details-marker{display:none}
+  .q summary:hover{color:var(--accent)}
+  .q .idx{font-family:var(--serif);font-size:clamp(26px,3vw,38px);line-height:1;color:var(--ink-3);width:70px;flex:0 0 auto;letter-spacing:-.02em}
+  .q .qt{flex:1;font-size:clamp(16px,1.8vw,20px);font-weight:500;line-height:1.4;padding-top:6px}
+  .q .pm{margin-top:8px;width:30px;height:30px;flex:0 0 auto;border:1px solid var(--line);border-radius:50%;display:grid;place-items:center;transition:transform .35s var(--ease),background .2s,border-color .2s}
+  .q .pm::before,.q .pm::after{content:"";position:absolute;background:var(--ink);transition:background .2s}
+  .q .pm{position:relative}
+  .q .pm::before{width:12px;height:1.6px}
+  .q .pm::after{width:1.6px;height:12px}
+  .q[open] .pm{transform:rotate(135deg);background:var(--accent);border-color:var(--accent)}
+  .q[open] .pm::before,.q[open] .pm::after{background:#0e0e10}
+  .q .body{display:grid;grid-template-rows:0fr;transition:grid-template-rows .4s var(--ease)}
+  .q[open] .body{grid-template-rows:1fr}
+  .q .body > div{overflow:hidden}
+  .q .a{margin:0 4px 30px 90px;max-width:640px;color:var(--ink-2);font-size:14.5px;line-height:2}
+  @media (max-width:640px){ .q .idx{width:auto;flex-basis:auto} .q .a{margin-left:4px} }
+
+  .band{padding:clamp(64px,9vw,110px) 0}
+  .band h2{margin:0;font-family:var(--serif);font-size:clamp(30px,5vw,48px);line-height:1.1;letter-spacing:-.02em;font-weight:600;max-width:600px}
+  .band p{margin:18px 0 0;color:var(--ink-2);font-size:14px;line-height:1.9;max-width:520px}
+  .band .actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:30px}
+  .band .cta{min-height:44px;padding:0 20px;font-size:14px}
+  .band .ghost{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:0 20px;border-radius:var(--r);font-size:14px;font-weight:500;border:1px solid #3a3a3f;color:var(--ink)}
+  .band .ghost:hover{border-color:var(--ink)}
+
+  .foot{padding:40px 0 64px;border-top:1px solid var(--line-soft)}
+  .fine{margin:0;font-size:11px;line-height:1.9;color:var(--ink-3);max-width:780px}
+  .fine b{font-weight:600;color:var(--ink-2)}
+
+  [data-reveal]{opacity:0;transform:translateY(16px);transition:opacity .55s var(--ease),transform .55s var(--ease)}
+  [data-reveal].is-in{opacity:1;transform:none}
+  @media (prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto}
+    [data-reveal]{opacity:1;transform:none;transition:none}
+    .q .body{transition:none}
+    .q .pm{transition:none}
+  }
+</style>
+<noscript><style>[data-reveal]{opacity:1;transform:none}</style></noscript>
+</head>
+<body>
+<a class="skip" href="#main">本文へ</a>
+<header class="head">
+  <div class="wrap">
+    <a class="brand" href="#top" aria-label="HOSHIZORA ホーム">
+      <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 4l2.9 8.4L28 15l-9.1 2.6L16 26l-2.9-8.4L4 15l9.1-2.6z" fill="#ff5a1f"/></svg>
+      HOSHIZORA
+    </a>
+    <nav class="nav" aria-label="主要">
+      <a href="#faq-list">質問</a>
+      <a href="#more">その他</a>
+    </nav>
+    <a class="cta" href="#more">詳しく見る</a>
+  </div>
+</header>
+
+<main id="main">
+  <div class="wrap">
+    <div class="layout" id="top">
+      <aside class="aside">
+        <p class="kicker" data-reveal>FAQ</p>
+        <h1 data-reveal>聞かれ続ける、<br>同じことを。</h1>
+        <p data-reveal>ここには、何度も聞かれる質問を、そのままの順で並べました。答えは短く、迷いにくい形にしています（架空の内容です）。</p>
+        <ul class="cats" data-reveal aria-label="分類">
+          <li><span class="n">01</span>始める前に</li>
+          <li><span class="n">02</span>使いながら</li>
+          <li><span class="n">03</span>料金と契約</li>
+          <li><span class="n">04</span>データと安全</li>
+        </ul>
+      </aside>
+
+      <div class="qa" id="faq-list">
+        <details class="q" data-reveal open>
+          <summary><span class="idx" aria-hidden="true">01</span><span class="qt">登録には、何を用意すればいいですか？</span><span class="pm" aria-hidden="true"></span></summary>
+          <div class="body"><div><p class="a">メールアドレスだけあれば十分です。この作例では、パスワードや電話番号の入力は求めません。実際には、必要な情報はこの場で示します。</p></div></div>
+        </details>
+        <details class="q" data-reveal>
+          <summary><span class="idx" aria-hidden="true">02</span><span class="qt">無料で試せますか？</span><span class="pm" aria-hidden="true"></span></summary>
+          <div class="body"><div><p class="a">試せる範囲は、このページでは架空です。実際の販売時には、無料の範囲と期限をこの場で定めて告知します。</p></div></div>
+        </details>
+        <details class="q" data-reveal>
+          <summary><span class="idx" aria-hidden="true">03</span><span class="qt">他のツールと、繋げられますか？</span><span class="pm" aria-hidden="true"></span></summary>
+          <div class="body"><div><p class="a">繋ぎ方の想定は、この作例では表現していません。実際には、対応する先のリストをこの場に表示します。</p></div></div>
+        </details>
+        <details class="q" data-reveal>
+          <summary><span class="idx" aria-hidden="true">04</span><span class="qt">途中で使わなくなったら、どうなりますか？</span><span class="pm" aria-hidden="true"></span></summary>
+          <div class="body"><div><p class="a">止めても、すぐに消えることはありません。この作例では、その扱いを「保留」として表しています。実際のルールは販売時に定めます。</p></div></div>
+        </details>
+        <details class="q" data-reveal>
+          <summary><span class="idx" aria-hidden="true">05</span><span class="qt">データは、どこに置かれますか？</span><span class="pm" aria-hidden="true"></span></summary>
+          <div class="body"><div><p class="a">この作例では、置き場所を示す文言は架空です。実際の運営時は、置き場所と管理の責任者をこの場で明記します。</p></div></div>
+        </details>
+        <details class="q" data-reveal>
+          <summary><span class="idx" aria-hidden="true">06</span><span class="qt">退会すると、データはどうなりますか？</span><span class="pm" aria-hidden="true"></span></summary>
+          <div class="body"><div><p class="a">退会時のデータの扱いは、この作例では「別途定める」としています。実際には、削除までの期間と方法をこの場に表示します。</p></div></div>
+        </details>
+      </div>
+    </div>
+  </div>
+
+  <section class="band" id="more">
+    <div class="wrap">
+      <h2 data-reveal>それでも、分からないことがある。</h2>
+      <p data-reveal>このページはデザインの作例です。ここにある製品・文言・社名は、すべて架空です。実際の質問先は、販売時にこの場で示します。</p>
+      <div class="actions" data-reveal>
+        <a class="cta" href="#top">最初に戻る</a>
+        <a class="ghost" href="../../index.html#templates">テンプレート一覧へ</a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="foot">
+    <div class="wrap">
+      <p class="fine"><b>HOSHIZORA — 作例</b> ／ このページは Nagiport Motion Kit の作例（FAQ／よくある質問）です。参考にした実在サイトの構成・余白・配色・動きの設計は学びとしていますが、素材・コード・文言・ブランド・ロゴはすべてオリジナルです。掲載の社名・製品名・文言は架空で、実在のサービス・人物・実績を示しません。フォーム・送信先・分析ツールはなし。</p>
+    </div>
+  </footer>
+</main>
+
+<script>
+(function(){
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var items = document.querySelectorAll('[data-reveal]');
+  if(reduce || !('IntersectionObserver' in window)){
+    items.forEach(function(el){ el.classList.add('is-in'); });
+  } else {
+    var io = new IntersectionObserver(function(es){
+      es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('is-in'); io.unobserve(e.target); } });
+    }, {rootMargin:'0px 0px -8% 0px', threshold:0.12});
+    items.forEach(function(el){ io.observe(el); });
+  }
+})();
+</script>
+</body>
+</html>

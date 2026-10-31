@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="観測点と深度で海底地形を探る、架空の潮間観測室。"
+    />
+    <title>TIDAL / 潮間観測室</title>
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2032%2032%22%3E%3Crect%20width%3D%2232%22%20height%3D%2232%22%20rx%3D%224%22%20fill%3D%22%23153a32%22%2F%3E%3Ctext%20x%3D%2216%22%20y%3D%2223%22%20text-anchor%3D%22middle%22%20fill%3D%22white%22%20font-family%3D%22sans-serif%22%20font-size%3D%2223%22%20font-weight%3D%22900%22%3ET%3C%2Ftext%3E%3C%2Fsvg%3E"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <a class="skip" href="#observation">観測画面へ</a>
+    <div class="shell">
+      <header>
+        <a class="brand" href="#observation"
+          ><span class="brand-mark">≈</span> TIDAL<span>潮間観測室</span></a
+        >
+        <p>水面の、その先を読む。</p>
+        <a class="header-link" href="#archive">観測アーカイブ <span>↗</span></a>
+      </header>
+      <div class="workspace">
+        <nav class="rail" aria-label="ページ内">
+          <span class="rail-code">海洋観測系<br />35° 08′ N</span
+          ><a class="selected" href="#observation">観測室<span>●</span></a
+          ><a href="#archive">記録帳<span>↗</span></a
+          ><a href="#method">観測方法<span>↗</span></a>
+          <div class="rail-end">
+            <span class="signal"></span> 計器接続<br /><strong>03 / 03</strong
+            ><small>ローカル観測デモ</small>
+          </div>
+        </nav>
+        <main id="observation">
+          <div class="page-title">
+            <div>
+              <span class="micro">潮間観測室 / 観測セッション</span>
+              <h1>TIDAL<span>04</span></h1>
+            </div>
+            <div class="date">
+              2026 / 10 / 30<strong>海底を、ひらく。</strong
+              ><span>観測海域：北緯35度の架空海域</span>
+            </div>
+          </div>
+          <section class="instrument" aria-labelledby="station-name">
+            <div class="instrument-top">
+              <h2 id="station-name">北の浅瀬</h2>
+              <span id="station-code">ST–021 / 地形投影</span>
+            </div>
+            <div class="scope">
+              <p class="canvas-fallback">
+                地形描画を利用できません。<br />観測点・深度・水塊の数値は下の操作で確認できます。
+              </p>
+              <canvas
+                id="terrain"
+                aria-label="北の浅瀬の海底地形。深度と観測点を変えると起伏と等高線が変化します。"
+                >海底の起伏を等高線と点群で表した観測図。</canvas
+              ><span class="axis axis-n">北 / 000°</span
+              ><span class="axis axis-w">270°</span
+              ><span class="axis axis-e">090°</span>
+              <div class="cross">+</div>
+              <div class="scope-note">
+                BATHYMETRY<br /><b>水の下にも、<br />風景がある。</b>
+              </div>
+              <div class="depth-display">
+                <span>観測深度</span
+                ><strong id="depth-number">120<small>m</small></strong
+                ><span>海面基準 / 相対深度</span>
+              </div>
+              <div class="scale">0 ━━━━━ 250 ━━━━━ 500 m</div>
+            </div>
+            <div class="scope-footer">
+              <span><i></i> 地形データ表示中</span
+              ><span id="scan-count">取得回数 001</span
+              ><button id="scan" type="button">
+                海底を再走査 <span>↻</span>
+              </button>
+            </div>
+          </section>
+          <section class="depth-control" aria-label="観測深度">
+            <label for="depth"
+              >深度を探る<span>浅い海から、海溝へ。</span></label
+            >
+            <div>
+              <div class="range-labels">
+                <span>20 m</span
+                ><output id="depth-output" for="depth">120 m</output
+                ><span>240 m</span>
+              </div>
+              <input
+                id="depth"
+                type="range"
+                min="20"
+                max="240"
+                value="120"
+                step="1"
+              />
+            </div>
+          </section>
+        </main>
+        <aside class="readouts">
+          <div class="aside-title">観測地点を選ぶ <span>3地点</span></div>
+          <div class="stations">
+            <button type="button" data-station="0" aria-pressed="true">
+              <small>沿岸 / ST–021</small><strong>北の浅瀬</strong
+              ><span>01 ↗</span></button
+            ><button type="button" data-station="1" aria-pressed="false">
+              <small>断崖 / ST–054</small><strong>海溝の縁</strong
+              ><span>02 ↗</span></button
+            ><button type="button" data-station="2" aria-pressed="false">
+              <small>外洋 / ST–089</small><strong>外洋の丘</strong
+              ><span>03 ↗</span>
+            </button>
+          </div>
+          <section class="water">
+            <div class="aside-title">
+              水塊プロファイル <span>サンプル</span>
+            </div>
+            <dl>
+              <div>
+                <dt>水温</dt>
+                <dd><strong id="temp">18.4</strong> °C</dd>
+              </div>
+              <div>
+                <dt>塩分</dt>
+                <dd><strong id="salt">34.8</strong> PSU</dd>
+              </div>
+              <div>
+                <dt>透明度</dt>
+                <dd><strong id="clarity">24</strong> m</dd>
+              </div>
+            </dl>
+            <div class="wave">
+              <canvas id="wave" aria-label="水圧変化のサンプル波形"
+                >水圧の波形</canvas
+              >
+            </div>
+            <div class="wave-label">
+              <span>水圧変動 / 60秒間</span><span>±0.04</span>
+            </div>
+          </section>
+          <section class="log">
+            <div class="log-heading">
+              <span>最新の観測</span><span>10:42</span>
+            </div>
+            <h3>潮の境目に、<br />小さな変化。</h3>
+            <p id="status" aria-live="polite">
+              北の浅瀬を観測中。深度120 mの水塊は安定しています。
+            </p>
+            <button type="button" id="details">
+              観測記録をひらく <span>↗</span>
+            </button>
+          </section>
+        </aside>
+      </div>
+      <section id="archive" class="archive">
+        <div>
+          <span class="micro">観測アーカイブ</span>
+          <h2>点がつながり、<br />海の輪郭になる。</h2>
+        </div>
+        <div class="archive-list">
+          <div>
+            <span>10.30</span><strong>北の浅瀬の微細地形</strong
+            ><span>地形測量</span>
+          </div>
+          <div>
+            <span>10.28</span><strong>海溝の縁に沿う水塊</strong
+            ><span>水温・塩分</span>
+          </div>
+          <div>
+            <span>10.24</span><strong>外洋の丘と流れの向き</strong
+            ><span>流況観測</span>
+          </div>
+        </div>
+      </section>
+      <footer id="method">
+        <strong>TIDAL / 潮間観測室</strong>
+        <p>
+          架空の海洋研究室を題材にしたデモ。数値はサンプルです。<br />深度と観測点から、海底の地形・水温・塩分の関係を探ります。
+        </p>
+        <a href="#observation">観測画面へ戻る ↑</a>
+      </footer>
+    </div>
+    <dialog id="record" aria-labelledby="record-title">
+      <div class="dialog-top">
+        <span>観測記録 / ローカルプレビュー</span
+        ><button type="button" id="close-record" aria-label="観測記録を閉じる">
+          ×
+        </button>
+      </div>
+      <h2 id="record-title">北の浅瀬</h2>
+      <p id="record-body"></p>
+      <p>これは架空の観測記録です。内容は送信されません。</p>
+    </dialog>
+  </body>
+</html>

@@ -1,0 +1,352 @@
+{
+  "release": "Practical Six 1.0.0",
+  "referenceAcquisition": {
+    "verified_at": "2026-10-30T09:54:56.044399+00:00",
+    "tool": {
+      "name": "WebClone",
+      "version": "1.0.0",
+      "commit": "a70b7e02eae3bae6f5e0b3d1c124e219c05c2741",
+      "license": "Apache-2.0",
+      "license_url": "https://raw.githubusercontent.com/ruslanmv/webclone/a70b7e02eae3bae6f5e0b3d1c124e219c05c2741/LICENSE",
+      "license_http": 200,
+      "license_sha256": "204bd49ce1dc7312a10572a8609a336f169a43d0fdf3d17d87cf7c784f3b4717",
+      "license_remote_matches_git": false,
+      "new_install": false,
+      "existing_venv": "../webclone-batch-20261030/tooling/venv",
+      "license_text_matches_git": true,
+      "line_ending_note": "Git working tree CRLF versus remote LF; normalized text matches"
+    },
+    "policy": "Reference-only; no reference code, dependency, photo, illustration, logo, font, brand or prose included in distributable. Original deliverable source and art have separate manifests.",
+    "sources": [
+      {
+        "name": "startbootstrap-business-frontpage",
+        "repository": "StartBootstrap/startbootstrap-business-frontpage",
+        "commit": "b330ff68d31fca0950dcce5687796d71432fbd5f",
+        "url": "https://startbootstrap.github.io/startbootstrap-business-frontpage/",
+        "license_url": "https://github.com/StartBootstrap/startbootstrap-business-frontpage/blob/b330ff68d31fca0950dcce5687796d71432fbd5f/LICENSE",
+        "license_verified": true,
+        "clone_exit": 0,
+        "license": "MIT",
+        "license_sha256": "e8b857747301fcd4c885b3216544b18bbf60328aec2c34da614787346cf40282",
+        "license_remote_url": "https://raw.githubusercontent.com/StartBootstrap/startbootstrap-business-frontpage/b330ff68d31fca0950dcce5687796d71432fbd5f/LICENSE",
+        "license_http": 200,
+        "license_remote_matches_git": false,
+        "reference_code_redistributed": false,
+        "reference_assets_redistributed": false,
+        "webclone_pages": 1,
+        "webclone_assets": 3,
+        "webclone_errors": [],
+        "license_text_matches_git": true,
+        "line_ending_note": "Git working tree CRLF versus remote LF; normalized text matches"
+      },
+      {
+        "name": "startbootstrap-landing-page",
+        "repository": "StartBootstrap/startbootstrap-landing-page",
+        "commit": "247a46a2503c91d1157179eab297953438ec498b",
+        "url": "https://startbootstrap.github.io/startbootstrap-landing-page/",
+        "license_url": "https://github.com/StartBootstrap/startbootstrap-landing-page/blob/247a46a2503c91d1157179eab297953438ec498b/LICENSE",
+        "license_verified": true,
+        "clone_exit": 0,
+        "license": "MIT",
+        "license_sha256": "e8b857747301fcd4c885b3216544b18bbf60328aec2c34da614787346cf40282",
+        "license_remote_url": "https://raw.githubusercontent.com/StartBootstrap/startbootstrap-landing-page/247a46a2503c91d1157179eab297953438ec498b/LICENSE",
+        "license_http": 200,
+        "license_remote_matches_git": false,
+        "reference_code_redistributed": false,
+        "reference_assets_redistributed": false,
+        "webclone_pages": 1,
+        "webclone_assets": 6,
+        "webclone_errors": [],
+        "license_text_matches_git": true,
+        "line_ending_note": "Git working tree CRLF versus remote LF; normalized text matches"
+      },
+      {
+        "name": "startbootstrap-business-casual",
+        "repository": "StartBootstrap/startbootstrap-business-casual",
+        "commit": "b6f928934386a54e08c2e7f40ebd9e4d7510bba4",
+        "url": "https://startbootstrap.github.io/startbootstrap-business-casual/",
+        "license_url": "https://github.com/StartBootstrap/startbootstrap-business-casual/blob/b6f928934386a54e08c2e7f40ebd9e4d7510bba4/LICENSE",
+        "license_verified": true,
+        "clone_exit": 0,
+        "license": "MIT",
+        "license_sha256": "e8b857747301fcd4c885b3216544b18bbf60328aec2c34da614787346cf40282",
+        "license_remote_url": "https://raw.githubusercontent.com/StartBootstrap/startbootstrap-business-casual/b6f928934386a54e08c2e7f40ebd9e4d7510bba4/LICENSE",
+        "license_http": 200,
+        "license_remote_matches_git": false,
+        "reference_code_redistributed": false,
+        "reference_assets_redistributed": false,
+        "webclone_pages": 1,
+        "webclone_assets": 4,
+        "webclone_errors": [],
+        "license_text_matches_git": true,
+        "line_ending_note": "Git working tree CRLF versus remote LF; normalized text matches"
+      },
+      {
+        "name": "startbootstrap-agency",
+        "repository": "StartBootstrap/startbootstrap-agency",
+        "commit": "b2d5d5c6b1396bc5b0e8dd92c693b106cfb7cee1",
+        "url": "https://startbootstrap.github.io/startbootstrap-agency/",
+        "license_url": "https://github.com/StartBootstrap/startbootstrap-agency/blob/b2d5d5c6b1396bc5b0e8dd92c693b106cfb7cee1/LICENSE",
+        "license_verified": true,
+        "clone_exit": 0,
+        "license": "MIT",
+        "license_sha256": "e8b857747301fcd4c885b3216544b18bbf60328aec2c34da614787346cf40282",
+        "license_remote_url": "https://raw.githubusercontent.com/StartBootstrap/startbootstrap-agency/b2d5d5c6b1396bc5b0e8dd92c693b106cfb7cee1/LICENSE",
+        "license_http": 200,
+        "license_remote_matches_git": false,
+        "reference_code_redistributed": false,
+        "reference_assets_redistributed": false,
+        "webclone_pages": 1,
+        "webclone_assets": 22,
+        "webclone_errors": [],
+        "license_text_matches_git": true,
+        "line_ending_note": "Git working tree CRLF versus remote LF; normalized text matches"
+      },
+      {
+        "name": "startbootstrap-modern-business",
+        "repository": "StartBootstrap/startbootstrap-modern-business",
+        "commit": "7d297106cbda2f04db4696752fcdb5b4dc9cd936",
+        "url": "https://startbootstrap.github.io/startbootstrap-modern-business/",
+        "license_url": "https://github.com/StartBootstrap/startbootstrap-modern-business/blob/7d297106cbda2f04db4696752fcdb5b4dc9cd936/LICENSE",
+        "license_verified": true,
+        "clone_exit": 0,
+        "license": "MIT",
+        "license_sha256": "e8b857747301fcd4c885b3216544b18bbf60328aec2c34da614787346cf40282",
+        "license_remote_url": "https://raw.githubusercontent.com/StartBootstrap/startbootstrap-modern-business/7d297106cbda2f04db4696752fcdb5b4dc9cd936/LICENSE",
+        "license_http": 200,
+        "license_remote_matches_git": false,
+        "reference_code_redistributed": false,
+        "reference_assets_redistributed": false,
+        "webclone_pages": 1,
+        "webclone_assets": 3,
+        "webclone_errors": [],
+        "license_text_matches_git": true,
+        "line_ending_note": "Git working tree CRLF versus remote LF; normalized text matches"
+      },
+      {
+        "name": "startbootstrap-freelancer",
+        "repository": "StartBootstrap/startbootstrap-freelancer",
+        "commit": "5bc65b4bd01e4ab63186395d5f95c7fdaa26216d",
+        "url": "https://startbootstrap.github.io/startbootstrap-freelancer/",
+        "license_url": "https://github.com/StartBootstrap/startbootstrap-freelancer/blob/5bc65b4bd01e4ab63186395d5f95c7fdaa26216d/LICENSE",
+        "license_verified": true,
+        "clone_exit": 0,
+        "license": "MIT",
+        "license_sha256": "7cfb7483fa643abcce409ac1d6f4004b65ebbdcf6a419e02f6897eee3a4f1694",
+        "license_remote_url": "https://raw.githubusercontent.com/StartBootstrap/startbootstrap-freelancer/5bc65b4bd01e4ab63186395d5f95c7fdaa26216d/LICENSE",
+        "license_http": 200,
+        "license_remote_matches_git": false,
+        "reference_code_redistributed": false,
+        "reference_assets_redistributed": false,
+        "webclone_pages": 1,
+        "webclone_assets": 10,
+        "webclone_errors": [],
+        "license_text_matches_git": true,
+        "line_ending_note": "Git working tree CRLF versus remote LF; normalized text matches"
+      }
+    ]
+  },
+  "originalDeliverables": [
+    {
+      "slug": "corporate",
+      "sourceManifests": [
+        {
+          "file": "corporate/SOURCE-MANIFEST.json",
+          "content": {
+            "site": "corporate",
+            "original_content": [
+              "index.html",
+              "styles.css",
+              "script.js",
+              "README.md"
+            ],
+            "code_license": "MIT",
+            "external_runtime_dependencies": [],
+            "references": [
+              {
+                "url": "https://startbootstrap.github.io/startbootstrap-business-frontpage/",
+                "use": "Structural research only; no source code, brands, copy or images redistributed",
+                "adaptation": "Business declaration, service index, sample results; original dark fullbleed architecture and indexed switch"
+              }
+            ],
+            "assets": [
+              {
+                "path": "assets/hero.jpg",
+                "kind": "AI-generated original concept image",
+                "tool": "OpenAI image_gen built-in",
+                "generated": "2026-10-30",
+                "prompt": "Original contemporary industrial building in brushed aluminium and charcoal concrete at blue dusk, amber doorway, architectural editorial photography, no logos, text or people.",
+                "sha256": "acd4dd888d66681b237de9afea967e4c5626f50fd0710128dcf3f274e712fa46",
+                "redistribution": "Included as original AI-generated kit artwork; no third-party stock assets copied; output may not be unique.",
+                "evidence_record": "Task evidence: a/generation-record.json",
+                "license": "MIT as part of this original collection"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "slug": "btob",
+      "sourceManifests": [
+        {
+          "file": "btob/SOURCE-MANIFEST.json",
+          "content": {
+            "site": "btob",
+            "original_content": [
+              "index.html",
+              "styles.css",
+              "script.js",
+              "README.md"
+            ],
+            "code_license": "MIT",
+            "external_runtime_dependencies": [],
+            "references": [
+              {
+                "url": "https://startbootstrap.github.io/startbootstrap-landing-page/",
+                "use": "Structural research only; no source code, brands, copy or images redistributed",
+                "adaptation": "Value proposition, feature explanation, pricing; original before/after handoff demo and local time simulation"
+              }
+            ],
+            "assets": []
+          }
+        }
+      ]
+    },
+    {
+      "slug": "store",
+      "sourceManifests": [
+        {
+          "file": "store/source-manifest.json",
+          "content": {
+            "site": "store",
+            "implementation": "Original HTML/CSS/JS and fictional Japanese copy, MIT",
+            "fonts": "OS system fonts, no redistributed font files",
+            "reference": "https://startbootstrap.github.io/startbootstrap-business-casual/",
+            "referenceUse": "Information hierarchy observation only. No source code, photos, logos or font files copied. WebClone acquisition evidence is held in central task evidence.",
+            "motionSitesExamples": [
+              "Bold Studio",
+              "Stillmind",
+              "Modern Agency"
+            ],
+            "assets": [
+              {
+                "file": "assets/coffee.png",
+                "origin": "Original generated image, image_gen.imagegen, 2026-10-30; fictional cafe editorial still life",
+                "license": "MIT as part of this original collection",
+                "sha256": "4087d44e3a20ba2ae782c8020c9ea792754c4dc21bce0a40e57677f6975238ea",
+                "thirdPartySiteAsset": false,
+                "evidence_record": "Task evidence: b/spec.md and generation output record"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "slug": "recruitment",
+      "sourceManifests": [
+        {
+          "file": "recruitment/SOURCE-MANIFEST.json",
+          "content": {
+            "site": "recruitment",
+            "original_content": [
+              "index.html",
+              "styles.css",
+              "script.js",
+              "README.md"
+            ],
+            "code_license": "MIT",
+            "external_runtime_dependencies": [],
+            "references": [
+              {
+                "url": "https://startbootstrap.github.io/startbootstrap-agency/",
+                "use": "Structural research only; no source code, brands, copy or images redistributed",
+                "adaptation": "Team and timeline structure; original bold Japanese recruitment headline, day timeline and job-condition selector"
+              }
+            ],
+            "assets": [
+              {
+                "path": "assets/hero.jpg",
+                "kind": "AI-generated original concept image",
+                "tool": "OpenAI image_gen built-in",
+                "generated": "2026-10-30",
+                "prompt": "Original editorial photograph of three fictional adult Japanese design engineers discussing a wooden prototype in a bright workshop, blue wall orange stools, no logos or text.",
+                "sha256": "c8ee0d1a2e346c05ebb9b49fc992af622482cefb5c85a5755b842926fff175c2",
+                "redistribution": "Included as original AI-generated kit artwork; no third-party stock assets copied; output may not be unique.",
+                "evidence_record": "Task evidence: a/generation-record.json",
+                "license": "MIT as part of this original collection"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "slug": "consultation",
+      "sourceManifests": [
+        {
+          "file": "consultation/source-manifest.json",
+          "content": {
+            "site": "consultation",
+            "implementation": "Original HTML/CSS/JS and fictional Japanese copy, MIT",
+            "fonts": "OS system fonts, no redistributed font files",
+            "reference": "https://startbootstrap.github.io/startbootstrap-modern-business/",
+            "referenceUse": "Information hierarchy observation only. No source code, photos, logos or font files copied. WebClone acquisition evidence is held in central task evidence.",
+            "motionSitesExamples": [
+              "Bold Studio",
+              "Stillmind",
+              "Modern Agency"
+            ],
+            "assets": []
+          }
+        }
+      ]
+    },
+    {
+      "slug": "portfolio",
+      "sourceManifests": [
+        {
+          "file": "portfolio/source-manifest.json",
+          "content": {
+            "site": "portfolio",
+            "implementation": "Original HTML/CSS/JS and fictional Japanese copy, MIT",
+            "fonts": "OS system fonts, no redistributed font files",
+            "reference": "https://startbootstrap.github.io/startbootstrap-freelancer/",
+            "referenceUse": "Information hierarchy observation only. No source code, photos, logos or font files copied. WebClone acquisition evidence is held in central task evidence.",
+            "motionSitesExamples": [
+              "Bold Studio",
+              "Stillmind",
+              "Modern Agency"
+            ],
+            "assets": [
+              {
+                "file": "assets/work-1.webp",
+                "origin": "Original procedural artwork authored for this collection",
+                "license": "MIT",
+                "sha256": "fa8e339d74fd8c40d72cefe3ec93d78b117a04ee57ebdb98b16ed87d4b59af36",
+                "evidence_record": "Task evidence: b/spec.md and generation output record"
+              },
+              {
+                "file": "assets/work-2.webp",
+                "origin": "Original procedural artwork authored for this collection",
+                "license": "MIT",
+                "sha256": "a1c44fd1c94f9db1a535bc10b56902848ab5b5a2642392c54c6ae6d95da172e7",
+                "evidence_record": "Task evidence: b/spec.md and generation output record"
+              },
+              {
+                "file": "assets/work-3.webp",
+                "origin": "Original procedural artwork authored for this collection",
+                "license": "MIT",
+                "sha256": "b7617ae58d6161c10fd0575a4492a7176bbd05ccc1855898bdd47a08e5be694f",
+                "evidence_record": "Task evidence: b/spec.md and generation output record"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "distributionPolicy": "Only original deliverables and permitted original assets; acquired reference copies and external media are excluded.",
+  "fontPolicy": "Operating-system font stacks, no font files or external font requests."
+}

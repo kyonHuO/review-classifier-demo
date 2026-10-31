@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="theme-color" content="#170e0b" />
+    <meta
+      name="description"
+      content="火を囲む、季節の薪火料理。架空ブランドの操作可能なデモサイトです。"
+    />
+    <title>EMBER TABLE — 火を囲む、季節の薪火料理</title>
+    <link rel="icon" href="assets/illustration.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="script.js" defer></script>
+  </head>
+  <body class="ember-table">
+    <a class="skip" href="#main">本文へ移動</a>
+    <header class="site-header">
+      <a class="brand" href="#main">EMBER TABLE</a>
+      <nav class="site-nav" id="navigation" aria-label="メインナビゲーション">
+        <a href="#menu">今夜のコース</a><a href="#visit">店について</a>
+      </nav>
+      <button
+        class="menu"
+        aria-controls="navigation"
+        aria-expanded="false"
+        type="button"
+      >
+        メニュー
+      </button>
+    </header>
+    <main id="main">
+      <section class="ember-hero art">
+        <canvas id="fire" aria-hidden="true"></canvas>
+        <div class="ember-top">
+          <p>薪をくべる。<br />季節が、ひらく。</p>
+          <div class="ember-date">
+            <span>今夜の火入れ</span><strong class="serif">17:30</strong
+            ><span>カウンター12席</span>
+          </div>
+        </div>
+        <div class="fire-caption"><i></i> 火と、素材と、目の前のあなた。</div>
+        <h1 class="display">EMBER <br />TABLE</h1>
+        <div class="ember-bottom">
+          <p>旬を焼く。余韻を味わう。<br />静かな路地で、火を囲む夜。</p>
+          <a href="#menu" class="round-link"
+            >今夜の<br />コースを見る <span>↓</span></a
+          ><span class="micro">薪火料理 / コンセプトデモ</span>
+        </div>
+      </section>
+      <section class="section menu-section" id="menu">
+        <div class="menu-intro">
+          <h2 class="serif">火が引き出す、<br />季節の輪郭。</h2>
+          <p>
+            料理は、薪の香りから始まります。<br />野菜も、魚も、肉も。<br />それぞれに合う火との距離で。
+          </p>
+          <div class="choices" aria-label="コースを選択">
+            <button type="button" data-course="season" aria-pressed="true">
+              季節のコース</button
+            ><button type="button" data-course="vegetable" aria-pressed="false">
+              畑のコース
+            </button>
+          </div>
+          <p class="control-note">架空のメニュー・税込サンプル価格</p>
+        </div>
+        <div class="course-panel">
+          <div class="row">
+            <h3 id="course-name">季節のコース</h3>
+            <span class="serif price" id="course-price">¥9,800</span>
+          </div>
+          <ol id="course-list">
+            <li><span>はじまり</span> 焼き茄子のひとくち</li>
+            <li><span>畑から</span> 根菜と焦がしバター</li>
+            <li><span>海から</span> 本日の魚、炭の香り</li>
+            <li><span>火のそばで</span> 薪焼き牛と季節の葉</li>
+            <li><span>余韻</span> 焼きりんごとミルク</li>
+          </ol>
+          <p class="status" role="status" id="course-status">5皿 / 約120分</p>
+          <button class="btn" type="button" data-demo="席を選ぶデモ">
+            席を選ぶデモを見る
+          </button>
+        </div>
+      </section>
+      <section class="section ember-story" id="visit">
+        <div class="serif fire-word">The fire<br />sets the pace.</div>
+        <div>
+          <h2>少し、ゆっくり。</h2>
+          <p>
+            薪がはぜる音。グラスを置く音。<br />食べることだけに向き合える、そんな夜を。
+          </p>
+          <dl>
+            <div>
+              <dt>時間</dt>
+              <dd>17:30 – 22:00 / 水・木 定休</dd>
+            </div>
+            <div>
+              <dt>場所</dt>
+              <dd>東京都・架空の路地 2-8<br />この住所はデモ用です。</dd>
+            </div>
+            <div>
+              <dt>席</dt>
+              <dd>カウンター12席 / 完全禁煙</dd>
+            </div>
+          </dl>
+          <button class="btn ghost" type="button" data-demo="来店相談のデモ">
+            来店相談のデモ
+          </button>
+        </div>
+      </section>
+    </main>
+    <footer class="site-footer">
+      <div>
+        <strong>EMBER TABLE</strong>
+        <p>
+          架空のブランドのデモです。施設・商品・人物・価格はサンプルです。送信・予約・注文・決済は行われません。
+        </p>
+      </div>
+      <a href="../index.html">テンプレート一覧へ</a>
+    </footer>
+    <dialog aria-labelledby="demo-title">
+      <button class="close" type="button" aria-label="デモ画面を閉じる">
+        ×
+      </button>
+      <h2 id="demo-title">デモ</h2>
+      <p>
+        操作体験用の画面です。実際のサービス・商品は提供していません。入力や個人情報の収集は行いません。
+      </p>
+      <button class="btn" type="button" data-confirm>デモ操作を確認する</button>
+      <p class="status" role="status"></p>
+    </dialog>
+  </body>
+</html>

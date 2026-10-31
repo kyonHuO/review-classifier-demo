@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="theme-color" content="#e8e9ef" />
+    <meta
+      name="description"
+      content="形に遊びを、日常にちいさな違和感を。架空ブランドの操作可能なデモサイトです。"
+    />
+    <title>MIO / OBJECTS — 形に遊びを、日常にちいさな違和感を</title>
+    <link rel="icon" href="assets/illustration.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="script.js" defer></script>
+  </head>
+  <body class="mio-objects">
+    <a class="skip" href="#main">本文へ移動</a>
+    <header class="site-header">
+      <a class="brand" href="#main">MIO / OBJECTS</a>
+      <nav class="site-nav" id="navigation" aria-label="メインナビゲーション">
+        <a href="#work">作品を見る</a><a href="#about">MIOについて</a
+        ><a href="#contact">制作の相談</a>
+      </nav>
+      <button
+        class="menu"
+        aria-controls="navigation"
+        aria-expanded="false"
+        type="button"
+      >
+        メニュー
+      </button>
+    </header>
+    <main id="main">
+      <section class="mio-hero" id="work">
+        <div class="mio-meta">
+          <p>形に、遊びを。<br />日常に、ちいさな違和感を。</p>
+          <span
+            >Object &amp; visual designer<br />Selected studies /
+            2024–2026</span
+          >
+        </div>
+        <h1 class="display">MIO</h1>
+        <div
+          class="sculpture-stage art"
+          role="img"
+          aria-label="連続する輪でできた、紫の螺旋彫刻"
+        >
+          <div class="sculpture-shadow"></div>
+          <div class="sculpture sculpt-loop reactive">
+            <i style="--i: 0"></i><i style="--i: 1"></i><i style="--i: 2"></i
+            ><i style="--i: 3"></i><i style="--i: 4"></i><i style="--i: 5"></i
+            ><i style="--i: 6"></i><i style="--i: 7"></i><i style="--i: 8"></i
+            ><i style="--i: 9"></i><i style="--i: 10"></i><i style="--i: 11"></i
+            ><i style="--i: 12"></i><i style="--i: 13"></i
+            ><i style="--i: 14"></i><i style="--i: 15"></i
+            ><i style="--i: 16"></i><i style="--i: 17"></i>
+          </div>
+          <div class="sculpture sculpt-fold" hidden>
+            <i></i><i></i><i></i><i></i>
+          </div>
+          <div class="sculpture sculpt-pebble" hidden>
+            <i></i><i></i><i></i>
+          </div>
+          <span class="sculpture-coordinate">X 0.42 / Y 0.86</span
+          ><span class="sculpture-material" id="sculpture-material"
+            >Form study / Continuous loop</span
+          >
+        </div>
+        <div class="mio-work-info">
+          <span class="micro">現在のスタディ</span>
+          <h2 class="serif" id="work-title">Soft loop</h2>
+          <p id="work-description">
+            途切れない線を、柔らかなかたまりへ。連続する輪の、光と影の実験。
+          </p>
+          <button
+            class="btn ghost"
+            type="button"
+            data-demo="Soft loopの作品詳細デモ"
+            id="work-detail"
+          >
+            作品の詳細を見る
+          </button>
+        </div>
+        <div class="mio-selector" aria-label="作品を選択">
+          <button type="button" data-work="loop" aria-pressed="true">
+            <span class="work-glyph loop-glyph" aria-hidden="true"></span
+            ><span>Soft loop<small>Form / 2026</small></span
+            ><b>↗</b></button
+          ><button type="button" data-work="fold" aria-pressed="false">
+            <span class="work-glyph fold-glyph" aria-hidden="true"></span
+            ><span>Paper, almost<small>Material / 2025</small></span
+            ><b>↗</b></button
+          ><button type="button" data-work="pebble" aria-pressed="false">
+            <span class="work-glyph pebble-glyph" aria-hidden="true"></span
+            ><span>Quiet company<small>Object / 2024</small></span
+            ><b>↗</b>
+          </button>
+        </div>
+        <p class="status" role="status" id="work-status">
+          Soft loopを展示しています。
+        </p>
+      </section>
+      <section class="section mio-about" id="about">
+        <div class="mio-sign serif">Objects,<br />with a wink.</div>
+        <div>
+          <h2>「なんだろう」から、<br />はじまるデザイン。</h2>
+          <p>
+            触ってみたくなる形。見慣れたものの、見慣れない表情。素材と手を動かしながら、日常の中の余白を探しています。
+          </p>
+          <p>
+            プロダクト、空間のためのオブジェ、ビジュアルスタディ。使うことと、眺めること。そのあいだを行ったり来たり。
+          </p>
+          <span class="micro"
+            >MIOは架空のデザイナーです。掲載作品はこのデモのためのオリジナル表現です。</span
+          >
+        </div>
+      </section>
+      <section class="section mio-contact" id="contact">
+        <p>ひとつの形から、一緒に。</p>
+        <h2 class="display">LET'S MAKE<br />SOMETHING<br />ODD.</h2>
+        <button class="contact-orb" type="button" data-demo="制作相談のデモ">
+          制作相談の<br />デモを見る <span>↗</span>
+        </button>
+      </section>
+    </main>
+    <footer class="site-footer">
+      <div>
+        <strong>MIO / OBJECTS</strong>
+        <p>
+          架空のブランドのデモです。施設・商品・人物・価格はサンプルです。送信・予約・注文・決済は行われません。
+        </p>
+      </div>
+      <a href="../index.html">テンプレート一覧へ</a>
+    </footer>
+    <dialog aria-labelledby="demo-title">
+      <button class="close" type="button" aria-label="デモ画面を閉じる">
+        ×
+      </button>
+      <h2 id="demo-title">デモ</h2>
+      <p>
+        操作体験用の画面です。実際のサービス・商品は提供していません。入力や個人情報の収集は行いません。
+      </p>
+      <button class="btn" type="button" data-confirm>デモ操作を確認する</button>
+      <p class="status" role="status"></p>
+    </dialog>
+  </body>
+</html>

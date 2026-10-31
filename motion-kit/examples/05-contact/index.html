@@ -1,0 +1,245 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<meta name="theme-color" content="#f2ede4">
+<title>TSUKIGI STUDIO｜話しかけてください。（作例）</title>
+<meta name="description" content="Nagiport Motion Kit 作例05。CONTACTテンプレート（問い合わせ）の公開デモ。架空のブランド・文言。フォームは無効化されています。">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23f2ede4'/%3E%3Cpath d='M20 6a10 10 0 1 0 6 18 12 12 0 0 1-6-18z' fill='%23143a52'/%3E%3C/svg%3E">
+<style>
+  :root{
+    --bg:#f2ede4;
+    --ink:#15130f;
+    --ink-2:#4c463c;
+    --ink-3:#8a8172;
+    --line:#cfc5b2;
+    --line-soft:#ddd4c4;
+    --panel:#fbf8f1;
+    --accent:#143a52;
+    --accent-2:#c86a2b;
+    --r:4px;
+    --sans:"Inter","Noto Sans JP","Hiragino Kaku Gothic ProN","Yu Gothic",system-ui,sans-serif;
+    --serif:"Iowan Old Style","Times New Roman","Yu Mincho","Hiragino Mincho ProN",serif;
+    --max:1080px;
+    --ease:cubic-bezier(.2,.7,.2,1);
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  a{color:inherit;text-decoration:none}
+  ::selection{background:var(--accent);color:#fff}
+  .skip{position:fixed;top:10px;left:10px;z-index:100;background:var(--ink);color:var(--bg);padding:10px 14px;border-radius:4px;transform:translateY(-200%);font-weight:600}
+  .skip:focus{transform:none}
+  .wrap{width:min(var(--max),calc(100% - 40px));margin-inline:auto}
+  @media (max-width:640px){ .wrap{width:calc(100% - 28px)} }
+
+  .head{position:sticky;top:0;z-index:50;background:rgba(242,237,228,.85);backdrop-filter:blur(12px);border-bottom:1px solid var(--line-soft)}
+  .head .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;height:58px}
+  .brand{display:flex;align-items:center;gap:10px;font-weight:600;font-size:14px;letter-spacing:.01em}
+  .brand svg{width:20px;height:20px}
+  .nav{display:flex;gap:24px;font-size:13px;color:var(--ink-2)}
+  .nav a:hover{color:var(--ink)}
+  .cta{display:inline-flex;align-items:center;justify-content:center;min-height:34px;padding:0 14px;border-radius:var(--r);background:var(--accent);color:#fff;font-size:13px;font-weight:500;transition:background .15s}
+  .cta:hover{background:var(--accent-2)}
+  @media (max-width:760px){ .nav{display:none} }
+
+  .hero{padding:clamp(60px,9vw,120px) 0 clamp(40px,6vw,72px);border-bottom:1px solid var(--line-soft)}
+  .kicker{font-family:var(--serif);font-size:12px;letter-spacing:.24em;color:var(--accent-2);text-transform:uppercase;margin:0 0 24px}
+  h1{margin:0;font-family:var(--serif);font-size:clamp(44px,9vw,96px);line-height:.98;letter-spacing:-.03em;font-weight:600}
+  h1 .accent{color:var(--accent)}
+  .hero p{margin:28px 0 0;max-width:520px;color:var(--ink-2);font-size:15px;line-height:1.9}
+
+  .marquee{overflow:hidden;border-bottom:1px solid var(--line-soft);padding:16px 0}
+  .mq-track{display:flex;width:max-content;animation:slide 30s linear infinite}
+  .mq-track span{display:inline-flex;align-items:center;gap:30px;padding-right:30px;font-family:var(--serif);font-size:14px;letter-spacing:.14em;color:var(--ink-3);white-space:nowrap}
+  .mq-track b{color:var(--accent-2);font-weight:400}
+  @keyframes slide{to{transform:translateX(-50%)}}
+
+  .section{padding:clamp(64px,9vw,110px) 0;border-bottom:1px solid var(--line-soft)}
+  .section-head{max-width:640px;margin-bottom:clamp(32px,4vw,52px)}
+  .section-head .k{font-family:var(--serif);font-size:12px;letter-spacing:.22em;color:var(--accent-2);text-transform:uppercase;margin:0 0 14px}
+  .section-head h2{margin:0;font-family:var(--serif);font-size:clamp(26px,4vw,40px);line-height:1.12;letter-spacing:-.02em;font-weight:600}
+  .section-head p{margin:16px 0 0;color:var(--ink-2);font-size:14px;line-height:1.8}
+
+  .cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+  @media (max-width:760px){ .cards{grid-template-columns:1fr} }
+  .card{border:1px solid var(--line);border-radius:var(--r);background:var(--panel);padding:28px 24px}
+  .card .lab{font-family:var(--serif);font-size:11px;letter-spacing:.2em;color:var(--accent-2);text-transform:uppercase;margin:0 0 14px}
+  .card .big{margin:0;font-size:18px;font-weight:600;letter-spacing:-.01em;line-height:1.5}
+  .card p{margin:8px 0 0;color:var(--ink-2);font-size:13.5px;line-height:1.8}
+
+  .formbox{border:1px solid var(--line);border-radius:var(--r);background:var(--panel);padding:clamp(24px,4vw,40px)}
+  .form-note{display:flex;gap:12px;align-items:flex-start;border:1px dashed var(--accent-2);border-radius:var(--r);padding:14px 16px;background:#fbf1e6;margin:0 0 28px;font-size:13px;line-height:1.8;color:var(--ink-2)}
+  .form-note .ic{font-size:18px;line-height:1.4}
+  .form-note b{color:var(--ink);font-weight:600}
+  .field{display:flex;flex-direction:column;gap:8px;margin-bottom:20px}
+  .field label{font-size:13px;font-weight:500;color:var(--ink-2)}
+  .field label .req{color:var(--accent-2);font-weight:600}
+  .field input,.field textarea{font:inherit;font-size:14px;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:var(--r);padding:12px 14px;line-height:1.5}
+  .field input:disabled,.field textarea:disabled{opacity:.65;cursor:not-allowed}
+  .field textarea{min-height:120px;resize:vertical}
+  .form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  @media (max-width:640px){ .form-row{grid-template-columns:1fr} }
+  .form-actions{display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin-top:8px}
+  .btn-submit{display:inline-flex;align-items:center;justify-content:center;min-height:46px;padding:0 24px;border-radius:var(--r);font-size:14px;font-weight:600;background:var(--accent);color:#fff;border:1px solid var(--accent);cursor:not-allowed;opacity:.7}
+  .btn-submit span{margin-left:8px}
+  .form-hint{font-size:12px;color:var(--ink-3)}
+
+  .band{padding:clamp(64px,9vw,110px) 0}
+  .band h2{margin:0;font-family:var(--serif);font-size:clamp(30px,5vw,48px);line-height:1.1;letter-spacing:-.02em;font-weight:600;max-width:600px}
+  .band p{margin:18px 0 0;color:var(--ink-2);font-size:14px;line-height:1.9;max-width:520px}
+  .band .actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:30px}
+  .band .cta{min-height:44px;padding:0 20px;font-size:14px}
+  .band .ghost{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:0 20px;border-radius:var(--r);font-size:14px;font-weight:500;border:1px solid var(--line);color:var(--ink)}
+  .band .ghost:hover{border-color:var(--ink)}
+
+  .foot{padding:44px 0 64px;border-top:1px solid var(--line-soft)}
+  .fine{margin:0;font-size:11px;line-height:1.9;color:var(--ink-3);max-width:780px}
+  .fine b{font-weight:600;color:var(--ink-2)}
+
+  [data-reveal]{opacity:0;transform:translateY(14px);transition:opacity .5s var(--ease),transform .5s var(--ease)}
+  [data-reveal].is-in{opacity:1;transform:none}
+  @media (prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto}
+    [data-reveal]{opacity:1;transform:none;transition:none}
+    .mq-track{animation:none}
+  }
+</style>
+<noscript><style>[data-reveal]{opacity:1;transform:none}</style></noscript>
+</head>
+<body>
+<a class="skip" href="#main">本文へ</a>
+<header class="head">
+  <div class="wrap">
+    <a class="brand" href="#top" aria-label="TSUKIGI STUDIO ホーム">
+      <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M20 5a11 11 0 1 0 7 19 13 13 0 0 1-7-19z" fill="#143a52"/></svg>
+      TSUKIGI STUDIO
+    </a>
+    <nav class="nav" aria-label="主要">
+      <a href="#info">連絡先</a>
+      <a href="#form">問い合わせ</a>
+    </nav>
+    <a class="cta" href="#form">問い合わせる</a>
+  </div>
+</header>
+
+<main id="main">
+  <section class="hero" id="top">
+    <div class="wrap">
+      <p class="kicker" data-reveal>Contact</p>
+      <h1 data-reveal>話しかけて<br><span class="accent">ください。</span></h1>
+      <p data-reveal>新しいものの話も、困っている話も、どちらでも構いません。こちらで受け取り、返します（架空の制作所です）。</p>
+    </div>
+  </section>
+
+  <div class="marquee" aria-hidden="true">
+    <div class="mq-track">
+      <span>Let's talk <b>✦</b> 一緒に作る <b>✦</b> 困ったことは相談 <b>✦</b> 返事は早めに <b>✦</b></span>
+      <span>Let's talk <b>✦</b> 一緒に作る <b>✦</b> 困ったことは相談 <b>✦</b> 返事は早めに <b>✦</b></span>
+    </div>
+  </div>
+
+  <section class="section" id="info">
+    <div class="wrap">
+      <div class="section-head" data-reveal>
+        <p class="k">Where & how</p>
+        <h2>場所と、連絡の取り方。</h2>
+        <p>三つの窓口を、ここにまとめておきます。すべて架空の情報です。</p>
+      </div>
+      <div class="cards">
+        <article class="card" data-reveal>
+          <p class="lab">Address</p>
+          <p class="big">月の丘 1-2-3<br>三日月ビル 4F</p>
+          <p>架空の住所です。実在する建物・部屋番号を示しません。</p>
+        </article>
+        <article class="card" data-reveal>
+          <p class="lab">Mail</p>
+          <p class="big">hello@tsukigi.example</p>
+          <p>.example は予約されたドメインで、実際には届きません。</p>
+        </article>
+        <article class="card" data-reveal>
+          <p class="lab">Hours</p>
+          <p class="big">月〜金 10:00–18:00</p>
+          <p>土日は、この作例では閉まっていることにしています。</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="form">
+    <div class="wrap">
+      <div class="section-head" data-reveal>
+        <p class="k">Message</p>
+        <h2>形にして、送る場所。</h2>
+        <p>問い合わせの形を示すフォームです。この作例では無効化してあるため、何を記入しても送信されません。</p>
+      </div>
+      <div class="formbox" data-reveal>
+        <p class="form-note"><span class="ic" aria-hidden="true">ⓘ</span><span><b>デモ用のフォームです。</b>入力はできますが、送信ボタンは押しても何も起きません。個人情報も外部にも送られません。</span></p>
+        <form id="demo-form" onsubmit="return false">
+          <fieldset disabled style="border:0;padding:0;margin:0">
+            <div class="form-row">
+              <div class="field">
+                <label for="f-name">お名前 <span class="req">*</span></label>
+                <input type="text" id="f-name" name="name" placeholder="山田 三日月" disabled>
+              </div>
+              <div class="field">
+                <label for="f-mail">メールアドレス <span class="req">*</span></label>
+                <input type="email" id="f-mail" name="email" placeholder="you@example.com" disabled>
+              </div>
+            </div>
+            <div class="field">
+              <label for="f-topic">件名</label>
+              <input type="text" id="f-topic" name="topic" placeholder="お仕事の相談" disabled>
+            </div>
+            <div class="field">
+              <label for="f-msg">本文 <span class="req">*</span></label>
+              <textarea id="f-msg" name="message" placeholder="どんな話をしたいか、自由に書いてください" disabled></textarea>
+            </div>
+          </fieldset>
+          <div class="form-actions">
+            <button type="submit" class="btn-submit" aria-disabled="true">送信する<span aria-hidden="true">→</span></button>
+            <span class="form-hint">※ 無効化されています。押しても送信されません。</span>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <section class="band">
+    <div class="wrap">
+      <h2 data-reveal>まずは、<br>一句だけでも。</h2>
+      <p data-reveal>このページはデザインの作例です。ここにある制作所・住所・メールアドレスは、すべて架空です。</p>
+      <div class="actions" data-reveal>
+        <a class="cta" href="#top">最初に戻る</a>
+        <a class="ghost" href="../../index.html#templates">テンプレート一覧へ</a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="foot">
+    <div class="wrap">
+      <p class="fine"><b>TSUKIGI STUDIO — 作例</b> ／ このページは Nagiport Motion Kit の作例（CONTACT／問い合わせ）です。参考にした実在サイトの構成・余白・配色・動きの設計は学びとしていますが、素材・コード・文言・ブランド・ロゴはすべてオリジナルです。掲載の制作所・住所・メールは架空で、実在のサービス・人物・実績を示しません。フォームは無効化されており、個人情報・送信先・分析ツールはありません。</p>
+    </div>
+  </footer>
+</main>
+
+<script>
+(function(){
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var items = document.querySelectorAll('[data-reveal]');
+  if(reduce || !('IntersectionObserver' in window)){
+    items.forEach(function(el){ el.classList.add('is-in'); });
+  } else {
+    var io = new IntersectionObserver(function(es){
+      es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('is-in'); io.unobserve(e.target); } });
+    }, {rootMargin:'0px 0px -8% 0px', threshold:0.12});
+    items.forEach(function(el){ io.observe(el); });
+  }
+  var f = document.getElementById('demo-form');
+  if(f){ f.addEventListener('submit', function(e){ e.preventDefault(); }); }
+})();
+</script>
+</body>
+</html>

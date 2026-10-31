@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta
+      name="description"
+      content="葉脈を見比べる架空の標本室。自作の葉ラスタを紙の上に重ね、標本と観察光で記録が変化します。"
+    />
+    <title>HERBARIUM / 葉の観測室</title>
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2032%2032%22%3E%3Crect%20width%3D%2232%22%20height%3D%2232%22%20rx%3D%224%22%20fill%3D%22%23284c39%22%2F%3E%3Ctext%20x%3D%2216%22%20y%3D%2223%22%20text-anchor%3D%22middle%22%20fill%3D%22white%22%20font-family%3D%22sans-serif%22%20font-size%3D%2223%22%20font-weight%3D%22900%22%3EH%3C%2Ftext%3E%3C%2Fsvg%3E"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <a class="skip" href="#main">本文へ</a>
+    <header>
+      <a href="#main" class="brand">HERBARIUM / 葉の観測室</a>
+      <nav aria-label="ページ内">
+        <a href="#specimens">標本を選ぶ</a><a href="#notes">観測メモ</a>
+      </nav>
+    </header>
+    <main id="main">
+      <section class="specimen-stage">
+        <h1>葉脈に、時間。</h1>
+        <div class="stage-number">
+          <span>植物観測標本</span><strong id="specimen-number">A.031</strong
+          ><span>Field collection / 2026</span>
+        </div>
+        <div class="back-sheet sheet-one">
+          <img
+            src="assets/leaf-2.png"
+            alt="細い葉脈と鋸歯のある自作の葉標本"
+          /><span>日向の若葉 / B.014</span>
+        </div>
+        <div class="back-sheet sheet-two">
+          <img src="assets/leaf-3.png" alt="幅広い青緑の自作の葉標本" /><span
+            >水辺の広葉 / C.008</span
+          >
+        </div>
+        <article class="specimen-sheet">
+          <div class="sheet-head">
+            <span>Herbarium</span><span id="sheet-code">A.031</span>
+          </div>
+          <img
+            id="main-leaf"
+            src="assets/leaf-1.png"
+            alt="中央の主脈から細かい支脈が伸びる濃緑のオリジナル標本"
+          />
+          <div class="sheet-caption">
+            <h2 id="leaf-name">木陰の長葉</h2>
+            <span id="leaf-type">羽状脈 / なめらかな葉縁</span>
+            <p id="leaf-note">光を受けとめる面を、静かに広げる。</p>
+          </div>
+          <div class="sheet-stamp">採集<br />見本</div>
+        </article>
+        <aside class="specimen-controls" id="specimens">
+          <span class="micro">標本棚</span
+          ><button type="button" data-leaf="0" aria-pressed="true">
+            <small>A.031 / 木陰</small><strong>木陰の長葉</strong
+            ><span>↗</span></button
+          ><button type="button" data-leaf="1" aria-pressed="false">
+            <small>B.014 / 日向</small><strong>日向の若葉</strong
+            ><span>↗</span></button
+          ><button type="button" data-leaf="2" aria-pressed="false">
+            <small>C.008 / 水辺</small><strong>水辺の広葉</strong><span>↗</span>
+          </button>
+          <div class="light-control">
+            <label for="light"
+              >観察光の強さ <output id="light-output">65%</output></label
+            ><input id="light" type="range" min="20" max="100" value="65" />
+            <p>光を変え、葉の輪郭を確かめる。</p>
+          </div>
+          <button id="enlarge" type="button" class="button-fill">
+            葉脈を拡大する
+          </button>
+        </aside>
+        <span class="stage-scale" aria-hidden="true"
+          >0 ━━━━━ 5 ━━━━━ 10 cm</span
+        >
+      </section>
+      <section class="observation-table" id="notes">
+        <div>
+          <span class="micro">観測メモ</span>
+          <h2>ひとつの葉に、<br />いくつもの仕組み。</h2>
+          <p class="status" id="leaf-status" aria-live="polite">
+            木陰の長葉、観察光65%を表示しています。
+          </p>
+        </div>
+        <dl>
+          <div>
+            <dt>葉の長さ</dt>
+            <dd id="leaf-length">18.4 <small>cm</small></dd>
+          </div>
+          <div>
+            <dt>葉脈の形</dt>
+            <dd id="leaf-vein">羽状脈</dd>
+          </div>
+          <div>
+            <dt>光合成の指数</dt>
+            <dd id="leaf-index">72 <small>sample</small></dd>
+          </div>
+          <div>
+            <dt>観察メモ</dt>
+            <dd id="leaf-place">木陰に沿って伸びる</dd>
+          </div>
+        </dl>
+      </section>
+      <section class="lab-note">
+        <span>観測の手がかり</span>
+        <p>
+          輪郭、葉脈、光の受け方。ひとつずつ比べてみると、似ているようで違う葉の暮らしが見えてきます。
+        </p>
+        <strong>よく見ることから、<br />はじめよう。</strong>
+      </section>
+    </main>
+    <footer>
+      <strong>HERBARIUM LAB</strong>
+      <p>
+        架空の植物標本室のデモ。画像は自作の架空標本、数値はサンプルです。実在植物の同定や栽培診断には使用できません。
+      </p>
+      <a href="#main">標本へ ↑</a>
+    </footer>
+    <dialog id="modal" aria-labelledby="modal-title">
+      <div class="dialog-head">
+        <span class="micro">ローカルプレビュー</span
+        ><button id="modal-close" type="button" aria-label="閉じる">×</button>
+      </div>
+      <h2 id="modal-title"></h2>
+      <p id="modal-body"></p>
+    </dialog>
+  </body>
+</html>

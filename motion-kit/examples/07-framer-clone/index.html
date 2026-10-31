@@ -1,0 +1,423 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<meta name="robots" content="noindex,nofollow">
+<meta name="theme-color" content="#000">
+<title>Framer is the design agent for every step from idea to launch</title>
+<meta name="description" content="Go from idea to launch with an agent that designs and builds on the canvas. Keep each change editable, with hosting, security, analytics, CMS, and SEO built in.">
+<style>
+/* ---- Framer fonts (from framerusercontent.com) ---- */
+@font-face{font-family:"GT Walsheim Medium";src:url("https://framerusercontent.com/assets/6kEeNyQwxT59TY7SpLEnehG2fc.woff2");font-display:swap;font-style:normal;font-weight:500}
+@font-face{font-family:"GT Walsheim Bold";src:url("https://framerusercontent.com/assets/9yxOMHiOq1YW9lyV4OoKqGTdPeY.woff2");font-display:swap;font-style:normal;font-weight:700}
+@font-face{font-family:"Inter Variable";src:url("https://framerusercontent.com/assets/mYcqTSergLb16PdbJJQMl9ebYm4.woff2");font-display:swap;font-style:normal;font-weight:400}
+@font-face{font-family:"Inter Variable";src:url("https://framerusercontent.com/assets/DolVirEGb34pEXEp8t8FQBSK4.woff2");font-display:swap;font-style:normal;font-weight:500}
+@font-face{font-family:"Inter";src:url("https://framerusercontent.com/assets/hyOgCu0Xnghbimh0pE8QTvtt2AU.woff2");font-display:swap;font-style:normal;font-weight:600}
+:root{
+  --bg:#000;
+  --fg:#fff;
+  --fg2:#999;
+  --fg3:#888;
+  --fg4:#666;
+  --accent:#09f;
+  --good:#0bb;
+  --card:#141414;
+  --card2:#1f1f1f;
+  --line:rgba(255,255,255,.1);
+  --line2:rgba(255,255,255,.06);
+  --font-head:"GT Walsheim Medium","Inter Variable",system-ui,sans-serif;
+  --font-body:"Inter Variable","Inter",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --font-mono:"JetBrains Mono",ui-monospace,"SF Mono",Consolas,monospace;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--font-body);font-size:16px;line-height:1.5;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+::selection{background:var(--accent);color:#000}
+h1,h2,h3{font-family:var(--font-head);letter-spacing:-.04em;line-height:1em;margin:0;font-weight:500}
+.wrap{width:min(1200px,calc(100% - 64px));margin-inline:auto}
+@media (max-width:810px){.wrap{width:calc(100% - 40px)}}
+
+/* header */
+.head{position:sticky;top:0;z-index:50;background:rgba(0,0,0,.7);backdrop-filter:blur(16px);border-bottom:1px solid var(--line2)}
+.head .wrap{display:flex;align-items:center;justify-content:space-between;height:64px}
+.brand-slot{width:2px;height:2px} /* logo removed */
+.nav{display:flex;align-items:center;gap:28px;font-size:14px;color:var(--fg2)}
+.nav a:hover{color:var(--fg)}
+.nav .cta-login{color:var(--fg)}
+.btn-pill{display:inline-flex;align-items:center;justify-content:center;min-height:36px;padding:0 16px;border-radius:8px;background:#fff;color:#000;font-size:14px;font-weight:500;transition:transform .15s}
+.btn-pill:hover{transform:translateY(-1px)}
+@media (max-width:900px){.nav a:not(.btn-pill):not(.cta-login){display:none}}
+
+/* hero */
+.hero{position:relative;isolation:isolate;padding:clamp(72px,10vw,140px) 0 clamp(48px,6vw,80px);overflow:hidden}
+.hero-bg{position:absolute;inset:0;z-index:-1;opacity:.5;pointer-events:none}
+.dot{position:absolute;width:2px;height:2px;border-radius:50%;background:var(--accent);opacity:.3;animation:ghostFlow .75s linear infinite}
+@keyframes ghostFlow{0%{transform:translateY(0);opacity:.15}50%{opacity:.5}100%{transform:translateY(-14px);opacity:.15}}
+.badge{display:inline-flex;align-items:center;gap:8px;font-size:12px;color:var(--fg2);border:1px solid var(--line);border-radius:999px;padding:6px 12px}
+.badge b{color:var(--accent);font-weight:600}
+.hero h1{font-size:clamp(36px,6vw,54px);max-width:16ch;margin:26px 0 0}
+.hero h1 .shimmer{background:linear-gradient(90deg,#0000 0% 42.5%,#fff 50%,#0000 57.5% 100%);background-size:200% 100%;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;animation:shimmer 5s linear infinite}
+@keyframes shimmer{to{background-position:-200% 0}}
+.hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:32px}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:0 22px;border-radius:8px;font-size:15px;font-weight:500;border:1px solid transparent;cursor:pointer;transition:transform .15s}
+.btn:active{transform:translateY(1px)}
+.btn-white{background:#fff;color:#000}
+.btn-white:hover{transform:translateY(-1px)}
+.btn-ghost{border-color:var(--line);color:var(--fg);background:transparent}
+.btn-ghost:hover{border-color:#444}
+.hero-media{position:relative;margin-top:48px;border:1px solid var(--line);border-radius:12px;overflow:hidden;background:radial-gradient(120% 120% at 50% 0%,#101826 0%,#05070c 60%,#000 100%);min-height:clamp(280px,42vw,520px)}
+.hero-media .frame{position:absolute;inset:16px;border:1px solid var(--line2);border-radius:8px;background:linear-gradient(180deg,#0b0f16,#070a10)}
+.hero-media .bar{position:absolute;top:16px;left:16px;right:16px;height:34px;border-radius:8px 8px 0 0;background:#0d1119;border-bottom:1px solid var(--line2);display:flex;align-items:center;gap:6px;padding:0 12px}
+.hero-media .bar i{width:9px;height:9px;border-radius:50%;background:#2a2f3a;display:block}
+.hero-media .ui{position:absolute;inset:58px 16px 16px;display:grid;grid-template-columns:180px 1fr;gap:12px}
+.hero-media .side{border-right:1px solid var(--line2);padding-right:12px;display:flex;flex-direction:column;gap:10px}
+.hero-media .side b{height:10px;border-radius:3px;background:#1a2130;display:block}
+.hero-media .side b:nth-child(2){width:80%}.hero-media .side b:nth-child(3){width:90%}.hero-media .side b:nth-child(4){width:70%}
+.hero-media .canvas{background:
+  linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px) 0 0/24px 24px,
+  linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px) 0 0/24px 24px,
+  #0a0e15;border-radius:6px}
+.hero-media .play{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:64px;height:64px;border-radius:50%;background:rgba(255,255,255,.9);display:grid;place-items:center}
+.hero-media .play::after{content:"";border-left:16px solid #000;border-top:10px solid transparent;border-bottom:10px solid transparent;margin-left:4px}
+.hero-media .len{position:absolute;bottom:12px;right:14px;font-family:var(--font-mono);font-size:11px;color:var(--fg3)}
+.hero-foot{display:flex;align-items:center;gap:16px;margin-top:18px;font-size:13px;color:var(--fg3)}
+.hero-foot a{color:var(--fg2)}
+.hero-foot a:hover{color:var(--fg)}
+@media (max-width:640px){.hero-media .ui{grid-template-columns:1fr}.hero-media .side{display:none}}
+
+/* generic section */
+.section{padding:clamp(64px,9vw,120px) 0;border-top:1px solid var(--line2)}
+.section-head{max-width:720px;margin-bottom:clamp(32px,5vw,64px)}
+.section-head h2{font-size:clamp(28px,4.4vw,44px)}
+.section-head p{margin:16px 0 0;color:var(--fg2);font-size:15px;line-height:1.7}
+.section-head.center{margin-inline:auto;text-align:center}
+
+/* agents tabs */
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:28px}
+.tab{appearance:none;border:1px solid var(--line);background:transparent;color:var(--fg2);font:inherit;font-size:14px;padding:10px 16px;border-radius:999px;cursor:pointer;transition:color .2s,border-color .2s,background .2s}
+.tab[aria-selected="true"]{background:#fff;color:#000;border-color:#fff}
+.tabpanel{display:none}
+.tabpanel.active{display:grid;grid-template-columns:1fr 1.2fr;gap:32px;align-items:center;animation:panelIn .4s cubic-bezier(.2,.7,.2,1)}
+@keyframes panelIn{from{opacity:0}to{opacity:1}}
+@media (max-width:810px){.tabpanel.active{grid-template-columns:1fr}}
+.tabpanel h3{font-size:clamp(22px,3vw,30px);letter-spacing:-.03em}
+.tabpanel p{color:var(--fg2);font-size:15px;line-height:1.7;margin:14px 0 20px}
+.mock{border:1px solid var(--line);border-radius:10px;background:linear-gradient(180deg,#0c0f15,#080a0f);min-height:240px;padding:18px;display:flex;flex-direction:column;gap:12px}
+.mock .row{display:flex;gap:10px;align-items:center}
+.mock .chip{font-family:var(--font-mono);font-size:10px;letter-spacing:.1em;color:var(--accent);border:1px solid rgba(0,153,255,.3);border-radius:999px;padding:4px 10px}
+.mock .line{height:10px;border-radius:3px;background:#1a2130}
+.mock .line.w70{width:70%}.mock .line.w50{width:50%}
+.mock .term{font-family:var(--font-mono);font-size:11px;color:#7ee0a3;background:#05070a;border:1px solid var(--line2);border-radius:8px;padding:12px;line-height:1.9;overflow:hidden}
+
+/* bento */
+.bento{display:grid;grid-template-columns:repeat(6,1fr);gap:16px}
+.bcard{border:1px solid var(--line);border-radius:12px;background:var(--card);padding:24px;min-height:180px;display:flex;flex-direction:column;gap:14px}
+.bcard h3{font-size:18px;letter-spacing:-.02em}
+.bcard p{margin:0;color:var(--fg2);font-size:13.5px;line-height:1.7}
+.bcard .metric{margin-top:auto;font-family:var(--font-mono);font-size:12px;color:var(--good)}
+.bcard.wide{grid-column:span 3}
+.bcard.third{grid-column:span 2}
+@media (max-width:900px){.bento{grid-template-columns:repeat(2,1fr)}.bcard.wide,.bcard.third{grid-column:span 2}}
+@media (max-width:640px){.bento{grid-template-columns:1fr}.bcard.wide,.bcard.third{grid-column:span 1}}
+.bcard .vitals{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.bcard .vitals div{border:1px solid var(--line2);border-radius:8px;padding:10px}
+.bcard .vitals b{display:block;font-family:var(--font-mono);font-size:18px;color:var(--fg)}
+.bcard .vitals span{font-size:10px;color:var(--fg4);letter-spacing:.1em}
+
+/* gallery */
+.gallery{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.gtile{border:1px solid var(--line);border-radius:10px;overflow:hidden;aspect-ratio:4/3;background:linear-gradient(135deg,#141a24,#0a0d13)}
+.gtile span{position:absolute;bottom:10px;left:12px;font-size:11px;color:var(--fg3)}
+.gtile{position:relative}
+.gtile:nth-child(odd){background:linear-gradient(135deg,#1a1424,#0d0a13)}
+@media (max-width:810px){.gallery{grid-template-columns:repeat(2,1fr)}}
+
+/* logo wall */
+.logowall{display:grid;grid-template-columns:repeat(4,1fr);gap:20px 40px;width:min(660px,100%);margin-inline:auto}
+.logowall span{display:flex;align-items:center;justify-content:center;height:50px;border:1px solid var(--line2);border-radius:8px;color:var(--fg3);font-size:14px;font-weight:500;letter-spacing:.02em}
+@media (max-width:640px){.logowall{grid-template-columns:repeat(2,1fr)}}
+
+/* community */
+.feed{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+@media (max-width:900px){.feed{grid-template-columns:1fr}}
+.fcard{border:1px solid var(--line);border-radius:12px;background:var(--card);padding:20px}
+.fcard .who{display:flex;align-items:center;gap:10px;font-size:13px}
+.fcard .who .av{width:30px;height:30px;border-radius:50%;background:linear-gradient(135deg,#2a3550,#1a2130)}
+.fcard .who b{font-weight:600}
+.fcard .who span{color:var(--fg4);font-size:12px}
+.fcard p{margin:14px 0 0;color:var(--fg2);font-size:13.5px;line-height:1.7}
+.stat{font-family:var(--font-head);font-size:clamp(30px,5vw,48px);letter-spacing:-.03em}
+.stat small{font-family:var(--font-body);font-size:14px;color:var(--fg2);letter-spacing:0}
+
+/* final CTA */
+.final{text-align:center}
+.agent-input{max-width:640px;margin:36px auto 0;border:1px solid var(--line);border-radius:12px;background:var(--card);padding:18px;text-align:left}
+.agent-input .prompt{font-family:var(--font-mono);font-size:13px;color:var(--fg2)}
+.agent-input .prompt .caret{display:inline-block;width:8px;height:16px;background:var(--accent);vertical-align:-2px;animation:blink 1s steps(1) infinite}
+@keyframes blink{50%{opacity:0}}
+.agent-input .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.agent-input .chips span{font-size:12px;color:var(--fg2);border:1px solid var(--line2);border-radius:999px;padding:6px 12px}
+
+/* footer */
+.foot{border-top:1px solid var(--line2);padding:clamp(56px,8vw,96px) 0 40px}
+.foot-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:32px}
+@media (max-width:810px){.foot-grid{grid-template-columns:repeat(2,1fr)}}
+.foot-col h4{margin:0 0 14px;font-family:var(--font-body);font-size:11px;letter-spacing:.16em;color:var(--fg4);text-transform:uppercase;font-weight:600}
+.foot-col a{display:block;font-size:13px;color:var(--fg2);padding:5px 0}
+.foot-col a:hover{color:var(--fg)}
+.foot-bottom{display:flex;flex-wrap:wrap;gap:16px;align-items:center;justify-content:space-between;margin-top:48px;padding-top:24px;border-top:1px solid var(--line2);font-size:12px;color:var(--fg4)}
+.foot-bottom .brand-slot{width:2px;height:2px} /* logo removed */
+
+/* reveal */
+[data-reveal]{opacity:0;transition:opacity .4s cubic-bezier(.2,.7,.2,1)}
+[data-reveal].is-in{opacity:1}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .dot,.hero h1 .shimmer,.agent-input .prompt .caret,.tabpanel.active{animation:none}
+  [data-reveal]{opacity:1;transition:none}
+}
+</style>
+<noscript><style>[data-reveal]{opacity:1}</style></noscript>
+</head>
+<body>
+<header class="head">
+  <div class="wrap">
+    <span class="brand-slot" aria-hidden="true"></span>
+    <nav class="nav" aria-label="Primary">
+      <a href="#agents">Platform</a>
+      <a href="#platform">Solutions</a>
+      <a href="#community">Resources</a>
+      <a href="#platform">Enterprise</a>
+      <a href="#platform">Pricing</a>
+      <a class="cta-login" href="#cta">Log in</a>
+      <a class="btn-pill" href="#cta">Sign up</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="hero" id="hero">
+    <div class="hero-bg" id="dots" aria-hidden="true"></div>
+    <div class="wrap">
+      <span class="badge" data-reveal><b>New:</b> Skills</span>
+      <h1 data-reveal>Framer is the <span class="shimmer">design agent</span> for every step from idea to launch</h1>
+      <div class="hero-actions" data-reveal>
+        <a class="btn btn-white" href="#cta">Get started for free</a>
+        <a class="btn btn-ghost" href="#cta">Download app</a>
+      </div>
+      <div class="hero-media" data-reveal role="img" aria-label="Product preview (mock)">
+        <div class="frame" aria-hidden="true"></div>
+        <div class="bar" aria-hidden="true"><i></i><i></i><i></i></div>
+        <div class="ui" aria-hidden="true">
+          <div class="side"><b></b><b></b><b></b><b></b></div>
+          <div class="canvas"></div>
+        </div>
+        <div class="play" aria-hidden="true"></div>
+        <span class="len" aria-hidden="true">0:36</span>
+      </div>
+      <div class="hero-foot" data-reveal><a href="#community">Meet our customers</a><span>·</span><span>No credit card required</span></div>
+    </div>
+  </section>
+
+  <section class="section" id="agents">
+    <div class="wrap">
+      <div class="section-head center" data-reveal>
+        <h2>Agents that work alongside you, not instead of you</h2>
+      </div>
+      <div class="tabs" role="tablist" aria-label="Agents" data-reveal>
+        <button class="tab" role="tab" aria-selected="true" data-tab="0">Design with an agent</button>
+        <button class="tab" role="tab" aria-selected="false" data-tab="1">Run your CMS with an agent</button>
+        <button class="tab" role="tab" aria-selected="false" data-tab="2">Code with an agent</button>
+        <button class="tab" role="tab" aria-selected="false" data-tab="3">Connect to any AI</button>
+      </div>
+      <div class="tabpanel active" role="tabpanel" data-panel="0">
+        <div>
+          <h3>Design with an agent</h3>
+          <p>Describe the page you want and the agent drafts it on the canvas. Keep every layer editable, then refine the details yourself.</p>
+          <a class="btn btn-ghost" href="#cta">Start with Agents</a>
+        </div>
+        <div class="mock" aria-hidden="true">
+          <div class="row"><span class="chip">DESIGN PLAN</span><span class="chip">2s</span></div>
+          <div class="line w70"></div><div class="line w50"></div>
+          <div class="row"><span class="chip">LAYOUT VARIATIONS</span></div>
+          <div class="line w70"></div><div class="line w50"></div>
+        </div>
+      </div>
+      <div class="tabpanel" role="tabpanel" data-panel="1">
+        <div>
+          <h3>Run your CMS with an agent</h3>
+          <p>The CMS agent sets up, organizes, and updates your entire CMS, connecting it directly to the canvas so content and design stay in sync.</p>
+          <a class="btn btn-ghost" href="#cta">Start with Agents</a>
+        </div>
+        <div class="mock" aria-hidden="true">
+          <div class="term">47 posts returned · 47 mapped to Blog schema.
+Import complete · 47 blog entries published to CMS.</div>
+        </div>
+      </div>
+      <div class="tabpanel" role="tabpanel" data-panel="2">
+        <div>
+          <h3>Code with an agent</h3>
+          <p>Agents turn your wildest ideas into code and put them on your site. From simple custom effects to complex interactions.</p>
+          <a class="btn btn-ghost" href="#cta">Start with Agents</a>
+        </div>
+        <div class="mock" aria-hidden="true">
+          <div class="row"><span class="chip">CODE</span></div>
+          <div class="line w70"></div><div class="line w50"></div><div class="line w70"></div>
+        </div>
+      </div>
+      <div class="tabpanel" role="tabpanel" data-panel="3">
+        <div>
+          <h3>Connect to any AI</h3>
+          <p>Take action on your site from anywhere. Update copy from Slack. Trigger CMS changes from the terminal. Ship from a GitHub PR. Drive it all from your Terminal, Codex in ChatGPT, Claude Code, Cursor, or any external AI.</p>
+          <a class="btn btn-ghost" href="#cta">Start with Agents</a>
+        </div>
+        <div class="mock" aria-hidden="true">
+          <div class="row"><span class="chip">GPT 6.1 Sol</span></div>
+          <div class="line w70"></div><div class="line w50"></div>
+          <div class="term">Thinking...
+Created a design plan 2s
+Placing layout variations side by side.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="platform">
+    <div class="wrap">
+      <div class="section-head center" data-reveal>
+        <h2>Not just vibes, a full platform</h2>
+      </div>
+      <div class="bento">
+        <div class="bcard wide" data-reveal><h3>Performance</h3><p>Core Web Vitals measured on every publish.</p><div class="vitals"><div><b>1.1s</b><span>LCP</span></div><div><b>95ms</b><span>INP</span></div><div><b>0.01</b><span>CLS</span></div></div><span class="metric">GOOD</span></div>
+        <div class="bcard third" data-reveal><h3>CMS</h3><p>Structured content, editable on the canvas.</p><span class="metric">Articles 320 · Creators 256 · Categories 18</span></div>
+        <div class="bcard third" data-reveal><h3>SEO</h3><p>Metadata, sitemaps, and structured data built in.</p><span class="metric">Indexable</span></div>
+        <div class="bcard third" data-reveal><h3>Collaboration</h3><p>Branches for design and content work.</p><span class="metric">Main · use-cases · publishing · content</span></div>
+        <div class="bcard third" data-reveal><h3>Localization</h3><p>Ship the same site in many languages.</p><span class="metric">NL 35% · IT 100% · CN 90%</span></div>
+        <div class="bcard third" data-reveal><h3>Hosting</h3><p>Global edge hosting with automatic HTTPS.</p><span class="metric">99.99% uptime</span></div>
+        <div class="bcard third" data-reveal><h3>Security</h3><p>DDoS protection and automatic certificates.</p><span class="metric">Protected</span></div>
+        <div class="bcard wide" data-reveal><h3>Analytics</h3><p>Privacy-friendly analytics on every site.</p><div class="vitals"><div><b>400</b><span>LIVE</span></div><div><b>1.7M</b><span>UNIQUE</span></div><div><b>2.2M</b><span>VIEWED</span></div></div><span class="metric">Bounce 40.9%</span></div>
+        <div class="bcard wide" data-reveal><h3>A/B Testing</h3><p>Ship variants and measure the winner.</p><div class="vitals"><div><b>17.1%</b><span>CONV · WINNER</span></div><div><b>+91%</b><span>LIFT</span></div><div><b>4,916</b><span>VIEWS</span></div></div><span class="metric">Home Page 2026</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="gallery">
+    <div class="wrap">
+      <div class="section-head" data-reveal>
+        <h2>Shipped with Framer</h2>
+        <a href="#gallery" style="color:var(--accent)">See Framer sites →</a>
+      </div>
+      <div class="gallery" data-reveal>
+        <div class="gtile"><span>Site 01</span></div>
+        <div class="gtile"><span>Site 02</span></div>
+        <div class="gtile"><span>Site 03</span></div>
+        <div class="gtile"><span>Site 04</span></div>
+        <div class="gtile"><span>Site 05</span></div>
+        <div class="gtile"><span>Site 06</span></div>
+        <div class="gtile"><span>Site 07</span></div>
+        <div class="gtile"><span>Site 08</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="logowall">
+    <div class="wrap">
+      <div class="section-head center" data-reveal>
+        <h2>Trusted by teams shipping big sites</h2>
+        <p><a href="#logowall" style="color:var(--accent)">Read stories →</a></p>
+      </div>
+      <div class="logowall" data-reveal>
+        <span>Company A</span><span>Company B</span><span>Company C</span><span>Company D</span>
+        <span>Company E</span><span>Company F</span><span>Company G</span><span>Company H</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="community">
+    <div class="wrap">
+      <div class="section-head" data-reveal>
+        <h2>Built on a community that isn't going anywhere</h2>
+        <p><span class="stat">25,204</span> <small>Resources</small> · <a href="#community" style="color:var(--accent)">Browse the community →</a></p>
+      </div>
+      <div class="feed" data-reveal>
+        <div class="fcard"><div class="who"><span class="av" aria-hidden="true"></span><div><b>Lee Black</b><br><span>117 · 32</span></div></div><p>Turn your sound on.</p></div>
+        <div class="fcard"><div class="who"><span class="av" aria-hidden="true"></span><div><b>Ben Fryc</b><br><span>231 · 27 · 11</span></div></div><p>in my fisheye era</p></div>
+        <div class="fcard"><div class="who"><span class="av" aria-hidden="true"></span><div><b>Trending Templates</b><br><span>Marketplace</span></div></div><p>Can this be built in Framer? · Recraft · Tidy Up · Hover Zoom · Lou</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section final" id="cta">
+    <div class="wrap">
+      <h2 data-reveal>Your next idea starts here</h2>
+      <div class="hero-actions" style="justify-content:center" data-reveal>
+        <a class="btn btn-white" href="#cta">Get started for free</a>
+        <a class="btn btn-ghost" href="#cta">Download app</a>
+      </div>
+      <div class="agent-input" data-reveal>
+        <div class="prompt">Create a landing page for my product<span class="caret" aria-hidden="true"></span></div>
+        <div class="chips">
+          <span>Create personal portfolio</span><span>Build startup site</span><span>Launch landing page</span><span>Start company blog</span><span>Start without AI</span>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-col"><h4>Product</h4><a href="#agents">AI</a><a href="#agents">Agents</a><a href="#platform">Design</a><a href="#platform">CMS</a><a href="#platform">Hosting</a><a href="#platform">Performance</a><a href="#platform">SEO</a></div>
+      <div class="foot-col"><h4>Marketplace</h4><a href="#gallery">Templates</a><a href="#gallery">Components</a><a href="#gallery">Vectors</a><a href="#gallery">Plugins</a><a href="#gallery">Gallery</a></div>
+      <div class="foot-col"><h4>Business</h4><a href="#platform">Enterprise</a><a href="#platform">Agencies</a><a href="#platform">Startups</a><a href="#platform">Pricing</a></div>
+      <div class="foot-col"><h4>Resources</h4><a href="#community">Academy</a><a href="#community">Developers</a><a href="#community">Guides</a><a href="#community">Blog</a><a href="#community">Help Articles</a></div>
+    </div>
+    <div class="foot-bottom">
+      <span class="brand-slot" aria-hidden="true"></span>
+      <span>CCPA</span><span>Checking status</span>
+      <span style="color:var(--fg4)">Clone of framer.com — logo removed. Copy & design belong to Framer. Demo only.</span>
+      <span>2026</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var items = document.querySelectorAll('[data-reveal]');
+  if(reduce || !('IntersectionObserver' in window)){
+    items.forEach(function(el){ el.classList.add('is-in'); });
+  } else {
+    var io = new IntersectionObserver(function(es){
+      es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('is-in'); io.unobserve(e.target); } });
+    }, {rootMargin:'0px 0px -6% 0px', threshold:0.1});
+    items.forEach(function(el){ io.observe(el); });
+  }
+
+  var dots = document.getElementById('dots');
+  if(dots && !reduce){
+    for(var i=0;i<20;i++){
+      var s = document.createElement('span');
+      s.className = 'dot';
+      s.style.left = (Math.random()*100).toFixed(2) + '%';
+      s.style.top = (Math.random()*100).toFixed(2) + '%';
+      s.style.animationDelay = (-Math.random()*750).toFixed(0) + 'ms';
+      dots.appendChild(s);
+    }
+  }
+
+  var tabs = document.querySelectorAll('.tab');
+  var panels = document.querySelectorAll('.tabpanel');
+  tabs.forEach(function(t){
+    t.addEventListener('click', function(){
+      var id = t.getAttribute('data-tab');
+      tabs.forEach(function(x){ x.setAttribute('aria-selected', String(x === t)); });
+      panels.forEach(function(p){ p.classList.toggle('active', p.getAttribute('data-panel') === id); });
+    });
+  });
+})();
+</script>
+</body>
+</html>

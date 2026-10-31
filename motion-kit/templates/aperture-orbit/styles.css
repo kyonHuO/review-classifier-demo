@@ -1,0 +1,793 @@
+html,
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+}
+* {
+  box-sizing: border-box;
+}
+body {
+  font-family: "Yu Gothic", Meiryo, Arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.65;
+}
+a {
+  color: inherit;
+  text-decoration: none;
+}
+button,
+input,
+select,
+textarea {
+  font: inherit;
+  color: inherit;
+}
+button {
+  cursor: pointer;
+  min-height: 44px;
+}
+button,
+a,
+input,
+select,
+textarea {
+  -webkit-tap-highlight-color: transparent;
+}
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 3px solid var(--focus, #ef573b);
+  outline-offset: 4px;
+}
+button:hover {
+  filter: brightness(1.08);
+}
+img {
+  max-width: 100%;
+  display: block;
+}
+h1,
+h2,
+h3,
+p {
+  margin-top: 0;
+}
+button {
+  border: 1px solid currentColor;
+  background: transparent;
+  padding: 9px 18px;
+}
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 20px 4vw;
+  border-bottom: 1px solid currentColor;
+}
+header .brand {
+  font:
+    900 25px Arial,
+    sans-serif;
+  letter-spacing: -1px;
+}
+header nav {
+  display: flex;
+  gap: 28px;
+  font-size: 12px;
+}
+.skip {
+  position: fixed;
+  left: 10px;
+  top: -100px;
+  background: white;
+  color: #111;
+  padding: 12px;
+  z-index: 99;
+}
+.skip:focus {
+  top: 10px;
+}
+.micro {
+  font-size: 11px;
+  letter-spacing: 1px;
+}
+.button-fill {
+  background: var(--ink);
+  color: var(--bg);
+}
+.status {
+  font-size: 12px;
+  line-height: 1.75;
+}
+footer {
+  padding: 30px 4vw;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 25px;
+  border-top: 1px solid currentColor;
+}
+footer p {
+  font-size: 12px;
+  max-width: 650px;
+  margin: 0;
+}
+footer strong {
+  font:
+    900 20px Arial,
+    sans-serif;
+}
+dialog {
+  width: min(620px, calc(100vw - 32px));
+  max-height: 85dvh;
+  overflow: auto;
+  background: var(--bg);
+  color: var(--ink);
+  border: 1px solid currentColor;
+  padding: 25px;
+}
+dialog::backdrop {
+  background: #141821c9;
+}
+.dialog-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+.dialog-head button {
+  font-size: 28px;
+  border: 0;
+  width: 44px;
+  padding: 0;
+}
+dialog h2 {
+  font:
+    32px Georgia,
+    "Yu Mincho",
+    serif;
+}
+dialog p {
+  font-size: 14px;
+}
+.controls {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+input[type="range"] {
+  accent-color: var(--ink);
+  min-height: 44px;
+  max-width: 100%;
+  cursor: pointer;
+}
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+}
+@media (max-width: 700px) {
+  header {
+    padding: 17px 20px;
+    gap: 10px;
+  }
+  header .brand {
+    font-size: 20px;
+  }
+  header nav {
+    gap: 14px;
+    font-size: 11px;
+  }
+  footer {
+    padding: 25px 20px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 13px;
+  }
+  footer p {
+    font-size: 12px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+:root {
+  --bg: #172345;
+  --ink: #b3c4f4;
+  --focus: #ee725c;
+  --ray: #e3c75e;
+  --lens-hue: 205deg;
+}
+header {
+  border-color: #62739a;
+}
+.optics-heading {
+  padding: 30px 4vw;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 30px;
+}
+.optics-heading h1 {
+  font:
+    900 clamp(75px, 12.7vw, 185px)/0.95 "Arial Narrow",
+    Arial,
+    sans-serif;
+  letter-spacing: -0.075em;
+  margin: 18px 0 0;
+}
+.optics-heading p {
+  font:
+    24px/1.6 "Yu Mincho",
+    serif;
+  margin: 0 1vw 8px 0;
+  min-width: 165px;
+}
+.optics-stage {
+  display: grid;
+  grid-template-columns: 38% minmax(0, 1fr);
+  margin: 0 22px;
+  border: 1px solid #62739a;
+  min-height: 590px;
+}
+.lens-library {
+  border-right: 1px solid #62739a;
+  padding: 20px;
+  min-width: 0;
+  background: #1b2a50;
+}
+.library-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  min-height: 44px;
+  font-size: 11px;
+}
+.library-heading button {
+  font-size: 11px;
+  padding: 7px 10px;
+  white-space: nowrap;
+}
+.library-heading button[hidden] {
+  display: none;
+}
+.lens-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  margin: 20px 0;
+}
+.lens-grid button {
+  border: 1px solid #586c95;
+  text-align: left;
+  padding: 12px 8px;
+  min-width: 0;
+  background: #172345;
+}
+.mini-lens {
+  display: block;
+  aspect-ratio: 1;
+  width: 90%;
+  margin: 0 auto 12px;
+  border: 5px solid #66768d;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 38% 35%, #d4e5ff99 0, transparent 25%),
+    radial-gradient(
+      circle,
+      transparent 0 35%,
+      #90a3cd33 40% 44%,
+      transparent 45% 56%,
+      #9dbeff99 58%,
+      #14263e 70%
+    ),
+    conic-gradient(from 30deg, #224c73, #879ad5, #132843, #7a5ca0, #224c73);
+  box-shadow:
+    inset 0 0 0 2px #101e34,
+    0 0 0 1px #a0abbe;
+  filter: hue-rotate(calc(var(--hue) - 205deg));
+}
+.lens-grid button > span {
+  font-size: 11px;
+  display: block;
+  line-height: 1.4;
+}
+.lens-grid button > b {
+  font: 14px Georgia;
+  display: block;
+  margin-top: 5px;
+}
+.lens-grid button[aria-pressed="true"] {
+  border-color: #ee725c;
+  box-shadow: inset 0 0 0 1px #ee725c;
+}
+.lens-library > p {
+  font-size: 12px;
+  line-height: 1.8;
+  margin-top: 20px;
+}
+.lens-theatre {
+  position: relative;
+  min-width: 0;
+  background: radial-gradient(ellipse, #263e65, transparent 65%);
+}
+.theatre-top {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  align-items: center;
+  padding: 22px 25px;
+  border-bottom: 1px solid #62739a;
+}
+.theatre-top h2 {
+  font:
+    20px Georgia,
+    "Yu Mincho",
+    serif;
+  margin: 0;
+}
+.theatre-top > span {
+  font-size: 11px;
+}
+.optical-art {
+  position: relative;
+  height: 400px;
+  overflow: hidden;
+}
+.major-lens {
+  position: absolute;
+  width: 330px;
+  height: 330px;
+  top: 30px;
+  left: calc(43% - 165px);
+  border-radius: 50%;
+  border: 18px solid #5e6c83;
+  background:
+    repeating-radial-gradient(circle, transparent 0 8px, #abc4e926 9px 10px),
+    conic-gradient(
+      from 20deg,
+      #223c5d,
+      #8197bb,
+      #243956,
+      #a8b7d0,
+      #334c6a,
+      #4a6183,
+      #223c5d
+    );
+  box-shadow:
+    0 0 0 2px #9baccc,
+    0 0 0 7px #111e39,
+    0 0 0 8px #6f83a7,
+    inset 0 0 0 4px #131d30;
+  filter: hue-rotate(calc(var(--lens-hue) - 205deg));
+  z-index: 2;
+}
+.glass-core {
+  position: absolute;
+  inset: 25px;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 32% 28%, #bddcf6b0 0, transparent 30%),
+    radial-gradient(circle at 65% 70%, #e1bde246 0, transparent 50%),
+    radial-gradient(circle, #12203f22 30%, #709fc944 62%, #12243a 74%);
+  box-shadow:
+    inset 12px 17px 28px #8ba9d35c,
+    inset -10px -13px 20px #050c2d8c;
+  border: 2px solid #9aacd477;
+}
+.major-lens > span {
+  position: absolute;
+  top: 11px;
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  font: 9px Arial;
+  color: #cbd4e4;
+}
+.optical-art canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 3;
+  pointer-events: none;
+}
+.ray-label {
+  position: absolute;
+  left: 20px;
+  top: 50%;
+  font-size: 11px;
+  z-index: 4;
+  background: #172345cc;
+  padding: 3px 6px;
+}
+.focal-label {
+  position: absolute;
+  right: 12%;
+  top: 42%;
+  font-size: 11px;
+  z-index: 4;
+  color: #ee725c;
+}
+.theatre-bottom {
+  padding: 0 30px 25px;
+  display: flex;
+  align-items: flex-end;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+.theatre-bottom > span {
+  font-size: 11px;
+  margin-bottom: 13px;
+}
+.theatre-bottom strong {
+  font:
+    90px/1 Impact,
+    "Arial Narrow",
+    sans-serif;
+  letter-spacing: -4px;
+}
+.theatre-bottom small {
+  font: 20px Arial;
+  letter-spacing: 0;
+}
+.theatre-bottom p {
+  font-size: 12px;
+  max-width: 220px;
+  margin: 0 0 7px auto;
+}
+.optics-stage.focused {
+  grid-template-columns: 200px minmax(0, 1fr);
+}
+.focused .lens-grid {
+  grid-template-columns: 1fr;
+  gap: 5px;
+  margin-top: 15px;
+}
+.focused .lens-grid button {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 7px;
+  min-height: 44px;
+}
+.focused .mini-lens {
+  width: 30px;
+  min-width: 30px;
+  height: 30px;
+  aspect-ratio: auto;
+  margin: 0;
+  border-width: 2px;
+}
+.focused .lens-grid button > span {
+  font-size: 11px;
+}
+.focused .lens-grid button > b {
+  font-size: 11px;
+  margin: 0 0 0 auto;
+}
+.focused .lens-library {
+  padding: 12px;
+}
+.focused .library-heading {
+  display: block;
+}
+.focused .library-heading button {
+  display: block;
+  margin-top: 10px;
+}
+.focused .lens-library > p {
+  font-size: 11px;
+}
+.optical-controls {
+  padding: 35px 5vw;
+  display: grid;
+  grid-template-columns: 1.6fr 1.4fr 1fr 180px;
+  gap: 35px;
+  align-items: center;
+  border-bottom: 1px solid #62739a;
+}
+.optical-controls label {
+  font-size: 12px;
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+}
+.optical-controls input {
+  width: 100%;
+  accent-color: #b3c4f4;
+}
+.spectrum {
+  height: 4px;
+  background: linear-gradient(
+    90deg,
+    #9d63dd,
+    #5169d3,
+    #57c48e,
+    #dfcf5e,
+    #d89055,
+    #c45c61
+  );
+  margin-top: -3px;
+}
+.range-ends {
+  display: flex;
+  justify-content: space-between;
+  font-size: 11px;
+  margin-top: 8px;
+}
+.transmission > span {
+  font-size: 11px;
+  display: block;
+}
+.transmission strong {
+  font: 48px Georgia;
+}
+.transmission small {
+  font: 15px Arial;
+}
+.optical-controls > .status {
+  grid-column: 1/-1;
+  margin: 0;
+}
+.principle {
+  padding: 75px 7vw;
+  display: grid;
+  grid-template-columns: 1.3fr 1fr 180px;
+  gap: 60px;
+  align-items: center;
+}
+.principle h2 {
+  font:
+    36px/1.5 "Yu Mincho",
+    serif;
+  margin: 15px 0;
+}
+.principle p {
+  font:
+    15px/2 "Yu Mincho",
+    serif;
+}
+.principle-mark {
+  font: 60px Georgia;
+  text-align: center;
+  color: #ee725c;
+}
+@media (max-width: 1050px) {
+  .optics-heading h1 {
+    font-size: 12.5vw;
+  }
+  .optics-heading p {
+    font-size: 19px;
+    min-width: 135px;
+  }
+  .optics-stage {
+    grid-template-columns: 40% minmax(0, 1fr);
+    margin: 0 15px;
+  }
+  .lens-library {
+    padding: 13px;
+  }
+  .lens-grid {
+    gap: 7px;
+  }
+  .lens-grid button {
+    padding: 9px 6px;
+  }
+  .lens-grid button > span {
+    font-size: 11px;
+  }
+  .major-lens {
+    width: 270px;
+    height: 270px;
+    left: calc(43% - 135px);
+    top: 55px;
+  }
+  .theatre-top {
+    padding: 20px 15px;
+  }
+  .theatre-top h2 {
+    font-size: 17px;
+  }
+  .theatre-bottom {
+    padding: 0 18px 25px;
+    gap: 15px;
+  }
+  .theatre-bottom strong {
+    font-size: 70px;
+  }
+  .theatre-bottom p {
+    margin: 10px 0 0;
+    max-width: 100%;
+  }
+  .optical-controls {
+    grid-template-columns: 1fr 1fr;
+    gap: 25px;
+  }
+  .principle {
+    grid-template-columns: 1.3fr 1fr;
+    gap: 30px;
+  }
+  .principle-mark {
+    grid-column: 2;
+  }
+}
+@media (max-width: 600px) {
+  header .brand {
+    font-size: 18px;
+  }
+  header nav {
+    font-size: 11px;
+    gap: 13px;
+  }
+  .optics-heading {
+    padding: 25px 22px;
+    display: block;
+  }
+  .optics-heading h1 {
+    font-size: 13.3vw;
+    letter-spacing: -0.07em;
+    margin: 18px 0 15px;
+  }
+  .optics-heading p {
+    font-size: 19px;
+    line-height: 1.5;
+    margin: 0;
+  }
+  .optics-heading p br {
+    display: none;
+  }
+  .optics-stage,
+  .optics-stage.focused {
+    grid-template-columns: 1fr;
+    margin: 0 12px;
+  }
+  .lens-library {
+    border-right: 0;
+    border-bottom: 1px solid #62739a;
+    padding: 15px;
+  }
+  .lens-grid {
+    margin: 15px 0;
+    gap: 8px;
+  }
+  .mini-lens {
+    width: 85%;
+  }
+  .lens-library > p {
+    font-size: 12px;
+  }
+  .focused .lens-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 5px;
+  }
+  .focused .lens-grid button {
+    display: block;
+    padding: 8px 6px;
+    text-align: center;
+  }
+  .focused .mini-lens {
+    display: none;
+  }
+  .focused .lens-grid button > span {
+    font-size: 11px;
+  }
+  .focused .lens-grid button > b {
+    display: block;
+    margin: 3px 0 0;
+    font-size: 11px;
+  }
+  .focused .library-heading {
+    display: flex;
+  }
+  .focused .library-heading button {
+    display: inline-block;
+    margin: 0;
+  }
+  .focused .lens-library > p {
+    display: none;
+  }
+  .optical-art {
+    height: 340px;
+  }
+  .major-lens {
+    width: 245px;
+    height: 245px;
+    top: 38px;
+    left: calc(43% - 122px);
+    border-width: 14px;
+  }
+  .glass-core {
+    inset: 20px;
+  }
+  .theatre-top {
+    padding: 20px;
+  }
+  .theatre-top h2 {
+    font-size: 18px;
+  }
+  .theatre-bottom {
+    padding: 0 22px 25px;
+  }
+  .theatre-bottom strong {
+    font-size: 75px;
+  }
+  .theatre-bottom p {
+    width: 100%;
+    margin: 0;
+  }
+  .ray-label {
+    left: 12px;
+    font-size: 11px;
+  }
+  .focal-label {
+    right: 10%;
+    top: 40%;
+  }
+  .optical-controls {
+    grid-template-columns: 1fr;
+    padding: 30px 25px;
+    gap: 25px;
+  }
+  .optical-controls > .status {
+    grid-column: 1;
+  }
+  .transmission {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .transmission strong {
+    font-size: 40px;
+  }
+  .principle {
+    grid-template-columns: 1fr;
+    padding: 45px 25px;
+    gap: 20px;
+  }
+  .principle h2 {
+    font-size: 31px;
+  }
+  .principle p {
+    font-size: 15px;
+  }
+  .principle-mark {
+    grid-column: 1;
+    text-align: left;
+    font-size: 65px;
+  }
+}
+
+.optics-heading p span:last-child {
+  display: block;
+}
+@media (min-width: 601px) and (max-width: 1100px) {
+  .optics-heading p span {
+    display: block;
+  }
+  .optics-heading p {
+    min-width: 140px;
+    font-size: 19px;
+  }
+}
+@media (max-width: 600px) {
+  .optics-heading p span {
+    display: inline;
+  }
+  .optics-heading p {
+    font-size: 19px;
+  }
+}

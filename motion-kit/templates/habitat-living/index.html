@@ -1,0 +1,244 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="theme-color" content="#f0f4ed" />
+    <meta
+      name="description"
+      content="好きな日常から選ぶ、住まい探し。架空ブランドの操作可能なデモサイトです。"
+    />
+    <title>habitat. — 好きな日常から選ぶ、住まい探し</title>
+    <link rel="icon" href="assets/illustration.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="script.js" defer></script>
+  </head>
+  <body class="habitat-living">
+    <a class="skip" href="#main">本文へ移動</a>
+    <header class="site-header">
+      <a class="brand" href="#main">habitat.</a>
+      <nav class="site-nav" id="navigation" aria-label="メインナビゲーション">
+        <a href="#homes">間取りから探す</a><a href="#list">物件を見る</a
+        ><a href="#about">私たちについて</a>
+      </nav>
+      <button
+        class="menu"
+        aria-controls="navigation"
+        aria-expanded="false"
+        type="button"
+      >
+        メニュー
+      </button>
+    </header>
+    <main id="main">
+      <section class="habitat-hero" id="homes">
+        <div class="home-search">
+          <p class="micro">住まいは、暮らし方から。</p>
+          <h1>好きな日常を、<br />見つけよう。</h1>
+          <p>広さの数字より、<br />ここで過ごす自分を想像する。</p>
+          <div class="home-filters">
+            <p class="micro">間取りから選ぶ</p>
+            <div class="choices" aria-label="間取り">
+              <button type="button" data-layout="one" aria-pressed="true">
+                1LDK</button
+              ><button type="button" data-layout="two" aria-pressed="false">
+                2LDK
+              </button>
+            </div>
+          </div>
+          <div class="home-count">
+            <strong id="home-count">2</strong><span>件のサンプル物件</span>
+          </div>
+          <a href="#list">候補を見る ↓</a>
+          <p class="micro search-note">掲載物件はすべて架空です。</p>
+        </div>
+        <div class="home-stage art">
+          <div class="home-stage-top">
+            <span id="plan-name">窓辺のある暮らし</span
+            ><span id="plan-area">48.6㎡</span>
+          </div>
+          <div class="plan-scene">
+            <div class="floorplan">
+              <div class="room living">
+                <span>Living / Dining</span><b>14.2帖</b>
+                <div class="sofa"></div>
+                <div class="table-furniture"></div>
+                <div class="plant"></div>
+              </div>
+              <div class="room bedroom">
+                <span>Bedroom</span><b>6.0帖</b>
+                <div class="bed"></div>
+              </div>
+              <div class="room study">
+                <span>Study</span><b>4.5帖</b>
+                <div class="desk"></div>
+              </div>
+              <div class="room bath">
+                <span>Bath</span>
+                <div class="tub"></div>
+              </div>
+              <div class="room entrance"><span>Entrance</span></div>
+              <div class="balcony">Balcony</div>
+            </div>
+          </div>
+          <div class="home-plan-bottom">
+            <span id="plan-type">1LDK / 南向き</span
+            ><span class="micro">イメージ間取り / 縮尺は参考</span>
+          </div>
+          <div class="plan-stamp">habitat.<span>Find your everyday.</span></div>
+        </div>
+      </section>
+      <section class="section property-section" id="list">
+        <div class="section-head">
+          <h2>ただいま、が<br />楽しみになる場所。</h2>
+          <p class="status" id="home-status" role="status">
+            1LDKのサンプルを2件表示しています。
+          </p>
+        </div>
+        <div class="property-list">
+          <article class="property" data-home="one">
+            <div class="property-number">A</div>
+            <div>
+              <h3>窓辺のある暮らし</h3>
+              <p>大きな窓と、午後の光。</p>
+              <span class="micro">48.6㎡ / 徒歩7分 / 1LDK</span>
+            </div>
+            <div class="property-price">
+              <b>128,000</b><span>円 / 月・管理費別</span>
+            </div>
+            <button
+              type="button"
+              class="save-home"
+              aria-pressed="false"
+              aria-label="窓辺のある暮らしをお気に入りに追加"
+            >
+              ♡</button
+            ><button
+              type="button"
+              class="btn ghost"
+              data-demo="窓辺のある暮らしの内見デモ"
+            >
+              内見デモ
+            </button>
+          </article>
+          <article class="property" data-home="one">
+            <div class="property-number">B</div>
+            <div>
+              <h3>本と過ごす部屋</h3>
+              <p>壁一面を、好きなものに。</p>
+              <span class="micro">42.8㎡ / 徒歩5分 / 1LDK</span>
+            </div>
+            <div class="property-price">
+              <b>116,000</b><span>円 / 月・管理費別</span>
+            </div>
+            <button
+              type="button"
+              class="save-home"
+              aria-pressed="false"
+              aria-label="本と過ごす部屋をお気に入りに追加"
+            >
+              ♡</button
+            ><button
+              type="button"
+              class="btn ghost"
+              data-demo="本と過ごす部屋の内見デモ"
+            >
+              内見デモ
+            </button>
+          </article>
+          <article class="property" data-home="two">
+            <div class="property-number">C</div>
+            <div>
+              <h3>庭につながる家</h3>
+              <p>子どもと植物が育つ、一階の部屋。</p>
+              <span class="micro">67.2㎡ / 徒歩9分 / 2LDK</span>
+            </div>
+            <div class="property-price">
+              <b>164,000</b><span>円 / 月・管理費別</span>
+            </div>
+            <button
+              type="button"
+              class="save-home"
+              aria-pressed="false"
+              aria-label="庭につながる家をお気に入りに追加"
+            >
+              ♡</button
+            ><button
+              type="button"
+              class="btn ghost"
+              data-demo="庭につながる家の内見デモ"
+            >
+              内見デモ
+            </button>
+          </article>
+          <article class="property" data-home="two">
+            <div class="property-number">D</div>
+            <div>
+              <h3>ふたりの余白</h3>
+              <p>それぞれの時間を、大切に。</p>
+              <span class="micro">62.4㎡ / 徒歩6分 / 2LDK</span>
+            </div>
+            <div class="property-price">
+              <b>158,000</b><span>円 / 月・管理費別</span>
+            </div>
+            <button
+              type="button"
+              class="save-home"
+              aria-pressed="false"
+              aria-label="ふたりの余白をお気に入りに追加"
+            >
+              ♡</button
+            ><button
+              type="button"
+              class="btn ghost"
+              data-demo="ふたりの余白の内見デモ"
+            >
+              内見デモ
+            </button>
+          </article>
+        </div>
+        <p class="control-note">
+          架空の賃貸物件・月額サンプルです。管理費・敷金・礼金等の契約条件は含みません。
+        </p>
+        <p class="status" id="save-status" role="status">
+          気になる部屋は、ハートで残せます。このページ内だけの保存です。
+        </p>
+      </section>
+      <section class="section habitat-about" id="about">
+        <h2>条件を聞く前に、<br />暮らしの話を。</h2>
+        <div>
+          <p>
+            朝は、コーヒーから？ 休日は、家で過ごす？
+            好きな日常を知ることが、住まい探しのはじまりです。
+          </p>
+          <p>
+            駅からの距離や面積に加えて、窓の向き、床の手触り、街の空気。数字にならない良さも、一緒に見つけます。
+          </p>
+          <button class="btn" data-demo="住まい相談のデモ" type="button">
+            住まい相談のデモを見る
+          </button>
+        </div>
+      </section>
+    </main>
+    <footer class="site-footer">
+      <div>
+        <strong>habitat.</strong>
+        <p>
+          架空のブランドのデモです。施設・商品・人物・価格はサンプルです。送信・予約・注文・決済は行われません。
+        </p>
+      </div>
+      <a href="../index.html">テンプレート一覧へ</a>
+    </footer>
+    <dialog aria-labelledby="demo-title">
+      <button class="close" type="button" aria-label="デモ画面を閉じる">
+        ×
+      </button>
+      <h2 id="demo-title">デモ</h2>
+      <p>
+        操作体験用の画面です。実際のサービス・商品は提供していません。入力や個人情報の収集は行いません。
+      </p>
+      <button class="btn" type="button" data-confirm>デモ操作を確認する</button>
+      <p class="status" role="status"></p>
+    </dialog>
+  </body>
+</html>

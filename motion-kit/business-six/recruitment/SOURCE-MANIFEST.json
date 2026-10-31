@@ -1,0 +1,31 @@
+{
+  "site": "recruitment",
+  "original_content": [
+    "index.html",
+    "styles.css",
+    "script.js",
+    "README.md"
+  ],
+  "code_license": "MIT",
+  "external_runtime_dependencies": [],
+  "references": [
+    {
+      "url": "https://startbootstrap.github.io/startbootstrap-agency/",
+      "use": "Structural research only; no source code, brands, copy or images redistributed",
+      "adaptation": "Team and timeline structure; original bold Japanese recruitment headline, day timeline and job-condition selector"
+    }
+  ],
+  "assets": [
+    {
+      "path": "assets/hero.jpg",
+      "kind": "AI-generated original concept image",
+      "tool": "OpenAI image_gen built-in",
+      "generated": "2026-10-30",
+      "prompt": "Original editorial photograph of three fictional adult Japanese design engineers discussing a wooden prototype in a bright workshop, blue wall orange stools, no logos or text.",
+      "sha256": "c8ee0d1a2e346c05ebb9b49fc992af622482cefb5c85a5755b842926fff175c2",
+      "redistribution": "Included as original AI-generated kit artwork; no third-party stock assets copied; output may not be unique.",
+      "evidence_record": "Task evidence: a/generation-record.json",
+      "license": "MIT as part of this original collection"
+    }
+  ]
+}

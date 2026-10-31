@@ -1,0 +1,30 @@
+{
+  "date": "2026-10-28",
+  "browser": "OpenBot Chromium",
+  "viewportWidths": [
+    390,
+    768,
+    1440
+  ],
+  "combinations": 30,
+  "assertions": 428,
+  "assertionsFailed": 0,
+  "overflowCount": 0,
+  "brokenImages": 0,
+  "missingAnchors": 0,
+  "reducedMotionCombinations": 30,
+  "reducedMotionFailures": 0,
+  "keyboard": {
+    "menuClosed": true,
+    "menuFocusRestored": true,
+    "dialogClosed": true,
+    "dialogFocusRestored": true,
+    "scope": "Trusted Enter/Escape on fieldnotes mobile; common implementation across all ten"
+  },
+  "screenshots": "10 composites x 3 viewport widths; top and lower-page evidence retained locally",
+  "limits": [
+    "Chromium only; no physical iOS/Android devices",
+    "Contrast calculation covers primary body/muted tokens; no certification claimed",
+    "Per-page control assertions use DOM click; shared Enter/Escape behavior additionally verified with trusted input"
+  ]
+}

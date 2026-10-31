@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta
+      name="description"
+      content="焙煎の境目を探すコーヒーの展示。温度ダイヤル、自作の豆、焙煎曲線と味指数がスライダーに応答します。"
+    />
+    <title>CINDER / 火と豆の観測</title>
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2032%2032%22%3E%3Crect%20width%3D%2232%22%20height%3D%2232%22%20rx%3D%224%22%20fill%3D%22%2349281d%22%2F%3E%3Ctext%20x%3D%2216%22%20y%3D%2223%22%20text-anchor%3D%22middle%22%20fill%3D%22white%22%20font-family%3D%22sans-serif%22%20font-size%3D%2223%22%20font-weight%3D%22900%22%3EC%3C%2Ftext%3E%3C%2Fsvg%3E"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <a class="skip" href="#main">本文へ</a>
+    <header>
+      <a class="brand" href="#main">CINDER ROASTERY</a>
+      <nav aria-label="ページ内">
+        <a href="#roast">焙煎を試す</a><a href="#profile">味の輪郭</a>
+      </nav>
+    </header>
+    <main id="main">
+      <section class="roaster-stage">
+        <div class="stage-top">
+          <span>火と、豆と、ほんの数秒。</span
+          ><span>Small batch / Roast study 2026</span>
+        </div>
+        <h1>CINDER</h1>
+        <div class="roast-dial">
+          <div class="dial-ring"></div>
+          <div class="dial-pointer" id="dial-pointer"></div>
+          <span class="dial-label top">浅煎り / 165°</span
+          ><span class="dial-label right">中煎り / 195°</span
+          ><span class="dial-label bottom">深煎り / 225°</span>
+          <div class="dial-value">
+            <span>焙煎の輪郭</span><strong id="roast-name">中煎り</strong
+            ><small id="roast-english">Medium roast</small>
+          </div>
+        </div>
+        <img
+          class="beans"
+          id="beans"
+          src="assets/beans.png"
+          alt="立体的な陰影と中央の溝を描いた自作コーヒー豆のラスタ"
+        />
+        <div class="temperature">
+          <span>サンプル終点温度</span
+          ><strong id="temperature">195<small>°C</small></strong
+          ><span id="roast-time">焙煎時間 09:30</span>
+        </div>
+        <p class="roast-phrase">甘さの、その先の<br />小さな苦味へ。</p>
+        <div class="stage-bottom">
+          <span>ORIGIN / 架空ロット CL–014</span
+          ><span>一粒から、火の記憶を読む。</span>
+        </div>
+      </section>
+      <section id="roast" class="roast-controls">
+        <div>
+          <span class="micro">焙煎シミュレーション</span>
+          <h2>境目を、探る。</h2>
+        </div>
+        <div class="slider-wrap">
+          <label for="roast-level"
+            ><span>浅煎り</span><output id="roast-output">50 / 100</output
+            ><span>深煎り</span></label
+          ><input id="roast-level" type="range" min="0" max="100" value="50" />
+        </div>
+        <div class="roast-presets controls">
+          <button type="button" data-roast="20" aria-pressed="false">
+            浅煎り</button
+          ><button type="button" data-roast="50" aria-pressed="true">
+            中煎り</button
+          ><button type="button" data-roast="85" aria-pressed="false">
+            深煎り
+          </button>
+        </div>
+        <button type="button" id="save-roast" class="button-fill">
+          この焙煎を記録
+        </button>
+      </section>
+      <section class="profile" id="profile">
+        <div class="curve">
+          <div class="curve-head">
+            <span>温度曲線 / sample</span
+            ><strong id="curve-end">195°C / 09:30</strong>
+          </div>
+          <canvas
+            id="roast-curve"
+            aria-label="焙煎温度が時間に沿って上昇するサンプル曲線"
+            >焙煎度に応じた温度と時間は上の数値でも確認できます。</canvas
+          >
+          <div class="curve-axis">
+            <span>投入</span><span>乾燥</span><span>反応</span
+            ><span>焙煎終点</span>
+          </div>
+        </div>
+        <div class="taste">
+          <span class="micro">味の輪郭 / サンプル指数</span>
+          <h2 id="taste-title">丸い甘さと、<br />ほどよい余韻。</h2>
+          <div class="taste-row">
+            <span>酸味</span>
+            <div><i id="acidity-bar"></i></div>
+            <output id="acidity">50</output>
+          </div>
+          <div class="taste-row">
+            <span>甘味</span>
+            <div><i id="sweetness-bar"></i></div>
+            <output id="sweetness">90</output>
+          </div>
+          <div class="taste-row">
+            <span>苦味</span>
+            <div><i id="bitterness-bar"></i></div>
+            <output id="bitterness">45</output>
+          </div>
+          <p class="status" id="roast-status" aria-live="polite">
+            中煎り、195°Cのサンプルを表示しています。
+          </p>
+        </div>
+      </section>
+      <section class="roastery-note">
+        <h2>豆の個性を、<br />急がせない。</h2>
+        <p>
+          火を入れた時間と、そこから生まれる味の関係。いつもの一杯の向こう側を、少しだけ覗くための焙煎室です。
+        </p>
+        <span>Open the roast.<br />Find your finish.</span>
+      </section>
+    </main>
+    <footer>
+      <strong>CINDER ROASTERY</strong>
+      <p>
+        架空の焙煎室のデモ。豆画像は自作、温度・時間・味指数はサンプルです。実機焙煎の操作手順や食品品質の保証ではありません。記録は画面内のみです。
+      </p>
+      <a href="#main">焙煎室へ ↑</a>
+    </footer>
+    <dialog id="modal" aria-labelledby="modal-title">
+      <div class="dialog-head">
+        <span class="micro">ローカルプレビュー</span
+        ><button id="modal-close" type="button" aria-label="閉じる">×</button>
+      </div>
+      <h2 id="modal-title"></h2>
+      <p id="modal-body"></p>
+    </dialog>
+  </body>
+</html>

@@ -1,0 +1,22 @@
+{
+  "site": "store",
+  "implementation": "Original HTML/CSS/JS and fictional Japanese copy, MIT",
+  "fonts": "OS system fonts, no redistributed font files",
+  "reference": "https://startbootstrap.github.io/startbootstrap-business-casual/",
+  "referenceUse": "Information hierarchy observation only. No source code, photos, logos or font files copied. WebClone acquisition evidence is held in central task evidence.",
+  "motionSitesExamples": [
+    "Bold Studio",
+    "Stillmind",
+    "Modern Agency"
+  ],
+  "assets": [
+    {
+      "file": "assets/coffee.png",
+      "origin": "Original generated image, image_gen.imagegen, 2026-10-30; fictional cafe editorial still life",
+      "license": "MIT as part of this original collection",
+      "sha256": "4087d44e3a20ba2ae782c8020c9ea792754c4dc21bce0a40e57677f6975238ea",
+      "thirdPartySiteAsset": false,
+      "evidence_record": "Task evidence: b/spec.md and generation output record"
+    }
+  ]
+}

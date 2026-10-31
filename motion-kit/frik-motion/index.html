@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="伝わる、動きの設計。Nagiportによる、明快さ・連続性・応答を体験できる独立したモーションデザイン・デモ。">
+  <meta name="theme-color" content="#f4f5ef">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'none'; font-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
+  <title>Nagiport — Motion Atlas</title>
+  <link rel="icon" href="mark.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="figma-motion.css">
+  <link rel="stylesheet" href="atlas.css">
+  <script src="atlas.js" defer></script>
+</head>
+<body>
+  <a class="skip" href="#main">本文へ移動</a>
+  <header class="site-header wrap">
+    <a class="brand" href="../" aria-label="Nagiport Motion Kitへ戻る"><span class="brand-mark" aria-hidden="true"></span>Nagiport<span class="brand-suffix"> / Motion Atlas</span></a>
+    <nav aria-label="メインナビゲーション"><a href="#lab">体験する</a><a href="#principles">設計の視点</a><a href="#sources">参考資料 <span aria-hidden="true">↗</span></a></nav>
+    <button class="motion-toggle" id="motion-toggle" type="button" aria-pressed="false"><span class="toggle-dot" aria-hidden="true"></span><span id="motion-label">動きを抑える</span></button>
+  </header>
+  <main id="main">
+    <section class="hero wrap" aria-labelledby="hero-heading">
+      <div class="hero-copy">
+        <p class="eyebrow"><span class="tiny-cross" aria-hidden="true">✳</span> NAGIPORT DESIGN EXPLORATION — 01</p>
+        <h1 id="hero-heading">伝わる、<br>動きの<span class="heading-last">設計<span class="teal-period">。</span></span></h1>
+        <p class="hero-lead">わかりやすさに、心地よいリズムを。<br>3つの視点から、インターフェースの<br class="desktop-break">「動く理由」を探る。</p>
+        <a class="primary-link" href="#lab">3つの動きを体験する <span aria-hidden="true">↗</span></a>
+        <div class="hero-foot"><span class="edition">MOTION ATLAS<br><b>VOL. 001 / 2026</b></span><span class="vertical-rule"></span><span>Scroll to explore<br><span aria-hidden="true">↓</span></span></div>
+      </div>
+      <div class="reel-shell" id="reel-shell">
+        <div class="reel" id="reel" data-scene="0" role="img" aria-label="明快さ、連続性、応答を、形の変化で表す12秒の抽象モーション">
+          <div class="reel-topline"><span>FORM FOLLOWS FEELING</span><span id="scene-counter">01 / 03</span></div>
+          <div class="reel-grid" aria-hidden="true"></div>
+          <div class="orbit orbit-one" aria-hidden="true"></div><div class="orbit orbit-two" aria-hidden="true"></div>
+          <div class="source-art" aria-hidden="true">
+            <div class="figma-slot slot-clear"><span class="source-shape-label">01 / CLEAR</span><div class="shape-layout"><div class="figma-shape clear-shape" data-node-id="3:10"></div></div></div>
+            <div class="figma-slot slot-calm"><span class="source-shape-label">02 / CALM</span><div class="shape-layout"><div class="figma-shape" data-node-id="3:15"><img src="calm.svg" alt="" width="112" height="112"></div></div></div>
+            <div class="figma-slot slot-expressive"><span class="source-shape-label">03 / EXPRESSIVE</span><div class="shape-layout"><div class="figma-shape expressive-shape" data-node-id="3:20"><img src="expressive.svg" alt="" width="101" height="101"></div></div></div>
+          </div>
+          <div class="reel-caption"><span class="reel-caption-index" id="reel-index">01</span><div><span class="reel-caption-small" id="reel-kicker">CLARITY IN MOTION</span><p id="reel-title">まず、伝わる。</p></div><span class="reel-arrow" aria-hidden="true">↗</span></div>
+          <div class="reel-bottomline"><span>FIGMA MOTION / ORIGINAL STUDY</span><span>12 SEC / NO AUDIO</span></div>
+        </div>
+        <div class="reel-controls" aria-label="モーション再生コントロール">
+          <button class="transport" id="play" type="button" aria-label="モーションを再生"><span id="play-icon" aria-hidden="true">▶</span><span id="play-label">再生</span></button>
+          <label class="sr-only" for="scrub">再生位置（秒）</label><input id="scrub" type="range" min="0" max="12" step="0.01" value="0" aria-valuetext="0秒 / 12秒">
+          <output id="time" for="scrub" aria-live="off">00:00</output><button class="replay" id="replay" type="button" aria-label="最初から再生">↺</button>
+        </div>
+        <div class="reel-meta"><span id="playback-status" role="status">再生して、3つの表情を見る</span><span>INTERACTIVE REEL</span></div>
+        <div class="scene-controls" aria-label="シーンを選ぶ"><button type="button" data-seek="0" aria-pressed="true">01 Clear</button><button type="button" data-seek="4" aria-pressed="false">02 Calm</button><button type="button" data-seek="8" aria-pressed="false">03 Expressive</button></div>
+      </div>
+    </section>
+
+    <div class="statement wrap"><span class="eyebrow">THE IDEA</span><p>飾るためではなく、<br class="mobile-only">理解を助けるために動く。</p><span class="statement-cross" aria-hidden="true">✳</span></div>
+
+    <section class="lab-section wrap" id="lab" aria-labelledby="lab-heading">
+      <div class="section-heading"><div><p class="eyebrow">01 — INTERACTION LAB</p><h2 id="lab-heading">同じ操作。<br>異なる、手ざわり。</h2></div><p>モードを切り替えて、カードを開く。<br>形・色・動きが変わる感覚を試してみてください。</p></div>
+      <div class="mode-tabs" role="tablist" aria-label="モーションのモード">
+        <button type="button" role="tab" id="tab-clear" aria-controls="mode-panel" aria-selected="true" tabindex="0" data-mode="clear"><span class="mode-number">01</span><span><strong>Clear</strong><small>迷わせない、明快さ。</small></span><span class="mode-symbol symbol-clear" aria-hidden="true"></span></button>
+        <button type="button" role="tab" id="tab-calm" aria-controls="mode-panel" aria-selected="false" tabindex="-1" data-mode="calm"><span class="mode-number">02</span><span><strong>Calm</strong><small>途切れない、心地よさ。</small></span><span class="mode-symbol symbol-calm" aria-hidden="true"></span></button>
+        <button type="button" role="tab" id="tab-expressive" aria-controls="mode-panel" aria-selected="false" tabindex="-1" data-mode="expressive"><span class="mode-number">03</span><span><strong>Expressive</strong><small>触れたくなる、応答。</small></span><span class="mode-symbol symbol-expressive" aria-hidden="true">✳</span></button>
+      </div>
+      <div class="mode-panel" id="mode-panel" role="tabpanel" aria-labelledby="tab-clear" data-mode="clear">
+        <div class="mode-explainer"><span class="pill" id="mode-principle">HIERARCHY & FOCUS</span><h3 id="mode-title">次の一歩が、<br>見える。</h3><p id="mode-description">強いコントラストと素直な整列。動きは短く控えめにし、何を選び、何が変わったかを明確にします。</p><dl class="mode-spec"><div><dt>かたち</dt><dd id="spec-shape">直線・小さな角丸</dd></div><div><dt>動き</dt><dd id="spec-motion">短いフェード</dd></div><div><dt>大切にすること</dt><dd id="spec-value">情報の優先順位</dd></div></dl><p class="demo-note"><span aria-hidden="true">↗</span> 右のカードを開いて、確認を完了してみる</p></div>
+        <div class="demo-stage"><div class="demo-app" id="demo-app">
+          <div class="demo-app-head"><span class="demo-logo"><span aria-hidden="true">n.</span> My workspace</span><span class="local-badge">LOCAL DEMO</span></div>
+          <div class="demo-title-row"><div><p class="demo-date">YOUR NEXT STEP</p><h4>今日のアイデア</h4></div><button class="reset" id="reset" type="button">リセット <span aria-hidden="true">↺</span></button></div>
+          <div class="demo-filters" aria-label="アイデアの表示"><button type="button" id="filter-all" aria-pressed="true" data-filter="all">すべて <span id="all-count">3</span></button><button type="button" id="filter-done" aria-pressed="false" data-filter="done">確認済み <span id="done-count">0</span></button></div>
+          <div class="task-list" id="task-list"></div>
+          <div class="empty-state" id="empty-state" hidden><span aria-hidden="true">○</span><p>まだ確認済みのアイデアはありません</p><button type="button" id="show-all">すべてのアイデアへ</button></div>
+          <div class="demo-feedback"><span id="demo-status" role="status" aria-live="polite">カードを選ぶと詳細が開きます</span><button type="button" id="undo" hidden>元に戻す</button></div>
+          <div class="demo-app-foot"><span class="status-dot" aria-hidden="true"></span> このページ内だけで動くサンプル</div>
+        </div></div>
+      </div>
+      <p class="lab-disclaimer">実際の送信・保存・購入は行いません。すべて架空のサンプルです。各モードはNagiport独自の解釈で、公式のデザインシステムを再現するものではありません。</p>
+    </section>
+
+    <section class="principles-section" id="principles" aria-labelledby="principles-heading"><div class="wrap">
+      <div class="section-heading"><div><p class="eyebrow">02 — DESIGN WITH INTENT</p><h2 id="principles-heading">見た目の先に、<br>使う人がいる。</h2></div><p>3つの資料から学んだことを、<br>ひとつの体験へ。</p></div>
+      <div class="principles-grid">
+        <article><div class="principle-graphic graphic-clear" aria-hidden="true"><i></i><i></i><i></i><span>01</span></div><p class="eyebrow">ACCESSIBLE BY DESIGN</p><h3>誰にでも、道しるべを。</h3><p>情報の階層、読みやすいコントラスト、キーボード操作。明快さは、すべての表現の土台です。</p><a href="https://www.digital.go.jp/policies/servicedesign/designsystem" target="_blank" rel="noopener noreferrer">デジタル庁 デザインシステム <span aria-hidden="true">↗</span><span class="sr-only">（新しいタブ）</span></a></article>
+        <article><div class="principle-graphic graphic-calm" aria-hidden="true"><i></i><i></i><i></i><span>02</span></div><p class="eyebrow">CONTINUITY & CONTROL</p><h3>変化を、つながりに。</h3><p>動きに目的を持たせ、操作とのつながりを示す。必要なときに止められ、静かな表示も選べます。</p><a href="https://developer.apple.com/design/human-interface-guidelines/motion" target="_blank" rel="noopener noreferrer">Apple Human Interface Guidelines <span aria-hidden="true">↗</span><span class="sr-only">（新しいタブ）</span></a></article>
+        <article><div class="principle-graphic graphic-expressive" aria-hidden="true"><i>✳</i><span>03</span></div><p class="eyebrow">RESPONSIVE EXPRESSION</p><h3>応答に、表情を。</h3><p>形や反応のリズムで、触れたことを伝える。弾力のある動きも、操作の意味を支える範囲で。</p><a href="https://m3.material.io/styles/motion" target="_blank" rel="noopener noreferrer">Material Design 3 — Motion <span aria-hidden="true">↗</span><span class="sr-only">（新しいタブ）</span></a></article>
+      </div>
+    </div></section>
+
+    <section class="sources-section wrap" id="sources" aria-labelledby="sources-heading"><div><p class="eyebrow">03 — SOURCE NOTES</p><h2 id="sources-heading">学ぶ。解釈する。<br>自分たちの表現に。</h2><p>このページはNagiportによる非公式・独立したデザイン実験です。<br>各組織の公式テンプレート、認定、提携を示すものではありません。</p></div><div class="source-notes"><a class="source-row" href="https://www.figma.com/design/g6JaCl0Nv8uFRnYzJEa5rI" target="_blank" rel="noopener noreferrer"><span><small>DESIGN & MOTION SOURCE</small><strong>Nagiport Motion / Figma</strong></span><span aria-hidden="true">↗</span><span class="sr-only">（新しいタブ）</span></a><details><summary>動きとアクセシビリティについて</summary><p>OSの「視差効果を減らす」設定を初期値として反映します。画面上部のボタンでも動きを抑えられます。リールは手動再生で、画面外や別タブに移ると一時停止します。静かな表示でも、すべての操作と情報を利用できます。</p><p>Clear / Calm / Expressiveは本デモ独自の名称です。Material Design 3の現在のモーションはスプリングの考え方を採用しています。本デモのCSSによる弾力表現は、公式の物理エンジンそのものではありません。</p></details><details><summary>制作と参考資料について</summary><p>レイアウト、図形、文章はこのデモ用に制作しました。公式ロゴやブランド素材は使用していません。外部フォント、解析タグ、外部APIへのデータ送信はありません。</p><p id="motion-source-note">Figmaで作成したモーションをもとに、ウェブの操作と表示設定に対応させています。詳しい対応関係は同梱の制作ノートに記録しています。</p><a href="README.md">制作ノートを読む ↗</a></details></div></section>
+  </main>
+  <footer class="site-footer wrap"><a class="brand" href="../"><span class="brand-mark" aria-hidden="true"></span>Nagiport</a><span>Small details. Meaningful motion.</span><a href="#main">ページの先頭へ ↑</a><span class="footer-edition">MOTION ATLAS / 2026</span></footer>
+  <noscript><p class="noscript">JavaScriptが無効です。参考資料と設計の説明はそのまま読めます。モーションと操作デモを試すにはJavaScriptを有効にしてください。</p></noscript>
+</body>
+</html>

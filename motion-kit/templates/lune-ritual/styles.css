@@ -1,0 +1,932 @@
+:root {
+  --bg: #251c38;
+  --ink: #eee2ea;
+  --muted: #c9b7d4;
+  --accent: #dac7ff;
+  --line: #665572;
+  --on-accent: #251c38;
+}
+
+html,
+body {
+  background: var(--bg);
+  color: var(--ink);
+}
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  font:
+    15px/1.8 "Segoe UI",
+    "Yu Gothic",
+    sans-serif;
+}
+button,
+input,
+select {
+  font: inherit;
+}
+button,
+a,
+input,
+summary {
+  touch-action: manipulation;
+}
+button {
+  cursor: pointer;
+}
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+button {
+  color: inherit;
+}
+a {
+  color: inherit;
+  text-decoration: none;
+}
+img,
+canvas {
+  max-width: 100%;
+  display: block;
+}
+button {
+  border: 1px solid var(--line);
+  background: transparent;
+}
+button:disabled {
+  cursor: default;
+}
+button:active {
+  transform: scale(0.98);
+}
+:focus-visible {
+  outline: 3px solid var(--focus, var(--accent));
+  outline-offset: 4px;
+}
+::selection {
+  background: var(--accent);
+  color: var(--bg);
+}
+h1,
+h2,
+h3,
+p {
+  margin: 0;
+}
+h1,
+h2,
+h3 {
+  line-height: 1.15;
+}
+h2 {
+  font-size: clamp(28px, 3.6vw, 54px);
+  letter-spacing: -0.045em;
+}
+h3 {
+  font-size: 22px;
+  letter-spacing: -0.025em;
+}
+p {
+  max-width: 72ch;
+}
+small,
+.micro {
+  font-size: 12px;
+  line-height: 1.65;
+}
+.muted {
+  color: var(--muted);
+}
+.display {
+  font-family: Impact, "Arial Narrow", "Arial Black", sans-serif;
+  font-weight: 400;
+  line-height: 0.88;
+  letter-spacing: -0.025em;
+}
+.serif {
+  font-family: Georgia, "Yu Mincho", serif;
+  font-weight: 400;
+}
+.skip {
+  position: fixed;
+  top: 8px;
+  left: 8px;
+  background: var(--ink);
+  color: var(--bg);
+  padding: 12px;
+  z-index: 100;
+  transform: translateY(-150%);
+}
+.skip:focus {
+  transform: none;
+}
+.site-header {
+  min-height: 86px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 18px 40px;
+  border-bottom: 1px solid var(--line);
+  position: relative;
+  z-index: 20;
+}
+.brand {
+  font-size: 28px;
+  font-weight: 800;
+  letter-spacing: -0.06em;
+  line-height: 1;
+}
+.site-nav {
+  display: flex;
+  gap: 30px;
+  align-items: center;
+}
+.site-nav a {
+  font-size: 13px;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+}
+.site-nav a:hover {
+  text-decoration: underline;
+  text-underline-offset: 6px;
+}
+.menu {
+  display: none;
+  min-height: 44px;
+  padding: 8px 14px;
+}
+.btn {
+  min-height: 48px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  padding: 12px 24px;
+  background: var(--ink);
+  color: var(--bg);
+  border: 1px solid var(--ink);
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 1.5;
+}
+.btn:hover {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--on-accent, var(--ink));
+}
+.btn.ghost {
+  background: transparent;
+  color: var(--ink);
+  border-color: var(--line);
+}
+.btn.ghost:hover {
+  border-color: var(--ink);
+}
+.row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+.actions,
+.choices {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.choices button {
+  min-height: 44px;
+  padding: 9px 18px;
+  border-radius: 0;
+}
+.choices button[aria-pressed="true"] {
+  background: var(--ink);
+  color: var(--bg);
+  border-color: var(--ink);
+}
+.section {
+  padding: 90px 40px;
+  border-top: 1px solid var(--line);
+}
+.section-head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 32px;
+  margin-bottom: 38px;
+}
+.section-head > p {
+  max-width: 360px;
+  color: var(--muted);
+}
+.cols {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 30px;
+}
+.cols article {
+  padding: 28px 0;
+  border-top: 1px solid var(--line);
+}
+.cols p {
+  margin-top: 16px;
+  color: var(--muted);
+}
+.price {
+  font-size: clamp(32px, 4vw, 60px);
+  line-height: 1.2;
+  letter-spacing: -0.06em;
+  margin: 24px 0;
+}
+.ledger {
+  width: 100%;
+  border-collapse: collapse;
+}
+.ledger th,
+.ledger td {
+  text-align: left;
+  padding: 20px 8px;
+  border-bottom: 1px solid var(--line);
+  font-weight: 400;
+}
+.ledger th {
+  font-size: 12px;
+  color: var(--muted);
+}
+.site-footer {
+  padding: 38px 40px;
+  border-top: 1px solid var(--line);
+  display: flex;
+  justify-content: space-between;
+  gap: 30px;
+  align-items: flex-end;
+  font-size: 12px;
+}
+.site-footer p {
+  max-width: 600px;
+  margin-top: 10px;
+  color: var(--muted);
+}
+.site-footer a {
+  padding: 12px 0;
+  white-space: nowrap;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+.demo-mark {
+  font-size: 11px;
+  border: 1px solid var(--line);
+  padding: 3px 8px;
+  white-space: nowrap;
+}
+.art {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+}
+.art canvas {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+}
+.art-label {
+  font-size: 12px;
+  position: absolute;
+  left: 20px;
+  bottom: 18px;
+}
+.control-note {
+  font-size: 12px;
+  color: var(--muted);
+  margin-top: 14px;
+}
+.status {
+  font-size: 13px;
+  min-height: 24px;
+  margin-top: 14px;
+}
+dialog {
+  width: min(490px, calc(100% - 36px));
+  border: 1px solid var(--line);
+  background: var(--bg);
+  color: var(--ink);
+  padding: 42px 30px 30px;
+  box-shadow: 0 20px 120px #0005;
+}
+dialog::backdrop {
+  background: #10201dcc;
+  backdrop-filter: blur(6px);
+}
+dialog h2 {
+  font-size: 30px;
+  padding-right: 15px;
+}
+dialog p {
+  margin: 20px 0;
+}
+dialog .close {
+  position: absolute;
+  right: 8px;
+  top: 8px;
+  width: 44px;
+  height: 44px;
+  font-size: 24px;
+}
+details {
+  border-top: 1px solid var(--line);
+  padding: 20px 0;
+}
+summary {
+  cursor: pointer;
+  min-height: 44px;
+  font-size: 18px;
+}
+details p {
+  padding: 8px 0;
+  color: var(--muted);
+}
+[hidden] {
+  display: none !important;
+}
+button,
+a {
+  transition:
+    background-color 0.15s,
+    color 0.15s,
+    transform 0.22s cubic-bezier(0.22, 1, 0.36, 1);
+}
+@media (max-width: 1000px) {
+  .site-header {
+    padding: 16px 24px;
+  }
+  .site-nav {
+    gap: 18px;
+  }
+  .section {
+    padding: 64px 24px;
+  }
+  .site-footer {
+    padding: 30px 24px;
+  }
+  .cols {
+    gap: 20px;
+  }
+}
+@media (max-width: 640px) {
+  body {
+    font-size: 14px;
+  }
+  .site-header {
+    min-height: 74px;
+    padding: 14px 18px;
+  }
+  .brand {
+    font-size: 25px;
+  }
+  .menu {
+    display: block;
+  }
+  .site-nav {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    padding: 18px;
+    background: var(--bg);
+    border-bottom: 1px solid var(--line);
+    box-shadow: 0 20px 30px #0002;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 6px;
+  }
+  .site-nav.open {
+    display: flex;
+  }
+  .site-nav a {
+    padding: 6px 10px;
+  }
+  .section {
+    padding: 54px 18px;
+  }
+  .section-head {
+    display: block;
+    margin-bottom: 28px;
+  }
+  .section-head > p {
+    margin-top: 20px;
+  }
+  .cols {
+    grid-template-columns: 1fr;
+    gap: 6px;
+  }
+  .site-footer {
+    padding: 28px 18px;
+    display: block;
+  }
+  .site-footer > a {
+    display: inline-block;
+    margin-top: 18px;
+  }
+  .row {
+    flex-wrap: wrap;
+  }
+  .ledger td,
+  .ledger th {
+    padding: 14px 4px;
+    font-size: 13px;
+  }
+  .ledger th {
+    font-size: 11px;
+  }
+  .choices button {
+    padding: 9px 14px;
+  }
+  .btn {
+    padding: 12px 18px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    scroll-behavior: auto !important;
+    transition-property: opacity, background-color, color !important;
+    transition-duration: 0.12s !important;
+  }
+  button,
+  a,
+  .reactive {
+    transition:
+      opacity 0.12s,
+      background-color 0.12s,
+      color 0.12s !important;
+  }
+}
+
+.lune-ritual .brand {
+  font:
+    italic 32px Georgia,
+    serif;
+  letter-spacing: -0.05em;
+}
+.lune-ritual .site-header {
+  border-bottom: 0;
+}
+.lune-hero {
+  min-height: 780px;
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 1.1fr;
+  padding: 30px 60px 0;
+  column-gap: 30px;
+}
+.lune-heading {
+  position: relative;
+  z-index: 2;
+}
+.lune-heading > p {
+  font-size: 13px;
+  letter-spacing: 0.12em;
+  margin: 16px 0 30px;
+}
+.lune-heading h1 {
+  font-size: clamp(74px, 8.5vw, 135px);
+  line-height: 0.99;
+  letter-spacing: -0.065em;
+}
+.lune-copy {
+  margin: 32px 0 40px 90px;
+  font-size: 14px;
+  line-height: 2;
+}
+.lune-cta {
+  display: inline-flex;
+  gap: 35px;
+  align-items: center;
+  border-bottom: 1px solid var(--line);
+  padding: 14px 0;
+  margin-top: 20px;
+  font-size: 13px;
+}
+.lune-cta span {
+  font-size: 30px;
+}
+.moon-stage {
+  height: 630px;
+  overflow: visible;
+  background: radial-gradient(ellipse at 50% 45%, #69557655, transparent 65%);
+}
+.moon-halo {
+  position: absolute;
+  inset: 8% 0;
+  border: 1px solid #ae9bbf44;
+  border-radius: 50%;
+  transform: rotate(-20deg);
+  height: 77%;
+  width: 95%;
+}
+.moon-object {
+  position: absolute;
+  width: 65%;
+  height: 72%;
+  left: 21%;
+  top: 7%;
+  border-radius: 50% 50% 46% 54%/47% 42% 58% 53%;
+  transform: rotate(23deg);
+  background:
+    radial-gradient(ellipse at 36% 26%, #fff8 0, transparent 40%),
+    radial-gradient(
+      ellipse at 80% 70%,
+      #231132 8%,
+      #7e6980 26%,
+      transparent 50%
+    ),
+    conic-gradient(
+      from 30deg,
+      #b8abb8,
+      #ece9d5,
+      #a9bfbb,
+      #4b385b,
+      #d5bede,
+      #f6e7d5,
+      #b8abb8
+    );
+  box-shadow:
+    inset 3px 3px 9px #fff9,
+    inset -15px -30px 35px #1b0c37aa,
+    25px 30px 70px #12092188;
+  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+  isolation: isolate;
+}
+.moon-object::before {
+  content: "";
+  position: absolute;
+  inset: 3%;
+  border: 1px solid #fff8;
+  border-radius: inherit;
+}
+.moon-object::after {
+  content: "";
+  position: absolute;
+  inset: 11% 18% 12% 7%;
+  border-radius: 50%;
+  box-shadow:
+    inset 18px 12px 25px #fcf1dd99,
+    inset -18px -14px 30px #31133a88;
+  transform: rotate(-15deg);
+  background: radial-gradient(ellipse at 68% 20%, #d7c2d8aa, transparent 60%);
+}
+.moon-inner {
+  position: absolute;
+  left: 28%;
+  top: 26%;
+  width: 45%;
+  height: 46%;
+  border-radius: 50%;
+  background: radial-gradient(
+    ellipse at 25% 20%,
+    #fff9,
+    #d4c7dd33 45%,
+    #30203a66
+  );
+  box-shadow:
+    inset -4px 8px 15px #ffffff66,
+    6px 10px 15px #26113155;
+  z-index: 2;
+}
+.moon-axis {
+  position: absolute;
+  left: 8%;
+  top: 47%;
+  width: 88%;
+  height: 1px;
+  background: #dcc7ed55;
+  transform: rotate(-24deg);
+}
+.axis-two {
+  transform: rotate(64deg);
+  width: 80%;
+  left: 13%;
+  top: 49%;
+}
+.moon-dot {
+  position: absolute;
+  right: 11%;
+  top: 19%;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #e7dadb;
+  box-shadow: 0 0 0 8px #dcc7ed11;
+}
+.moon-note {
+  position: absolute;
+  left: 1%;
+  bottom: 12%;
+  z-index: 4;
+  padding: 17px 24px;
+  border: 1px solid var(--line);
+  background: #251c38d9;
+  transform: rotate(-8deg);
+  backdrop-filter: blur(10px);
+}
+.moon-note > span {
+  font-size: 32px;
+}
+.moon-note p {
+  font-size: 11px;
+  margin-top: 5px;
+}
+.moon-sign {
+  position: absolute;
+  right: 5%;
+  bottom: 2%;
+  font-size: 130px;
+  font-style: italic;
+  color: #d2bfd73b;
+  line-height: 1;
+}
+.lune-bottom {
+  grid-column: 1/-1;
+  border-top: 1px solid var(--line);
+  padding: 22px 0;
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+}
+.ritual-section {
+  background: #ded2e2;
+  color: #30243b;
+  --muted: #69596e;
+  --line: #b19dbb;
+  --accent: #4d335c;
+}
+.ritual-grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 80px;
+}
+.ritual-options button {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr 24px;
+  align-items: center;
+  gap: 10px;
+  border: 0;
+  border-bottom: 1px solid var(--line);
+  min-height: 120px;
+  text-align: left;
+}
+.ritual-options button > .serif {
+  font-size: 48px;
+  letter-spacing: -0.04em;
+}
+.ritual-options button > span:nth-child(2) {
+  font-size: 12px;
+}
+.ritual-options button > b {
+  font-weight: 400;
+  font-size: 24px;
+}
+.ritual-options button[aria-pressed="true"] {
+  color: #30243b;
+}
+.ritual-options button[aria-pressed="true"] > .serif {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 8px;
+}
+.ritual-detail {
+  border: 1px solid var(--line);
+  padding: 34px;
+}
+.ritual-detail > p:first-child {
+  font-size: 12px;
+}
+.ritual-detail h3 {
+  font-size: 32px;
+  line-height: 1.5;
+  margin: 20px 0;
+}
+.ritual-detail > p {
+  font-size: 13px;
+  color: var(--muted);
+}
+.ritual-price {
+  margin: 30px 0;
+}
+.ritual-price strong {
+  font-size: 38px;
+}
+.ritual-detail .btn {
+  width: 100%;
+  font-size: 13px;
+  background: #30243b;
+  border-color: #30243b;
+  color: #eee2ea;
+}
+.lune-about {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 8vw;
+}
+.lune-about > .serif {
+  font-size: clamp(56px, 7vw, 100px);
+  line-height: 1.15;
+  letter-spacing: -0.05em;
+}
+.lune-about h2 {
+  font-size: 34px;
+  line-height: 1.5;
+}
+.lune-about p {
+  margin: 30px 0 40px;
+}
+.lune-about summary {
+  font-size: 14px;
+}
+@media (max-width: 1000px) {
+  .lune-hero {
+    padding: 20px 24px 0;
+    grid-template-columns: 1fr 1fr;
+    min-height: 720px;
+  }
+  .lune-heading h1 {
+    font-size: 90px;
+  }
+  .moon-stage {
+    height: 570px;
+  }
+  .moon-object {
+    width: 85%;
+    left: 5%;
+    height: 60%;
+    top: 20%;
+  }
+  .lune-copy {
+    margin-left: 0;
+  }
+  .ritual-grid {
+    gap: 30px;
+  }
+  .ritual-options button {
+    grid-template-columns: 1fr 24px;
+  }
+  .ritual-options button > span:nth-child(2) {
+    grid-row: 2;
+    grid-column: 1/-1;
+    margin-bottom: 20px;
+  }
+  .ritual-options button > b {
+    grid-row: 1;
+    grid-column: 2;
+  }
+  .ritual-options button > .serif {
+    font-size: 40px;
+  }
+  .ritual-detail {
+    padding: 24px;
+  }
+  .moon-note {
+    bottom: 5%;
+  }
+}
+@media (max-width: 640px) {
+  .lune-hero {
+    display: block;
+    padding: 10px 18px 0;
+  }
+  .lune-heading > p {
+    margin-bottom: 22px;
+    font-size: 12px;
+  }
+  .lune-heading h1 {
+    font-size: 76px;
+    position: relative;
+    z-index: 3;
+  }
+  .lune-copy {
+    margin: 24px 0 0;
+    position: relative;
+    z-index: 4;
+  }
+  .lune-copy p {
+    font-size: 13px;
+  }
+  .lune-cta {
+    gap: 25px;
+    margin-top: 14px;
+  }
+  .moon-stage {
+    height: 480px;
+    margin-top: -42px;
+    margin-left: 30px;
+  }
+  .moon-object {
+    width: 70%;
+    height: 65%;
+    left: 23%;
+    top: 12%;
+  }
+  .moon-halo {
+    inset: 7% 0;
+    height: 80%;
+    width: 100%;
+  }
+  .moon-note {
+    left: -12px;
+    bottom: 12%;
+    padding: 13px 20px;
+  }
+  .moon-sign {
+    font-size: 100px;
+    bottom: 3%;
+  }
+  .lune-bottom {
+    font-size: 10px;
+    padding: 20px 0;
+    gap: 10px;
+  }
+  .ritual-grid {
+    display: block;
+  }
+  .ritual-options button {
+    grid-template-columns: 1.2fr 1fr 20px;
+    min-height: 92px;
+  }
+  .ritual-options button > span:nth-child(2) {
+    grid-column: auto;
+    grid-row: auto;
+    font-size: 11px;
+    margin: 0;
+  }
+  .ritual-options button > b {
+    grid-column: 3;
+  }
+  .ritual-options button > .serif {
+    font-size: 36px;
+  }
+  .ritual-detail {
+    margin-top: 35px;
+  }
+  .lune-about {
+    display: block;
+  }
+  .lune-about > .serif {
+    font-size: 60px;
+    margin-bottom: 50px;
+  }
+  .lune-about h2 {
+    font-size: 30px;
+  }
+}
+
+/* Visual review: contain the glass sculpture on narrow canvases. */
+.lune-hero {
+  overflow: hidden;
+}
+@media (max-width: 1000px) {
+  .moon-halo {
+    width: 84%;
+    left: 7%;
+    height: 74%;
+    top: 13%;
+  }
+  .moon-object {
+    width: 76%;
+    left: 8%;
+  }
+}
+@media (max-width: 640px) {
+  .moon-halo {
+    width: 85%;
+    height: 72%;
+    left: 3%;
+    top: 12%;
+  }
+  .moon-object {
+    width: 62%;
+    left: 20%;
+    height: 60%;
+    top: 16%;
+  }
+  .moon-note {
+    left: 0;
+  }
+  .moon-sign {
+    right: 3%;
+    font-size: 88px;
+  }
+}

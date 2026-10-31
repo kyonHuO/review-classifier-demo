@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta
+      name="description"
+      content="映画を選び今夜の上映を探す小さな映画館。横長スクリーン、切符の時間帯、ローカル座席プレビュー。"
+    />
+    <title>NOCTURNE / 夜の上映室</title>
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2032%2032%22%3E%3Crect%20width%3D%2232%22%20height%3D%2232%22%20rx%3D%224%22%20fill%3D%22%23171d37%22%2F%3E%3Ctext%20x%3D%2216%22%20y%3D%2223%22%20text-anchor%3D%22middle%22%20fill%3D%22white%22%20font-family%3D%22sans-serif%22%20font-size%3D%2223%22%20font-weight%3D%22900%22%3EN%3C%2Ftext%3E%3C%2Fsvg%3E"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <a class="skip" href="#main">本文へ</a>
+    <header>
+      <a href="#main" class="brand">NOCTURNE CINEMA</a>
+      <nav aria-label="ページ内">
+        <a href="#program">上映作品</a><a href="#ticket">上映時間</a>
+      </nav>
+    </header>
+    <main id="main">
+      <section class="screen">
+        <img
+          id="film-image"
+          src="assets/film-1.jpg"
+          alt="夜明けの海と水平線の太陽を描いたオリジナル風景"
+        />
+        <div class="screen-top">
+          <span>街が静まるころ、物語がはじまる。</span
+          ><span>秋の小さな上映室 / 2026</span>
+        </div>
+        <span class="film-number" id="film-number" aria-hidden="true">01</span>
+        <div class="film-caption">
+          <span class="micro" id="film-genre">風景の記録 / 94分</span>
+          <h1 id="film-title">波の眠る場所</h1>
+          <p id="film-description">
+            誰もいない海辺で、一人の録音技師が失われた音を探す。
+          </p>
+          <span id="film-credit">監督：水野 透 / 架空作品</span>
+        </div>
+        <div class="screen-corner" aria-hidden="true">N<br />35 mm</div>
+      </section>
+      <section id="ticket" class="ticket">
+        <div class="ticket-date">
+          <span class="micro">上映日</span>
+          <div class="controls">
+            <button type="button" data-day="0" aria-pressed="true">
+              10/30 金</button
+            ><button type="button" data-day="1" aria-pressed="false">
+              10/31 土
+            </button>
+          </div>
+        </div>
+        <div class="ticket-time">
+          <span>上映開始</span><strong id="show-time">19:20</strong
+          ><small id="show-end">終映 20:54</small>
+        </div>
+        <div class="ticket-note">
+          <strong>少しだけ、<br />日常を遠くへ。</strong>
+          <p>開場は上映の20分前。<br />画面の座席選択はプレビューです。</p>
+        </div>
+        <button id="seats" type="button" class="button-fill">
+          座席を見てみる
+        </button>
+      </section>
+      <section id="program" class="program">
+        <div class="program-heading">
+          <span class="micro">上映プログラム</span>
+          <h2>今夜、どこへ行こう。</h2>
+          <p class="status" id="cinema-status" aria-live="polite">
+            10/30「波の眠る場所」19:20の回を表示しています。
+          </p>
+        </div>
+        <div class="film-list">
+          <button type="button" data-film="0" aria-pressed="true">
+            <img src="assets/film-1.jpg" alt="夜明けの海の映画風景" /><span
+              ><small>01 / 風景の記録</small><strong>波の眠る場所</strong
+              ><span>94分 / 日本語 / サンプル</span></span
+            ><b>上映を見る ↗</b></button
+          ><button type="button" data-film="1" aria-pressed="false">
+            <img
+              src="assets/film-2.jpg"
+              alt="幾重にも連なる夕暮れの砂丘"
+            /><span
+              ><small>02 / 境界の旅</small><strong>砂丘の向こう</strong
+              ><span>108分 / 日本語 / サンプル</span></span
+            ><b>上映を見る ↗</b></button
+          ><button type="button" data-film="2" aria-pressed="false">
+            <img
+              src="assets/film-3.jpg"
+              alt="暗い空に浮かぶ光を受けた天体"
+            /><span
+              ><small>03 / 夜の寓話</small><strong>月の裏の手紙</strong
+              ><span>86分 / 日本語 / サンプル</span></span
+            ><b>上映を見る ↗</b>
+          </button>
+        </div>
+      </section>
+    </main>
+    <footer>
+      <strong>NOCTURNE CINEMA</strong>
+      <p>
+        架空の映画館・作品を題材にしたデモ。風景画像はオリジナル。座席選択はローカル表示のみで予約・決済はありません。
+      </p>
+      <a href="#main">スクリーンへ ↑</a>
+    </footer>
+    <dialog id="modal" aria-labelledby="modal-title">
+      <div class="dialog-head">
+        <span class="micro">ローカルプレビュー</span
+        ><button id="modal-close" type="button" aria-label="閉じる">×</button>
+      </div>
+      <h2 id="modal-title"></h2>
+      <p id="modal-body"></p>
+    </dialog>
+  </body>
+</html>

@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta
+      name="description"
+      content="独立音楽のレコードをジャケットから探す、ローカルの音の棚。"
+    />
+    <title>GROOVE CELLAR / 音の棚</title>
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2032%2032%22%3E%3Crect%20width%3D%2232%22%20height%3D%2232%22%20rx%3D%224%22%20fill%3D%22%2329154a%22%2F%3E%3Ctext%20x%3D%2216%22%20y%3D%2223%22%20text-anchor%3D%22middle%22%20fill%3D%22white%22%20font-family%3D%22sans-serif%22%20font-size%3D%2223%22%20font-weight%3D%22900%22%3EG%3C%2Ftext%3E%3C%2Fsvg%3E"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <a class="skip" href="#main">本文へ</a>
+    <header>
+      <a href="#main" class="brand">GROOVE CELLAR</a>
+      <nav aria-label="ページ内">
+        <a href="#shelf">レコード棚</a><a href="#about">店のこと</a>
+      </nav>
+    </header>
+    <main id="main">
+      <section class="record-stage">
+        <div class="masthead" aria-hidden="true">
+          GROOVE<br /><span>CELLAR</span>
+        </div>
+        <div class="stage-top">
+          <span>レコードの、その奥へ。</span
+          ><span>33⅓ / 独立音楽の小さな棚</span>
+        </div>
+        <div class="vinyl">
+          <div class="vinyl-label">
+            <span>GROOVE</span><strong id="disc-title">Subsurface</strong
+            ><small>33⅓ RPM</small>
+          </div>
+        </div>
+        <img
+          id="main-cover"
+          class="main-cover"
+          src="assets/cover-1.jpg"
+          alt="緑と赤紫の波紋を重ねたSubsurfaceのオリジナルジャケット"
+        />
+        <div class="record-info">
+          <span class="micro" id="genre-label">電子 / 2026</span>
+          <h1 id="record-title">Subsurface</h1>
+          <p id="artist">Haru Sequence</p>
+          <ol id="tracks">
+            <li>水面下</li>
+            <li>Echo in a room</li>
+            <li>帰り道の信号</li>
+          </ol>
+          <button type="button" id="preview" class="button-fill">
+            曲目をプレビュー
+          </button>
+        </div>
+        <div class="record-caption">
+          <span>音の手触りを、<br />ジャケットから探そう。</span
+          ><b>掘る。<br />出会う。</b>
+        </div>
+      </section>
+      <section id="shelf" class="shelf">
+        <div class="shelf-head">
+          <div>
+            <span class="micro">今週のセレクション</span>
+            <h2>気になる音から。</h2>
+          </div>
+          <div class="filters controls" aria-label="ジャンルで絞り込み">
+            <button type="button" data-filter="all" aria-pressed="true">
+              すべて</button
+            ><button
+              type="button"
+              data-filter="electronic"
+              aria-pressed="false"
+            >
+              電子</button
+            ><button type="button" data-filter="jazz" aria-pressed="false">
+              ジャズ</button
+            ><button type="button" data-filter="ambient" aria-pressed="false">
+              環境
+            </button>
+          </div>
+        </div>
+        <div class="shelf-grid">
+          <button
+            type="button"
+            class="sleeve"
+            data-record="0"
+            data-genre="electronic"
+            aria-pressed="true"
+          >
+            <img src="assets/cover-1.jpg" alt="波紋が走る抽象ジャケット" /><span
+              ><strong>Subsurface</strong
+              ><small>Haru Sequence / 電子</small></span
+            ></button
+          ><button
+            type="button"
+            class="sleeve"
+            data-record="1"
+            data-genre="jazz"
+            aria-pressed="false"
+          >
+            <img
+              src="assets/cover-2.jpg"
+              alt="黄色い重層曲面の抽象ジャケット"
+            /><span
+              ><strong>Amber Rooms</strong
+              ><small>Fumio Kado / ジャズ</small></span
+            ></button
+          ><button
+            type="button"
+            class="sleeve"
+            data-record="2"
+            data-genre="ambient"
+            aria-pressed="false"
+          >
+            <img
+              src="assets/cover-3.jpg"
+              alt="青緑のうねりと同心円の抽象ジャケット"
+            /><span
+              ><strong>Tide Memory</strong
+              ><small>Slow Habitat / 環境</small></span
+            >
+          </button>
+        </div>
+        <p class="status" id="shelf-status" aria-live="polite">
+          3枚のレコードを表示しています。
+        </p>
+      </section>
+      <section id="about" class="about">
+        <h2>一枚の、<br />ずっと先まで。</h2>
+        <p>
+          音の速さよりも、聴いたあとの余韻を。小さな独立音楽の棚から、今日の一枚を見つけてください。
+        </p>
+      </section>
+    </main>
+    <footer>
+      <strong>GROOVE CELLAR</strong>
+      <p>
+        架空のレコード店のデモ。音源再生・注文・決済はありません。作品名、人物名、ジャケットはオリジナルです。
+      </p>
+      <a href="#main">上へ ↑</a>
+    </footer>
+    <dialog id="modal" aria-labelledby="modal-title">
+      <div class="dialog-head">
+        <span class="micro">ローカルプレビュー</span
+        ><button id="modal-close" type="button" aria-label="閉じる">×</button>
+      </div>
+      <h2 id="modal-title"></h2>
+      <p id="modal-body"></p>
+    </dialog>
+  </body>
+</html>

@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta
+      name="description"
+      content="自転車のフレームを選ぶ設計展示。巨大文字の手前を構造的な自転車図が横断し、サイズ・色・身長が仕様に反映されます。"
+    />
+    <title>TORQUE / フレーム設計室</title>
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2032%2032%22%3E%3Crect%20width%3D%2232%22%20height%3D%2232%22%20rx%3D%224%22%20fill%3D%22%23183056%22%2F%3E%3Ctext%20x%3D%2216%22%20y%3D%2223%22%20text-anchor%3D%22middle%22%20fill%3D%22white%22%20font-family%3D%22sans-serif%22%20font-size%3D%2223%22%20font-weight%3D%22900%22%3ET%3C%2Ftext%3E%3C%2Fsvg%3E"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <a class="skip" href="#main">本文へ</a>
+    <header>
+      <a href="#main" class="brand">TORQUE / CYCLE WORKS</a>
+      <nav aria-label="ページ内">
+        <a href="#fit">サイズを探す</a><a href="#workshop">設計ノート</a>
+      </nav>
+    </header>
+    <main id="main">
+      <section class="cycle-stage">
+        <span class="micro">遠くへ行くための、小さな設計。</span>
+        <h1>TORQUE</h1>
+        <div class="bike-label">
+          <b>R–01</b><span>ALL ROAD FRAME<br />架空の設計モデル</span>
+        </div>
+        <div class="bike-wrap">
+          <div
+            class="bike"
+            role="img"
+            aria-label="前後2輪とダイヤモンド型フレームのオリジナル自転車図"
+          >
+            <div class="wheel back-wheel"></div>
+            <div class="wheel front-wheel"></div>
+            <div class="frame">
+              <i class="tube rear-top"></i><i class="tube rear-bottom"></i
+              ><i class="tube seat-tube"></i><i class="tube top-tube"></i
+              ><i class="tube down-tube"></i><i class="tube head-tube"></i>
+            </div>
+            <div class="fork"></div>
+            <div class="seat-post"></div>
+            <div class="saddle"></div>
+            <div class="handle-stem"></div>
+            <div class="handle"></div>
+            <div class="crank"></div>
+            <div class="pedal"></div>
+            <div class="chain"></div>
+          </div>
+        </div>
+        <div class="geometry-note">
+          <span>設計思想</span>
+          <p>軽さだけで、<br />走りは決まらない。</p>
+        </div>
+        <div class="stage-dimensions">
+          <span id="reach-display">Reach 382 mm</span
+          ><span id="stack-display">Stack 554 mm</span><span>Wheel 700C</span>
+        </div>
+        <div class="stage-footer">
+          <strong>つぎの風景は、<br />このフレームから。</strong
+          ><span>GEOMETRY / RIDE / REPEAT</span>
+        </div>
+      </section>
+      <section class="fit-panel" id="fit">
+        <div class="fit-title">
+          <span class="micro">あなたの一台を組む</span>
+          <h2>体格から、選ぶ。</h2>
+        </div>
+        <div class="fit-control">
+          <span>フレームサイズ</span>
+          <div class="controls">
+            <button type="button" data-size="0" aria-pressed="false">S</button
+            ><button type="button" data-size="1" aria-pressed="true">M</button
+            ><button type="button" data-size="2" aria-pressed="false">L</button>
+          </div>
+        </div>
+        <div class="fit-control">
+          <span>フレームカラー</span>
+          <div class="controls colors">
+            <button
+              type="button"
+              data-color="0"
+              aria-label="深青"
+              aria-pressed="true"
+            >
+              深青</button
+            ><button
+              type="button"
+              data-color="1"
+              aria-label="朱色"
+              aria-pressed="false"
+            >
+              朱色</button
+            ><button
+              type="button"
+              data-color="2"
+              aria-label="白銀"
+              aria-pressed="false"
+            >
+              白銀
+            </button>
+          </div>
+        </div>
+        <div class="height-control">
+          <label for="height"
+            >身長のサンプル
+            <output id="height-output" for="height">172 cm</output></label
+          ><input id="height" type="range" min="150" max="195" value="172" />
+        </div>
+        <p id="fit-status" class="status" aria-live="polite">
+          172 cmではMが推奨範囲です。選択サイズ：M。
+        </p>
+        <button type="button" id="specification" class="button-fill">
+          選んだ仕様を見る
+        </button>
+      </section>
+      <section class="spec-strip">
+        <div>
+          <span>フレーム重量</span
+          ><strong id="weight">1,280 <small>g</small></strong>
+        </div>
+        <div>
+          <span>適合身長の例</span
+          ><strong id="fit-range">168–180 <small>cm</small></strong>
+        </div>
+        <div>
+          <span>フレーム素材</span><strong>AL–6 <small>sample</small></strong>
+        </div>
+        <div>
+          <span>タイヤクリアランス</span><strong>42 <small>mm</small></strong>
+        </div>
+      </section>
+      <section class="workshop" id="workshop">
+        <h2>寸法の先に、<br />走る人がいる。</h2>
+        <div>
+          <p>
+            毎日の道も、見知らぬ道も。ひとつのフレームに必要なのは、余裕のある姿勢と、軽快に曲がれる輪郭でした。
+          </p>
+          <span>このページは架空のフレーム設計を触って確かめる展示です。</span>
+        </div>
+      </section>
+    </main>
+    <footer>
+      <strong>TORQUE CYCLE WORKS</strong>
+      <p>
+        架空の自転車と体格のサンプル。実車の適合・安全性を保証する情報ではありません。仕様プレビューのみ、注文・決済はありません。
+      </p>
+      <a href="#main">フレームへ ↑</a>
+    </footer>
+    <dialog id="modal" aria-labelledby="modal-title">
+      <div class="dialog-head">
+        <span class="micro">ローカルプレビュー</span
+        ><button id="modal-close" type="button" aria-label="閉じる">×</button>
+      </div>
+      <h2 id="modal-title"></h2>
+      <p id="modal-body"></p>
+    </dialog>
+  </body>
+</html>

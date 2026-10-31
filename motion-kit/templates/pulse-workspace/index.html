@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="theme-color" content="#c9e8d8" />
+    <meta
+      name="description"
+      content="チームの仕事に、ひとつの鼓動を。。架空ブランドの操作可能なデモサイトです。"
+    />
+    <title>pulse — チームの仕事に、ひとつの鼓動を。</title>
+    <link rel="icon" href="assets/illustration.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="script.js" defer></script>
+  </head>
+  <body class="pulse-workspace">
+    <a class="skip" href="#main">本文へ移動</a>
+    <header class="site-header">
+      <a class="brand" href="#main">pulse</a>
+      <nav class="site-nav" id="navigation" aria-label="メインナビゲーション">
+        <a href="#workspace">ワークスペース</a
+        ><a href="#features">チームの流れ</a><a href="#pricing">プラン</a>
+      </nav>
+      <button
+        class="menu"
+        aria-controls="navigation"
+        aria-expanded="false"
+        type="button"
+      >
+        メニュー
+      </button>
+    </header>
+    <main id="main">
+      <section class="control-room" aria-label="pulse ワークスペース体験">
+        <aside class="workspace">
+          <p class="micro">あなたのチームに、<br />ひとつの鼓動。</p>
+          <h1 class="display">WORK<br />IN<br />SYNC.</h1>
+          <div class="workspace-nav">
+            <a href="#workspace">● 今日の仕事</a
+            ><a href="#features">↗ チームの流れ</a
+            ><a href="#pricing">＋ プランを選ぶ</a>
+          </div>
+          <div class="avatars" aria-label="サンプルチーム4人">
+            <i>青</i><i>森</i><i>木</i><i>＋</i>
+          </div>
+          <p class="micro muted">サンプルチーム / 4人</p>
+        </aside>
+        <div class="mission" id="workspace">
+          <div class="row mission-top">
+            <span>次のリリース</span
+            ><span class="demo-mark">操作できるデモ</span>
+          </div>
+          <div class="orbit-stage">
+            <div class="cross cross-a"></div>
+            <div class="cross cross-b"></div>
+            <div class="tick-ring"></div>
+            <div class="progress-ring" role="img" aria-label="4件中1件完了">
+              <div class="ring-core">
+                <p class="micro">チームの進捗</p>
+                <strong id="completion" class="display">25<span>%</span></strong
+                ><span class="ring-caption">いいリズムで、進んでる。</span>
+              </div>
+            </div>
+            <div class="float-tag tag-a">
+              <b>Design review</b><span>木村さんが確認中</span>
+            </div>
+            <div class="float-tag tag-b"><i></i> 新しい導入フロー</div>
+            <div class="coordinates">35°40′ / TEAM SYNC</div>
+          </div>
+          <div class="mission-bottom">
+            <div>
+              <span class="micro">完了した仕事</span
+              ><b id="done-count">1 / 4</b>
+            </div>
+            <div class="mini-bars" aria-hidden="true">
+              <i style="--bar: 30%"></i><i style="--bar: 50%"></i
+              ><i style="--bar: 40%"></i><i style="--bar: 65%"></i
+              ><i style="--bar: 45%"></i><i style="--bar: 85%"></i
+              ><i style="--bar: 55%"></i><i style="--bar: 80%"></i
+              ><i style="--bar: 65%"></i><i style="--bar: 100%"></i
+              ><i style="--bar: 85%"></i><i style="--bar: 65%"></i
+              ><i style="--bar: 90%"></i><i style="--bar: 70%"></i
+              ><i style="--bar: 100%"></i><i style="--bar: 85%"></i
+              ><i style="--bar: 95%"></i>
+            </div>
+            <button type="button" class="reset" id="reset-tasks">
+              リセット
+            </button>
+          </div>
+        </div>
+        <div class="task-column">
+          <div class="task-heading">
+            <h2>今日を、<br />動かそう。</h2>
+            <p>ひとつ終わるたび、<br />チームの景色が変わる。</p>
+          </div>
+          <div class="task-list">
+            <p class="micro">タスクを押して完了にする</p>
+            <button class="task" type="button" aria-pressed="false" data-task>
+              <span class="task-check" aria-hidden="true">+</span
+              ><span
+                ><b>新しい導入フロー</b><small>青木 / デザイン</small></span
+              ></button
+            ><button class="task" type="button" aria-pressed="false" data-task>
+              <span class="task-check" aria-hidden="true">+</span
+              ><span
+                ><b>ユーザーの声を整理</b><small>森 / リサーチ</small></span
+              ></button
+            ><button class="task" type="button" aria-pressed="false" data-task>
+              <span class="task-check" aria-hidden="true">+</span
+              ><span
+                ><b>招待メールを改善</b><small>木村 / 開発</small></span
+              ></button
+            ><button
+              class="task is-done"
+              type="button"
+              aria-pressed="true"
+              data-task
+            >
+              <span class="task-check" aria-hidden="true">✓</span
+              ><span
+                ><b>仕様をすり合わせる</b><small>チーム / レビュー</small></span
+              >
+            </button>
+          </div>
+          <p class="status" id="task-status" role="status">
+            1件完了。残り3件です。
+          </p>
+          <a class="launch" href="#pricing"
+            >チームのリズムをつくる <span>↗</span></a
+          >
+        </div>
+      </section>
+      <section class="section pulse-manifesto" id="features">
+        <p class="micro">タスクも、会話も、同じ場所。</p>
+        <h2>「どうなった？」を、<br />「次に進もう。」へ。</h2>
+        <div class="cols">
+          <article>
+            <h3>仕事に、背景を。</h3>
+            <p>
+              判断の理由をタスクのそばに。後から加わった人も、同じ地点から考えられます。
+            </p>
+          </article>
+          <article>
+            <h3>引き継ぎを、軽く。</h3>
+            <p>
+              担当と次の一歩を明確に。確認のための会議を、つくるための時間へ。
+            </p>
+          </article>
+          <article>
+            <h3>小さな進捗を、力に。</h3>
+            <p>
+              終わったことが見えると、前に進む感覚が生まれる。ひとつずつ、チームで。
+            </p>
+          </article>
+        </div>
+      </section>
+      <section class="section" id="pricing">
+        <div class="section-head">
+          <h2>チームに合う、<br />ちょうどいいpulse。</h2>
+          <div>
+            <div class="choices" aria-label="支払い周期">
+              <button data-billing="month" aria-pressed="true" type="button">
+                月払い</button
+              ><button data-billing="year" aria-pressed="false" type="button">
+                年払い
+              </button>
+            </div>
+            <p class="control-note" id="billing-note">
+              税込サンプル / 1人・月あたり
+            </p>
+          </div>
+        </div>
+        <div class="cols">
+          <article>
+            <h3>Personal</h3>
+            <p>ひとりの思考を、かたちに。</p>
+            <div class="price">¥0</div>
+            <p>3プロジェクト / 個人ノート</p>
+            <button
+              class="btn ghost"
+              data-demo="Personal体験のデモ"
+              type="button"
+            >
+              Personalを試す
+            </button>
+          </article>
+          <article class="team-plan">
+            <h3>Team</h3>
+            <p>一緒につくる人たちへ。</p>
+            <div class="price" data-month="¥980" data-year="¥780">¥980</div>
+            <p>無制限のプロジェクト / チームノート</p>
+            <button class="btn" data-demo="Team体験のデモ" type="button">
+              Teamを試す
+            </button>
+          </article>
+          <article>
+            <h3>Organization</h3>
+            <p>組織をつなぐ、共通の場所。</p>
+            <div class="price" data-month="¥1,980" data-year="¥1,580">
+              ¥1,980
+            </div>
+            <p>権限管理 / 管理者サポート</p>
+            <button
+              class="btn ghost"
+              data-demo="Organization相談のデモ"
+              type="button"
+            >
+              相談のデモを見る
+            </button>
+          </article>
+        </div>
+      </section>
+    </main>
+    <footer class="site-footer">
+      <div>
+        <strong>pulse</strong>
+        <p>
+          架空のブランドのデモです。施設・商品・人物・価格はサンプルです。送信・予約・注文・決済は行われません。
+        </p>
+      </div>
+      <a href="../index.html">テンプレート一覧へ</a>
+    </footer>
+    <dialog aria-labelledby="demo-title">
+      <button class="close" type="button" aria-label="デモ画面を閉じる">
+        ×
+      </button>
+      <h2 id="demo-title">デモ</h2>
+      <p>
+        操作体験用の画面です。実際のサービス・商品は提供していません。入力や個人情報の収集は行いません。
+      </p>
+      <button class="btn" type="button" data-confirm>デモ操作を確認する</button>
+      <p class="status" role="status"></p>
+    </dialog>
+  </body>
+</html>

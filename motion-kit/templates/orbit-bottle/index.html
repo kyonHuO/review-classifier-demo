@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="theme-color" content="#e8652d" />
+    <meta
+      name="description"
+      content="日常を、ひとまわり軽くするボトル。架空ブランドの操作可能なデモサイトです。"
+    />
+    <title>ORBIT — 日常を、ひとまわり軽くするボトル</title>
+    <link rel="icon" href="assets/illustration.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="script.js" defer></script>
+  </head>
+  <body class="orbit-bottle">
+    <a class="skip" href="#main">本文へ移動</a>
+    <header class="site-header">
+      <a class="brand" href="#main">ORBIT</a>
+      <nav class="site-nav" id="navigation" aria-label="メインナビゲーション">
+        <a href="#main">ボトルを選ぶ</a><a href="#details">デザイン</a
+        ><a href="#care">お手入れ</a>
+      </nav>
+      <button
+        class="menu"
+        aria-controls="navigation"
+        aria-expanded="false"
+        type="button"
+      >
+        メニュー
+      </button>
+    </header>
+    <main id="main">
+      <section class="orbit-hero">
+        <div class="orbit-copy">
+          <p>持ち歩く、ちょうどいい軌道。</p>
+          <h1 class="display">ORBIT</h1>
+          <div class="orbit-intro">
+            <h2>
+              日常を、<br />ひとまわり<span class="mobile-break"></span>軽く。
+            </h2>
+            <p>手に、バッグに、街に。<br />500mlの、小さな相棒。</p>
+            <a href="#details">ボトルのことを知る ↓</a>
+          </div>
+        </div>
+        <div
+          class="bottle-stage art"
+          role="img"
+          aria-label="オレンジ色のステンレスボトルのプロダクトスタディ"
+        >
+          <div class="bottle-orbit ring-one"></div>
+          <div class="bottle-orbit ring-two"></div>
+          <div class="bottle-shadow"></div>
+          <div class="bottle reactive">
+            <div class="bottle-cap"></div>
+            <div class="bottle-neck"></div>
+            <div class="bottle-body">
+              <div class="bottle-type">
+                ORBIT<span>500 ml / everyday vessel</span>
+              </div>
+              <div class="bottle-base"></div>
+            </div>
+          </div>
+          <span class="bottle-dim">φ 72 × 235 mm</span
+          ><span class="bottle-size display">500<span>ml</span></span
+          ><button type="button" id="explode" aria-pressed="false">
+            構造を見る ＋
+          </button>
+        </div>
+        <div class="product-order">
+          <div class="row">
+            <h3>ORBIT / 500</h3>
+            <span class="demo-mark">コンセプトデモ</span>
+          </div>
+          <p class="micro">真空二重構造 / ステンレスボトル</p>
+          <div class="color-controls">
+            <span id="color-name">Ember / エンバー</span>
+            <div class="swatches" aria-label="ボトルの色">
+              <button
+                type="button"
+                data-color="ember"
+                aria-pressed="true"
+                aria-label="エンバー"
+                style="--swatch: #ce582d"
+              ></button
+              ><button
+                type="button"
+                data-color="silver"
+                aria-pressed="false"
+                aria-label="シルバー"
+                style="--swatch: #c2c4bb"
+              ></button
+              ><button
+                type="button"
+                data-color="forest"
+                aria-pressed="false"
+                aria-label="フォレスト"
+                style="--swatch: #31564b"
+              ></button>
+            </div>
+          </div>
+          <div class="order-bottom">
+            <div class="quantity" aria-label="数量">
+              <button type="button" data-qty="-1" aria-label="数量を減らす">
+                −</button
+              ><output id="quantity" aria-live="polite">1</output
+              ><button type="button" data-qty="1" aria-label="数量を増やす">
+                ＋
+              </button>
+            </div>
+            <strong id="order-total">¥4,800</strong
+            ><button type="button" class="btn" data-demo="ORBITの購入体験デモ">
+              購入体験のデモ
+            </button>
+          </div>
+          <p class="micro order-note">
+            税込サンプル価格 / 実際の注文・決済は行われません。
+          </p>
+          <p class="status" id="product-status" role="status">
+            エンバー / 1本を表示しています。
+          </p>
+        </div>
+      </section>
+      <section class="section orbit-specs" id="details">
+        <div class="section-head">
+          <h2>必要なものを、<br />必要なだけ。</h2>
+          <p>
+            洗いやすい口径、持ちやすい曲面。<br />毎日、迷わず手に取れる一本へ。
+          </p>
+        </div>
+        <div class="spec-grid">
+          <div>
+            <span>容量</span
+            ><strong class="display">500<small>ml</small></strong>
+            <p>コーヒーにも、水にも。<br />デスクから、いつもの道まで。</p>
+          </div>
+          <div>
+            <span>重さ</span
+            ><strong class="display">260<small>g</small></strong>
+            <p>バッグの中でかさばらない、<br />軽さを考えた設計。</p>
+          </div>
+          <div>
+            <span>構造</span><strong class="serif">Double<br />wall.</strong>
+            <p>温度をゆっくりと伝える、<br />真空二重構造のコンセプト。</p>
+          </div>
+        </div>
+        <p class="control-note">
+          寸法・重量・構造は架空の商品設定です。保温・保冷性能の実測値ではありません。
+        </p>
+      </section>
+      <section class="section orbit-care" id="care">
+        <h2 class="serif">Made for the<br />long way home.</h2>
+        <div>
+          <h3>長く使う、という選択。</h3>
+          <p>
+            一日の終わりに洗って、また明日。パーツは少なく、日々のお手入れは気軽に。
+          </p>
+          <details>
+            <summary>食器洗浄機は使えますか？</summary>
+            <p>
+              この商品は架空のコンセプトです。実製品の取扱説明や耐熱性能は提供していません。実販売時には製品仕様に置き換えてください。
+            </p>
+          </details>
+          <details>
+            <summary>交換パーツはありますか？</summary>
+            <p>
+              こちらは操作を試すためのデモです。商品の提供やパーツの注文は受け付けていません。
+            </p>
+          </details>
+        </div>
+      </section>
+    </main>
+    <footer class="site-footer">
+      <div>
+        <strong>ORBIT</strong>
+        <p>
+          架空のブランドのデモです。施設・商品・人物・価格はサンプルです。送信・予約・注文・決済は行われません。
+        </p>
+      </div>
+      <a href="../index.html">テンプレート一覧へ</a>
+    </footer>
+    <dialog aria-labelledby="demo-title">
+      <button class="close" type="button" aria-label="デモ画面を閉じる">
+        ×
+      </button>
+      <h2 id="demo-title">デモ</h2>
+      <p>
+        操作体験用の画面です。実際のサービス・商品は提供していません。入力や個人情報の収集は行いません。
+      </p>
+      <button class="btn" type="button" data-confirm>デモ操作を確認する</button>
+      <p class="status" role="status"></p>
+    </dialog>
+  </body>
+</html>

@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<meta name="theme-color" content="#FEF7FF">
+<title>Nagiport Motion Kit｜はじめかた（Material 3・検討中）</title>
+<meta name="description" content="日本語で崩れにくい、スクロールで動く1ページのサイトテンプレート。文言と画像を差し替えて使う形を想定しています（検討中）。">
+<style>
+  :root{
+    --primary:#6750A4;--on-primary:#fff;--primary-container:#EADDFF;--on-primary-container:#21005D;
+    --secondary-container:#E8DEF8;--on-secondary-container:#1D192B;
+    --tertiary-container:#FFD8E4;--on-tertiary-container:#31111D;
+    --surface:#FEF7FF;--surface-c:#F3EDF7;--surface-h:#ECE6F0;
+    --on-surface:#1D1B20;--on-surface-variant:#49454F;--outline:#79747E;--outline-variant:#CAC4D0;
+    --font:"Noto Sans JP","Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,system-ui,sans-serif;
+    --r:999px;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--surface);color:var(--on-surface);font-family:var(--font);font-size:15px;line-height:1.75;letter-spacing:.015em;-webkit-font-smoothing:antialiased}
+  a{color:var(--primary);text-underline-offset:.2em}
+  :focus-visible{outline:3px solid #FFD600;outline-offset:2px}
+  .skip{position:absolute;left:-9999px;background:var(--surface);padding:12px 16px;border-radius:var(--r);z-index:200}
+  .skip:focus{left:12px;top:12px;box-shadow:0 1px 3px rgba(0,0,0,.3)}
+  .wrap{max-width:1080px;margin-inline:auto;padding:0 20px;min-width:0}
+
+  .top{position:sticky;top:0;z-index:70;background:rgba(254,247,255,.9);backdrop-filter:blur(12px);border-bottom:1px solid var(--outline-variant)}
+  .top .in{max-width:1080px;margin-inline:auto;display:flex;align-items:center;gap:12px;min-height:60px;padding:8px 20px}
+  .top .mark{width:30px;height:30px;border-radius:50%;background:var(--primary);color:#fff;display:grid;place-items:center;font-size:12px;font-weight:700}
+  .top .nm{font-size:14px;font-weight:600}
+  .top .sp{flex:1}
+  .top .demo{font-size:10.5px;font-weight:700;letter-spacing:.1em;background:var(--primary-container);color:var(--on-primary-container);padding:3px 10px;border-radius:var(--r)}
+  .top a{font-size:12.5px;text-decoration:none}
+
+  .hero{padding:36px 0 8px}
+  .hero .k{font-size:11.5px;letter-spacing:.18em;color:var(--on-surface-variant);font-weight:700;margin:0}
+  .hero h1{font-size:clamp(30px,6vw,52px);line-height:1.12;letter-spacing:-.02em;margin:10px 0 0;font-weight:700}
+  .hero p{margin:14px 0 0;color:var(--on-surface-variant);font-size:14.5px;max-width:760px}
+  .notice{display:flex;gap:12px;align-items:flex-start;background:var(--primary-container);color:var(--on-primary-container);border-radius:16px;padding:13px 18px;font-size:12.5px;margin-top:18px;line-height:1.7}
+  .notice b{font-size:10.5px;letter-spacing:.12em;background:var(--primary);color:#fff;padding:2px 7px;border-radius:8px;flex:0 0 auto;margin-top:2px}
+
+  .progress{margin:28px 0 0}
+  .progress .meta{display:flex;justify-content:space-between;font-size:11.5px;color:var(--on-surface-variant);margin-bottom:8px}
+  .segs{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px}
+  .segs i{height:6px;border-radius:3px;background:var(--surface-h)}
+  .segs i.on{background:var(--primary)}
+  .segs i.half{background:linear-gradient(90deg,var(--primary) 50%,var(--surface-h) 50%)}
+
+  .steps{padding:24px 0 8px}
+  .step{display:grid;grid-template-columns:120px minmax(0,1fr);gap:24px;padding:26px 0;border-bottom:1px solid var(--outline-variant)}
+  @media (max-width:680px){.step{grid-template-columns:1fr;gap:10px;padding:22px 0}}
+  .step .n{font-size:clamp(40px,6vw,64px);font-weight:700;line-height:1;color:var(--primary);opacity:.22}
+  .step h2{font-size:clamp(19px,2.6vw,24px);margin:0;line-height:1.4;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+  .step h2 .st{font-size:10.5px;font-weight:700;letter-spacing:.08em;border-radius:var(--r);padding:2px 9px;background:var(--secondary-container);color:var(--on-secondary-container)}
+  .step p{margin:8px 0 0;color:var(--on-surface-variant);font-size:13.5px;max-width:680px}
+  .step ul{list-style:none;margin:12px 0 0;padding:0;display:flex;flex-wrap:wrap;gap:8px}
+  .step li{font-size:11.5px;border:1px solid var(--outline);border-radius:var(--r);padding:3px 11px;color:var(--on-surface-variant)}
+
+  .box{background:var(--surface-c);border-radius:24px;padding:24px 26px;margin-top:20px}
+  .box h2{font-size:18px;margin:0 0 10px}
+  .box p{margin:0;color:var(--on-surface-variant);font-size:13.5px}
+  .plans{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:16px}
+  @media (max-width:700px){.plans{grid-template-columns:1fr}}
+  .plan{background:var(--surface);border-radius:18px;padding:22px}
+  .plan.hi{background:var(--primary-container);color:var(--on-primary-container)}
+  .plan .tag{font-size:10.5px;font-weight:700;letter-spacing:.08em;background:var(--surface-c);border-radius:var(--r);padding:3px 9px;display:inline-block}
+  .plan h3{font-size:12px;letter-spacing:.1em;margin:14px 0 4px;font-weight:600;opacity:.8}
+  .plan .p{font-size:34px;font-weight:700;line-height:1.15;letter-spacing:-.01em}
+  .plan .p small{font-size:13px;font-weight:500;margin-left:3px;opacity:.8}
+  .plan p{margin:8px 0 0;font-size:12.5px;opacity:.9}
+  .small{font-size:11.5px;color:var(--on-surface-variant);margin-top:12px}
+
+  .faq{margin-top:20px;background:var(--surface-c);border-radius:20px;padding:6px 20px}
+  .faq details{border-bottom:1px solid var(--outline-variant)}
+  .faq details:last-child{border-bottom:0}
+  .faq summary{list-style:none;cursor:pointer;padding:16px 0;font-weight:600;font-size:14.5px;display:flex;justify-content:space-between;gap:14px}
+  .faq summary::-webkit-details-marker{display:none}
+  .faq summary::after{content:"＋";color:var(--primary);font-weight:400}
+  .faq details[open] summary::after{content:"−"}
+  .faq .a{padding:0 0 16px;color:var(--on-surface-variant);font-size:13px;max-width:720px}
+
+  .end{padding:36px 0 8px;text-align:center}
+  .end a{display:inline-block;background:var(--primary);color:var(--on-primary);border-radius:var(--r);padding:12px 26px;font-size:14px;font-weight:600;text-decoration:none}
+  .end p{margin:12px 0 0;font-size:11.5px;color:var(--on-surface-variant)}
+
+  .foot{border-top:1px solid var(--outline-variant);margin-top:32px;padding:22px 0 56px;font-size:11.5px;color:var(--on-surface-variant)}
+  .foot .in{display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap}
+  .foot a{color:var(--on-surface-variant)}
+  .foot .meta{margin:12px 0 0;line-height:1.8}
+  @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">本文へ移動</a>
+
+<div class="top">
+  <div class="in">
+    <span class="mark" aria-hidden="true">N</span>
+    <span class="nm">Nagiport Motion Kit</span>
+    <span class="sp"></span>
+    <span class="demo">DEMO</span>
+    <a href="https://kyonhuo.github.io/nagiport-motion-kit/">公開デモ</a>
+  </div>
+</div>
+
+<main id="main" class="wrap">
+  <section class="hero">
+    <p class="k">NAGIPORT MOTION KIT / MATERIAL 06</p>
+    <h1>動くサイトを、<br>貼るだけ。</h1>
+    <p>スクロールで動くヒーロー、料金表、FAQ。日本語で崩れにくい1ページのサイトテンプレートを目指しています。文言と画像を差し替えるだけで使える形を想定しています（検証中）。</p>
+    <p class="notice"><b>DEMO</b><span>このページは検討中のデモです。掲載している文言・料金・提供内容はすべて案で、販売条件は確定していません。</span></p>
+
+    <div class="progress" aria-hidden="true">
+      <div class="meta"><span>はじめかた（案）</span><span>4ステップ</span></div>
+      <div class="segs"><i class="on"></i><i class="on"></i><i class="half"></i><i></i></div>
+    </div>
+  </section>
+
+  <div class="steps">
+    <section class="step">
+      <div class="n" aria-hidden="true">01</div>
+      <div><h2>テンプレートを選ぶ <span class="st">準備中</span></h2><p>6種類の枠（HERO / LANDING / PRICING / FAQ / CONTACT / PORTFOLIO）を想定しています。いまは準備中のため、実際の商品はまだありません。</p><ul><li>6種（案）</li><li>準備中</li><li>未提供</li></ul></div>
+    </section>
+    <section class="step">
+      <div class="n" aria-hidden="true">02</div>
+      <div><h2>文言と画像を差し替える <span class="st">想定</span></h2><p>見出し、本文、画像を差し替えるだけで使える形を目指しています。長い日本語に差し替えた場合の組みは未検証です。</p><ul><li>日本語の組版</li><li>画像の差し替え</li><li>未検証</li></ul></div>
+    </section>
+    <section class="step">
+      <div class="n" aria-hidden="true">03</div>
+      <div><h2>ファイルを置く <span class="st">想定</span></h2><p>サーバーやCLIを使わず、ファイルを置いて公開するだけの構成を想定しています。実際の公開手順は未検証です。</p><ul><li>外部依存なし</li><li>手順は未検証</li></ul></div>
+    </section>
+    <section class="step">
+      <div class="n" aria-hidden="true">04</div>
+      <div><h2>公開して確認する <span class="st">検討中</span></h2><p>公開後の確認方法は未定です。現時点で確認しているのは、375 / 768 / 1440px幅の横はみ出しがないことだけです（Linux上のChromeヘッドレス）。</p><ul><li>確認済み: 横はみ出しのみ</li><li>実機は未検証</li></ul></div>
+    </section>
+  </div>
+
+  <section class="box" id="pricing">
+    <h2>料金（予定）</h2>
+    <p>以下の価格・構成は検討中の案です。販売条件ではなく、変更される可能性があります。</p>
+    <div class="plans">
+      <div class="plan"><span class="tag">検討案</span><h3>SINGLE</h3><div class="p">2,980<small>円</small></div><p>テンプレート1点。ヒーロー＋本文＋問い合わせの1ページ構成（案）。</p></div>
+      <div class="plan hi"><span class="tag">検討案・準備中</span><h3>STARTER SET</h3><div class="p">9,800<small>円</small></div><p>ヒーロー3種（案）＋料金表・実績・問い合わせの部品セット。差し替え手順つき（想定）。</p></div>
+    </div>
+    <p class="small">サポート範囲・期間・返金条件はいずれも未定です。</p>
+  </section>
+
+  <section class="faq" id="faq">
+    <details><summary>このページの内容は確定ですか？</summary><div class="a">いいえ。掲載している料金・構成・文言は検討中の案です。販売条件は確定しておらず、変更される場合があります。</div></details>
+    <details><summary>商品はいつ買えますか？</summary><div class="a">現在準備中です。完成次第、このページで販売を開始します。</div></details>
+    <details><summary>プログラミングは必要ですか？</summary><div class="a">想定では不要です（検証中）。文言と画像を差し替えるだけで使える形を目指しています。</div></details>
+    <details><summary>返金やサポートはありますか？</summary><div class="a">販売開始時に条件を定めて掲載します。現時点では未定です。</div></details>
+  </section>
+
+  <div class="end">
+    <a href="https://kyonhuo.github.io/nagiport-motion-kit/">公開デモを見る</a>
+    <p>検討中のデモです。販売条件は確定していません。</p>
+  </div>
+
+  <footer class="foot">
+    <div class="in">
+      <span>Nagiport Motion Kit（準備中）</span>
+      <nav aria-label="フッターナビゲーション"><a href="#pricing">料金</a> ／ <a href="#faq">FAQ</a> ／ <a href="./index.html">デザイン一覧</a></nav>
+    </div>
+    <p class="meta">デザインの参考: Material Design 3（カラーシステム・トーナル面・ステップ表示の考え方）。Roboto等の専用フォントや素材・コードは未使用で、システムフォントで独自に実装しています。／ © 2026 NAGIPORT</p>
+  </footer>
+</main>
+</body>
+</html>

@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta
+      name="description"
+      content="文字自体を主役にする書体の実験台。入力、太さ、字間を試し、組見本から自分の一行へ切り替えられます。"
+    />
+    <title>GLYPH / 文字の鋳造室</title>
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2032%2032%22%3E%3Crect%20width%3D%2232%22%20height%3D%2232%22%20rx%3D%224%22%20fill%3D%22%2321242b%22%2F%3E%3Ctext%20x%3D%2216%22%20y%3D%2223%22%20text-anchor%3D%22middle%22%20fill%3D%22white%22%20font-family%3D%22sans-serif%22%20font-size%3D%2223%22%20font-weight%3D%22900%22%3EG%3C%2Ftext%3E%3C%2Fsvg%3E"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <a class="skip" href="#main">本文へ</a>
+    <header>
+      <a class="brand" href="#main">GLYPH FOUNDRY</a>
+      <nav aria-label="ページ内">
+        <a href="#controls">文字を試す</a><a href="#specimens">組見本</a>
+      </nav>
+    </header>
+    <main id="main">
+      <section class="type-stage">
+        <div class="type-meta">
+          <span>文字のかたちを、あなたの手で。</span
+          ><span>System type laboratory / 2026</span>
+        </div>
+        <div class="ghost-letter" aria-hidden="true">g</div>
+        <div class="type-grid" aria-hidden="true">
+          <span>Ascender</span><span>Baseline</span><span>Descender</span>
+        </div>
+        <div class="letter-display" id="letter-display">
+          <h1 id="type-preview">永</h1>
+        </div>
+        <span class="specimen-label">形が、声になる。</span>
+        <div class="weight-scale">
+          <span>Weight</span><b id="weight-large">700</b>
+        </div>
+        <div class="spacing-scale">
+          <span>Tracking</span><b id="spacing-large">−0.02 em</b>
+        </div>
+      </section>
+      <section id="controls" class="type-controls">
+        <div class="text-field">
+          <label for="specimen-text"
+            >好きな文字を入力 <span>24文字まで</span></label
+          ><input
+            id="specimen-text"
+            type="text"
+            maxlength="24"
+            value="永"
+            autocomplete="off"
+            spellcheck="false"
+          />
+        </div>
+        <div class="type-ranges">
+          <div>
+            <label for="weight"
+              >太さ <output id="weight-output">700</output></label
+            ><input
+              id="weight"
+              type="range"
+              min="100"
+              max="900"
+              step="100"
+              value="700"
+            />
+          </div>
+          <div>
+            <label for="spacing"
+              >字間 <output id="spacing-output">−0.02 em</output></label
+            ><input
+              id="spacing"
+              type="range"
+              min="-8"
+              max="12"
+              step="1"
+              value="-2"
+            />
+          </div>
+        </div>
+        <div class="controls type-presets" aria-label="文字プリセット">
+          <button type="button" data-text="永" aria-pressed="true">
+            日本語</button
+          ><button type="button" data-text="Ag" aria-pressed="false">
+            英字</button
+          ><button type="button" data-text="0123" aria-pressed="false">
+            数字
+          </button>
+        </div>
+        <button id="show-css" type="button" class="button-fill">
+          この文字のCSSを見る
+        </button>
+        <p class="status" id="type-status" aria-live="polite">
+          「永」を太さ700、字間−0.02 emで表示しています。
+        </p>
+      </section>
+      <section class="specimens" id="specimens">
+        <div class="specimen-heading">
+          <span class="micro">組見本</span>
+          <h2>一文字から、<br />一行の風景へ。</h2>
+          <p>
+            文字を選び、太さと間隔を変えてみてください。同じ言葉にも、いくつもの声があります。
+          </p>
+        </div>
+        <div class="sample-lines">
+          <button type="button" data-sample="余白を、つくる。">
+            <span>日本語 / 文章</span><strong>余白を、つくる。</strong
+            ><b>試す ↗</b></button
+          ><button type="button" data-sample="Make room.">
+            <span>Latin / Sentence</span><strong>Make room.</strong
+            ><b>試す ↗</b></button
+          ><button type="button" data-sample="2026.10.30">
+            <span>数字 / 日付</span><strong>2026.10.30</strong><b>試す ↗</b>
+          </button>
+        </div>
+      </section>
+      <section class="type-note">
+        <span>字形の観察ノート</span>
+        <p>
+          止め、はね、曲線。輪郭を追うと、読むだけでは気づかない文字のリズムが見えてくる。
+        </p>
+        <strong>Aa<br />あ</strong>
+      </section>
+    </main>
+    <footer>
+      <strong>GLYPH FOUNDRY</strong>
+      <p>
+        端末のシステムフォントを試す架空の書体展示。フォントファイルの販売・配布はありません。表示字形と太さは端末環境で異なります。
+      </p>
+      <a href="#main">字形へ ↑</a>
+    </footer>
+    <dialog id="modal" aria-labelledby="modal-title">
+      <div class="dialog-head">
+        <span class="micro">ローカルプレビュー</span
+        ><button id="modal-close" type="button" aria-label="閉じる">×</button>
+      </div>
+      <h2 id="modal-title"></h2>
+      <p id="modal-body"></p>
+    </dialog>
+  </body>
+</html>

@@ -1,0 +1,19 @@
+{
+  "site": "btob",
+  "original_content": [
+    "index.html",
+    "styles.css",
+    "script.js",
+    "README.md"
+  ],
+  "code_license": "MIT",
+  "external_runtime_dependencies": [],
+  "references": [
+    {
+      "url": "https://startbootstrap.github.io/startbootstrap-landing-page/",
+      "use": "Structural research only; no source code, brands, copy or images redistributed",
+      "adaptation": "Value proposition, feature explanation, pricing; original before/after handoff demo and local time simulation"
+    }
+  ],
+  "assets": []
+}

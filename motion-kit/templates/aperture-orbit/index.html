@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta
+      name="description"
+      content="光の道筋に触れる架空の光学展示。9つのレンズ一覧から焦点へ入り、波長と焦点距離を操作して光路を変えます。"
+    />
+    <title>APERTURE / 光の焦点室</title>
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2032%2032%22%3E%3Crect%20width%3D%2232%22%20height%3D%2232%22%20rx%3D%224%22%20fill%3D%22%23172345%22%2F%3E%3Ctext%20x%3D%2216%22%20y%3D%2223%22%20text-anchor%3D%22middle%22%20fill%3D%22white%22%20font-family%3D%22sans-serif%22%20font-size%3D%2223%22%20font-weight%3D%22900%22%3EA%3C%2Ftext%3E%3C%2Fsvg%3E"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <a class="skip" href="#main">本文へ</a>
+    <header>
+      <a href="#main" class="brand">APERTURE ORBIT</a>
+      <nav aria-label="ページ内">
+        <a href="#optics">光学展示</a><a href="#principle">光のノート</a>
+      </nav>
+    </header>
+    <main id="main">
+      <section class="optics-heading">
+        <div>
+          <span class="micro">レンズの向こう側を、観測する。</span>
+          <h1>APERTURE</h1>
+        </div>
+        <p>
+          <span>曲がる。</span><span>集まる。</span><span>光に、輪郭を。</span>
+        </p>
+      </section>
+      <section class="optics-stage" id="optics">
+        <div class="lens-library">
+          <div class="library-heading">
+            <span>光学標本 / 9点</span
+            ><button id="overview" type="button" hidden>一覧へ戻る</button>
+          </div>
+          <div class="lens-grid">
+            <button type="button" data-lens="0" aria-pressed="true">
+              <i class="mini-lens" style="--hue: 205deg"></i
+              ><span>Convex / 凸面</span><b>F–01</b></button
+            ><button type="button" data-lens="1" aria-pressed="false">
+              <i class="mini-lens" style="--hue: 250deg"></i
+              ><span>Biconvex / 両凸</span><b>F–02</b></button
+            ><button type="button" data-lens="2" aria-pressed="false">
+              <i class="mini-lens" style="--hue: 160deg"></i
+              ><span>Meniscus / 三日月</span><b>F–03</b></button
+            ><button type="button" data-lens="3" aria-pressed="false">
+              <i class="mini-lens" style="--hue: 40deg"></i
+              ><span>Achromat / 色消し</span><b>F–04</b></button
+            ><button type="button" data-lens="4" aria-pressed="false">
+              <i class="mini-lens" style="--hue: 290deg"></i
+              ><span>Aspheric / 非球面</span><b>F–05</b></button
+            ><button type="button" data-lens="5" aria-pressed="false">
+              <i class="mini-lens" style="--hue: 320deg"></i
+              ><span>Planar / 平面</span><b>F–06</b></button
+            ><button type="button" data-lens="6" aria-pressed="false">
+              <i class="mini-lens" style="--hue: 180deg"></i
+              ><span>Concave / 凹面</span><b>F–07</b></button
+            ><button type="button" data-lens="7" aria-pressed="false">
+              <i class="mini-lens" style="--hue: 80deg"></i
+              ><span>Doublet / 接合</span><b>F–08</b></button
+            ><button type="button" data-lens="8" aria-pressed="false">
+              <i class="mini-lens" style="--hue: 230deg"></i
+              ><span>Fresnel / 輪帯</span><b>F–09</b>
+            </button>
+          </div>
+          <p>標本を選ぶと、光の集まり方を詳しく観測できます。</p>
+        </div>
+        <div class="lens-theatre">
+          <div class="theatre-top">
+            <h2 id="lens-title">Convex / 凸面レンズ</h2>
+            <span id="lens-code">F–01</span>
+          </div>
+          <div class="optical-art">
+            <div class="major-lens" id="major-lens">
+              <div class="glass-core"></div>
+              <span>APERTURE / F–01</span>
+            </div>
+            <canvas
+              id="rays"
+              aria-label="凸面レンズで3本の光線が屈折し焦点へ集まるサンプル図"
+              >光線の焦点距離は下の数値でも確認できます。</canvas
+            ><span class="ray-label">入射光</span
+            ><span class="focal-label">焦点</span>
+          </div>
+          <div class="theatre-bottom">
+            <span>焦点距離</span
+            ><strong id="focal-distance">62 <small>mm</small></strong>
+            <p id="lens-note">光を一点に集める、基本のかたち。</p>
+          </div>
+        </div>
+      </section>
+      <section class="optical-controls">
+        <div>
+          <label for="wavelength"
+            >光の波長 <output id="wavelength-output">580 nm</output></label
+          ><input
+            id="wavelength"
+            type="range"
+            min="380"
+            max="740"
+            value="580"
+          />
+          <div class="spectrum" aria-hidden="true"></div>
+          <div class="range-ends">
+            <span>380 / 紫</span><span>740 / 赤</span>
+          </div>
+        </div>
+        <div>
+          <label for="focus"
+            >焦点の位置 <output id="focus-output">62 mm</output></label
+          ><input id="focus" type="range" min="25" max="100" value="62" />
+          <div class="range-ends"><span>25 mm</span><span>100 mm</span></div>
+        </div>
+        <div class="transmission">
+          <span>透過率 / サンプル</span
+          ><strong id="transmission">94.0 <small>%</small></strong>
+        </div>
+        <button id="optics-details" type="button" class="button-fill">
+          観測票を見る
+        </button>
+        <p id="optics-status" class="status" aria-live="polite">
+          F–01、波長580 nm、焦点距離62 mmを表示しています。
+        </p>
+      </section>
+      <section class="principle" id="principle">
+        <div>
+          <span class="micro">光のノート</span>
+          <h2>見えているのは、<br />光の旅のつづき。</h2>
+        </div>
+        <p>
+          レンズの形が変わると、光の道筋も変わります。色を変え、焦点を動かして、ものを見る仕組みの入口に立ってみましょう。
+        </p>
+        <div class="principle-mark" aria-hidden="true">((•))</div>
+      </section>
+    </main>
+    <footer>
+      <strong>APERTURE ORBIT</strong>
+      <p>
+        架空の光学展示デモ。光路・屈折・透過率は体験用の簡略モデルです。実機の設計・測定値ではありません。外部送信はありません。
+      </p>
+      <a href="#main">光学展示へ ↑</a>
+    </footer>
+    <dialog id="modal" aria-labelledby="modal-title">
+      <div class="dialog-head">
+        <span class="micro">ローカルプレビュー</span
+        ><button id="modal-close" type="button" aria-label="閉じる">×</button>
+      </div>
+      <h2 id="modal-title"></h2>
+      <p id="modal-body"></p>
+    </dialog>
+  </body>
+</html>

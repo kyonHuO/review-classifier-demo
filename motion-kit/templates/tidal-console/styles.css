@@ -1,0 +1,1023 @@
+html,
+body {
+  background: #0d2927;
+  color: #12332e;
+  margin: 0;
+}
+* {
+  box-sizing: border-box;
+}
+body {
+  font-family: "Yu Gothic", Meiryo, sans-serif;
+  font-size: 13px;
+}
+button,
+input,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+a {
+  color: inherit;
+  text-decoration: none;
+}
+button {
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+}
+a:focus-visible,
+button:focus-visible,
+input:focus-visible {
+  outline: 3px solid #dc4539;
+  outline-offset: 3px;
+}
+button {
+  min-height: 44px;
+}
+html {
+  scroll-behavior: smooth;
+}
+.skip {
+  position: fixed;
+  top: -100px;
+  left: 20px;
+  background: #fff;
+  padding: 12px;
+  z-index: 100;
+}
+.skip:focus {
+  top: 12px;
+}
+.shell {
+  margin: 14px;
+  background: #c6dfd1;
+  border: 1px solid #82a699;
+  min-height: calc(100vh - 28px);
+}
+header {
+  height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #7da091;
+  padding: 0 26px;
+}
+.brand {
+  display: flex;
+  align-items: center;
+  font-family: Arial, sans-serif;
+  font-weight: 900;
+  font-size: 27px;
+  letter-spacing: -1.7px;
+  gap: 10px;
+}
+.brand > span:last-child {
+  font-size: 11px;
+  letter-spacing: 1px;
+  font-weight: 600;
+  margin-left: 8px;
+}
+.brand-mark {
+  font-size: 42px;
+  font-weight: 400;
+}
+.header-link {
+  font-size: 12px;
+  border-left: 1px solid #7da091;
+  padding-left: 24px;
+}
+.header-link span {
+  margin-left: 24px;
+}
+.workspace {
+  display: grid;
+  grid-template-columns: 136px minmax(0, 1fr) 312px;
+}
+.rail {
+  padding: 28px 13px 20px;
+  background: #173a34;
+  color: #c9e2d3;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.rail-code {
+  font-size: 10px;
+  line-height: 1.9;
+  letter-spacing: 1.5px;
+  margin-bottom: 29px;
+  color: #b0cfc0;
+}
+.rail a {
+  padding: 13px 8px;
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  border-top: 1px solid #547468;
+}
+.rail a.selected {
+  background: #bddccb;
+  color: #12332e;
+  border: 0;
+}
+.rail-end {
+  margin-top: auto;
+  padding: 20px 4px 0;
+  font-size: 10px;
+  line-height: 2;
+}
+.rail-end strong {
+  font:
+    30px "Arial Narrow",
+    Arial,
+    sans-serif;
+  display: block;
+}
+.rail-end small {
+  font-size: 9px;
+}
+.signal,
+.scope-footer i {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  background: #81c0a2;
+  border-radius: 100%;
+  margin-right: 4px;
+}
+main {
+  min-width: 0;
+  padding: 23px 22px 0;
+}
+.page-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+.micro {
+  font-size: 10px;
+  letter-spacing: 1.5px;
+}
+h1 {
+  font-family: Impact, "Arial Narrow", sans-serif;
+  font-size: clamp(70px, 9.7vw, 152px);
+  line-height: 0.95;
+  font-weight: 900;
+  letter-spacing: -6px;
+  margin: 11px 0 12px;
+}
+h1 span {
+  font-size: 20px;
+  letter-spacing: -1px;
+  display: inline-block;
+  vertical-align: top;
+  border-top: 3px solid #12332e;
+  margin: 9px 0 0 12px;
+  line-height: 1.5;
+}
+.date {
+  text-align: right;
+  font:
+    11px Arial,
+    sans-serif;
+  line-height: 1.7;
+  padding-top: 3px;
+}
+.date strong {
+  display: block;
+  font:
+    600 21px "Yu Gothic",
+    sans-serif;
+  margin: 10px 0;
+}
+.date > span {
+  display: block;
+  font:
+    9px "Yu Gothic",
+    sans-serif;
+}
+.instrument {
+  border: 1px solid #749789;
+  position: relative;
+  background: radial-gradient(ellipse at 50% 40%, #dcebe0 0, #b4d2c0 70%);
+  overflow: hidden;
+}
+.instrument-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 13px 16px;
+  border-bottom: 1px solid #789c8b;
+  position: relative;
+  z-index: 2;
+}
+.instrument h2 {
+  font-size: 14px;
+  margin: 0;
+}
+.instrument-top > span {
+  font:
+    9px Arial,
+    sans-serif;
+  letter-spacing: 1px;
+}
+.scope {
+  position: relative;
+  height: 435px;
+}
+.scope canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+.axis {
+  position: absolute;
+  font:
+    10px Arial,
+    sans-serif;
+  color: #315c4e;
+}
+.axis-n {
+  top: 16px;
+  left: 48%;
+}
+.axis-w {
+  left: 17px;
+  top: 44%;
+}
+.axis-e {
+  right: 17px;
+  top: 44%;
+}
+.cross {
+  position: absolute;
+  top: 44%;
+  left: 49%;
+  font:
+    34px Arial,
+    sans-serif;
+  color: #c24c3a;
+}
+.scope-note {
+  position: absolute;
+  top: 33px;
+  left: 23px;
+  font:
+    9px Arial,
+    sans-serif;
+  letter-spacing: 2px;
+}
+.scope-note b {
+  display: block;
+  font:
+    500 18px/1.5 "Yu Mincho",
+    serif;
+  letter-spacing: 2px;
+  margin-top: 10px;
+}
+.depth-display {
+  position: absolute;
+  right: 17px;
+  bottom: 30px;
+  display: flex;
+  flex-direction: column;
+}
+.depth-display > span {
+  font-size: 9px;
+  text-align: right;
+}
+.depth-display strong {
+  font:
+    80px/1 Impact,
+    "Arial Narrow",
+    sans-serif;
+  letter-spacing: -4px;
+}
+.depth-display strong small {
+  font:
+    23px Arial,
+    sans-serif;
+  margin-left: 6px;
+  letter-spacing: 0;
+}
+.scale {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  font:
+    9px Arial,
+    sans-serif;
+}
+.scope-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid #789c8b;
+  padding: 0 12px;
+  font-size: 9px;
+  gap: 10px;
+}
+.scope-footer button {
+  border: 0;
+  background: #1b443b;
+  color: #d5e9dc;
+  padding: 0 14px;
+  font-size: 11px;
+}
+.scope-footer button span {
+  margin-left: 15px;
+}
+.depth-control {
+  display: grid;
+  grid-template-columns: 170px 1fr;
+  gap: 20px;
+  padding: 19px 3px 24px;
+}
+.depth-control label {
+  font-size: 13px;
+  font-weight: 600;
+}
+.depth-control label span {
+  display: block;
+  font-size: 9px;
+  font-weight: 400;
+  margin-top: 5px;
+}
+.range-labels {
+  display: flex;
+  justify-content: space-between;
+  font:
+    9px Arial,
+    sans-serif;
+}
+.range-labels output {
+  font-size: 11px;
+  font-weight: 700;
+}
+input[type="range"] {
+  width: 100%;
+  accent-color: #184b3d;
+  min-height: 44px;
+  cursor: pointer;
+}
+.readouts {
+  border-left: 1px solid #789c8b;
+  padding: 24px 17px 0;
+}
+.aside-title {
+  display: flex;
+  justify-content: space-between;
+  font-size: 10px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #789c8b;
+}
+.aside-title > span {
+  font-size: 9px;
+}
+.stations {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 25px;
+}
+.stations button {
+  text-align: left;
+  position: relative;
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid #789c8b;
+  padding: 12px;
+}
+.stations button small {
+  font-size: 9px;
+  display: block;
+}
+.stations button strong {
+  font-size: 16px;
+  display: block;
+  margin-top: 5px;
+}
+.stations button > span {
+  position: absolute;
+  right: 12px;
+  top: 26px;
+  font:
+    11px Arial,
+    sans-serif;
+}
+.stations button[aria-pressed="true"] {
+  background: #1d483d;
+  color: #d9ecdd;
+  margin-top: 8px;
+}
+.water dl {
+  margin: 0;
+}
+.water dl > div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #8dae9e;
+  padding: 10px 0;
+}
+.water dt {
+  font-size: 10px;
+}
+.water dd {
+  margin: 0;
+  font-size: 9px;
+}
+.water dd strong {
+  font:
+    32px "Arial Narrow",
+    Arial,
+    sans-serif;
+  letter-spacing: -2px;
+  margin-right: 5px;
+}
+.wave {
+  height: 68px;
+  margin-top: 16px;
+  background: #b4d0bf;
+}
+.wave canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.wave-label {
+  display: flex;
+  justify-content: space-between;
+  font-size: 8px;
+  margin: 5px 0 20px;
+}
+.log {
+  background: #153a32;
+  color: #d6e8dc;
+  padding: 18px;
+  margin: 0 -17px;
+}
+.log-heading {
+  display: flex;
+  justify-content: space-between;
+  font-size: 9px;
+}
+.log h3 {
+  font-family: "Yu Mincho", serif;
+  font-weight: 400;
+  font-size: 26px;
+  line-height: 1.4;
+  margin: 19px 0 12px;
+}
+.log p {
+  font-size: 10px;
+  line-height: 1.9;
+  color: #afc9b9;
+  min-height: 38px;
+}
+.log button {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 12px 0;
+  border: 0;
+  border-top: 1px solid #6b8f7c;
+  background: none;
+  color: inherit;
+  font-size: 11px;
+}
+.archive {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+  gap: 70px;
+  padding: 60px 50px 60px 184px;
+  border-top: 1px solid #789c8b;
+}
+.archive h2 {
+  font:
+    500 28px/1.5 "Yu Mincho",
+    serif;
+  margin: 14px 0 0;
+}
+.archive-list > div {
+  display: grid;
+  grid-template-columns: 50px 1fr 80px;
+  gap: 12px;
+  padding: 20px 0;
+  border-bottom: 1px solid #789c8b;
+  font-size: 10px;
+}
+.archive-list strong {
+  font-weight: 500;
+}
+.archive-list > div > span:last-child {
+  text-align: right;
+  font-size: 9px;
+}
+footer {
+  background: #173a34;
+  color: #c9dfd0;
+  padding: 24px 35px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+footer strong {
+  font-size: 13px;
+}
+footer p {
+  font-size: 9px;
+  line-height: 1.8;
+}
+footer a {
+  font-size: 10px;
+}
+dialog {
+  width: min(520px, calc(100vw - 40px));
+  border: 1px solid #638e78;
+  background: #d5e8d9;
+  color: #15392d;
+  padding: 24px;
+}
+dialog::backdrop {
+  background: #0a2623cc;
+}
+.dialog-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 10px;
+}
+.dialog-top button {
+  font-size: 28px;
+  background: none;
+  border: 0;
+  min-width: 44px;
+}
+dialog h2 {
+  font:
+    32px "Yu Mincho",
+    serif;
+}
+dialog p {
+  font-size: 13px;
+  line-height: 1.9;
+}
+button:hover {
+  filter: brightness(1.06);
+}
+@media (min-width: 1600px) {
+  .shell {
+    max-width: 1650px;
+    margin: 20px auto;
+  }
+  .scope {
+    height: 500px;
+  }
+}
+@media (max-width: 1100px) {
+  .workspace {
+    grid-template-columns: 105px minmax(0, 1fr) 250px;
+  }
+  main {
+    padding: 20px 14px 0;
+  }
+  .readouts {
+    padding: 20px 13px 0;
+  }
+  .log {
+    margin: 0 -13px;
+  }
+  .date strong {
+    font-size: 16px;
+  }
+  .scope-note b {
+    font-size: 15px;
+  }
+  .scope {
+    height: 410px;
+  }
+  .depth-control {
+    grid-template-columns: 130px 1fr;
+    gap: 10px;
+  }
+  .archive {
+    padding: 45px;
+    gap: 30px;
+  }
+}
+@media (max-width: 850px) {
+  .workspace {
+    grid-template-columns: 1fr;
+  }
+  .rail {
+    padding: 8px 16px;
+    flex-direction: row;
+    align-items: center;
+    gap: 8px;
+  }
+  .rail-code {
+    margin: 0 15px 0 0;
+    font-size: 8px;
+  }
+  .rail a {
+    border: 0;
+    gap: 16px;
+    padding: 13px;
+  }
+  .rail-end {
+    display: none;
+  }
+  .readouts {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    padding: 20px;
+    border-top: 1px solid #789c8b;
+  }
+  .readouts > .aside-title {
+    grid-column: 1/-1;
+  }
+  .stations {
+    margin: 0;
+  }
+  .water {
+    grid-column: 2;
+    grid-row: 2/4;
+  }
+  .log {
+    margin: 0;
+    padding: 20px;
+  }
+  .scope {
+    height: 440px;
+  }
+  h1 {
+    font-size: 115px;
+  }
+  .archive {
+    padding: 40px 25px;
+  }
+  footer {
+    flex-wrap: wrap;
+  }
+}
+@media (max-width: 550px) {
+  .shell {
+    margin: 7px;
+  }
+  header {
+    height: 62px;
+    padding: 0 14px;
+  }
+  .brand {
+    font-size: 24px;
+    gap: 7px;
+  }
+  .brand > span:last-child {
+    font-size: 9px;
+    margin-left: 3px;
+  }
+  header > p {
+    display: none;
+  }
+  .header-link {
+    font-size: 9px;
+    padding-left: 10px;
+  }
+  .header-link span {
+    margin-left: 8px;
+  }
+  .rail {
+    padding: 6px;
+    justify-content: space-around;
+  }
+  .rail-code {
+    display: none;
+  }
+  .rail a {
+    font-size: 10px;
+    padding: 10px;
+    gap: 15px;
+  }
+  main {
+    padding: 20px 11px 0;
+  }
+  .page-title {
+    align-items: flex-start;
+  }
+  .micro {
+    font-size: 8px;
+    letter-spacing: 0.5px;
+  }
+  h1 {
+    font-size: 91px;
+    letter-spacing: -5px;
+    margin-top: 10px;
+  }
+  h1 span {
+    font-size: 14px;
+    margin-left: 5px;
+  }
+  .date {
+    font-size: 8px;
+    max-width: 110px;
+  }
+  .date strong {
+    font-size: 13px;
+    margin-top: 13px;
+  }
+  .date > span {
+    font-size: 7px;
+  }
+  .scope {
+    height: 395px;
+  }
+  .scope-note {
+    left: 13px;
+    top: 30px;
+    font-size: 7px;
+  }
+  .scope-note b {
+    font-size: 13px;
+    letter-spacing: 1px;
+  }
+  .instrument-top {
+    padding: 11px;
+  }
+  .instrument h2 {
+    font-size: 12px;
+  }
+  .instrument-top > span {
+    font-size: 8px;
+  }
+  .depth-display {
+    bottom: 37px;
+    right: 12px;
+  }
+  .depth-display strong {
+    font-size: 68px;
+  }
+  .axis-e {
+    right: 10px;
+  }
+  .axis-w {
+    left: 10px;
+  }
+  .scope-footer {
+    padding: 0 8px;
+    gap: 8px;
+  }
+  .scope-footer > span:nth-child(2) {
+    display: none;
+  }
+  .scope-footer button {
+    padding: 0 9px;
+    font-size: 10px;
+  }
+  .depth-control {
+    grid-template-columns: 100px 1fr;
+    gap: 10px;
+  }
+  .depth-control label {
+    font-size: 11px;
+  }
+  .depth-control label span {
+    font-size: 8px;
+  }
+  .readouts {
+    grid-template-columns: 1fr;
+    gap: 15px;
+    padding: 15px;
+  }
+  .water {
+    grid-column: auto;
+    grid-row: auto;
+  }
+  .stations {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 5px;
+  }
+  .stations button {
+    padding: 10px 6px;
+    border: 1px solid #8aae9a;
+  }
+  .stations button[aria-pressed="true"] {
+    margin: 0;
+  }
+  .stations button small {
+    font-size: 7px;
+  }
+  .stations button strong {
+    font-size: 11px;
+  }
+  .stations button > span {
+    display: none;
+  }
+  .water dl {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+  }
+  .water dl > div {
+    display: block;
+  }
+  .water dd {
+    margin-top: 8px;
+  }
+  .water dd strong {
+    font-size: 28px;
+  }
+  .log h3 br {
+    display: none;
+  }
+  .log h3 {
+    font-size: 23px;
+  }
+  .archive {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    padding: 35px 20px;
+  }
+  .archive h2 {
+    font-size: 25px;
+  }
+  .archive-list > div {
+    grid-template-columns: 35px 1fr 55px;
+    font-size: 9px;
+    gap: 8px;
+  }
+  footer {
+    padding: 25px 20px;
+    gap: 12px;
+  }
+  footer p {
+    margin: 0;
+  }
+  footer a {
+    margin-top: 7px;
+  }
+  .axis-n {
+    left: 44%;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+html[data-reduce="true"] {
+  scroll-behavior: auto;
+}
+
+/* Readability pass: information labels stay at 11px or above. */
+.micro,
+.date,
+.date > span,
+.rail-code,
+.rail-end,
+.rail-end small,
+.instrument-top > span,
+.axis,
+.scope-note,
+.depth-display > span,
+.scope-footer,
+.scope-footer button,
+.depth-control label span,
+.range-labels,
+.range-labels output,
+.aside-title,
+.aside-title > span,
+.stations button small,
+.water dt,
+.water dd,
+.wave-label,
+.log-heading,
+.archive-list > div,
+.archive-list > div > span:last-child,
+footer p,
+footer a,
+.dialog-top {
+  font-size: 11px;
+}
+.log p,
+.log button,
+.header-link,
+footer p {
+  font-size: 12px;
+  line-height: 1.75;
+}
+.log p {
+  min-height: 63px;
+}
+.wave-label {
+  line-height: 1.5;
+}
+.scope-note {
+  letter-spacing: 1px;
+}
+.scope::before {
+  content: "";
+  position: absolute;
+  width: 63%;
+  aspect-ratio: 1;
+  top: 9%;
+  left: 19%;
+  border: 1px solid #789a8555;
+  border-radius: 50%;
+  box-shadow:
+    0 0 0 8px #789a8515,
+    0 0 0 17px #789a8515;
+  pointer-events: none;
+}
+.scope canvas {
+  position: relative;
+}
+.canvas-fallback {
+  position: absolute;
+  z-index: 1;
+  top: 43%;
+  left: 15%;
+  right: 15%;
+  text-align: center;
+  font-size: 12px;
+  line-height: 1.8;
+  padding: 12px;
+  background: #c6dfd1e8;
+}
+.canvas-fallback[hidden] {
+  display: none;
+}
+.scope-footer {
+  min-height: 44px;
+}
+.readouts {
+  padding-bottom: 0;
+}
+@media (max-width: 550px) {
+  .brand > span:last-child {
+    font-size: 10px;
+  }
+  .header-link {
+    font-size: 11px;
+    max-width: 105px;
+    padding-left: 8px;
+  }
+  .header-link span {
+    display: none;
+  }
+  .date {
+    font-size: 11px;
+    max-width: 105px;
+  }
+  .date > span {
+    font-size: 11px;
+  }
+  .micro {
+    font-size: 11px;
+    letter-spacing: 0;
+  }
+  .page-title {
+    gap: 5px;
+  }
+  h1 {
+    font-size: 81px;
+  }
+  .scope-note {
+    font-size: 9px;
+  }
+  .depth-display > span {
+    font-size: 11px;
+  }
+  .scope-footer > span {
+    font-size: 11px;
+  }
+  .depth-control {
+    grid-template-columns: 110px 1fr;
+  }
+  .depth-control label span {
+    font-size: 11px;
+    line-height: 1.6;
+  }
+  .stations button small {
+    font-size: 11px;
+    line-height: 1.6;
+  }
+  .stations button strong {
+    font-size: 12px;
+  }
+  .archive-list > div {
+    grid-template-columns: 40px 1fr 65px;
+    font-size: 11px;
+  }
+  .archive-list > div > span:last-child {
+    font-size: 11px;
+  }
+  .rail a {
+    font-size: 12px;
+  }
+  .archive h2 {
+    font-size: 25px;
+  }
+}
